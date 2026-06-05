@@ -199,9 +199,31 @@ function _rw(u){
   return u;
 }
 var _origFetch=window.fetch.bind(window);
+function _buildRequestInit(req){
+  var clone=req.clone();
+  var init={
+    method:clone.method,
+    headers:clone.headers,
+    mode:clone.mode,
+    credentials:clone.credentials,
+    cache:clone.cache,
+    redirect:clone.redirect,
+    referrer:clone.referrer,
+    referrerPolicy:clone.referrerPolicy,
+    integrity:clone.integrity,
+    keepalive:clone.keepalive,
+    signal:clone.signal
+  };
+  if("duplex" in clone&&clone.duplex)init.duplex=clone.duplex;
+  if(clone.method!=="GET"&&clone.method!=="HEAD")init.body=clone.body;
+  return init;
+}
 function _proxyFetch(u,o){
-  if(typeof u==="string")u=_rw(u);
-  else if(u instanceof Request){u=new Request(_rw(u.url),u)}
+  if(typeof u==="string"){
+    u=_rw(u);
+  }else if(u instanceof Request){
+    u=new Request(_rw(u.url),_buildRequestInit(u));
+  }
   return _origFetch(u,o);
 }
 window.fetch=_proxyFetch;
@@ -212,6 +234,34 @@ window.esmsInitOptions.resolve=function(id,parentUrl){
   if(/^https?:\\/\\//.test(id))return _rw(id);
   return id;
 };
+if(navigator&&typeof navigator.sendBeacon==="function"){
+  var _origSendBeacon=navigator.sendBeacon.bind(navigator);
+  navigator.sendBeacon=function(url,data){
+    return _origSendBeacon(_rw(url),data);
+  };
+}
+if(typeof self.importScripts==="function"){
+  var _origImportScripts=self.importScripts.bind(self);
+  self.importScripts=function(){
+    var args=[];
+    for(var i=0;i<arguments.length;i++)args.push(_rw(arguments[i]));
+    return _origImportScripts.apply(self,args);
+  };
+}
+if(typeof Worker==="function"){
+  var _OrigWorker=Worker;
+  Worker=function(url,options){
+    return new _OrigWorker(_rw(url),options);
+  };
+  Worker.prototype=_OrigWorker.prototype;
+}
+if(typeof SharedWorker==="function"){
+  var _OrigSharedWorker=SharedWorker;
+  SharedWorker=function(url,options){
+    return new _OrigSharedWorker(_rw(url),options);
+  };
+  SharedWorker.prototype=_OrigSharedWorker.prototype;
+}
 var _ps=history.pushState;
 history.pushState=function(s,t,u){return _ps.call(history,s,t,u?_rw(u):u)};
 var _rs=history.replaceState;
@@ -299,12 +349,23 @@ function handleProxy(req, res, targetUrl) {
     'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
     'Accept-Encoding': 'identity',
     Referer: targetUrl.origin + '/',
-    // 强制覆盖 Host 头，伪装成直接访问目标站，降低上游 400 拒绝概率
     Host: targetUrl.host,
   };
 
   if (req.headers.cookie) {
     headers.Cookie = req.headers.cookie;
+  }
+
+  // 透传客户端原始 Body 相关请求头，避免上游无法解析 POST/PUT 载荷
+  if (req.headers['content-type']) {
+    headers['Content-Type'] = req.headers['content-type'];
+  }
+  if (req.headers['content-length']) {
+    headers['Content-Length'] = req.headers['content-length'];
+  }
+  // Origin 存在时改写为目标站点自身来源，减少上游对跨站请求的拦截
+  if (req.headers.origin) {
+    headers.Origin = targetUrl.origin;
   }
 
   const options = {
@@ -314,8 +375,7 @@ function handleProxy(req, res, targetUrl) {
     method: req.method,
     headers,
     timeout: 15000,
-    // HTTPS 请求显式带上 SNI，避免某些站点因证书握手失败返回 502
-    ...(targetUrl.protocol === 'https:' ? { servername: targetUrl.hostname } : {}),
+    servername: targetUrl.protocol === 'https:' ? targetUrl.hostname : undefined,
   };
 
   const proxyReq = mod.request(options, proxyRes => {
@@ -348,7 +408,6 @@ function handleProxy(req, res, targetUrl) {
       ) {
         continue;
       }
-      // 丢弃上游 access-control-* 响应头，避免与本地统一设置的 CORS 头冲突
       if (lk.startsWith('access-control-')) {
         continue;
       }
@@ -419,7 +478,6 @@ function handleProxy(req, res, targetUrl) {
   });
 
   if (req.method === 'POST' || req.method === 'PUT') {
-    // 客户端请求体中途断开时直接销毁上游请求，避免未处理异常导致进程崩溃
     req.on('error', err => {
       console.error('Client request stream error:', err.message);
       proxyReq.destroy(err);
