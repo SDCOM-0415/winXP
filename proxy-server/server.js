@@ -51,8 +51,9 @@ function setCorsHeaders(res, origin) {
     ALLOWED_ORIGINS[0] === '*' ? '*' : ALLOWED_ORIGINS.includes(origin) ? origin : '';
   if (!allowOrigin) return false;
   res.setHeader('Access-Control-Allow-Origin', allowOrigin);
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', '*');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   return true;
 }
 
@@ -124,6 +125,83 @@ function resolveProxyUrl(url, targetUrl) {
   return '/proxy/' + base + url;
 }
 
+function buildInjectScript(targetOrigin) {
+  return `<script>(function(){
+var _TO="${targetOrigin}";
+var _PB="/proxy/";
+function _rw(u){
+  if(!u||typeof u!=="string")return u;
+  if(u.startsWith("#")||u.startsWith("javascript:")||u.startsWith("data:")||u.startsWith("blob:"))return u;
+  if(u.startsWith(_PB))return u;
+  if(/^https?:\\/\\//.test(u))return _PB+u;
+  if(u.startsWith("//"))return _PB+"https:"+u;
+  if(u.startsWith("/"))return _PB+_TO+u;
+  return u;
+}
+var _ps=history.pushState;
+history.pushState=function(s,t,u){return _ps.call(history,s,t,u?_rw(u):u)};
+var _rs=history.replaceState;
+history.replaceState=function(s,t,u){return _rs.call(history,s,t,u?_rw(u):u)};
+var _xo=XMLHttpRequest.prototype.open;
+XMLHttpRequest.prototype.open=function(m,u){
+  arguments[1]=_rw(u);
+  return _xo.apply(this,arguments);
+};
+var _ft=window.fetch;
+window.fetch=function(u,o){
+  if(typeof u==="string")u=_rw(u);
+  else if(u&&u.url)u=new Request(_rw(u.url),u);
+  return _ft.call(window,u,o);
+};
+window.open=function(u){
+  if(u){
+    var fu=u;
+    if(u.startsWith(_PB))fu=u.substring(_PB.length);
+    window.parent.postMessage({type:"ie-open-window",url:fu},"*");
+  }
+  return null;
+};
+document.addEventListener("click",function(e){
+  var a=e.target.closest("a");
+  if(!a)return;
+  var h=a.getAttribute("href");
+  if(!h||h.startsWith("#")||h.startsWith("javascript:"))return;
+  if(a.target==="_blank"){
+    e.preventDefault();
+    var fu=h;
+    if(h.startsWith(_PB))fu=h.substring(_PB.length);
+    else if(/^https?:\\/\\//.test(h))fu=h;
+    else if(h.startsWith("/"))fu=_TO+h;
+    else return;
+    window.parent.postMessage({type:"ie-open-window",url:fu},"*");
+    return;
+  }
+  if(!h.startsWith(_PB)&&!h.startsWith("#")){
+    e.preventDefault();
+    var nu=_rw(h);
+    location.href=nu;
+  }
+},true);
+var _ce=document.createElement;
+document.createElement=function(t){
+  var el=_ce.call(document,t);
+  if(t.toLowerCase()==="script"||t.toLowerCase()==="img"||t.toLowerCase()==="link"){
+    var _ss=Object.getOwnPropertyDescriptor(HTMLScriptElement.prototype,"src")||
+            Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,"src")||{};
+    var origSet=_ss.set;
+    if(t.toLowerCase()==="script"&&origSet){
+      Object.defineProperty(el,"src",{
+        set:function(v){origSet.call(this,_rw(v))},
+        get:_ss.get?function(){return _ss.get.call(this)}:undefined,
+        configurable:true
+      });
+    }
+  }
+  return el;
+};
+})()</script>`;
+}
+
 function handleProxy(req, res, targetUrl) {
   const mod = getProtocolModule(targetUrl.protocol);
   const headers = {
@@ -183,8 +261,9 @@ function handleProxy(req, res, targetUrl) {
 
     const isHtml = contentType.includes('text/html');
     const isCss = contentType.includes('text/css');
+    const isJs = contentType.includes('javascript') || contentType.includes('ecmascript');
 
-    if (!isHtml && !isCss) {
+    if (!isHtml && !isCss && !isJs) {
       responseHeaders['Cache-Control'] = 'public, max-age=86400';
       res.writeHead(statusCode, responseHeaders);
       proxyRes.pipe(res);
@@ -198,35 +277,11 @@ function handleProxy(req, res, targetUrl) {
 
       if (isHtml) {
         body = rewriteUrls(body, targetUrl);
-
-        const injectScript = `<script>(function(){
-  document.addEventListener("click", function(e) {
-    var a = e.target.closest("a");
-    if (!a) return;
-    var href = a.getAttribute("href");
-    if (!href || href.startsWith("#") || href.startsWith("javascript:")) return;
-    if (a.target === "_blank") {
-      e.preventDefault();
-      var fullUrl = href;
-      if (href.startsWith("/proxy/")) fullUrl = href.replace("/proxy/", "");
-      else if (/^https?:\\/\\//.test(href)) fullUrl = href;
-      else return;
-      window.parent.postMessage({type:"ie-open-window",url:fullUrl},"*");
-    }
-  }, true);
-  var origOpen = window.open;
-  window.open = function(url) {
-    if (url) {
-      var fullUrl = url;
-      if (url.startsWith("/proxy/")) fullUrl = url.replace("/proxy/", "");
-      window.parent.postMessage({type:"ie-open-window",url:fullUrl},"*");
-    }
-    return null;
-  };
-})()<\/script>`;
-
+        const injectScript = buildInjectScript(targetUrl.origin);
         if (/<head/i.test(body)) {
           body = body.replace(/(<head[^>]*>)/i, '$1' + injectScript);
+        } else if (/<html/i.test(body)) {
+          body = body.replace(/(<html[^>]*>)/i, '$1' + injectScript);
         } else {
           body = injectScript + body;
         }
@@ -234,6 +289,10 @@ function handleProxy(req, res, targetUrl) {
 
       if (isCss) {
         body = rewriteCssUrls(body, targetUrl);
+      }
+
+      if (isJs) {
+        body = rewriteJsUrls(body, targetUrl);
       }
 
       responseHeaders['Content-Type'] = contentType.includes('charset')
@@ -262,6 +321,14 @@ function handleProxy(req, res, targetUrl) {
   } else {
     proxyReq.end();
   }
+}
+
+function rewriteJsUrls(js, targetUrl) {
+  js = js.replace(
+    /(["'])(https?:\/\/(?:cn\.bing\.com|www\.bing\.com|assets\.msn\.cn|r\.bing\.com)[^"']*)\1/g,
+    (m, q, url) => q + '/proxy/' + url + q,
+  );
+  return js;
 }
 
 const server = http.createServer((req, res) => {
