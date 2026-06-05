@@ -1,6 +1,8 @@
-import React, { useReducer, useRef, useCallback } from 'react';
+import React, { useReducer, useRef, useCallback, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import useMouse from 'react-use/lib/useMouse';
+
+import ContextMenu from 'components/ContextMenu';
 
 import {
   ADD_APP,
@@ -231,6 +233,48 @@ function WinXP() {
   function onMouseDownFooter() {
     dispatch({ type: FOCUS_DESKTOP });
   }
+  const [contextMenu, setContextMenu] = useState({ visible: false, x: 0, y: 0 });
+  const desktopMenuItems = [
+    { type: 'submenu', text: '排列图标', items: [
+      { type: 'item', text: '名称' },
+      { type: 'item', text: '大小' },
+      { type: 'item', text: '类型' },
+      { type: 'item', text: '修改时间' },
+      { type: 'separator' },
+      { type: 'item', text: '自动排列' },
+      { type: 'item', text: '按组排列' },
+      { type: 'item', text: '对齐到网格' },
+    ]},
+    { type: 'item', text: '对齐到网格' },
+    { type: 'separator' },
+    { type: 'item', text: '粘贴', disabled: true },
+    { type: 'item', text: '粘贴快捷方式', disabled: true },
+    { type: 'separator' },
+    { type: 'submenu', text: '新建', items: [
+      { type: 'item', text: '文件夹' },
+      { type: 'item', text: '快捷方式' },
+      { type: 'separator' },
+      { type: 'item', text: '文本文档' },
+    ]},
+    { type: 'separator' },
+    { type: 'item', text: '属性' },
+  ];
+  function onContextMenuDesktop(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    dispatch({ type: FOCUS_DESKTOP });
+    const x = Math.min(e.clientX, window.innerWidth - 200);
+    const y = Math.min(e.clientY, window.innerHeight - 300);
+    setContextMenu({ visible: true, x, y });
+  }
+  function onCloseContextMenu() {
+    setContextMenu({ visible: false, x: 0, y: 0 });
+  }
+  function onClickContextMenuItem(text) {
+    if (text === '属性') {
+      dispatch({ type: ADD_APP, payload: appSettings.Error });
+    }
+  }
   function onClickMenuItem(o) {
     if (o === 'Internet')
       dispatch({ type: ADD_APP, payload: appSettings['Internet Explorer'] });
@@ -258,6 +302,7 @@ function WinXP() {
       });
   }
   function onMouseDownDesktop(e) {
+    onCloseContextMenu();
     if (e.target === e.currentTarget)
       dispatch({
         type: START_SELECT,
@@ -288,6 +333,7 @@ function WinXP() {
       ref={ref}
       onMouseUp={onMouseUpDesktop}
       onMouseDown={onMouseDownDesktop}
+      onContextMenu={onContextMenuDesktop}
       state={state.powerState}
     >
       <Icons
@@ -316,6 +362,14 @@ function WinXP() {
         onMouseDown={onMouseDownFooter}
         onClickMenuItem={onClickMenuItem}
       />
+      {contextMenu.visible && (
+        <ContextMenu
+          items={desktopMenuItems}
+          position={{ x: contextMenu.x, y: contextMenu.y }}
+          onClose={onCloseContextMenu}
+          onClickItem={onClickContextMenuItem}
+        />
+      )}
       {state.powerState !== POWER_STATE.START && (
         <Modal
           onClose={onModalClose}
