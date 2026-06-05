@@ -7,6 +7,8 @@ const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS
   ? process.env.ALLOWED_ORIGINS.split(',')
   : ['*'];
 
+const TARGET_ORIGIN_CACHE = new Map();
+
 function getProtocolModule(protocol) {
   return protocol === 'https:' ? https : http;
 }
@@ -16,6 +18,29 @@ function buildTargetUrl(reqUrl) {
   if (!match) return null;
   try {
     return new URL(match[1]);
+  } catch {
+    return null;
+  }
+}
+
+function extractOriginFromReferer(referer) {
+  if (!referer) return null;
+  const cached = TARGET_ORIGIN_CACHE.get(referer);
+  if (cached) return cached;
+  const match = referer.match(/\/proxy\/((https?:\/\/)[^/]+)/);
+  if (match) {
+    const origin = match[1];
+    TARGET_ORIGIN_CACHE.set(referer, origin);
+    return origin;
+  }
+  return null;
+}
+
+function buildUrlFromReferer(reqUrl, referer) {
+  const origin = extractOriginFromReferer(referer);
+  if (!origin) return null;
+  try {
+    return new URL(reqUrl, origin + '/');
   } catch {
     return null;
   }
@@ -99,14 +124,7 @@ function resolveProxyUrl(url, targetUrl) {
   return '/proxy/' + base + url;
 }
 
-function handleProxy(req, res) {
-  const targetUrl = buildTargetUrl(req.url);
-  if (!targetUrl) {
-    res.writeHead(400, { 'Content-Type': 'text/plain' });
-    res.end('Invalid proxy URL');
-    return;
-  }
-
+function handleProxy(req, res, targetUrl) {
   const mod = getProtocolModule(targetUrl.protocol);
   const headers = {
     'User-Agent':
@@ -182,7 +200,6 @@ function handleProxy(req, res) {
         body = rewriteUrls(body, targetUrl);
 
         const injectScript = `<script>(function(){
-  var proxyOrigin = location.origin;
   document.addEventListener("click", function(e) {
     var a = e.target.closest("a");
     if (!a) return;
@@ -206,7 +223,7 @@ function handleProxy(req, res) {
     }
     return null;
   };
-})()</script>`;
+})()<\/script>`;
 
         if (/<head/i.test(body)) {
           body = body.replace(/(<head[^>]*>)/i, '$1' + injectScript);
@@ -264,7 +281,20 @@ const server = http.createServer((req, res) => {
   }
 
   if (req.url.startsWith('/proxy/')) {
-    handleProxy(req, res);
+    const targetUrl = buildTargetUrl(req.url);
+    if (!targetUrl) {
+      res.writeHead(400, { 'Content-Type': 'text/plain' });
+      res.end('Invalid proxy URL');
+      return;
+    }
+    handleProxy(req, res, targetUrl);
+    return;
+  }
+
+  const referer = req.headers.referer || req.headers.referrer || '';
+  const targetUrl = buildUrlFromReferer(req.url, referer);
+  if (targetUrl) {
+    handleProxy(req, res, targetUrl);
     return;
   }
 
