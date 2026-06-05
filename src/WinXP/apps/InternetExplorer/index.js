@@ -43,11 +43,11 @@ function InternetExplorer({ onClose }) {
   }
   function onClickOptionItem(item) {
     switch (item) {
-      case 'Close':
+      case '关闭':
         onClose();
         break;
-      case 'Home Page':
-      case 'Back':
+      case '主页':
+      case '后退':
         goMain();
         break;
       default:
@@ -73,7 +73,7 @@ function InternetExplorer({ onClose }) {
           }`}
         >
           <img className="ie__function_bar__icon" src={back} alt="" />
-          <span className="ie__function_bar__text">Back</span>
+          <span className="ie__function_bar__text">后退</span>
           <div className="ie__function_bar__arrow" />
         </div>
         <div className="ie__function_bar__button--disable">
@@ -108,7 +108,7 @@ function InternetExplorer({ onClose }) {
             src={favorite}
             alt=""
           />
-          <span className="ie__function_bar__text">Favorites</span>
+          <span className="ie__function_bar__text">收藏夹</span>
         </div>
         <div className="ie__function_bar__button">
           <img className="ie__function_bar__icon" src={history} alt="" />
@@ -133,7 +133,7 @@ function InternetExplorer({ onClose }) {
         </div>
       </section>
       <section className="ie__address_bar">
-        <div className="ie__address_bar__title">Address</div>
+        <div className="ie__address_bar__title">地址</div>
         <div className="ie__address_bar__content">
           <img src={ie} alt="ie" className="ie__address_bar__content__img" />
           <div className="ie__address_bar__content__text">
@@ -151,11 +151,11 @@ function InternetExplorer({ onClose }) {
         </div>
         <div className="ie__address_bar__go">
           <img className="ie__address_bar__go__img" src={go} alt="go" />
-          <span className="ie__address_bar__go__text">Go</span>
+          <span className="ie__address_bar__go__text">转到</span>
         </div>
         <div className="ie__address_bar__separate" />
         <div className="ie__address_bar__links">
-          <span className="ie__address_bar__links__text">Links</span>
+          <span className="ie__address_bar__links__text">链接</span>
           <img
             className="ie__address_bar__links__img"
             src={links}
@@ -176,7 +176,7 @@ function InternetExplorer({ onClose }) {
       <footer className="ie__footer">
         <div className="ie__footer__status">
           <img className="ie__footer__status__img" src={ie} alt="" />
-          <span className="ie__footer__status__text">Done</span>
+          <span className="ie__footer__status__text">完成</span>
         </div>
         <div className="ie__footer__block" />
         <div className="ie__footer__block" />

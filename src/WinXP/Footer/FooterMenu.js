@@ -41,7 +41,7 @@ function FooterMenu({ className, onClick }) {
     <div className={className}>
       <header>
         <img className="header__img" src={user} alt="avatar" />
-        <span className="header__text">User</span>
+        <span className="header__text">Administrator</span>
       </header>
       <section className="menu" onMouseOver={onMouseOver}>
         <hr className="orange-hr" />
@@ -49,17 +49,17 @@ function FooterMenu({ className, onClick }) {
           <Item onClick={onClick} text="Internet" icon={ie}>
             <div className="menu__item__subtext">Internet Explorer</div>
           </Item>
-          <Item onClick={onClick} text="E-mail" icon={outlook}>
+          <Item onClick={onClick} text="电子邮件" icon={outlook}>
             <div className="menu__item__subtext">Outlook Express</div>
           </Item>
           <div className="menu__separator" />
           <Items
             onClick={onClick}
             items={[
-              { icon: mine, text: 'Minesweeper' },
-              { icon: notepad, text: 'Notepad' },
+              { icon: mine, text: '扫雷' },
+              { icon: notepad, text: '记事本' },
               { icon: winamp, text: 'Winamp' },
-              { icon: paint, text: 'Paint' },
+              { icon: paint, text: '画图' },
               { icon: mediaPlayer, text: 'Windows Media Player' },
               { icon: messenger, text: 'Windows Messenger' },
             ]}
@@ -68,7 +68,7 @@ function FooterMenu({ className, onClick }) {
           <div className="menu__separator" />
           <Item
             style={
-              hovering === 'All Programs'
+              hovering === '所有程序'
                 ? {
                     backgroundColor: '#2f71cd',
                     color: '#FFF',
@@ -77,7 +77,7 @@ function FooterMenu({ className, onClick }) {
             }
             text={
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                All Programs
+                所有程序
                 <img
                   src={allProgramsIcon}
                   alt=""
@@ -90,33 +90,33 @@ function FooterMenu({ className, onClick }) {
             }
             icon={empty}
           >
-            {hovering === 'All Programs' && (
+            {hovering === '所有程序' && (
               <SubMenu data={AllPrograms} onClick={onClick} />
             )}
           </Item>
         </div>
         <div className="menu__right">
-          <Item text="My Documents" icon={documents} onClick={onClick} />
+          <Item text="我的文档" icon={documents} onClick={onClick} />
           <Item
             style={
-              hovering === 'My Recent Documents'
+              hovering === '我最近的文档'
                 ? {
                     backgroundColor: '#2f71cd',
                     color: '#FFF',
                   }
                 : {}
             }
-            text="My Recent Documents"
+            text="我最近的文档"
             icon={recentDocuments}
           >
             <div
               style={{
                 borderLeftColor:
-                  hovering === 'My Recent Documents' ? '#FFF' : '#00136b',
+                  hovering === '我最近的文档' ? '#FFF' : '#00136b',
               }}
               className="menu__arrow"
             />
-            {hovering === 'My Recent Documents' && (
+            {hovering === '我最近的文档' && (
               <SubMenu
                 left="153px"
                 data={MyRecentDocuments}
@@ -127,64 +127,64 @@ function FooterMenu({ className, onClick }) {
           <Items
             onClick={onClick}
             items={[
-              { icon: pictures, text: 'My Pictures' },
-              { icon: music, text: 'My Music' },
-              { icon: computer, text: 'My Computer' },
+              { icon: pictures, text: '图片收藏' },
+              { icon: music, text: '我的音乐' },
+              { icon: computer, text: '我的电脑' },
             ]}
           />
           <div className="menu__separator" />
           <Items
             onClick={onClick}
             items={[
-              { icon: controlPanel, text: 'Control Panel' },
-              { icon: setAccess, text: 'Set Program Access and Defaults' },
+              { icon: controlPanel, text: '控制面板' },
+              { icon: setAccess, text: '设定程序访问和默认值' },
             ]}
           />
           <Item
             style={
-              hovering === 'Connect To'
+              hovering === '连接到'
                 ? {
                     backgroundColor: '#2f71cd',
                     color: '#FFF',
                   }
                 : {}
             }
-            text="Connect To"
+            text="连接到"
             icon={connect}
           >
             <div
               style={{
-                borderLeftColor: hovering === 'Connect To' ? '#FFF' : '#00136b',
+                borderLeftColor: hovering === '连接到' ? '#FFF' : '#00136b',
               }}
               className="menu__arrow"
             />
-            {hovering === 'Connect To' && (
+            {hovering === '连接到' && (
               <SubMenu left="153px" data={ConnectTo} onClick={onClick} />
             )}
           </Item>
-          <Item onClick={onClick} text="Printers and Faxes" icon={printer} />
+          <Item onClick={onClick} text="打印机和传真" icon={printer} />
           <div className="menu__separator" />
           <Items
             onClick={onClick}
             items={[
-              { icon: help, text: 'Help and Support' },
-              { icon: search, text: 'Search' },
-              { icon: run, text: 'Run...' },
+              { icon: help, text: '帮助和支持' },
+              { icon: search, text: '搜索' },
+              { icon: run, text: '运行...' },
             ]}
           />
         </div>
       </section>
       <footer>
-        <div className="footer__item" onClick={() => onClick('Log Off')}>
+        <div className="footer__item" onClick={() => onClick('注销')}>
           <img className="footer__item__img" src={lock} alt="" />
-          <span>Log Off</span>
+          <span>注销</span>
         </div>
         <div
           className="footer__item"
-          onClick={() => onClick('Turn Off Computer')}
+          onClick={() => onClick('关闭计算机')}
         >
           <img className="footer__item__img" src={shut} alt="" />
-          <span>Turn Off Computer</span>
+          <span>关闭计算机</span>
         </div>
       </footer>
     </div>

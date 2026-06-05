@@ -2,22 +2,22 @@ const File = [
   {
     type: 'item',
     disable: true,
-    text: 'New',
+    text: '新建',
   },
   {
     type: 'item',
     disable: true,
-    text: 'Open...',
+    text: '打开...',
   },
   {
     type: 'item',
     disable: true,
-    text: 'Save',
+    text: '保存',
   },
   {
     type: 'item',
     disable: true,
-    text: 'Save As...',
+    text: '另存为...',
   },
   {
     type: 'separator',
@@ -25,26 +25,26 @@ const File = [
   {
     type: 'item',
     disable: true,
-    text: 'Page Setup...',
+    text: '页面设置...',
   },
   {
     type: 'item',
     disable: true,
-    text: 'Print...',
+    text: '打印...',
   },
   {
     type: 'separator',
   },
   {
     type: 'item',
-    text: 'Exit',
+    text: '退出',
   },
 ];
 const Edit = [
   {
     type: 'item',
     disable: true,
-    text: 'Undo...',
+    text: '撤销...',
   },
   {
     type: 'separator',
@@ -52,22 +52,22 @@ const Edit = [
   {
     type: 'item',
     disable: true,
-    text: 'Cut',
+    text: '剪切',
   },
   {
     type: 'item',
     disable: true,
-    text: 'Copy',
+    text: '复制',
   },
   {
     type: 'item',
     disable: true,
-    text: 'Paste',
+    text: '粘贴',
   },
   {
     type: 'item',
     disable: true,
-    text: 'Delete',
+    text: '删除',
   },
   {
     type: 'separator',
@@ -75,22 +75,22 @@ const Edit = [
   {
     type: 'item',
     disable: true,
-    text: 'Find...',
+    text: '查找...',
   },
   {
     type: 'item',
     disable: true,
-    text: 'Find Next',
+    text: '查找下一个',
   },
   {
     type: 'item',
     disable: true,
-    text: 'Replace...',
+    text: '替换...',
   },
   {
     type: 'item',
     disable: true,
-    text: 'Go To...',
+    text: '转到...',
   },
   {
     type: 'separator',
@@ -98,41 +98,41 @@ const Edit = [
   {
     type: 'item',
     disable: true,
-    text: 'Select All',
+    text: '全选',
   },
   {
     type: 'item',
-    text: 'Time/Date',
+    text: '时间/日期',
   },
 ];
 const Format = [
   {
     type: 'item',
-    text: 'Word Wrap',
+    text: '自动换行',
   },
   {
     type: 'item',
     disable: true,
-    text: 'Font...',
+    text: '字体...',
   },
 ];
 const View = [
   {
     type: 'item',
     disable: true,
-    text: 'Status Bar',
+    text: '状态栏',
   },
 ];
 const Help = [
   {
     type: 'item',
     disable: true,
-    text: 'Help Topics',
+    text: '帮助主题',
   },
   {
     type: 'item',
     disable: true,
-    text: 'About Notepad',
+    text: '关于记事本',
   },
 ];
-export default { File, Edit, Format, View, Help };
+export default { '文件': File, '编辑': Edit, '格式': Format, '查看': View, '帮助': Help };

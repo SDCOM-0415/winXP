@@ -59,7 +59,7 @@ export const MyRecentDocuments = [
   {
     type: 'item',
     icon: empty,
-    text: '(Empty)',
+    text: '(空)',
   },
 ];
 export const ConnectTo = [
@@ -71,19 +71,19 @@ export const ConnectTo = [
   {
     type: 'item',
     icon: connection,
-    text: 'Show all connections',
+    text: '显示所有连接',
   },
 ];
 export const AllPrograms = [
   {
     type: 'item',
     icon: access,
-    text: 'Set Program Access and Defaults',
+    text: '设定程序访问和默认值',
   },
   {
     type: 'item',
     icon: catalog,
-    text: 'Windows Catalog',
+    text: 'Windows 目录',
   },
   {
     type: 'item',
@@ -96,89 +96,89 @@ export const AllPrograms = [
   {
     type: 'menu',
     icon: menu,
-    text: 'Accessories',
+    text: '附件',
     items: [
       {
         type: 'menu',
         icon: menu,
-        text: 'Accessibility',
+        text: '辅助功能',
         bottom: 'initial',
         items: [
           {
             type: 'item',
             icon: accessibility,
-            text: 'Accessibility Wizard',
+            text: '辅助功能向导',
           },
           {
             type: 'item',
             icon: magnifier,
-            text: 'Magnifier',
+            text: '放大镜',
           },
           {
             type: 'item',
             icon: narrator,
-            text: 'Narrator',
+            text: '讲述人',
           },
           {
             type: 'item',
             icon: keyboard,
-            text: 'On-Screen Keyboard',
+            text: '屏幕键盘',
           },
           {
             type: 'item',
             icon: utility,
-            text: 'Utility Manager',
+            text: '辅助工具管理器',
           },
         ],
       },
       {
         type: 'menu',
         icon: menu,
-        text: 'Communications',
+        text: '通讯',
         bottom: 'initial',
         items: [
           {
             type: 'item',
             icon: hyperCmd,
-            text: 'HyperTerminal',
+            text: '超级终端',
           },
           {
             type: 'item',
             icon: networkConnection,
-            text: 'Network Connections',
+            text: '网络连接',
           },
           {
             type: 'item',
             icon: networkSetup,
-            text: 'Network Setup Wizard',
+            text: '网络安装向导',
           },
           {
             type: 'item',
             icon: connectionWizard,
-            text: 'New Connection Wizard',
+            text: '新建连接向导',
           },
           {
             type: 'item',
             icon: wireless,
-            text: 'Wireless Network Setup Wizard',
+            text: '无线网络安装向导',
           },
         ],
       },
       {
         type: 'menu',
         icon: menu,
-        text: 'Entertainment',
+        text: '娱乐',
         bottom: 'initial',
         items: [
           {
             type: 'item',
             icon: sound,
-            text: 'Sound Recorder',
+            text: '录音机',
           },
           {
             type: 'item',
             icon: volume,
-            text: 'Volume Control',
+            text: '音量控制',
           },
           {
             type: 'item',
@@ -190,184 +190,184 @@ export const AllPrograms = [
       {
         type: 'menu',
         icon: menu,
-        text: 'System Tools',
+        text: '系统工具',
         bottom: 'initial',
         items: [
           {
             type: 'item',
             icon: backup,
-            text: 'Backup',
+            text: '备份',
           },
           {
             type: 'item',
             icon: characterMap,
-            text: 'Character Map',
+            text: '字符映射表',
           },
           {
             type: 'item',
             icon: cleanDisk,
-            text: 'Disk Cleanup',
+            text: '磁盘清理',
           },
           {
             type: 'item',
             icon: defragmenter,
-            text: 'Disk Defragmenter',
+            text: '磁盘碎片整理程序',
           },
           {
             type: 'item',
             icon: transfer,
-            text: 'Files and Settings Transfer Wizard',
+            text: '文件和设置转移向导',
           },
           {
             type: 'item',
             icon: recent,
-            text: 'Scheduled Tasks',
+            text: '计划任务',
           },
           {
             type: 'item',
             icon: security,
-            text: 'Security Center',
+            text: '安全中心',
           },
           {
             type: 'item',
             icon: info,
-            text: 'System Information',
+            text: '系统信息',
           },
           {
             type: 'item',
             icon: restore,
-            text: 'System Restore',
+            text: '系统还原',
           },
         ],
       },
       {
         type: 'item',
         icon: address,
-        text: 'Address Book',
+        text: '通讯簿',
       },
       {
         type: 'item',
         icon: cmd,
-        text: 'Command Prompt',
+        text: '命令提示符',
       },
       {
         type: 'item',
         icon: notepad,
-        text: 'Notepad',
+        text: '记事本',
       },
       {
         type: 'item',
         icon: painter,
-        text: 'Paint',
+        text: '画图',
       },
       {
         type: 'item',
         icon: calculator,
-        text: 'Calculator',
+        text: '计算器',
       },
       {
         type: 'item',
         icon: compatibility,
-        text: 'Program Compatibility Wizard',
+        text: '程序兼容性向导',
       },
       {
         type: 'item',
         icon: rdp,
-        text: 'Remote Desktop Connection',
+        text: '远程桌面连接',
       },
       {
         type: 'item',
         icon: sync,
-        text: 'Synchronize',
+        text: '同步',
       },
       {
         type: 'item',
         icon: tour,
-        text: 'Tour Windows XP',
+        text: '漫游 Windows XP',
       },
       {
         type: 'item',
         icon: winExplorer,
-        text: 'Windows Explorer',
+        text: 'Windows 资源管理器',
       },
       {
         type: 'item',
         icon: wordPad,
-        text: 'WordPad',
+        text: '写字板',
       },
     ],
   },
   {
     type: 'menu',
     icon: menu,
-    text: 'Games',
+    text: '游戏',
     items: [
       {
         type: 'item',
         icon: freecell,
-        text: 'FreeCell',
+        text: '空当接龙',
       },
       {
         type: 'item',
         icon: heart,
-        text: 'Hearts',
+        text: '红心大战',
       },
       {
         type: 'item',
         icon: backgammon,
-        text: 'Internet Backgammon',
+        text: 'Internet 双陆棋',
       },
       {
         type: 'item',
         icon: checker,
-        text: 'Internet Checkers',
+        text: 'Internet 跳棋',
       },
       {
         type: 'item',
         icon: onlineHeart,
-        text: 'Internet Hearts',
+        text: 'Internet 红心大战',
       },
       {
         type: 'item',
         icon: reversi,
-        text: 'Internet Reversi',
+        text: 'Internet 黑白棋',
       },
       {
         type: 'item',
         icon: spade,
-        text: 'Internet Spades',
+        text: 'Internet 纸牌',
       },
       {
         type: 'item',
         icon: mine,
-        text: 'Minesweeper',
+        text: '扫雷',
       },
       {
         type: 'item',
         icon: pinball,
-        text: 'Pinball',
+        text: '三维弹球',
       },
       {
         type: 'item',
         icon: solitaire,
-        text: 'Solitaire',
+        text: '纸牌',
       },
       {
         type: 'item',
         icon: spider,
-        text: 'Spider Solitaire',
+        text: '蜘蛛纸牌',
       },
     ],
   },
   {
     type: 'menu',
     icon: menu,
-    text: 'Startup',
+    text: '启动',
     items: [
       {
         type: 'item',
         icon: empty,
-        text: '(Empty)',
+        text: '(空)',
       },
     ],
   },
@@ -384,7 +384,7 @@ export const AllPrograms = [
   {
     type: 'item',
     icon: networkAssistance,
-    text: 'Remote Assistance',
+    text: '远程协助',
   },
   {
     type: 'item',

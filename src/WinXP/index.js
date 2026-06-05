@@ -234,26 +234,26 @@ function WinXP() {
   function onClickMenuItem(o) {
     if (o === 'Internet')
       dispatch({ type: ADD_APP, payload: appSettings['Internet Explorer'] });
-    else if (o === 'Minesweeper')
+    else if (o === '扫雷')
       dispatch({ type: ADD_APP, payload: appSettings.Minesweeper });
-    else if (o === 'My Computer')
+    else if (o === '我的电脑')
       dispatch({ type: ADD_APP, payload: appSettings['My Computer'] });
-    else if (o === 'Notepad')
+    else if (o === '记事本')
       dispatch({ type: ADD_APP, payload: appSettings.Notepad });
     else if (o === 'Winamp')
       dispatch({ type: ADD_APP, payload: appSettings.Winamp });
-    else if (o === 'Paint')
+    else if (o === '画图')
       dispatch({ type: ADD_APP, payload: appSettings.Paint });
-    else if (o === 'Log Off')
+    else if (o === '注销')
       dispatch({ type: POWER_OFF, payload: POWER_STATE.LOG_OFF });
-    else if (o === 'Turn Off Computer')
+    else if (o === '关闭计算机')
       dispatch({ type: POWER_OFF, payload: POWER_STATE.TURN_OFF });
     else
       dispatch({
         type: ADD_APP,
         payload: {
           ...appSettings.Error,
-          injectProps: { message: 'C:\\\nApplication not found' },
+          injectProps: { message: 'C:\\\n找不到应用程序' },
         },
       });
   }
@@ -350,7 +350,7 @@ const Container = styled.div`
   height: 100%;
   overflow: hidden;
   position: relative;
-  background: url(https://i.imgur.com/Zk6TR5k.jpg) no-repeat center center fixed;
+  background: url(https://blog.sdcom.top/upload/Zk6TR5k.jpg) no-repeat center center fixed;
   background-size: cover;
   animation: ${({ state }) => animation[state]} 5s forwards;
   *:not(input):not(textarea) {

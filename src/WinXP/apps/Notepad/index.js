@@ -10,13 +10,13 @@ export default function Notepad({ onClose }) {
 
   function onClickOptionItem(item) {
     switch (item) {
-      case 'Exit':
+      case '退出':
         onClose();
         break;
-      case 'Word Wrap':
+      case '自动换行':
         setWordWrap(!wordWrap);
         break;
-      case 'Time/Date':
+      case '时间/日期':
         const date = new Date();
         setDocText(
           `${docText}${date.toLocaleTimeString()} ${date.toLocaleDateString()}`,

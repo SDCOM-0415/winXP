@@ -50,7 +50,7 @@ export const defaultAppState = [
   {
     component: Minesweeper,
     header: {
-      title: 'Minesweeper',
+      title: '扫雷',
       icon: mine,
     },
     defaultSize: {
@@ -91,7 +91,7 @@ export const defaultAppState = [
   {
     component: MyComputer,
     header: {
-      title: 'My Computer',
+      title: '我的电脑',
       icon: computer,
     },
     defaultSize: {
@@ -121,21 +121,21 @@ export const defaultIconState = [
   {
     id: 1,
     icon: mine,
-    title: 'Minesweeper',
+    title: '扫雷',
     component: Minesweeper,
     isFocus: false,
   },
   {
     id: 2,
     icon: computerLarge,
-    title: 'My Computer',
+    title: '我的电脑',
     component: MyComputer,
     isFocus: false,
   },
   {
     id: 3,
     icon: notepadLarge,
-    title: 'Notepad',
+    title: '记事本',
     component: Notepad,
     isFocus: false,
   },
@@ -149,7 +149,7 @@ export const defaultIconState = [
   {
     id: 5,
     icon: paintLarge,
-    title: 'Paint',
+    title: '画图',
     component: Paint,
     isFocus: false,
   },
@@ -159,7 +159,7 @@ export const appSettings = {
   'Internet Explorer': {
     header: {
       icon: iePaper,
-      title: 'InternetExplorer',
+      title: 'Internet Explorer',
     },
     component: InternetExplorer,
     defaultSize: {
@@ -178,7 +178,7 @@ export const appSettings = {
   Minesweeper: {
     header: {
       icon: mine,
-      title: 'Minesweeper',
+      title: '扫雷',
     },
     component: Minesweeper,
     defaultSize: {
@@ -218,7 +218,7 @@ export const appSettings = {
   'My Computer': {
     header: {
       icon: computer,
-      title: 'My Computer',
+      title: '我的电脑',
     },
     component: MyComputer,
     defaultSize: {
@@ -237,7 +237,7 @@ export const appSettings = {
   Notepad: {
     header: {
       icon: notepad,
-      title: 'Untitled - Notepad',
+      title: '无标题 - 记事本',
     },
     component: Notepad,
     defaultSize: {
@@ -276,7 +276,7 @@ export const appSettings = {
   Paint: {
     header: {
       icon: paint,
-      title: 'Untitled - Paint',
+      title: '无标题 - 画图',
     },
     component: Paint,
     defaultSize: {

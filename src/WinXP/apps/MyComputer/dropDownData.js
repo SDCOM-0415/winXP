@@ -1,37 +1,37 @@
 export const File = [
   {
     type: 'item',
-    text: 'Create Shortcut',
+    text: '创建快捷方式',
     disable: true,
   },
   {
     type: 'item',
-    text: 'Delete',
+    text: '删除',
     disable: true,
   },
   {
     type: 'item',
-    text: 'Rename',
+    text: '重命名',
     disable: true,
   },
   {
     type: 'item',
     disable: true,
-    text: 'Properties',
+    text: '属性',
   },
   {
     type: 'separator',
   },
   {
     type: 'item',
-    text: 'Close',
+    text: '关闭',
   },
 ];
 const Edit = [
   {
     type: 'item',
     disable: true,
-    text: 'Undo',
+    text: '撤销',
     hotkey: 'Ctrl+Z',
   },
   {
@@ -40,37 +40,37 @@ const Edit = [
   {
     type: 'item',
     disable: true,
-    text: 'Cut',
+    text: '剪切',
     hotkey: 'Ctrl+X',
   },
   {
     type: 'item',
     disable: true,
-    text: 'Copy',
+    text: '复制',
     hotkey: 'Ctrl+C',
   },
   {
     type: 'item',
     disable: true,
-    text: 'Paste',
+    text: '粘贴',
     hotkey: 'Ctrl+V',
   },
   {
     type: 'item',
     disable: true,
-    text: 'Paste Shortcut',
+    text: '粘贴快捷方式',
   },
   {
     type: 'separator',
   },
   {
     type: 'item',
-    text: 'Copy To Folder...',
+    text: '复制到文件夹...',
     disable: true,
   },
   {
     type: 'item',
-    text: 'Move To Folder...',
+    text: '移动到文件夹...',
     disable: true,
   },
   {
@@ -78,12 +78,12 @@ const Edit = [
   },
   {
     type: 'item',
-    text: 'Select All',
+    text: '全选',
     hotkey: 'Ctrl+A',
   },
   {
     type: 'item',
-    text: 'Invert Selection',
+    text: '反向选择',
   },
 ];
 
@@ -94,22 +94,22 @@ const View = [
       left: 'calc(100% - 4px)',
       top: '-3px',
     },
-    text: 'Toolbars',
+    text: '工具栏',
     items: [
       {
         type: 'item',
         symbol: 'check',
-        text: 'Standard Buttons',
+        text: '标准按钮',
       },
       {
         type: 'item',
         symbol: 'check',
-        text: 'Address Bar',
+        text: '地址栏',
       },
       {
         type: 'item',
         symbol: 'check',
-        text: 'Links',
+        text: '链接',
       },
       {
         type: 'separator',
@@ -117,18 +117,18 @@ const View = [
       {
         type: 'item',
         symbol: 'check',
-        text: 'Lock the Toolbars',
+        text: '锁定工具栏',
       },
       {
         type: 'item',
-        text: 'Customize...',
+        text: '自定义...',
       },
     ],
   },
   {
     type: 'item',
     symbol: 'check',
-    text: 'Status Bar',
+    text: '状态栏',
   },
   {
     type: 'menu',
@@ -136,33 +136,33 @@ const View = [
       left: 'calc(100% - 4px)',
       top: '-3px',
     },
-    text: 'Explorer Bar',
+    text: '浏览器栏',
     items: [
       {
         type: 'item',
-        text: 'Search',
+        text: '搜索',
         hotkey: 'Ctrl+E',
       },
       {
         type: 'item',
-        text: 'Favorites',
+        text: '收藏夹',
         hotkey: 'Ctrl+I',
       },
       {
         type: 'item',
-        text: 'History',
+        text: '历史记录',
         hotkey: 'Ctrl+H',
       },
       {
         type: 'item',
-        text: 'Folders',
+        text: '文件夹',
       },
       {
         type: 'separator',
       },
       {
         type: 'item',
-        text: 'Tip of the Day',
+        text: '每日提示',
       },
     ],
   },
@@ -171,24 +171,24 @@ const View = [
   },
   {
     type: 'item',
-    text: 'Thumbnails',
+    text: '缩略图',
   },
   {
     type: 'item',
-    text: 'Tiles',
+    text: '平铺',
     symbol: 'circle',
   },
   {
     type: 'item',
-    text: 'Icons',
+    text: '图标',
   },
   {
     type: 'item',
-    text: 'List',
+    text: '列表',
   },
   {
     type: 'item',
-    text: 'Details',
+    text: '详细信息',
   },
   {
     type: 'separator',
@@ -199,44 +199,44 @@ const View = [
       left: 'calc(100% - 4px)',
       top: '-3px',
     },
-    text: 'Arrange Icons by',
+    text: '排列图标',
     items: [
       {
         type: 'item',
-        text: 'Name',
+        text: '名称',
       },
       {
         type: 'item',
-        text: 'Type',
+        text: '类型',
         symbol: 'circle',
       },
       {
         type: 'item',
-        text: 'Total Size',
+        text: '总大小',
       },
       {
         type: 'item',
-        text: 'Free Space',
+        text: '可用空间',
       },
       {
         type: 'item',
-        text: 'Comments',
+        text: '备注',
       },
       {
         type: 'separator',
       },
       {
         type: 'item',
-        text: 'Show in Groups',
+        text: '按组排列',
         symbol: 'check',
       },
       {
         type: 'item',
-        text: 'Auto Arrange',
+        text: '自动排列',
       },
       {
         type: 'item',
-        text: 'Align to Grid',
+        text: '对齐到网格',
       },
     ],
   },
@@ -245,7 +245,7 @@ const View = [
   },
   {
     type: 'item',
-    text: 'Choose Details...',
+    text: '选择详细信息...',
   },
   {
     type: 'menu',
@@ -253,30 +253,30 @@ const View = [
       left: 'calc(100% - 4px)',
       top: '-3px',
     },
-    text: 'Go to',
+    text: '转到',
     items: [
       {
         type: 'item',
         disable: true,
-        text: 'Back',
+        text: '后退',
         hotkey: 'Alt+Left Arrow',
       },
       {
         type: 'item',
         disable: true,
-        text: 'Forward',
+        text: '前进',
         hotkey: 'Alt+Right Arrow',
       },
       {
         type: 'item',
-        text: 'Up One Level',
+        text: '向上一级',
       },
       {
         type: 'separator',
       },
       {
         type: 'item',
-        text: 'Home Page',
+        text: '主页',
         hotkey: 'Alt+Home',
       },
       {
@@ -284,24 +284,24 @@ const View = [
       },
       {
         type: 'item',
-        text: 'My Computer',
+        text: '我的电脑',
         symbol: 'check',
       },
     ],
   },
   {
     type: 'item',
-    text: 'Refresh',
+    text: '刷新',
   },
 ];
 const Favorites = [
   {
     type: 'item',
-    text: 'Add to Favorites...',
+    text: '添加到收藏夹...',
   },
   {
     type: 'item',
-    text: 'Organize Favorites...',
+    text: '整理收藏夹...',
   },
   {
     type: 'separator',
@@ -313,16 +313,16 @@ const Favorites = [
       left: 'calc(100% - 4px)',
       top: '-3px',
     },
-    text: 'Links',
+    text: '链接',
     items: [
       {
         type: 'item',
-        text: 'Customize Links',
+        text: '自定义链接',
         symbol: 'ie-paper',
       },
       {
         type: 'item',
-        text: 'Free Hotmail',
+        text: '免费 Hotmail',
         symbol: 'ie-paper',
       },
       {
@@ -349,46 +349,46 @@ const Favorites = [
   },
   {
     type: 'item',
-    text: 'Radio Station Guide',
+    text: '电台指南',
     symbol: 'ie-paper',
   },
 ];
 const Tools = [
   {
     type: 'item',
-    text: 'Map Network Drive...',
+    text: '映射网络驱动器...',
   },
   {
     type: 'item',
-    text: 'Disconnect Network Drive...',
+    text: '断开网络驱动器...',
   },
   {
     type: 'item',
-    text: 'Synchronize...',
+    text: '同步...',
   },
   {
     type: 'separator',
   },
   {
     type: 'item',
-    text: 'Folder Options...',
+    text: '文件夹选项...',
   },
 ];
 const Help = [
   {
     type: 'item',
-    text: 'Help and Support Center',
+    text: '帮助和支持中心',
   },
   {
     type: 'separator',
   },
   {
     type: 'item',
-    text: 'Is this copy of Windows legal?',
+    text: '此 Windows 副本是否合法？',
   },
   {
     type: 'item',
-    text: 'About Windows',
+    text: '关于 Windows',
   },
 ];
-export default { File, Edit, View, Favorites, Tools, Help };
+export default { '文件': File, '编辑': Edit, '查看': View, '收藏': Favorites, '工具': Tools, '帮助': Help };

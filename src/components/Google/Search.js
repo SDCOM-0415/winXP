@@ -18,7 +18,7 @@ function Search({ className, goMain, onSearch, query }) {
     onSearch(value);
   }
   function renderTags() {
-    return 'All,Maps,Images,News,Videos,More'.split(',').map(tagName => (
+    return '全部,地图,图片,新闻,视频,更多'.split(',').map(tagName => (
       <div
         onClick={() => setTag(tagName)}
         className={`tag ${tagName === tag ? 'active' : ''}`}
@@ -68,8 +68,8 @@ function Search({ className, goMain, onSearch, query }) {
         <div className="app-bar">
           <div className="tags left">{renderTags()}</div>
           <div className="tags right">
-            <div className="tag">Settings</div>
-            <div className="tag">Tools</div>
+            <div className="tag">设置</div>
+            <div className="tag">工具</div>
           </div>
         </div>
       </section>
@@ -78,25 +78,25 @@ function Search({ className, goMain, onSearch, query }) {
           Your search - <span id="search-in-content">{query}</span> - did not
           match any documents.
         </p>
-        <p>Suggestions</p>
+        <p>建议</p>
         <ul>
-          <li>Make sure that all words are spelled correctly.</li>
-          <li>Try different keywords.</li>
-          <li>Try more general keywords.</li>
+          <li>请确保所有字词拼写正确。</li>
+          <li>请尝试不同的关键字。</li>
+          <li>请尝试使用更笼统的关键字。</li>
         </ul>
       </section>
       <footer>
         <section className="upper">
           <div className="footer-items left">
-            <div className="item">Taiwan</div>
+            <div className="item">中国</div>
           </div>
         </section>
         <section className="lower">
           <div className="footer-items left">
-            <div className="item">Help</div>
-            <div className="item">Send feedback</div>
-            <div className="item">Privacy</div>
-            <div className="item">Terms</div>
+            <div className="item">帮助</div>
+            <div className="item">发送反馈</div>
+            <div className="item">隐私权</div>
+            <div className="item">条款</div>
           </div>
         </section>
       </footer>

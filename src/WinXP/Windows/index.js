@@ -32,7 +32,7 @@ function Windows({
   );
 }
 
-const Window = memo(function({
+const Window = memo(function ({
   injectProps,
   id,
   onMouseDown,

@@ -75,11 +75,11 @@ function renderDigits(number) {
 }
 
 function genDropDownData(difficulty) {
-  let _Game = [...dropDownData.Game];
-  _Game[2].symbol = difficulty === 'Beginner' && 'check';
-  _Game[3].symbol = difficulty === 'Intermediate' && 'check';
-  _Game[4].symbol = difficulty === 'Expert' && 'check';
-  return { Game: _Game, Help: dropDownData.Help };
+  let _Game = [...dropDownData['游戏']];
+  _Game[2].symbol = difficulty === '初级' && 'check';
+  _Game[3].symbol = difficulty === '中级' && 'check';
+  _Game[4].symbol = difficulty === '高级' && 'check';
+  return { '游戏': _Game, '帮助': dropDownData['帮助'] };
 }
 
 function MineSweeperView({
@@ -180,15 +180,15 @@ function MineSweeperView({
   }
   function onClickOptionItem(item) {
     switch (item) {
-      case 'Exit':
+      case '退出':
         onClose();
         break;
-      case 'Beginner':
-      case 'Intermediate':
-      case 'Expert':
+      case '初级':
+      case '中级':
+      case '高级':
         onReset(item);
         break;
-      case 'New':
+      case '新游戏':
         onReset();
         break;
       default:

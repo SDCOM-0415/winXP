@@ -29,7 +29,7 @@ import windows from 'assets/windowsIcons/windows.png';
 function MyComputer({ onClose }) {
   function onClickOptionItem(item) {
     switch (item) {
-      case 'Close':
+      case '关闭':
         onClose();
         break;
       default:
@@ -49,7 +49,7 @@ function MyComputer({ onClose }) {
       <section className="com__function_bar">
         <div className="com__function_bar__button--disable">
           <img className="com__function_bar__icon" src={back} alt="" />
-          <span className="com__function_bar__text">Back</span>
+          <span className="com__function_bar__text">后退</span>
           <div className="com__function_bar__arrow" />
         </div>
         <div className="com__function_bar__button--disable">
@@ -66,7 +66,7 @@ function MyComputer({ onClose }) {
             src={search}
             alt=""
           />
-          <span className="com__function_bar__text">Search</span>
+          <span className="com__function_bar__text">搜索</span>
         </div>
         <div className="com__function_bar__button">
           <img
@@ -74,7 +74,7 @@ function MyComputer({ onClose }) {
             src={folderOpen}
             alt=""
           />
-          <span className="com__function_bar__text">Folders</span>
+          <span className="com__function_bar__text">文件夹</span>
         </div>
         <div className="com__function_bar__separate" />
         <div className="com__function_bar__button">
@@ -87,14 +87,14 @@ function MyComputer({ onClose }) {
         </div>
       </section>
       <section className="com__address_bar">
-        <div className="com__address_bar__title">Address</div>
+        <div className="com__address_bar__title">地址</div>
         <div className="com__address_bar__content">
           <img
             src={computer}
             alt="ie"
             className="com__address_bar__content__img"
           />
-          <div className="com__address_bar__content__text">My Computer</div>
+          <div className="com__address_bar__content__text">我的电脑</div>
           <img
             src={dropdown}
             alt="dropdown"
@@ -103,7 +103,7 @@ function MyComputer({ onClose }) {
         </div>
         <div className="com__address_bar__go">
           <img className="com__address_bar__go__img" src={go} alt="go" />
-          <span className="com__address_bar__go__text">Go</span>
+          <span className="com__address_bar__go__text">转到</span>
         </div>
       </section>
       <div className="com__content">
@@ -112,7 +112,7 @@ function MyComputer({ onClose }) {
             <div className="com__content__left__card">
               <div className="com__content__left__card__header">
                 <div className="com__content__left__card__header__text">
-                  System Tasks
+                  系统任务
                 </div>
                 <img
                   src={pullup}
@@ -128,7 +128,7 @@ function MyComputer({ onClose }) {
                     alt="view"
                   />
                   <div className="com__content__left__card__text link">
-                    View system information
+                    查看系统信息
                   </div>
                 </div>
                 <div className="com__content__left__card__row">
@@ -138,7 +138,7 @@ function MyComputer({ onClose }) {
                     alt="remove"
                   />
                   <div className="com__content__left__card__text link">
-                    Add or remove programs
+                    添加或删除程序
                   </div>
                 </div>
                 <div className="com__content__left__card__row">
@@ -148,7 +148,7 @@ function MyComputer({ onClose }) {
                     alt="control"
                   />
                   <div className="com__content__left__card__text link">
-                    Change a setting
+                    更改设置
                   </div>
                 </div>
               </div>
@@ -156,7 +156,7 @@ function MyComputer({ onClose }) {
             <div className="com__content__left__card">
               <div className="com__content__left__card__header">
                 <div className="com__content__left__card__header__text">
-                  Other Places
+                  其它位置
                 </div>
                 <img
                   src={pullup}
@@ -172,7 +172,7 @@ function MyComputer({ onClose }) {
                     alt="network"
                   />
                   <div className="com__content__left__card__text link">
-                    My Network Places
+                    网上邻居
                   </div>
                 </div>
                 <div className="com__content__left__card__row">
@@ -182,7 +182,7 @@ function MyComputer({ onClose }) {
                     alt="document"
                   />
                   <div className="com__content__left__card__text link">
-                    My Documents
+                    我的文档
                   </div>
                 </div>
                 <div className="com__content__left__card__row">
@@ -192,7 +192,7 @@ function MyComputer({ onClose }) {
                     alt="folder"
                   />
                   <div className="com__content__left__card__text link">
-                    Shared Documents
+                    共享文档
                   </div>
                 </div>
                 <div className="com__content__left__card__row">
@@ -202,7 +202,7 @@ function MyComputer({ onClose }) {
                     alt="control"
                   />
                   <div className="com__content__left__card__text link">
-                    Control Panel
+                    控制面板
                   </div>
                 </div>
               </div>
@@ -210,7 +210,7 @@ function MyComputer({ onClose }) {
             <div className="com__content__left__card">
               <div className="com__content__left__card__header">
                 <div className="com__content__left__card__header__text">
-                  Details
+                  详细信息
                 </div>
                 <img
                   src={pullup}
@@ -257,7 +257,7 @@ function MyComputer({ onClose }) {
                     rel="noreferrer"
                     className="com__content__left__card__text link"
                   >
-                    Minesweeper
+                    扫雷
                   </a>
                 </div>
               </div>
@@ -266,7 +266,7 @@ function MyComputer({ onClose }) {
           <div className="com__content__right">
             <div className="com__content__right__card">
               <div className="com__content__right__card__header">
-                Files Stored on This Computer
+                在这台计算机上存储的文件
               </div>
               <div className="com__content__right__card__content">
                 <div className="com__content__right__card__item">
@@ -277,7 +277,7 @@ function MyComputer({ onClose }) {
                   />
                   <div className="com__content__right__card__img-container">
                     <div className="com__content__right__card__text">
-                      Shared Documents
+                      共享文档
                     </div>
                   </div>
                 </div>
@@ -289,7 +289,7 @@ function MyComputer({ onClose }) {
                   />
                   <div className="com__content__right__card__img-container">
                     <div className="com__content__right__card__text">
-                      User's Documents
+                      用户文档
                     </div>
                   </div>
                 </div>
@@ -297,7 +297,7 @@ function MyComputer({ onClose }) {
             </div>
             <div className="com__content__right__card">
               <div className="com__content__right__card__header">
-                Hard Disk Drives
+                硬盘驱动器
               </div>
               <div className="com__content__right__card__content">
                 <div className="com__content__right__card__item">
@@ -308,7 +308,7 @@ function MyComputer({ onClose }) {
                   />
                   <div className="com__content__right__card__img-container">
                     <div className="com__content__right__card__text">
-                      Local Disk (C:)
+                      本地磁盘 (C:)
                     </div>
                   </div>
                 </div>
@@ -316,7 +316,7 @@ function MyComputer({ onClose }) {
             </div>
             <div className="com__content__right__card">
               <div className="com__content__right__card__header">
-                Devices with Removable Storage
+                可移动存储设备
               </div>
               <div className="com__content__right__card__content">
                 <div className="com__content__right__card__item">
@@ -328,14 +328,14 @@ function MyComputer({ onClose }) {
                     />
                   </div>
                   <div className="com__content__right__card__text">
-                    CD Drive (D:)
+                    CD 驱动器 (D:)
                   </div>
                 </div>
               </div>
             </div>
             <div className="com__content__right__card com__content__right__card--me">
               <div className="com__content__right__card__header">
-                About Me :)
+                关于我 :)
               </div>
               <div className="com__content__right__card__content">
                 <a
@@ -363,7 +363,7 @@ function MyComputer({ onClose }) {
                     alt="control"
                   />
                   <div className="com__content__right__card__text">
-                    My Website
+                    我的网站
                   </div>
                 </a>
               </div>

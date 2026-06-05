@@ -17,7 +17,7 @@ import MinesweeperView from './MinesweeperView';
 //   }
 // }
 
-function getInitState(difficulty = 'Beginner') {
+function getInitState(difficulty = '初级') {
   return {
     difficulty,
     status: 'new',

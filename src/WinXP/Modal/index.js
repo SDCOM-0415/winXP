@@ -40,12 +40,12 @@ const Menu = ({ mode, onClose, onClickButton }) => {
     if (mode === POWER_STATE.TURN_OFF) {
       return (
         <>
-          <ButtonDisabled img={off} text="Stand By" />
-          <Button img={off} text="Turn Off" onClick={onClickButton} />
+          <ButtonDisabled img={off} text="待机" />
+          <Button img={off} text="关机" onClick={onClickButton} />
           <Button
             style={{ margin: '-3px 0 0px 0', width: '33px', height: '33px' }}
             img={restart}
-            text="Restart"
+            text="重新启动"
             onClick={onClickButton}
           />
         </>
@@ -55,24 +55,24 @@ const Menu = ({ mode, onClose, onClickButton }) => {
       <>
         <Button
           img={switcher}
-          text="Switch User"
+          text="切换用户"
           style={{ border: '1px solid #fff', borderRadius: '3px' }}
           onClick={onClickButton}
         />
-        <Button img={lock} text="Log Off" onClick={onClickButton} />
+        <Button img={lock} text="注销" onClick={onClickButton} />
       </>
     );
   }
   return (
     <div className="modal">
       <header className="header">
-        <span className="header__text">Log Off Windows</span>
+        <span className="header__text">注销 Windows</span>
         <img src={windowsLogo} alt="" className="header__img" />
       </header>
       <div className="content">{renderButtons()}</div>
       <footer className="footer">
         <button onClick={onClose} className="footer__button">
-          Cancel
+          取消
         </button>
       </footer>
     </div>

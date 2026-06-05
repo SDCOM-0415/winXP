@@ -28,7 +28,7 @@ function Error({ onClose, message = "Something's wrong!" }) {
       </div>
       <div className="error__bottom">
         <div onClick={onClose} className="error__button">
-          <span className="error__confirm">OK</span>
+          <span className="error__confirm">确定</span>
         </div>
       </div>
     </Div>

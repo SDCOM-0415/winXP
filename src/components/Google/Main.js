@@ -18,7 +18,7 @@ function Main({ onSearch, className }) {
     <div className={className}>
       <header>
         <div className="text">Gmail</div>
-        <div className="text">Images</div>
+        <div className="text">图片</div>
         <img src={smile} alt="avatar" />
       </header>
       <section className="content">
@@ -58,14 +58,14 @@ function Main({ onSearch, className }) {
         </section>
         <section className="lower">
           <div className="items left">
-            <div className="item">Advertising</div>
-            <div className="item">Business</div>
-            <div className="item">About</div>
+            <div className="item">广告</div>
+            <div className="item">商务</div>
+            <div className="item">关于</div>
           </div>
           <div className="items right">
-            <div className="item">Privacy</div>
-            <div className="item">Terms</div>
-            <div className="item">Settings</div>
+            <div className="item">隐私权</div>
+            <div className="item">条款</div>
+            <div className="item">设置</div>
           </div>
         </section>
       </footer>
