@@ -1,4 +1,4 @@
-import React, { useReducer, useRef, useCallback, useState } from 'react';
+import React, { useReducer, useRef, useCallback, useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import useMouse from 'react-use/lib/useMouse';
 
@@ -233,6 +233,16 @@ function WinXP() {
   function onMouseDownFooter() {
     dispatch({ type: FOCUS_DESKTOP });
   }
+  useEffect(() => {
+    function handleMessage(e) {
+      if (e.data && e.data.type === 'ie-open-window') {
+        const ieSetting = appSettings['Internet Explorer'];
+        dispatch({ type: ADD_APP, payload: { ...ieSetting, openUrl: e.data.url } });
+      }
+    }
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
   const [contextMenu, setContextMenu] = useState({ visible: false, x: 0, y: 0 });
   const desktopMenuItems = [
     { type: 'submenu', text: '排列图标', items: [

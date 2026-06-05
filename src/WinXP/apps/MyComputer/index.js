@@ -223,7 +223,7 @@ function MyComputer({ onClose }) {
                   <iframe
                     title="ghbtn"
                     style={{ margin: '0 0 3px -1px', height: '30px' }}
-                    src="https://ghbtns.com/github-btn.html?user=ShizukuIchi&repo=winXP&type=star&count=true&size=large"
+                    src="https://ghbtns.com/github-btn.html?user=SDCOM-0415&repo=winXP&type=star&count=true&size=large"
                     frameBorder="0"
                     scrolling="0"
                     width="170px"
@@ -237,7 +237,7 @@ function MyComputer({ onClose }) {
                     alt="control"
                   />
                   <a
-                    href="https://medium.com/@ShizukuIchi"
+                    href="https://github.com/SDCOM-0415"
                     target="_blank"
                     rel="noreferrer"
                     className="com__content__left__card__text link"
@@ -252,7 +252,7 @@ function MyComputer({ onClose }) {
                     alt="control"
                   />
                   <a
-                    href="https://github.com/ShizukuIchi/minesweeper"
+                    href="https://github.com/SDCOM-0415/winXP"
                     target="_blank"
                     rel="noreferrer"
                     className="com__content__left__card__text link"
@@ -339,7 +339,7 @@ function MyComputer({ onClose }) {
               </div>
               <div className="com__content__right__card__content">
                 <a
-                  href="https://github.com/ShizukuIchi"
+                  href="https://github.com/SDCOM-0415"
                   target="_blank"
                   rel="noreferrer"
                   className="com__content__right__card__item--me"
@@ -352,7 +352,7 @@ function MyComputer({ onClose }) {
                   <div className="com__content__right__card__text">Github</div>
                 </a>
                 <a
-                  href="https://sh1zuku.csie.io"
+                  href="https://www.sdcom.top"
                   target="_blank"
                   rel="noreferrer"
                   className="com__content__right__card__item--me"
@@ -719,18 +719,6 @@ const Div = styled.div`
     height: 100%;
   }
   .com__content__right__card--me {
-    .com__content__right__card__header:after,
-    .com__content__right__card__header {
-      transition: 0.4s;
-    }
-    &:hover {
-      .com__content__right__card__header:after {
-        width: 0;
-      }
-      .com__content__right__card__header {
-        transform: scale(1.2) translate(20px, 5px);
-      }
-    }
   }
   .com__content__right__card__item--me {
     display: flex;
@@ -738,16 +726,6 @@ const Div = styled.div`
     width: 200px;
     margin-bottom: 15px;
     height: auto;
-    & > * {
-      transition: transform 0.2s;
-    }
-    &:hover .com__content__right__card__img {
-      transform: rotate(-10deg) scale(0.9);
-    }
-    &:hover .com__content__right__card__text {
-      transform: scale(1.2);
-      transition-timing-function: cubic-bezier(0.23, 1.93, 0.59, -0.15);
-    }
   }
 `;
 

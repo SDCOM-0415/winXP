@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 
-import { WindowDropDowns, Google } from 'components';
+import { WindowDropDowns } from 'components';
 import dropDownData from './dropDownData';
 import ie from 'assets/windowsIcons/ie-paper.png';
 import printer from 'assets/windowsIcons/17(32x32).png';
@@ -22,37 +22,163 @@ import stop from 'assets/windowsIcons/stop.png';
 import windows from 'assets/windowsIcons/windows.png';
 import dropdown from 'assets/windowsIcons/dropdown.png';
 
-function InternetExplorer({ onClose }) {
-  const [state, setState] = useState({
-    route: 'main',
-    query: '',
-  });
-  function onSearch(str) {
-    if (str.length) {
-      setState({
-        route: 'search',
-        query: str,
+const DEFAULT_URL = 'https://cn.bing.com';
+const PROXY_PREFIX = 'https://api.allorigins.win/get?url=';
+
+function normalizeUrl(input) {
+  var url = input.trim();
+  if (!url) return DEFAULT_URL;
+  if (/^https?:\/\//i.test(url)) return url;
+  if (/^[\w-]+(\.[\w-]+)+/.test(url)) return 'https://' + url;
+  return 'https://cn.bing.com/search?q=' + encodeURIComponent(url);
+}
+
+function InternetExplorer({ onClose, openUrl }) {
+  const iframeRef = useRef(null);
+  const [url, setUrl] = useState(openUrl || DEFAULT_URL);
+  const [srcdoc, setSrcdoc] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [inputValue, setInputValue] = useState(openUrl || DEFAULT_URL);
+  const [historyStack, setHistoryStack] = useState([openUrl || DEFAULT_URL]);
+  const [historyIndex, setHistoryIndex] = useState(0);
+
+  const INJECT_SCRIPT = `
+<script>
+(function() {
+  window.open = function(url, name, specs) {
+    if (url) {
+      window.parent.postMessage({ type: 'ie-open-window', url: url }, '*');
+    }
+    return null;
+  };
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a');
+    if (a && a.target === '_blank' && !a.href.startsWith('javascript:')) {
+      e.preventDefault();
+      window.parent.postMessage({ type: 'ie-open-window', url: a.href }, '*');
+    }
+  }, true);
+})();
+</script>
+`;
+
+  const loadUrl = useCallback(
+    targetUrl => {
+      setLoading(true);
+      fetch(PROXY_PREFIX + encodeURIComponent(targetUrl))
+        .then(res => res.json())
+        .then(data => {
+          let html = data.contents || '';
+          const baseTag = `<base href="${targetUrl}" target="_blank">`;
+          if (/<head/i.test(html)) {
+            html = html.replace(/(<head[^>]*>)/i, '$1' + INJECT_SCRIPT);
+          } else if (/<html/i.test(html)) {
+            html = html.replace(/(<html[^>]*>)/i, '$1' + INJECT_SCRIPT);
+          } else {
+            html = INJECT_SCRIPT + html;
+          }
+          if (/<head/i.test(html) && !/<base\s/i.test(html)) {
+            html = html.replace(/<head/i, baseTag + '<head');
+          } else if (!/<base\s/i.test(html)) {
+            html = baseTag + html;
+          }
+          setSrcdoc(html);
+          setLoading(false);
+        })
+        .catch(() => {
+          setSrcdoc(INJECT_SCRIPT + '<div style="padding:20px;font-family:Tahoma,sans-serif"><h3>无法访问该网页</h3><p>请检查网址是否正确，或<a href="' + targetUrl + '" target="_blank">在新标签页中打开</a></p></div>');
+          setLoading(false);
+        });
+    },
+    [INJECT_SCRIPT],
+  );
+
+  useEffect(() => {
+    if (openUrl && openUrl !== url) {
+      navigate(openUrl);
+    }
+  }, [openUrl]);
+
+  useEffect(() => {
+    if (!srcdoc && !openUrl) {
+      loadUrl(DEFAULT_URL);
+    }
+  }, []);
+
+  const navigate = useCallback(
+    newUrl => {
+      const finalUrl = normalizeUrl(newUrl);
+      setUrl(finalUrl);
+      setInputValue(finalUrl);
+      loadUrl(finalUrl);
+      setHistoryStack(prev => {
+        const newStack = prev.slice(0, historyIndex + 1);
+        newStack.push(finalUrl);
+        return newStack;
       });
+      setHistoryIndex(prev => prev + 1);
+    },
+    [historyIndex, loadUrl],
+  );
+
+  function goBack() {
+    if (historyIndex > 0) {
+      const newIndex = historyIndex - 1;
+      setHistoryIndex(newIndex);
+      const targetUrl = historyStack[newIndex];
+      setUrl(targetUrl);
+      setInputValue(targetUrl);
+      loadUrl(targetUrl);
     }
   }
-  function goMain() {
-    setState({
-      route: 'main',
-      query: '',
-    });
+
+  function goForward() {
+    if (historyIndex < historyStack.length - 1) {
+      const newIndex = historyIndex + 1;
+      setHistoryIndex(newIndex);
+      const targetUrl = historyStack[newIndex];
+      setUrl(targetUrl);
+      setInputValue(targetUrl);
+      loadUrl(targetUrl);
+    }
   }
+
+  function goHome() {
+    navigate(DEFAULT_URL);
+  }
+
+  function onRefresh() {
+    loadUrl(url);
+  }
+
+  function onGo() {
+    navigate(inputValue);
+  }
+
+  function onKeyDown(e) {
+    if (e.key === 'Enter') {
+      navigate(inputValue);
+    }
+  }
+
   function onClickOptionItem(item) {
     switch (item) {
       case '关闭':
         onClose();
         break;
       case '主页':
+        goHome();
+        break;
       case '后退':
-        goMain();
+        goBack();
         break;
       default:
     }
   }
+
+  React.useEffect(() => {
+    loadUrl(DEFAULT_URL);
+  }, []);
   return (
     <Div>
       <section className="ie__toolbar">
@@ -67,30 +193,35 @@ function InternetExplorer({ onClose }) {
       </section>
       <section className="ie__function_bar">
         <div
-          onClick={goMain}
+          onClick={goBack}
           className={`ie__function_bar__button${
-            state.route === 'main' ? '--disable' : ''
+            historyIndex <= 0 ? '--disable' : ''
           }`}
         >
           <img className="ie__function_bar__icon" src={back} alt="" />
           <span className="ie__function_bar__text">后退</span>
           <div className="ie__function_bar__arrow" />
         </div>
-        <div className="ie__function_bar__button--disable">
+        <div
+          onClick={goForward}
+          className={`ie__function_bar__button${
+            historyIndex >= historyStack.length - 1 ? '--disable' : ''
+          }`}
+        >
           <img className="ie__function_bar__icon" src={forward} alt="" />
           <div className="ie__function_bar__arrow" />
         </div>
         <div className="ie__function_bar__button">
           <img className="ie__function_bar__icon--margin-1" src={stop} alt="" />
         </div>
-        <div className="ie__function_bar__button">
+        <div className="ie__function_bar__button" onClick={onRefresh}>
           <img
             className="ie__function_bar__icon--margin-1"
             src={refresh}
             alt=""
           />
         </div>
-        <div className="ie__function_bar__button" onClick={goMain}>
+        <div className="ie__function_bar__button" onClick={goHome}>
           <img className="ie__function_bar__icon--margin-1" src={home} alt="" />
         </div>
         <div className="ie__function_bar__separate" />
@@ -100,7 +231,7 @@ function InternetExplorer({ onClose }) {
             src={search}
             alt=""
           />
-          <span className="ie__function_bar__text">Search</span>
+          <span className="ie__function_bar__text">搜索</span>
         </div>
         <div className="ie__function_bar__button">
           <img
@@ -136,20 +267,20 @@ function InternetExplorer({ onClose }) {
         <div className="ie__address_bar__title">地址</div>
         <div className="ie__address_bar__content">
           <img src={ie} alt="ie" className="ie__address_bar__content__img" />
-          <div className="ie__address_bar__content__text">
-            {`https://www.google.com.tw${
-              state.route === 'search'
-                ? `/search?q=${encodeURIComponent(state.query)}`
-                : ''
-            }`}
-          </div>
+          <input
+            className="ie__address_bar__content__input"
+            value={inputValue}
+            onChange={e => setInputValue(e.target.value)}
+            onKeyDown={onKeyDown}
+            spellCheck={false}
+          />
           <img
             src={dropdown}
             alt="dropdown"
             className="ie__address_bar__content__img"
           />
         </div>
-        <div className="ie__address_bar__go">
+        <div className="ie__address_bar__go" onClick={onGo}>
           <img className="ie__address_bar__go__img" src={go} alt="go" />
           <span className="ie__address_bar__go__text">转到</span>
         </div>
@@ -164,14 +295,16 @@ function InternetExplorer({ onClose }) {
         </div>
       </section>
       <div className="ie__content">
-        <div className="ie__content__inner">
-          <Google
-            route={state.route}
-            query={state.query}
-            onSearch={onSearch}
-            goMain={goMain}
-          />
-        </div>
+        {loading && (
+          <div className="ie__loading">正在加载页面...</div>
+        )}
+        <iframe
+          ref={iframeRef}
+          className="ie__iframe"
+          srcDoc={srcdoc}
+          title="Internet Explorer"
+          sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+        />
       </div>
       <footer className="ie__footer">
         <div className="ie__footer__status">
@@ -236,6 +369,7 @@ const Div = styled.div`
     align-items: center;
     border: 1px solid rgba(0, 0, 0, 0);
     border-radius: 3px;
+    cursor: pointer;
     &:hover {
       border: 1px solid rgba(0, 0, 0, 0.1);
       box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0.1);
@@ -320,6 +454,7 @@ const Div = styled.div`
     align-items: center;
     padding: 0 2px 2px;
     box-shadow: inset 0 -2px 3px -1px #2d2d2d;
+    flex-shrink: 0;
   }
   .ie__address_bar__title {
     line-height: 100%;
@@ -338,21 +473,30 @@ const Div = styled.div`
       width: 14px;
       height: 14px;
     }
+    &__img:first-child {
+      margin-left: 2px;
+      flex-shrink: 0;
+    }
     &__img:last-child {
       width: 15px;
       height: 15px;
       right: 1px;
       position: absolute;
+      flex-shrink: 0;
     }
     &__img:last-child:hover {
       filter: brightness(1.1);
     }
-    &__text {
-      position: absolute;
-      white-space: nowrap;
-      left: 16px;
-      right: 17px;
-      overflow: hidden;
+    &__input {
+      border: none;
+      outline: none;
+      font-size: 11px;
+      font-family: inherit;
+      flex: 1;
+      height: 100%;
+      padding: 0 4px;
+      background: transparent;
+      min-width: 0;
     }
   }
   .ie__address_bar__go {
@@ -361,6 +505,7 @@ const Div = styled.div`
     padding: 0 18px 0 5px;
     height: 100%;
     position: relative;
+    cursor: pointer;
     &__img {
       height: 95%;
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -392,18 +537,26 @@ const Div = styled.div`
   }
   .ie__content {
     flex: 1;
-    overflow: auto;
-    padding-left: 1px;
-    border-left: 1px solid #6f6f6f;
+    overflow: hidden;
     background-color: #f1f1f1;
     position: relative;
   }
-  .ie__content__inner {
-    position: relative;
-    min-height: 800px;
-    min-width: 800px;
+  .ie__iframe {
     width: 100%;
     height: 100%;
+    border: none;
+  }
+  .ie__loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    color: #666;
+    z-index: 1;
+    background: rgba(255,255,255,0.8);
+    padding: 10px 20px;
+    border-radius: 3px;
   }
   .ie__footer {
     height: 20px;
@@ -413,6 +566,7 @@ const Div = styled.div`
     display: flex;
     align-items: center;
     padding-top: 2px;
+    flex-shrink: 0;
   }
   .ie__footer__status {
     flex: 1;
