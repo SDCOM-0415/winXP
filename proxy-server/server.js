@@ -2,6 +2,13 @@ const http = require('http');
 const https = require('https');
 const { URL } = require('url');
 
+process.on('uncaughtException', err => {
+  console.error('Uncaught exception:', err.message);
+});
+process.on('unhandledRejection', err => {
+  console.error('Unhandled rejection:', err);
+});
+
 const PORT = process.env.PORT || 3001;
 const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS
   ? process.env.ALLOWED_ORIGINS.split(',')
@@ -57,6 +64,17 @@ function setCorsHeaders(res, origin) {
   return true;
 }
 
+function rewriteAbsoluteUrls(body) {
+  body = body.replace(
+    /(["'])(https?:\/\/[^"']+)\1/g,
+    (m, q, url) => {
+      if (url.includes('/proxy/')) return m;
+      return q + '/proxy/' + url + q;
+    },
+  );
+  return body;
+}
+
 function rewriteUrls(body, targetUrl) {
   const origin = targetUrl.origin;
   const proxyBase = '/proxy/' + origin;
@@ -69,6 +87,14 @@ function rewriteUrls(body, targetUrl) {
   body = body.replace(
     /((?:src|href|action|poster|data-src|data-original|data-lazy)\s*=\s*)(["'])(\/[^/"'][^"']*)\2/gi,
     (m, attr, q, path) => attr + q + proxyBase + path + q,
+  );
+
+  body = body.replace(
+    /((?:src|href|action|poster|data-src|data-original|data-lazy)\s*=\s*)(["'])(https?:\/\/[^"']+)\2/gi,
+    (m, attr, q, url) => {
+      if (url.includes('/proxy/')) return m;
+      return attr + q + '/proxy/' + url + q;
+    },
   );
 
   body = body.replace(
@@ -92,7 +118,41 @@ function rewriteUrls(body, targetUrl) {
     },
   );
 
+  body = body.replace(
+    /(<script[^>]*type\s*=\s*["']importmap["'][^>]*>)([\s\S]*?)(<\/script>)/gi,
+    (m, open, content, close) => {
+      return open + rewriteAbsoluteUrls(content) + close;
+    },
+  );
+
+  body = body.replace(
+    /(<script[^>]*type\s*=\s*["']module["'][^>]*>)([\s\S]*?)(<\/script>)/gi,
+    (m, open, content, close) => {
+      if (!content.trim()) return m;
+      return open + rewriteAbsoluteUrls(content) + close;
+    },
+  );
+
+  body = body.replace(
+    /(<script(?![^>]*type\s*=)[^>]*>)([\s\S]*?)(<\/script>)/gi,
+    (m, open, content, close) => {
+      if (!content.trim()) return m;
+      return open + rewriteInlineJs(content, targetUrl) + close;
+    },
+  );
+
   return body;
+}
+
+function rewriteInlineJs(js, targetUrl) {
+  js = js.replace(
+    /(["'])(https?:\/\/(?:assets\.msn\.cn|cn\.bing\.com|www\.bing\.com|r\.bing\.com|th\.bing\.com|api\.bing\.com|bat\.bing\.com|login\.live\.com|logincdn\.msauth\.net|lgincdnvze498\.azureedge\.net)[^"']*)\1/g,
+    (m, q, url) => {
+      if (url.includes('/proxy/')) return m;
+      return q + '/proxy/' + url + q;
+    },
+  );
+  return js;
 }
 
 function rewriteCssUrls(css, targetUrl) {
@@ -138,6 +198,20 @@ function _rw(u){
   if(u.startsWith("/"))return _PB+_TO+u;
   return u;
 }
+var _origFetch=window.fetch.bind(window);
+function _proxyFetch(u,o){
+  if(typeof u==="string")u=_rw(u);
+  else if(u instanceof Request){u=new Request(_rw(u.url),u)}
+  return _origFetch(u,o);
+}
+window.fetch=_proxyFetch;
+window.esmsInitOptions=window.esmsInitOptions||{};
+window.esmsInitOptions.shimMode=true;
+window.esmsInitOptions.fetch=_proxyFetch;
+window.esmsInitOptions.resolve=function(id,parentUrl){
+  if(/^https?:\\/\\//.test(id))return _rw(id);
+  return id;
+};
 var _ps=history.pushState;
 history.pushState=function(s,t,u){return _ps.call(history,s,t,u?_rw(u):u)};
 var _rs=history.replaceState;
@@ -146,12 +220,6 @@ var _xo=XMLHttpRequest.prototype.open;
 XMLHttpRequest.prototype.open=function(m,u){
   arguments[1]=_rw(u);
   return _xo.apply(this,arguments);
-};
-var _ft=window.fetch;
-window.fetch=function(u,o){
-  if(typeof u==="string")u=_rw(u);
-  else if(u&&u.url)u=new Request(_rw(u.url),u);
-  return _ft.call(window,u,o);
 };
 window.open=function(u){
   if(u){
@@ -182,24 +250,44 @@ document.addEventListener("click",function(e){
     location.href=nu;
   }
 },true);
+var _origSrcDesc=Object.getOwnPropertyDescriptor(HTMLScriptElement.prototype,"src");
+var _origImgSrcDesc=Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,"src");
+var _origLinkHrefDesc=Object.getOwnPropertyDescriptor(HTMLLinkElement.prototype,"href");
 var _ce=document.createElement;
 document.createElement=function(t){
   var el=_ce.call(document,t);
-  if(t.toLowerCase()==="script"||t.toLowerCase()==="img"||t.toLowerCase()==="link"){
-    var _ss=Object.getOwnPropertyDescriptor(HTMLScriptElement.prototype,"src")||
-            Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,"src")||{};
-    var origSet=_ss.set;
-    if(t.toLowerCase()==="script"&&origSet){
-      Object.defineProperty(el,"src",{
-        set:function(v){origSet.call(this,_rw(v))},
-        get:_ss.get?function(){return _ss.get.call(this)}:undefined,
-        configurable:true
-      });
-    }
+  var tl=t.toLowerCase();
+  if(tl==="script"&&_origSrcDesc&&_origSrcDesc.set){
+    Object.defineProperty(el,"src",{
+      set:function(v){_origSrcDesc.set.call(this,_rw(v))},
+      get:function(){return _origSrcDesc.get?_origSrcDesc.get.call(this):""},
+      configurable:true,enumerable:true
+    });
+  }
+  if(tl==="img"&&_origImgSrcDesc&&_origImgSrcDesc.set){
+    Object.defineProperty(el,"src",{
+      set:function(v){_origImgSrcDesc.set.call(this,_rw(v))},
+      get:function(){return _origImgSrcDesc.get?_origImgSrcDesc.get.call(this):""},
+      configurable:true,enumerable:true
+    });
+  }
+  if(tl==="link"&&_origLinkHrefDesc&&_origLinkHrefDesc.set){
+    Object.defineProperty(el,"href",{
+      set:function(v){_origLinkHrefDesc.set.call(this,_rw(v))},
+      get:function(){return _origLinkHrefDesc.get?_origLinkHrefDesc.get.call(this):""},
+      configurable:true,enumerable:true
+    });
   }
   return el;
 };
-})()</script>`;
+var _sa=Element.prototype.setAttribute;
+Element.prototype.setAttribute=function(n,v){
+  if((n==="src"||n==="href")&&typeof v==="string"){
+    return _sa.call(this,n,_rw(v));
+  }
+  return _sa.call(this,n,v);
+};
+})()<\/script>`;
 }
 
 function handleProxy(req, res, targetUrl) {
@@ -211,6 +299,8 @@ function handleProxy(req, res, targetUrl) {
     'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
     'Accept-Encoding': 'identity',
     Referer: targetUrl.origin + '/',
+    // 强制覆盖 Host 头，伪装成直接访问目标站，降低上游 400 拒绝概率
+    Host: targetUrl.host,
   };
 
   if (req.headers.cookie) {
@@ -224,6 +314,8 @@ function handleProxy(req, res, targetUrl) {
     method: req.method,
     headers,
     timeout: 15000,
+    // HTTPS 请求显式带上 SNI，避免某些站点因证书握手失败返回 502
+    ...(targetUrl.protocol === 'https:' ? { servername: targetUrl.hostname } : {}),
   };
 
   const proxyReq = mod.request(options, proxyRes => {
@@ -254,6 +346,10 @@ function handleProxy(req, res, targetUrl) {
         lk === 'transfer-encoding' ||
         lk === 'content-length'
       ) {
+        continue;
+      }
+      // 丢弃上游 access-control-* 响应头，避免与本地统一设置的 CORS 头冲突
+      if (lk.startsWith('access-control-')) {
         continue;
       }
       responseHeaders[key] = value;
@@ -306,17 +402,28 @@ function handleProxy(req, res, targetUrl) {
 
   proxyReq.on('error', err => {
     console.error('Proxy error:', err.message);
-    res.writeHead(502, { 'Content-Type': 'text/html; charset=utf-8' });
+    if (res.writableEnded) return;
+    if (!res.headersSent) {
+      res.writeHead(502, { 'Content-Type': 'text/html; charset=utf-8' });
+    }
     res.end('<h3>无法访问该网页</h3><p>' + err.message + '</p>');
   });
 
   proxyReq.on('timeout', () => {
     proxyReq.destroy();
-    res.writeHead(504, { 'Content-Type': 'text/html; charset=utf-8' });
+    if (res.writableEnded) return;
+    if (!res.headersSent) {
+      res.writeHead(504, { 'Content-Type': 'text/html; charset=utf-8' });
+    }
     res.end('<h3>请求超时</h3>');
   });
 
-  if (req.method === 'POST') {
+  if (req.method === 'POST' || req.method === 'PUT') {
+    // 客户端请求体中途断开时直接销毁上游请求，避免未处理异常导致进程崩溃
+    req.on('error', err => {
+      console.error('Client request stream error:', err.message);
+      proxyReq.destroy(err);
+    });
     req.pipe(proxyReq);
   } else {
     proxyReq.end();
@@ -325,9 +432,31 @@ function handleProxy(req, res, targetUrl) {
 
 function rewriteJsUrls(js, targetUrl) {
   js = js.replace(
-    /(["'])(https?:\/\/(?:cn\.bing\.com|www\.bing\.com|assets\.msn\.cn|r\.bing\.com)[^"']*)\1/g,
+    /(["'])(https?:\/\/[^"']{5,})\1/g,
+    (m, q, url) => {
+      if (url.includes('/proxy/')) return m;
+      if (/\.(js|css|json|png|jpg|jpeg|gif|svg|woff2?|ttf|eot|ico)([?#]|$)/i.test(url)) {
+        return q + '/proxy/' + url + q;
+      }
+      if (/^https?:\/\/(cn\.bing\.com|www\.bing\.com|assets\.msn\.cn|r\.bing\.com|th\.bing\.com|api\.bing\.com|bat\.bing\.com|login\.live\.com|logincdn\.msauth\.net)/i.test(url)) {
+        return q + '/proxy/' + url + q;
+      }
+      return m;
+    },
+  );
+
+  js = js.replace(
+    /(["'])(https?:\/\/assets\.msn\.)\1/g,
     (m, q, url) => q + '/proxy/' + url + q,
   );
+
+  if (js.includes('esmsInitOptions') && js.includes('fetchHook')) {
+    js = js.replace(
+      /let\s+shimMode\s*=\s*!!esmsInitOptions\.shimMode/g,
+      'let shimMode=true',
+    );
+  }
+
   return js;
 }
 
