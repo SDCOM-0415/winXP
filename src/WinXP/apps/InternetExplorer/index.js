@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { WindowDropDowns } from 'components';
@@ -23,7 +23,8 @@ import windows from 'assets/windowsIcons/windows.png';
 import dropdown from 'assets/windowsIcons/dropdown.png';
 
 const DEFAULT_URL = 'https://cn.bing.com';
-const PROXY_PREFIX = 'https://api.allorigins.win/get?url=';
+const PROXY_BASE =
+  process.env.REACT_APP_PROXY_URL || window.__PROXY_URL__ || '/proxy/';
 
 function normalizeUrl(input) {
   var url = input.trim();
@@ -33,64 +34,41 @@ function normalizeUrl(input) {
   return 'https://cn.bing.com/search?q=' + encodeURIComponent(url);
 }
 
+function toProxyUrl(targetUrl) {
+  return PROXY_BASE + targetUrl;
+}
+
+function fromProxyUrl(proxyUrl) {
+  if (typeof proxyUrl === 'string' && proxyUrl.includes('/proxy/')) {
+    var idx = proxyUrl.indexOf('/proxy/');
+    return proxyUrl.substring(idx + 7);
+  }
+  return proxyUrl;
+}
+
 function InternetExplorer({ onClose, openUrl }) {
   const iframeRef = useRef(null);
-  const [url, setUrl] = useState(openUrl || DEFAULT_URL);
-  const [srcdoc, setSrcdoc] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [inputValue, setInputValue] = useState(openUrl || DEFAULT_URL);
-  const [historyStack, setHistoryStack] = useState([openUrl || DEFAULT_URL]);
+  const initialUrl = openUrl || DEFAULT_URL;
+  const [url, setUrl] = useState(initialUrl);
+  const [loading, setLoading] = useState(true);
+  const [inputValue, setInputValue] = useState(initialUrl);
+  const [historyStack, setHistoryStack] = useState([initialUrl]);
   const [historyIndex, setHistoryIndex] = useState(0);
 
-  const INJECT_SCRIPT = `
-<script>
-(function() {
-  window.open = function(url, name, specs) {
-    if (url) {
-      window.parent.postMessage({ type: 'ie-open-window', url: url }, '*');
-    }
-    return null;
-  };
-  document.addEventListener('click', function(e) {
-    var a = e.target.closest('a');
-    if (a && a.target === '_blank' && !a.href.startsWith('javascript:')) {
-      e.preventDefault();
-      window.parent.postMessage({ type: 'ie-open-window', url: a.href }, '*');
-    }
-  }, true);
-})();
-</script>
-`;
-
-  const loadUrl = useCallback(
-    targetUrl => {
+  const navigate = useCallback(
+    newUrl => {
+      const finalUrl = normalizeUrl(newUrl);
+      setUrl(finalUrl);
+      setInputValue(finalUrl);
       setLoading(true);
-      fetch(PROXY_PREFIX + encodeURIComponent(targetUrl))
-        .then(res => res.json())
-        .then(data => {
-          let html = data.contents || '';
-          const baseTag = `<base href="${targetUrl}" target="_blank">`;
-          if (/<head/i.test(html)) {
-            html = html.replace(/(<head[^>]*>)/i, '$1' + INJECT_SCRIPT);
-          } else if (/<html/i.test(html)) {
-            html = html.replace(/(<html[^>]*>)/i, '$1' + INJECT_SCRIPT);
-          } else {
-            html = INJECT_SCRIPT + html;
-          }
-          if (/<head/i.test(html) && !/<base\s/i.test(html)) {
-            html = html.replace(/<head/i, baseTag + '<head');
-          } else if (!/<base\s/i.test(html)) {
-            html = baseTag + html;
-          }
-          setSrcdoc(html);
-          setLoading(false);
-        })
-        .catch(() => {
-          setSrcdoc(INJECT_SCRIPT + '<div style="padding:20px;font-family:Tahoma,sans-serif"><h3>无法访问该网页</h3><p>请检查网址是否正确，或<a href="' + targetUrl + '" target="_blank">在新标签页中打开</a></p></div>');
-          setLoading(false);
-        });
+      setHistoryStack(prev => {
+        const newStack = prev.slice(0, historyIndex + 1);
+        newStack.push(finalUrl);
+        return newStack;
+      });
+      setHistoryIndex(prev => prev + 1);
     },
-    [INJECT_SCRIPT],
+    [historyIndex],
   );
 
   useEffect(() => {
@@ -99,28 +77,6 @@ function InternetExplorer({ onClose, openUrl }) {
     }
   }, [openUrl]);
 
-  useEffect(() => {
-    if (!srcdoc && !openUrl) {
-      loadUrl(DEFAULT_URL);
-    }
-  }, []);
-
-  const navigate = useCallback(
-    newUrl => {
-      const finalUrl = normalizeUrl(newUrl);
-      setUrl(finalUrl);
-      setInputValue(finalUrl);
-      loadUrl(finalUrl);
-      setHistoryStack(prev => {
-        const newStack = prev.slice(0, historyIndex + 1);
-        newStack.push(finalUrl);
-        return newStack;
-      });
-      setHistoryIndex(prev => prev + 1);
-    },
-    [historyIndex, loadUrl],
-  );
-
   function goBack() {
     if (historyIndex > 0) {
       const newIndex = historyIndex - 1;
@@ -128,7 +84,7 @@ function InternetExplorer({ onClose, openUrl }) {
       const targetUrl = historyStack[newIndex];
       setUrl(targetUrl);
       setInputValue(targetUrl);
-      loadUrl(targetUrl);
+      setLoading(true);
     }
   }
 
@@ -139,7 +95,7 @@ function InternetExplorer({ onClose, openUrl }) {
       const targetUrl = historyStack[newIndex];
       setUrl(targetUrl);
       setInputValue(targetUrl);
-      loadUrl(targetUrl);
+      setLoading(true);
     }
   }
 
@@ -148,7 +104,10 @@ function InternetExplorer({ onClose, openUrl }) {
   }
 
   function onRefresh() {
-    loadUrl(url);
+    setLoading(true);
+    if (iframeRef.current) {
+      iframeRef.current.src = toProxyUrl(url);
+    }
   }
 
   function onGo() {
@@ -159,6 +118,20 @@ function InternetExplorer({ onClose, openUrl }) {
     if (e.key === 'Enter') {
       navigate(inputValue);
     }
+  }
+
+  function onIframeLoad() {
+    setLoading(false);
+    try {
+      var iframeSrc = iframeRef.current && iframeRef.current.contentWindow.location.href;
+      if (iframeSrc) {
+        var realUrl = fromProxyUrl(iframeSrc);
+        if (realUrl && realUrl !== url && /^https?:\/\//i.test(realUrl)) {
+          setUrl(realUrl);
+          setInputValue(realUrl);
+        }
+      }
+    } catch (e) {}
   }
 
   function onClickOptionItem(item) {
@@ -176,9 +149,6 @@ function InternetExplorer({ onClose, openUrl }) {
     }
   }
 
-  React.useEffect(() => {
-    loadUrl(DEFAULT_URL);
-  }, []);
   return (
     <Div>
       <section className="ie__toolbar">
@@ -301,9 +271,9 @@ function InternetExplorer({ onClose, openUrl }) {
         <iframe
           ref={iframeRef}
           className="ie__iframe"
-          srcDoc={srcdoc}
+          src={toProxyUrl(url)}
           title="Internet Explorer"
-          sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+          onLoad={onIframeLoad}
         />
       </div>
       <footer className="ie__footer">

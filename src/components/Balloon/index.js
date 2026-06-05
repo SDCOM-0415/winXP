@@ -27,14 +27,14 @@ function Balloon({ startAfter = 3000, duration = 15000 }) {
           <div className="balloon__header">
             <img className="balloon__header__img" src={risk} alt="risk" />
             <span className="balloon__header__text">
-              Your computer might be at risk
+              您的计算机可能存在风险
             </span>
           </div>
           <p className="balloon__text__first">
-            Antivirus software might not be installed
+            可能未安装防病毒软件
           </p>
           <p className="balloon__text__second">
-            Click this balloon to fix this problem.
+            单击此气泡以解决此问题。
           </p>
         </div>
       </Div>

@@ -237,7 +237,7 @@ function WinXP() {
     function handleMessage(e) {
       if (e.data && e.data.type === 'ie-open-window') {
         const ieSetting = appSettings['Internet Explorer'];
-        dispatch({ type: ADD_APP, payload: { ...ieSetting, openUrl: e.data.url } });
+        dispatch({ type: ADD_APP, payload: { ...ieSetting, injectProps: { ...(ieSetting.injectProps || {}), openUrl: e.data.url } } });
       }
     }
     window.addEventListener('message', handleMessage);
