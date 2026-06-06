@@ -22,35 +22,14 @@ import stop from 'assets/windowsIcons/stop.png';
 import windows from 'assets/windowsIcons/windows.png';
 import dropdown from 'assets/windowsIcons/dropdown.png';
 
-const DISPLAY_PROXY_HOST = 'https://duckduckgo.com';
-const REAL_PROXY_HOST = 'https://g.91781145.xyz';
-const SEARCH_URL = 'https://g.91781145.xyz/?q=';
-const HOME_FILE_NAME = '/duckduckgo-home.html';
-const DEFAULT_DISPLAY_URL = 'https://duckduckgo.com/';
-
-function getLocalHomeUrl() {
-  const publicPath = process.env.PUBLIC_URL || '';
-  const origin = window.location.origin;
-  return origin + publicPath + HOME_FILE_NAME;
-}
-
-function isLocalHomeUrl(url) {
-  return typeof url === 'string' && url.indexOf(HOME_FILE_NAME) !== -1;
-}
+const HOME_URL = 'https://search.sdcom.asia/';
+const SEARCH_URL = 'https://search.sdcom.asia/?q=';
 
 function toRequestUrl(input) {
   var url = input.trim();
-  var localHomeUrl = getLocalHomeUrl();
-  if (!url) return localHomeUrl;
-  if (
-    url === DEFAULT_DISPLAY_URL ||
-    url === DISPLAY_PROXY_HOST ||
-    isLocalHomeUrl(url)
-  ) {
-    return localHomeUrl;
-  }
-  if (url.indexOf(DISPLAY_PROXY_HOST) === 0) {
-    return REAL_PROXY_HOST + url.substring(DISPLAY_PROXY_HOST.length);
+  if (!url) return HOME_URL;
+  if (url === HOME_URL || url === HOME_URL.slice(0, -1)) {
+    return HOME_URL;
   }
   if (/^https?:\/\//i.test(url)) return url;
   if (/^[\w-]+(\.[\w-]+)+/.test(url)) return 'https://' + url;
@@ -58,15 +37,9 @@ function toRequestUrl(input) {
 }
 
 function toDisplayUrl(requestUrl) {
-  if (!requestUrl) return DEFAULT_DISPLAY_URL;
-  if (isLocalHomeUrl(requestUrl)) {
-    return DEFAULT_DISPLAY_URL;
-  }
-  if (requestUrl === REAL_PROXY_HOST || requestUrl === REAL_PROXY_HOST + '/') {
-    return DEFAULT_DISPLAY_URL;
-  }
-  if (requestUrl.indexOf(REAL_PROXY_HOST) === 0) {
-    return DISPLAY_PROXY_HOST + requestUrl.substring(REAL_PROXY_HOST.length);
+  if (!requestUrl) return HOME_URL;
+  if (requestUrl === HOME_URL.slice(0, -1)) {
+    return HOME_URL;
   }
   return requestUrl;
 }
@@ -81,7 +54,7 @@ function createHistoryEntry(input) {
 
 function InternetExplorer({ onClose, openUrl }) {
   const iframeRef = useRef(null);
-  const initialEntry = createHistoryEntry(openUrl || DEFAULT_DISPLAY_URL);
+  const initialEntry = createHistoryEntry(openUrl || HOME_URL);
   const [url, setUrl] = useState(initialEntry.requestUrl);
   const [loading, setLoading] = useState(true);
   const [inputValue, setInputValue] = useState(initialEntry.displayUrl);
@@ -133,7 +106,7 @@ function InternetExplorer({ onClose, openUrl }) {
   }
 
   function goHome() {
-    navigate(DEFAULT_DISPLAY_URL);
+    navigate(HOME_URL);
   }
 
   function onRefresh() {
