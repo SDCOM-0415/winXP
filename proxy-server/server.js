@@ -1,554 +1,110 @@
 const http = require('http');
-const https = require('https');
+const { execFile } = require('child_process');
 const { URL } = require('url');
-
-process.on('uncaughtException', err => {
-  console.error('Uncaught exception:', err.message);
-});
-process.on('unhandledRejection', err => {
-  console.error('Unhandled rejection:', err);
-});
+const fs = require('fs');
 
 const PORT = process.env.PORT || 3001;
-const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS
-  ? process.env.ALLOWED_ORIGINS.split(',')
-  : ['*'];
 
-const TARGET_ORIGIN_CACHE = new Map();
+// 【核心修复】智能探针：自动寻找容器内真实的 Chrome 路径
+function getChromePath() {
+  const possiblePaths = [
+    '/usr/bin/google-chrome',
+    '/usr/bin/chromium',
+    '/usr/bin/chromium-browser',
+    '/opt/google/chrome/chrome',
+    // 部分新版 Puppeteer 镜像会将 Chromium 软链接到全局路径中
+    'google-chrome',
+    'chromium'
+  ];
 
-function getProtocolModule(protocol) {
-  return protocol === 'https:' ? https : http;
-}
-
-function buildTargetUrl(reqUrl) {
-  const match = reqUrl.match(/^\/proxy\/(https?:\/\/.+)/);
-  if (!match) return null;
-  try {
-    return new URL(match[1]);
-  } catch {
-    return null;
+  for (const path of possiblePaths) {
+    try {
+      // 如果是绝对路径，检查文件是否存在
+      if (path.startsWith('/') && fs.existsSync(path)) {
+        console.log(`🎯 成功锁定容器内 Chrome 路径: ${path}`);
+        return path;
+      }
+    } catch (e) {}
   }
+
+  // 兜底：如果都找不到，直接返回 'google-chrome' 尝试让系统环境变量去查找
+  console.log(`⚠️ 未找到常规绝对路径，使用系统全局命令 'google-chrome' 兜底`);
+  return 'google-chrome';
 }
 
-function extractOriginFromReferer(referer) {
-  if (!referer) return null;
-  const cached = TARGET_ORIGIN_CACHE.get(referer);
-  if (cached) return cached;
-  const match = referer.match(/\/proxy\/((https?:\/\/)[^/]+)/);
-  if (match) {
-    const origin = match[1];
-    TARGET_ORIGIN_CACHE.set(referer, origin);
-    return origin;
-  }
-  return null;
-}
+const CHROME_PATH = getChromePath();
 
-function buildUrlFromReferer(reqUrl, referer) {
-  const origin = extractOriginFromReferer(referer);
-  if (!origin) return null;
-  try {
-    return new URL(reqUrl, origin + '/');
-  } catch {
-    return null;
-  }
-}
-
-function setCorsHeaders(res, origin) {
-  const allowOrigin =
-    ALLOWED_ORIGINS[0] === '*' ? '*' : ALLOWED_ORIGINS.includes(origin) ? origin : '';
-  if (!allowOrigin) return false;
-  res.setHeader('Access-Control-Allow-Origin', allowOrigin);
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+// 统一设置完全放开的 CORS 跨域响应头
+function setAllowAllCors(res) {
+  res.setHeader('Access-Control-Allow-Origin', '*'); 
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', '*');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  return true;
-}
-
-function rewriteAbsoluteUrls(body) {
-  body = body.replace(
-    /(["'])(https?:\/\/[^"']+)\1/g,
-    (m, q, url) => {
-      if (url.includes('/proxy/')) return m;
-      return q + '/proxy/' + url + q;
-    },
-  );
-  return body;
-}
-
-function rewriteUrls(body, targetUrl) {
-  const origin = targetUrl.origin;
-  const proxyBase = '/proxy/' + origin;
-
-  body = body.replace(
-    /((?:src|href|action|poster|data-src|data-original|data-lazy)\s*=\s*)(["'])(\/\/[^"']+)\2/gi,
-    (m, attr, q, url) => attr + q + '/proxy/https:' + url + q,
-  );
-
-  body = body.replace(
-    /((?:src|href|action|poster|data-src|data-original|data-lazy)\s*=\s*)(["'])(\/[^/"'][^"']*)\2/gi,
-    (m, attr, q, path) => attr + q + proxyBase + path + q,
-  );
-
-  body = body.replace(
-    /((?:src|href|action|poster|data-src|data-original|data-lazy)\s*=\s*)(["'])(https?:\/\/[^"']+)\2/gi,
-    (m, attr, q, url) => {
-      if (url.includes('/proxy/')) return m;
-      return attr + q + '/proxy/' + url + q;
-    },
-  );
-
-  body = body.replace(
-    /(<style[^>]*>)([\s\S]*?)(<\/style>)/gi,
-    (m, open, css, close) => open + rewriteCssUrls(css, targetUrl) + close,
-  );
-
-  body = body.replace(
-    /(style\s*=\s*)(["'])([\s\S]*?)\2/gi,
-    (m, prefix, q, css) => prefix + q + rewriteCssUrls(css, targetUrl) + q,
-  );
-
-  body = body.replace(
-    /(srcset\s*=\s*)(["'])([^"']+)\2/gi,
-    (m, attr, q, value) => {
-      const resolved = value.replace(/(\S+)(\s+[\d.]+[wx])?/g, (mm, url, desc) => {
-        url = resolveProxyUrl(url, targetUrl);
-        return url + (desc || '');
-      });
-      return attr + q + resolved + q;
-    },
-  );
-
-  body = body.replace(
-    /(<script[^>]*type\s*=\s*["']importmap["'][^>]*>)([\s\S]*?)(<\/script>)/gi,
-    (m, open, content, close) => {
-      return open + rewriteAbsoluteUrls(content) + close;
-    },
-  );
-
-  body = body.replace(
-    /(<script[^>]*type\s*=\s*["']module["'][^>]*>)([\s\S]*?)(<\/script>)/gi,
-    (m, open, content, close) => {
-      if (!content.trim()) return m;
-      return open + rewriteAbsoluteUrls(content) + close;
-    },
-  );
-
-  body = body.replace(
-    /(<script(?![^>]*type\s*=)[^>]*>)([\s\S]*?)(<\/script>)/gi,
-    (m, open, content, close) => {
-      if (!content.trim()) return m;
-      return open + rewriteInlineJs(content, targetUrl) + close;
-    },
-  );
-
-  return body;
-}
-
-function rewriteInlineJs(js, targetUrl) {
-  js = js.replace(
-    /(["'])(https?:\/\/(?:assets\.msn\.cn|cn\.bing\.com|www\.bing\.com|r\.bing\.com|th\.bing\.com|api\.bing\.com|bat\.bing\.com|login\.live\.com|logincdn\.msauth\.net|lgincdnvze498\.azureedge\.net)[^"']*)\1/g,
-    (m, q, url) => {
-      if (url.includes('/proxy/')) return m;
-      return q + '/proxy/' + url + q;
-    },
-  );
-  return js;
-}
-
-function rewriteCssUrls(css, targetUrl) {
-  const origin = targetUrl.origin;
-  css = css.replace(/url\(\s*(['"]?)([^)'"]+)\1\s*\)/gi, (m, q, url) => {
-    if (/^(data:|blob:|https?:\/\/)/i.test(url)) {
-      if (/^https?:\/\//i.test(url)) return 'url(' + q + '/proxy/' + url + q + ')';
-      return m;
-    }
-    if (url.startsWith('//')) return 'url(' + q + '/proxy/https:' + url + q + ')';
-    if (url.startsWith('/')) return 'url(' + q + '/proxy/' + origin + url + q + ')';
-    const base = targetUrl.href.substring(0, targetUrl.href.lastIndexOf('/') + 1);
-    return 'url(' + q + '/proxy/' + base + url + q + ')';
-  });
-
-  css = css.replace(/@import\s+(['"])([^'"]+)\1/gi, (m, q, url) => {
-    url = resolveProxyUrl(url, targetUrl);
-    return '@import ' + q + url + q;
-  });
-
-  return css;
-}
-
-function resolveProxyUrl(url, targetUrl) {
-  if (/^(data:|blob:|javascript:|mailto:)/i.test(url)) return url;
-  if (/^https?:\/\//i.test(url)) return '/proxy/' + url;
-  if (url.startsWith('//')) return '/proxy/https:' + url;
-  if (url.startsWith('/')) return '/proxy/' + targetUrl.origin + url;
-  const base = targetUrl.href.substring(0, targetUrl.href.lastIndexOf('/') + 1);
-  return '/proxy/' + base + url;
-}
-
-function buildInjectScript(targetOrigin) {
-  return `<script>(function(){
-var _TO="${targetOrigin}";
-var _PB="/proxy/";
-function _rw(u){
-  if(!u||typeof u!=="string")return u;
-  if(u.startsWith("#")||u.startsWith("javascript:")||u.startsWith("data:")||u.startsWith("blob:"))return u;
-  if(u.startsWith(_PB))return u;
-  if(/^https?:\\/\\//.test(u))return _PB+u;
-  if(u.startsWith("//"))return _PB+"https:"+u;
-  if(u.startsWith("/"))return _PB+_TO+u;
-  return u;
-}
-var _origFetch=window.fetch.bind(window);
-function _buildRequestInit(req){
-  var clone=req.clone();
-  var init={
-    method:clone.method,
-    headers:clone.headers,
-    mode:clone.mode,
-    credentials:clone.credentials,
-    cache:clone.cache,
-    redirect:clone.redirect,
-    referrer:clone.referrer,
-    referrerPolicy:clone.referrerPolicy,
-    integrity:clone.integrity,
-    keepalive:clone.keepalive,
-    signal:clone.signal
-  };
-  if("duplex" in clone&&clone.duplex)init.duplex=clone.duplex;
-  if(clone.method!=="GET"&&clone.method!=="HEAD")init.body=clone.body;
-  return init;
-}
-function _proxyFetch(u,o){
-  if(typeof u==="string"){
-    u=_rw(u);
-  }else if(u instanceof Request){
-    u=new Request(_rw(u.url),_buildRequestInit(u));
-  }
-  return _origFetch(u,o);
-}
-window.fetch=_proxyFetch;
-window.esmsInitOptions=window.esmsInitOptions||{};
-window.esmsInitOptions.shimMode=true;
-window.esmsInitOptions.fetch=_proxyFetch;
-window.esmsInitOptions.resolve=function(id,parentUrl){
-  if(/^https?:\\/\\//.test(id))return _rw(id);
-  return id;
-};
-if(navigator&&typeof navigator.sendBeacon==="function"){
-  var _origSendBeacon=navigator.sendBeacon.bind(navigator);
-  navigator.sendBeacon=function(url,data){
-    return _origSendBeacon(_rw(url),data);
-  };
-}
-if(typeof self.importScripts==="function"){
-  var _origImportScripts=self.importScripts.bind(self);
-  self.importScripts=function(){
-    var args=[];
-    for(var i=0;i<arguments.length;i++)args.push(_rw(arguments[i]));
-    return _origImportScripts.apply(self,args);
-  };
-}
-if(typeof Worker==="function"){
-  var _OrigWorker=Worker;
-  Worker=function(url,options){
-    return new _OrigWorker(_rw(url),options);
-  };
-  Worker.prototype=_OrigWorker.prototype;
-}
-if(typeof SharedWorker==="function"){
-  var _OrigSharedWorker=SharedWorker;
-  SharedWorker=function(url,options){
-    return new _OrigSharedWorker(_rw(url),options);
-  };
-  SharedWorker.prototype=_OrigSharedWorker.prototype;
-}
-var _ps=history.pushState;
-history.pushState=function(s,t,u){return _ps.call(history,s,t,u?_rw(u):u)};
-var _rs=history.replaceState;
-history.replaceState=function(s,t,u){return _rs.call(history,s,t,u?_rw(u):u)};
-var _xo=XMLHttpRequest.prototype.open;
-XMLHttpRequest.prototype.open=function(m,u){
-  arguments[1]=_rw(u);
-  return _xo.apply(this,arguments);
-};
-window.open=function(u){
-  if(u){
-    var fu=u;
-    if(u.startsWith(_PB))fu=u.substring(_PB.length);
-    window.parent.postMessage({type:"ie-open-window",url:fu},"*");
-  }
-  return null;
-};
-document.addEventListener("click",function(e){
-  var a=e.target.closest("a");
-  if(!a)return;
-  var h=a.getAttribute("href");
-  if(!h||h.startsWith("#")||h.startsWith("javascript:"))return;
-  if(a.target==="_blank"){
-    e.preventDefault();
-    var fu=h;
-    if(h.startsWith(_PB))fu=h.substring(_PB.length);
-    else if(/^https?:\\/\\//.test(h))fu=h;
-    else if(h.startsWith("/"))fu=_TO+h;
-    else return;
-    window.parent.postMessage({type:"ie-open-window",url:fu},"*");
-    return;
-  }
-  if(!h.startsWith(_PB)&&!h.startsWith("#")){
-    e.preventDefault();
-    var nu=_rw(h);
-    location.href=nu;
-  }
-},true);
-var _origSrcDesc=Object.getOwnPropertyDescriptor(HTMLScriptElement.prototype,"src");
-var _origImgSrcDesc=Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,"src");
-var _origLinkHrefDesc=Object.getOwnPropertyDescriptor(HTMLLinkElement.prototype,"href");
-var _ce=document.createElement;
-document.createElement=function(t){
-  var el=_ce.call(document,t);
-  var tl=t.toLowerCase();
-  if(tl==="script"&&_origSrcDesc&&_origSrcDesc.set){
-    Object.defineProperty(el,"src",{
-      set:function(v){_origSrcDesc.set.call(this,_rw(v))},
-      get:function(){return _origSrcDesc.get?_origSrcDesc.get.call(this):""},
-      configurable:true,enumerable:true
-    });
-  }
-  if(tl==="img"&&_origImgSrcDesc&&_origImgSrcDesc.set){
-    Object.defineProperty(el,"src",{
-      set:function(v){_origImgSrcDesc.set.call(this,_rw(v))},
-      get:function(){return _origImgSrcDesc.get?_origImgSrcDesc.get.call(this):""},
-      configurable:true,enumerable:true
-    });
-  }
-  if(tl==="link"&&_origLinkHrefDesc&&_origLinkHrefDesc.set){
-    Object.defineProperty(el,"href",{
-      set:function(v){_origLinkHrefDesc.set.call(this,_rw(v))},
-      get:function(){return _origLinkHrefDesc.get?_origLinkHrefDesc.get.call(this):""},
-      configurable:true,enumerable:true
-    });
-  }
-  return el;
-};
-var _sa=Element.prototype.setAttribute;
-Element.prototype.setAttribute=function(n,v){
-  if((n==="src"||n==="href")&&typeof v==="string"){
-    return _sa.call(this,n,_rw(v));
-  }
-  return _sa.call(this,n,v);
-};
-})()<\/script>`;
-}
-
-function handleProxy(req, res, targetUrl) {
-  const mod = getProtocolModule(targetUrl.protocol);
-  const headers = {
-    'User-Agent':
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-    Accept: req.headers.accept || '*/*',
-    'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
-    'Accept-Encoding': 'identity',
-    Referer: targetUrl.origin + '/',
-    Host: targetUrl.host,
-  };
-
-  if (req.headers.cookie) {
-    headers.Cookie = req.headers.cookie;
-  }
-
-  // 透传客户端原始 Body 相关请求头，避免上游无法解析 POST/PUT 载荷
-  if (req.headers['content-type']) {
-    headers['Content-Type'] = req.headers['content-type'];
-  }
-  if (req.headers['content-length']) {
-    headers['Content-Length'] = req.headers['content-length'];
-  }
-  // Origin 存在时改写为目标站点自身来源，减少上游对跨站请求的拦截
-  if (req.headers.origin) {
-    headers.Origin = targetUrl.origin;
-  }
-
-  const options = {
-    hostname: targetUrl.hostname,
-    port: targetUrl.port || (targetUrl.protocol === 'https:' ? 443 : 80),
-    path: targetUrl.pathname + targetUrl.search,
-    method: req.method,
-    headers,
-    timeout: 15000,
-    servername: targetUrl.protocol === 'https:' ? targetUrl.hostname : undefined,
-  };
-
-  const proxyReq = mod.request(options, proxyRes => {
-    const statusCode = proxyRes.statusCode;
-    const contentType = (proxyRes.headers['content-type'] || '').toLowerCase();
-
-    if ([301, 302, 303, 307, 308].includes(statusCode) && proxyRes.headers.location) {
-      let location = proxyRes.headers.location;
-      try {
-        const redirectUrl = new URL(location, targetUrl.href);
-        location = '/proxy/' + redirectUrl.href;
-      } catch {}
-      res.writeHead(statusCode, { Location: location });
-      res.end();
-      return;
-    }
-
-    const responseHeaders = {};
-    for (const [key, value] of Object.entries(proxyRes.headers)) {
-      const lk = key.toLowerCase();
-      if (
-        lk === 'x-frame-options' ||
-        lk === 'content-security-policy' ||
-        lk === 'content-security-policy-report-only' ||
-        lk === 'x-content-type-options' ||
-        lk === 'strict-transport-security' ||
-        lk === 'content-encoding' ||
-        lk === 'transfer-encoding' ||
-        lk === 'content-length'
-      ) {
-        continue;
-      }
-      if (lk.startsWith('access-control-')) {
-        continue;
-      }
-      responseHeaders[key] = value;
-    }
-
-    const isHtml = contentType.includes('text/html');
-    const isCss = contentType.includes('text/css');
-    const isJs = contentType.includes('javascript') || contentType.includes('ecmascript');
-
-    if (!isHtml && !isCss && !isJs) {
-      responseHeaders['Cache-Control'] = 'public, max-age=86400';
-      res.writeHead(statusCode, responseHeaders);
-      proxyRes.pipe(res);
-      return;
-    }
-
-    const chunks = [];
-    proxyRes.on('data', chunk => chunks.push(chunk));
-    proxyRes.on('end', () => {
-      let body = Buffer.concat(chunks).toString('utf-8');
-
-      if (isHtml) {
-        body = rewriteUrls(body, targetUrl);
-        const injectScript = buildInjectScript(targetUrl.origin);
-        if (/<head/i.test(body)) {
-          body = body.replace(/(<head[^>]*>)/i, '$1' + injectScript);
-        } else if (/<html/i.test(body)) {
-          body = body.replace(/(<html[^>]*>)/i, '$1' + injectScript);
-        } else {
-          body = injectScript + body;
-        }
-      }
-
-      if (isCss) {
-        body = rewriteCssUrls(body, targetUrl);
-      }
-
-      if (isJs) {
-        body = rewriteJsUrls(body, targetUrl);
-      }
-
-      responseHeaders['Content-Type'] = contentType.includes('charset')
-        ? contentType
-        : contentType + '; charset=utf-8';
-      responseHeaders['Content-Length'] = Buffer.byteLength(body);
-      res.writeHead(statusCode, responseHeaders);
-      res.end(body);
-    });
-  });
-
-  proxyReq.on('error', err => {
-    console.error('Proxy error:', err.message);
-    if (res.writableEnded) return;
-    if (!res.headersSent) {
-      res.writeHead(502, { 'Content-Type': 'text/html; charset=utf-8' });
-    }
-    res.end('<h3>无法访问该网页</h3><p>' + err.message + '</p>');
-  });
-
-  proxyReq.on('timeout', () => {
-    proxyReq.destroy();
-    if (res.writableEnded) return;
-    if (!res.headersSent) {
-      res.writeHead(504, { 'Content-Type': 'text/html; charset=utf-8' });
-    }
-    res.end('<h3>请求超时</h3>');
-  });
-
-  if (req.method === 'POST' || req.method === 'PUT') {
-    req.on('error', err => {
-      console.error('Client request stream error:', err.message);
-      proxyReq.destroy(err);
-    });
-    req.pipe(proxyReq);
-  } else {
-    proxyReq.end();
-  }
-}
-
-function rewriteJsUrls(js, targetUrl) {
-  js = js.replace(
-    /(["'])(https?:\/\/[^"']{5,})\1/g,
-    (m, q, url) => {
-      if (url.includes('/proxy/')) return m;
-      if (/\.(js|css|json|png|jpg|jpeg|gif|svg|woff2?|ttf|eot|ico)([?#]|$)/i.test(url)) {
-        return q + '/proxy/' + url + q;
-      }
-      if (/^https?:\/\/(cn\.bing\.com|www\.bing\.com|assets\.msn\.cn|r\.bing\.com|th\.bing\.com|api\.bing\.com|bat\.bing\.com|login\.live\.com|logincdn\.msauth\.net)/i.test(url)) {
-        return q + '/proxy/' + url + q;
-      }
-      return m;
-    },
-  );
-
-  js = js.replace(
-    /(["'])(https?:\/\/assets\.msn\.)\1/g,
-    (m, q, url) => q + '/proxy/' + url + q,
-  );
-
-  if (js.includes('esmsInitOptions') && js.includes('fetchHook')) {
-    js = js.replace(
-      /let\s+shimMode\s*=\s*!!esmsInitOptions\.shimMode/g,
-      'let shimMode=true',
-    );
-  }
-
-  return js;
 }
 
 const server = http.createServer((req, res) => {
-  const origin = req.headers.origin || '';
-  setCorsHeaders(res, origin);
-
+  // 1. 处理跨域预检
+  setAllowAllCors(res);
   if (req.method === 'OPTIONS') {
     res.writeHead(204);
     res.end();
     return;
   }
 
-  if (req.url === '/' || req.url === '/health') {
+  const reqUrl = new URL(req.url, `http://${req.headers.host}`);
+
+  // 2. 健康检查
+  if (reqUrl.pathname === '/' || reqUrl.pathname === '/health') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ status: 'ok' }));
+    res.end(JSON.stringify({ status: 'ok', engine: 'native_chrome_cli', chrome: CHROME_PATH }));
     return;
   }
 
-  if (req.url.startsWith('/proxy/')) {
-    const targetUrl = buildTargetUrl(req.url);
+  // 3. 核心中转渲染路由
+  if (reqUrl.pathname === '/render') {
+    const targetUrl = reqUrl.searchParams.get('url');
     if (!targetUrl) {
-      res.writeHead(400, { 'Content-Type': 'text/plain' });
-      res.end('Invalid proxy URL');
+      res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' });
+      res.end('缺少关键参数：?url=');
       return;
     }
-    handleProxy(req, res, targetUrl);
-    return;
-  }
 
-  const referer = req.headers.referer || req.headers.referrer || '';
-  const targetUrl = buildUrlFromReferer(req.url, referer);
-  if (targetUrl) {
-    handleProxy(req, res, targetUrl);
+    console.log(`正在调取系统原生 Chrome 渲染: ${targetUrl}`);
+
+    const chromeArgs = [
+      '--headless',
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-gpu',
+      '--dump-dom', 
+      targetUrl
+    ];
+
+    // 使用探针定位到的真实 CHROME_PATH 执行
+    execFile(CHROME_PATH, chromeArgs, { maxBuffer: 1024 * 1024 * 10 }, (err, stdout, stderr) => {
+      if (err) {
+        console.error('Chrome 渲染失败:', err.message);
+        if (!res.headersSent) {
+          res.writeHead(502, { 'Content-Type': 'text/html; charset=utf-8' });
+        }
+        res.end(`<h3>Windows XP 远程浏览器中转失败</h3><p>${err.message}</p>`);
+        return;
+      }
+
+      let content = stdout;
+
+      // 路径补全机制
+      try {
+        const urlObj = new URL(targetUrl);
+        const baseHref = urlObj.origin;
+        if (!/<base/i.test(content)) {
+          content = content.replace(/(<head[^>]*>)/i, `$1<base href="${baseHref}/">`);
+        }
+      } catch (e) {}
+
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end(content);
+    });
     return;
   }
 
@@ -557,5 +113,8 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log('Proxy server running on port ' + PORT);
+  console.log(`====================================================`);
+  console.log(`🚀 纯原生免依赖影子后端启动成功！监听端口: ${PORT}`);
+  console.log(`当前采用的 Chrome 核心: ${CHROME_PATH}`);
+  console.log(`====================================================`);
 });
