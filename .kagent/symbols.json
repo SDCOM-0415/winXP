@@ -101,12 +101,12 @@
     },
     "node_modules/.cache/default-development/index.pack.old": {
       "ipo_ts": 1780660489378,
-      "edit_count": 25,
-      "last_lines": 10390,
-      "last_ts": 1780739816388,
+      "edit_count": 26,
+      "last_lines": 10391,
+      "last_ts": 1780739975332,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "9581bc72"
+      "last_content_hash": "3b207093"
     },
     "node_modules/.cache/babel-loader/00187c73c443e0bc641a8966a2afd9f157200548bf8926e7d11fc17d6e8eaa15.json": {
       "ipo_ts": 1780660517161,
@@ -272,12 +272,12 @@
     },
     "node_modules/.cache/default-development/4.pack": {
       "ipo_ts": 1780660564560,
-      "edit_count": 8,
-      "last_lines": 6066,
-      "last_ts": 1780665106367,
+      "edit_count": 9,
+      "last_lines": 1227717,
+      "last_ts": 1780739975270,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "24b178ab"
+      "last_content_hash": "64ae07a6"
     },
     "node_modules/.cache/default-development/7.pack": {
       "ipo_ts": 1780660571309,
@@ -290,12 +290,12 @@
     },
     "node_modules/.cache/default-development/index.pack": {
       "ipo_ts": 1780660571516,
-      "edit_count": 24,
-      "last_lines": 10391,
-      "last_ts": 1780739816277,
+      "edit_count": 25,
+      "last_lines": 10393,
+      "last_ts": 1780739975378,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "3b207093"
+      "last_content_hash": "21a22780"
     },
     "node_modules/.cache/babel-loader/d37834a7ff054e8e632db21a46b3674d8d1702d4791a0182f1d633b93b7dd347.json": {
       "ipo_ts": 1780660571524,
@@ -1649,12 +1649,12 @@
     },
     "src/WinXP/apps/InternetExplorer/index.js": {
       "ipo_ts": 1780661756672,
-      "edit_count": 31,
-      "last_lines": 1,
-      "last_ts": 1780739805454,
+      "edit_count": 32,
+      "last_lines": 606,
+      "last_ts": 1780739909895,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "713ac388"
+      "last_content_hash": "d4f73c76"
     },
     "node_modules/.cache/babel-loader/4d667cccb7e0e06d5c8d195aa16ff20189f3f9dad0c7d1ac0bc93773742dfd6d.json": {
       "ipo_ts": 1780661756674,
@@ -2396,21 +2396,21 @@
     },
     "build/asset-manifest.json": {
       "ipo_ts": 1780670267149,
-      "edit_count": 3,
+      "edit_count": 4,
       "last_lines": 21,
-      "last_ts": 1780737149135,
+      "last_ts": 1780739943028,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "19725311"
+      "last_content_hash": "45d33591"
     },
     "build/index.html": {
       "ipo_ts": 1780670267151,
-      "edit_count": 3,
+      "edit_count": 4,
       "last_lines": 1,
-      "last_ts": 1780737149137,
+      "last_ts": 1780739943030,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "1055a1ae"
+      "last_content_hash": "62fdde80"
     },
     "node_modules/.cache/babel-loader/39ab50157e0f834e93543690c9e876f7648fa7a99ca52561b52b31b58a806966.json": {
       "ipo_ts": 1780736992412,
@@ -2420,33 +2420,6 @@
       "delisted": false,
       "last_source": "onEdit",
       "last_content_hash": "cff60164"
-    },
-    "build/static/js/main.3599bc8e.js": {
-      "ipo_ts": 1780737003682,
-      "edit_count": 1,
-      "last_lines": 3,
-      "last_ts": 1780737003682,
-      "delisted": false,
-      "last_source": "onEdit",
-      "last_content_hash": "317b4624"
-    },
-    "build/static/js/main.3599bc8e.js.LICENSE.txt": {
-      "ipo_ts": 1780737003684,
-      "edit_count": 1,
-      "last_lines": 144,
-      "last_ts": 1780737003684,
-      "delisted": false,
-      "last_source": "onEdit",
-      "last_content_hash": "1714f084"
-    },
-    "build/static/js/main.3599bc8e.js.map": {
-      "ipo_ts": 1780737003752,
-      "edit_count": 2,
-      "last_lines": 1,
-      "last_ts": 1780737149205,
-      "delisted": false,
-      "last_source": "onEdit",
-      "last_content_hash": "27753937"
     },
     "node_modules/.cache/babel-loader/fd7df9c6e729b79d2cee5c74ed3aadd93fc9c2ebf1e343d45fa880e4d217e518.json": {
       "ipo_ts": 1780737138715,
@@ -2468,12 +2441,12 @@
     },
     "node_modules/.cache/default-development/17.pack": {
       "ipo_ts": 1780737232752,
-      "edit_count": 2,
-      "last_lines": 1209414,
-      "last_ts": 1780739815928,
+      "edit_count": 3,
+      "last_lines": 22,
+      "last_ts": 1780739971672,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "13cdbab"
+      "last_content_hash": "83fd8cb5"
     },
     "node_modules/.cache/default-development/18.pack": {
       "ipo_ts": 1780737232884,
@@ -2483,6 +2456,51 @@
       "delisted": false,
       "last_source": "onEdit",
       "last_content_hash": "e3c1dcdb"
+    },
+    "node_modules/.cache/babel-loader/25c2b5649d7ed88850ffc7020ac0886c65c4902771701da1741749a67c0198e0.json": {
+      "ipo_ts": 1780739912179,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780739912179,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "fe4fb142"
+    },
+    "node_modules/.cache/babel-loader/e27ba476eaa496fc42615ce10be996b278e69146653469e06124b07122097a1d.json": {
+      "ipo_ts": 1780739932657,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780739932657,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e361eaa6"
+    },
+    "build/static/js/main.6c699f56.js": {
+      "ipo_ts": 1780739943084,
+      "edit_count": 1,
+      "last_lines": 3,
+      "last_ts": 1780739943084,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "23cab665"
+    },
+    "build/static/js/main.6c699f56.js.LICENSE.txt": {
+      "ipo_ts": 1780739943088,
+      "edit_count": 1,
+      "last_lines": 144,
+      "last_ts": 1780739943088,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1714f084"
+    },
+    "build/static/js/main.6c699f56.js.map": {
+      "ipo_ts": 1780739943339,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780739943339,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3f6a1563"
     }
   }
 }
