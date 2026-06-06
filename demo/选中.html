@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Windows XP Selection Simulator</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: "MS Shell Dlg", "SimSun", "Tahoma", sans-serif;
+            font-size: 12px;
+            margin: 20px;
+        }
+
+        /* 资源管理器布局容器 */
+        .explorer-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* 单个项目容器 */
+        .xp-item {
+            display: flex;
+            align-items: center;
+            padding: 2px;
+            width: 150px;
+            border: 1px solid transparent;
+            box-sizing: border-box;
+        }
+
+        /* 项目内的图标 */
+        .xp-item .item-icon {
+            width: 32px;
+            height: 32px;
+            margin-right: 6px;
+            background-color: #cccccc; /* 实际项目中替换为磁盘图标 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+
+        /* 项目内的文字外层（XP中真正变蓝的是文字背景包裹层） */
+        .xp-item .text-wrapper {
+            padding: 1px 3px;
+            border: 1px solid transparent;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #000000;
+        }
+
+        /* ==========================================
+           关键所在：XP 风格的选中状态
+           ========================================== */
+        .xp-item.selected .text-wrapper {
+            /* 经典 XP 联机选择深蓝色 */
+            background-color: #316AC5; 
+            color: #ffffff;
+            
+            /* 1像素的点状虚线 */
+            outline: 1px dotted #ffffff;
+            /* 让虚线向内贴紧文字边框 */
+            outline-offset: -1px; 
+        }
+
+        /* 如果是失去焦点但依然被选中的状态（比如点击了别的地方） */
+        .xp-item.selected.blur .text-wrapper {
+            background-color: #C0C0C0;
+            color: #000000;
+            outline: 1px dotted #666666;
+        }
+    </style>
+</head>
+<body>
+
+<h3>请点击下方图标体验 XP 选中效果：</h3>
+
+<div class="explorer-container">
+    <div class="xp-item" onclick="selectItem(this)">
+        <div class="item-icon">💽</div>
+        <div class="text-wrapper">
+            <span class="item-text">本地磁盘 (C:)</span>
+        </div>
+    </div>
+
+    <div class="xp-item" onclick="selectItem(this)">
+        <div class="item-icon">💿</div>
+        <div class="text-wrapper">
+            <span class="item-text">CD 驱动器 (D:)</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    function selectItem(element) {
+        // 清除其他项的选中状态（模拟单选）
+        document.querySelectorAll('.xp-item').forEach(item => {
+            item.classList.remove('selected');
+        });
+        
+        // 给当前点击的项加上选中样式
+        element.classList.add('selected');
+    }
+
+    // 点击空白处失去焦点的微调（可选，更逼真）
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.xp-item')) {
+            document.querySelectorAll('.xp-item').forEach(item => {
+                // 可以选择移除，或者将其变为灰色失去焦点状态：
+                // item.classList.add('blur'); 
+                item.classList.remove('selected');
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

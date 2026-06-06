@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { WindowDropDowns } from 'components';
+import ContextMenu from 'components/ContextMenu';
 import dropDownData from './dropDownData';
 import go from 'assets/windowsIcons/290.png';
 import search from 'assets/windowsIcons/299(32x32).png';
@@ -26,7 +27,104 @@ import logo from 'assets/github-logo.png';
 import mine from 'assets/minesweeper/mine-icon.png';
 import windows from 'assets/windowsIcons/windows.png';
 
+const EMPTY_AREA_MENU = [
+  { type: 'item', text: '查看' },
+  { type: 'item', text: '排列图标' },
+  { type: 'item', text: '刷新' },
+  { type: 'separator' },
+  { type: 'item', text: '粘贴', disabled: true },
+  { type: 'item', text: '粘贴快捷方式', disabled: true },
+  { type: 'separator' },
+  { type: 'item', text: '属性' },
+];
+
+const FOLDER_MENU = [
+  { type: 'item', text: '打开' },
+  { type: 'item', text: '资源管理器' },
+  { type: 'item', text: '搜索...' },
+  { type: 'separator' },
+  { type: 'item', text: '剪切' },
+  { type: 'item', text: '复制' },
+  { type: 'separator' },
+  { type: 'item', text: '创建快捷方式' },
+  { type: 'item', text: '删除' },
+  { type: 'item', text: '重命名' },
+  { type: 'separator' },
+  { type: 'item', text: '属性' },
+];
+
+const DRIVE_MENU = [
+  { type: 'item', text: '打开' },
+  { type: 'item', text: '资源管理器' },
+  { type: 'item', text: '搜索...' },
+  { type: 'separator' },
+  { type: 'item', text: '共享和安全...' },
+  { type: 'separator' },
+  { type: 'item', text: '格式化...', disabled: true },
+  { type: 'item', text: '复制' },
+  { type: 'item', text: '创建快捷方式' },
+  { type: 'separator' },
+  { type: 'item', text: '重命名' },
+  { type: 'separator' },
+  { type: 'item', text: '属性' },
+];
+
+const CD_MENU = [
+  { type: 'item', text: '打开' },
+  { type: 'item', text: '资源管理器' },
+  { type: 'separator' },
+  { type: 'item', text: '自动播放' },
+  { type: 'item', text: '弹出' },
+  { type: 'separator' },
+  { type: 'item', text: '创建快捷方式' },
+  { type: 'item', text: '属性' },
+];
+
+const ABOUT_MENU = [
+  { type: 'item', text: '打开' },
+  { type: 'item', text: '在新窗口中打开' },
+  { type: 'separator' },
+  { type: 'item', text: '复制快捷方式' },
+  { type: 'separator' },
+  { type: 'item', text: '属性' },
+];
+
 function MyComputer({ onClose }) {
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [contextMenu, setContextMenu] = useState({
+    visible: false,
+    x: 0,
+    y: 0,
+    items: [],
+  });
+
+  function closeContextMenu() {
+    setContextMenu({ visible: false, x: 0, y: 0, items: [] });
+  }
+
+  function openContextMenu(e, items, item) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (item) {
+      setSelectedItem(item);
+    } else {
+      setSelectedItem(null);
+    }
+    setContextMenu({
+      visible: true,
+      x: Math.min(e.clientX, window.innerWidth - 220),
+      y: Math.min(e.clientY, window.innerHeight - 280),
+      items,
+    });
+  }
+
+  function selectItem(item) {
+    closeContextMenu();
+    setSelectedItem(item);
+  }
+
+  function onClickContextMenuItem() {}
+
   function onClickOptionItem(item) {
     switch (item) {
       case '关闭':
@@ -263,36 +361,60 @@ function MyComputer({ onClose }) {
               </div>
             </div>
           </div>
-          <div className="com__content__right">
+          <div
+            className="com__content__right"
+            onMouseDown={() => selectItem(null)}
+            onContextMenu={e => openContextMenu(e, EMPTY_AREA_MENU)}
+          >
             <div className="com__content__right__card">
               <div className="com__content__right__card__header">
                 在这台计算机上存储的文件
               </div>
               <div className="com__content__right__card__content">
-                <div className="com__content__right__card__item">
+                <button
+                  type="button"
+                  className={`com__content__right__card__item${
+                    selectedItem === 'shared-documents' ? ' selected' : ''
+                  }`}
+                  onMouseDown={e => {
+                    e.stopPropagation();
+                    selectItem('shared-documents');
+                  }}
+                  onContextMenu={e =>
+                    openContextMenu(e, FOLDER_MENU, 'shared-documents')
+                  }
+                >
                   <img
                     src={folder}
-                    alt="folder"
+                    alt=""
                     className="com__content__right__card__img"
                   />
-                  <div className="com__content__right__card__img-container">
-                    <div className="com__content__right__card__text">
-                      共享文档
-                    </div>
-                  </div>
-                </div>
-                <div className="com__content__right__card__item">
+                  <span className="com__content__right__card__text">
+                    共享文档
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  className={`com__content__right__card__item${
+                    selectedItem === 'user-documents' ? ' selected' : ''
+                  }`}
+                  onMouseDown={e => {
+                    e.stopPropagation();
+                    selectItem('user-documents');
+                  }}
+                  onContextMenu={e =>
+                    openContextMenu(e, FOLDER_MENU, 'user-documents')
+                  }
+                >
                   <img
                     src={folder}
-                    alt="folder"
+                    alt=""
                     className="com__content__right__card__img"
                   />
-                  <div className="com__content__right__card__img-container">
-                    <div className="com__content__right__card__text">
-                      用户文档
-                    </div>
-                  </div>
-                </div>
+                  <span className="com__content__right__card__text">
+                    用户文档
+                  </span>
+                </button>
               </div>
             </div>
             <div className="com__content__right__card">
@@ -300,18 +422,28 @@ function MyComputer({ onClose }) {
                 硬盘驱动器
               </div>
               <div className="com__content__right__card__content">
-                <div className="com__content__right__card__item">
+                <button
+                  type="button"
+                  className={`com__content__right__card__item${
+                    selectedItem === 'local-disk-c' ? ' selected' : ''
+                  }`}
+                  onMouseDown={e => {
+                    e.stopPropagation();
+                    selectItem('local-disk-c');
+                  }}
+                  onContextMenu={e =>
+                    openContextMenu(e, DRIVE_MENU, 'local-disk-c')
+                  }
+                >
                   <img
                     src={disk}
-                    alt="disk"
+                    alt=""
                     className="com__content__right__card__img"
                   />
-                  <div className="com__content__right__card__img-container">
-                    <div className="com__content__right__card__text">
-                      本地磁盘 (C:)
-                    </div>
-                  </div>
-                </div>
+                  <span className="com__content__right__card__text">
+                    本地磁盘 (C:)
+                  </span>
+                </button>
               </div>
             </div>
             <div className="com__content__right__card">
@@ -319,58 +451,92 @@ function MyComputer({ onClose }) {
                 可移动存储设备
               </div>
               <div className="com__content__right__card__content">
-                <div className="com__content__right__card__item">
-                  <div className="com__content__right__card__img-container">
-                    <img
-                      src={cd}
-                      alt="cd"
-                      className="com__content__right__card__img"
-                    />
-                  </div>
-                  <div className="com__content__right__card__text">
+                <button
+                  type="button"
+                  className={`com__content__right__card__item${
+                    selectedItem === 'cd-drive-d' ? ' selected' : ''
+                  }`}
+                  onMouseDown={e => {
+                    e.stopPropagation();
+                    selectItem('cd-drive-d');
+                  }}
+                  onContextMenu={e => openContextMenu(e, CD_MENU, 'cd-drive-d')}
+                >
+                  <img
+                    src={cd}
+                    alt=""
+                    className="com__content__right__card__img"
+                  />
+                  <span className="com__content__right__card__text">
                     CD 驱动器 (D:)
-                  </div>
-                </div>
+                  </span>
+                </button>
               </div>
             </div>
             <div className="com__content__right__card com__content__right__card--me">
-              <div className="com__content__right__card__header">
-                关于我 :)
-              </div>
+              <div className="com__content__right__card__header">关于我</div>
               <div className="com__content__right__card__content">
                 <a
                   href="https://github.com/SDCOM-0415"
                   target="_blank"
                   rel="noreferrer"
-                  className="com__content__right__card__item--me"
+                  className={`com__content__right__card__item${
+                    selectedItem === 'about-github' ? ' selected' : ''
+                  }`}
+                  onMouseDown={e => {
+                    e.stopPropagation();
+                    selectItem('about-github');
+                  }}
+                  onContextMenu={e =>
+                    openContextMenu(e, ABOUT_MENU, 'about-github')
+                  }
                 >
                   <img
                     className="com__content__right__card__img"
                     src={logo}
-                    alt="control"
+                    alt=""
                   />
-                  <div className="com__content__right__card__text">Github</div>
+                  <span className="com__content__right__card__text">
+                    Github
+                  </span>
                 </a>
                 <a
                   href="https://www.sdcom.top"
                   target="_blank"
                   rel="noreferrer"
-                  className="com__content__right__card__item--me"
+                  className={`com__content__right__card__item${
+                    selectedItem === 'about-website' ? ' selected' : ''
+                  }`}
+                  onMouseDown={e => {
+                    e.stopPropagation();
+                    selectItem('about-website');
+                  }}
+                  onContextMenu={e =>
+                    openContextMenu(e, ABOUT_MENU, 'about-website')
+                  }
                 >
                   <img
                     className="com__content__right__card__img"
                     src="https://a.ppy.sh/2926513_1448497605.png"
-                    alt="control"
+                    alt=""
                   />
-                  <div className="com__content__right__card__text">
+                  <span className="com__content__right__card__text">
                     我的网站
-                  </div>
+                  </span>
                 </a>
               </div>
             </div>
           </div>
         </div>
       </div>
+      {contextMenu.visible && (
+        <ContextMenu
+          items={contextMenu.items}
+          position={{ x: contextMenu.x, y: contextMenu.y }}
+          onClose={closeContextMenu}
+          onClickItem={onClickContextMenuItem}
+        />
+      )}
     </Div>
   );
 }
@@ -703,29 +869,47 @@ const Div = styled.div`
     padding: 15px 15px 0;
   }
   .com__content__right__card__item {
-    display: flex;
+    appearance: none;
+    border: none;
+    background: transparent;
+    color: #000;
+    display: inline-flex;
     align-items: center;
     width: 200px;
-    margin-bottom: 15px;
-    height: auto;
+    margin: 0 0 15px;
+    padding: 2px 4px;
+    height: 50px;
+    font-family: inherit;
+    font-size: 11px;
+    text-align: left;
+    text-decoration: none;
+    cursor: default;
+    outline: none;
+  }
+  .com__content__right__card__item.selected .com__content__right__card__img {
+    filter: drop-shadow(1px 1px 0 rgba(255, 255, 255, 0.9));
+    opacity: 0.5;
+    background-color: #316ac5;
+    border-radius: 3px;
+  }
+  .com__content__right__card__item.selected .com__content__right__card__text {
+    background-color: #316ac5;
+    color: #ffffff;
+    outline: 1px dotted #ffffff;
+    outline-offset: -1px;
   }
   .com__content__right__card__img {
     width: 45px;
     height: 45px;
     margin-right: 5px;
+    flex-shrink: 0;
   }
   .com__content__right__card__text {
     white-space: nowrap;
-    height: 100%;
+    line-height: 16px;
+    padding: 1px 3px;
   }
   .com__content__right__card--me {
-  }
-  .com__content__right__card__item--me {
-    display: flex;
-    align-items: center;
-    width: 200px;
-    margin-bottom: 15px;
-    height: auto;
   }
 `;
 
