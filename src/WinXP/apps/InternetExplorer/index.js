@@ -22,17 +22,32 @@ import stop from 'assets/windowsIcons/stop.png';
 import windows from 'assets/windowsIcons/windows.png';
 import dropdown from 'assets/windowsIcons/dropdown.png';
 
-const DEFAULT_URL = 'https://g.91781145.xyz';
-const DEFAULT_DISPLAY_URL = 'https://start.duckduckgo.com/';
-const SEARCH_URL = 'https://g.91781145.xyz/?q=';
-const DISPLAY_PROXY_HOST = 'https://start.duckduckgo.com';
+const DISPLAY_PROXY_HOST = 'https://duckduckgo.com';
 const REAL_PROXY_HOST = 'https://g.91781145.xyz';
+const SEARCH_URL = 'https://g.91781145.xyz/?q=';
+const HOME_FILE_NAME = '/duckduckgo-home.html';
+const DEFAULT_DISPLAY_URL = 'https://duckduckgo.com/';
+
+function getLocalHomeUrl() {
+  const publicPath = process.env.PUBLIC_URL || '';
+  const origin = window.location.origin;
+  return origin + publicPath + HOME_FILE_NAME;
+}
+
+function isLocalHomeUrl(url) {
+  return typeof url === 'string' && url.indexOf(HOME_FILE_NAME) !== -1;
+}
 
 function toRequestUrl(input) {
   var url = input.trim();
-  if (!url) return DEFAULT_URL;
-  if (url === DEFAULT_DISPLAY_URL || url === DISPLAY_PROXY_HOST) {
-    return DEFAULT_URL;
+  var localHomeUrl = getLocalHomeUrl();
+  if (!url) return localHomeUrl;
+  if (
+    url === DEFAULT_DISPLAY_URL ||
+    url === DISPLAY_PROXY_HOST ||
+    isLocalHomeUrl(url)
+  ) {
+    return localHomeUrl;
   }
   if (url.indexOf(DISPLAY_PROXY_HOST) === 0) {
     return REAL_PROXY_HOST + url.substring(DISPLAY_PROXY_HOST.length);
@@ -44,7 +59,10 @@ function toRequestUrl(input) {
 
 function toDisplayUrl(requestUrl) {
   if (!requestUrl) return DEFAULT_DISPLAY_URL;
-  if (requestUrl === DEFAULT_URL || requestUrl === REAL_PROXY_HOST) {
+  if (isLocalHomeUrl(requestUrl)) {
+    return DEFAULT_DISPLAY_URL;
+  }
+  if (requestUrl === REAL_PROXY_HOST || requestUrl === REAL_PROXY_HOST + '/') {
     return DEFAULT_DISPLAY_URL;
   }
   if (requestUrl.indexOf(REAL_PROXY_HOST) === 0) {
