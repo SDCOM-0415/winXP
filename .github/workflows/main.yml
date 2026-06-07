@@ -1,0 +1,30 @@
+name: generate-snake
+
+on:
+  schedule:
+    - cron: "0 12 * * *" # every 6 hours
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Sync to CNB Repository
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:${{ github.workspace }} \
+            -w ${{ github.workspace }} \
+            -e PLUGIN_TARGET_URL="https://cnb.cool/SDCOM/SDCOM.git" \
+            -e PLUGIN_AUTH_TYPE="https" \
+            -e PLUGIN_USERNAME="cnb" \
+            -e PLUGIN_PASSWORD=${{ secrets.GIT_PASSWORD }} \
+            -e PLUGIN_FORCE="true" \
+            tencentcom/git-sync
