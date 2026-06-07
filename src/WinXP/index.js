@@ -1,4 +1,10 @@
-import React, { useReducer, useRef, useCallback, useState, useEffect } from 'react';
+import React, {
+  useReducer,
+  useRef,
+  useCallback,
+  useState,
+  useEffect,
+} from 'react';
 import styled, { keyframes } from 'styled-components';
 import useMouse from 'react-use/lib/useMouse';
 
@@ -237,35 +243,56 @@ function WinXP() {
     function handleMessage(e) {
       if (e.data && e.data.type === 'ie-open-window') {
         const ieSetting = appSettings['Internet Explorer'];
-        dispatch({ type: ADD_APP, payload: { ...ieSetting, injectProps: { ...(ieSetting.injectProps || {}), openUrl: e.data.url } } });
+        dispatch({
+          type: ADD_APP,
+          payload: {
+            ...ieSetting,
+            injectProps: {
+              ...(ieSetting.injectProps || {}),
+              openUrl: e.data.url,
+            },
+          },
+        });
       }
     }
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
   }, []);
-  const [contextMenu, setContextMenu] = useState({ visible: false, x: 0, y: 0 });
+  const [contextMenu, setContextMenu] = useState({
+    visible: false,
+    x: 0,
+    y: 0,
+  });
   const desktopMenuItems = [
-    { type: 'submenu', text: '排列图标', items: [
-      { type: 'item', text: '名称' },
-      { type: 'item', text: '大小' },
-      { type: 'item', text: '类型' },
-      { type: 'item', text: '修改时间' },
-      { type: 'separator' },
-      { type: 'item', text: '自动排列' },
-      { type: 'item', text: '按组排列' },
-      { type: 'item', text: '对齐到网格' },
-    ]},
+    {
+      type: 'submenu',
+      text: '排列图标',
+      items: [
+        { type: 'item', text: '名称' },
+        { type: 'item', text: '大小' },
+        { type: 'item', text: '类型' },
+        { type: 'item', text: '修改时间' },
+        { type: 'separator' },
+        { type: 'item', text: '自动排列' },
+        { type: 'item', text: '按组排列' },
+        { type: 'item', text: '对齐到网格' },
+      ],
+    },
     { type: 'item', text: '对齐到网格' },
     { type: 'separator' },
     { type: 'item', text: '粘贴', disabled: true },
     { type: 'item', text: '粘贴快捷方式', disabled: true },
     { type: 'separator' },
-    { type: 'submenu', text: '新建', items: [
-      { type: 'item', text: '文件夹' },
-      { type: 'item', text: '快捷方式' },
-      { type: 'separator' },
-      { type: 'item', text: '文本文档' },
-    ]},
+    {
+      type: 'submenu',
+      text: '新建',
+      items: [
+        { type: 'item', text: '文件夹' },
+        { type: 'item', text: '快捷方式' },
+        { type: 'separator' },
+        { type: 'item', text: '文本文档' },
+      ],
+    },
     { type: 'separator' },
     { type: 'item', text: '属性' },
   ];
@@ -414,7 +441,8 @@ const Container = styled.div`
   height: 100%;
   overflow: hidden;
   position: relative;
-  background: url(https://blog.sdcom.top/upload/Zk6TR5k.jpg) no-repeat center center fixed;
+  background: url(https://blog.sdcom.top/upload/Zk6TR5k.jpg) no-repeat center
+    center fixed;
   background-size: cover;
   animation: ${({ state }) => animation[state]} 5s forwards;
   *:not(input):not(textarea) {

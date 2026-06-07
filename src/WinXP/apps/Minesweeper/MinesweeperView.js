@@ -79,7 +79,7 @@ function genDropDownData(difficulty) {
   _Game[2].symbol = difficulty === '初级' && 'check';
   _Game[3].symbol = difficulty === '中级' && 'check';
   _Game[4].symbol = difficulty === '高级' && 'check';
-  return { '游戏': _Game, '帮助': dropDownData['帮助'] };
+  return { 游戏: _Game, 帮助: dropDownData['帮助'] };
 }
 
 function MineSweeperView({

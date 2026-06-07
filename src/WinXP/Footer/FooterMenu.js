@@ -179,10 +179,7 @@ function FooterMenu({ className, onClick }) {
           <img className="footer__item__img" src={lock} alt="" />
           <span>注销</span>
         </div>
-        <div
-          className="footer__item"
-          onClick={() => onClick('关闭计算机')}
-        >
+        <div className="footer__item" onClick={() => onClick('关闭计算机')}>
           <img className="footer__item__img" src={shut} alt="" />
           <span>关闭计算机</span>
         </div>

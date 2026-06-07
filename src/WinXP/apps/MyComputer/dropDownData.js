@@ -391,4 +391,12 @@ const Help = [
     text: '关于 Windows',
   },
 ];
-export default { '文件': File, '编辑': Edit, '查看': View, '收藏': Favorites, '工具': Tools, '帮助': Help };
+const dropDownData = {
+  文件: File,
+  编辑: Edit,
+  查看: View,
+  收藏: Favorites,
+  工具: Tools,
+  帮助: Help,
+};
+export default dropDownData;

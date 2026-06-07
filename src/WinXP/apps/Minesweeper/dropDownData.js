@@ -78,4 +78,5 @@ const Help = [
     text: '关于扫雷',
   },
 ];
-export default { '游戏': Game, '帮助': Help };
+const dropDownData = { 游戏: Game, 帮助: Help };
+export default dropDownData;

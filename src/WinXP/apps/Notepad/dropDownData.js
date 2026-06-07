@@ -135,4 +135,11 @@ const Help = [
     text: '关于记事本',
   },
 ];
-export default { '文件': File, '编辑': Edit, '格式': Format, '查看': View, '帮助': Help };
+const dropDownData = {
+  文件: File,
+  编辑: Edit,
+  格式: Format,
+  查看: View,
+  帮助: Help,
+};
+export default dropDownData;

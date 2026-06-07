@@ -30,12 +30,8 @@ function Balloon({ startAfter = 3000, duration = 15000 }) {
               您的计算机可能存在风险
             </span>
           </div>
-          <p className="balloon__text__first">
-            可能未安装防病毒软件
-          </p>
-          <p className="balloon__text__second">
-            单击此气泡以解决此问题。
-          </p>
+          <p className="balloon__text__first">可能未安装防病毒软件</p>
+          <p className="balloon__text__second">单击此气泡以解决此问题。</p>
         </div>
       </Div>
     )
