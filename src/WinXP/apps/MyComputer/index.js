@@ -24,7 +24,6 @@ import cd from 'assets/windowsIcons/111(48x48).png';
 import dropdown from 'assets/windowsIcons/dropdown.png';
 import pullup from 'assets/windowsIcons/pullup.png';
 import logo from 'assets/github-logo.png';
-import mine from 'assets/minesweeper/mine-icon.png';
 import windows from 'assets/windowsIcons/windows.png';
 
 const EMPTY_AREA_MENU = [
@@ -88,6 +87,12 @@ const ABOUT_MENU = [
   { type: 'separator' },
   { type: 'item', text: '属性' },
 ];
+
+const buildDate =
+  process.env.REACT_APP_BUILD_DATE ||
+  new Date()
+    .toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })
+    .replace(/\//g, '/');
 
 function MyComputer({ onClose }) {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -317,47 +322,67 @@ function MyComputer({ onClose }) {
                 />
               </div>
               <div className="com__content__left__card__content">
-                <div className="com__content__left__card__row">
-                  <iframe
-                    title="ghbtn"
-                    style={{ margin: '0 0 3px -1px', height: '30px' }}
-                    src="https://ghbtns.com/github-btn.html?user=SDCOM-0415&repo=winXP&type=star&count=true&size=large"
-                    frameBorder="0"
-                    scrolling="0"
-                    width="170px"
-                    height="20px"
-                  />
-                </div>
-                <div className="com__content__left__card__row">
-                  <img
-                    className="com__content__left__card__img"
-                    src="https://cdn.iconscout.com/icon/free/png-256/medium-1425876-1205067.png"
-                    alt="control"
-                  />
-                  <a
-                    href="https://github.com/SDCOM-0415"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="com__content__left__card__text link"
-                  >
-                    Medium
-                  </a>
-                </div>
-                <div className="com__content__left__card__row">
-                  <img
-                    className="com__content__left__card__img"
-                    src={mine}
-                    alt="control"
-                  />
-                  <a
-                    href="https://github.com/SDCOM-0415/winXP"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="com__content__left__card__text link"
-                  >
-                    扫雷
-                  </a>
-                </div>
+                {!selectedItem && (
+                  <div className="com__content__left__card__detail">
+                    <strong>我的电脑</strong>
+                    <br />
+                    系统文件夹
+                  </div>
+                )}
+                {selectedItem === 'shared-documents' && (
+                  <div className="com__content__left__card__detail">
+                    <strong>共享文档</strong>
+                    <br />
+                    文件夹
+                    <br />
+                    修改日期: {buildDate}
+                  </div>
+                )}
+                {selectedItem === 'user-documents' && (
+                  <div className="com__content__left__card__detail">
+                    <strong>用户文档</strong>
+                    <br />
+                    文件夹
+                    <br />
+                    修改日期: {buildDate}
+                  </div>
+                )}
+                {selectedItem === 'local-disk-c' && (
+                  <div className="com__content__left__card__detail">
+                    <strong>本地磁盘 (C:)</strong>
+                    <br />
+                    本地磁盘
+                    <br />
+                    修改日期: {buildDate}
+                  </div>
+                )}
+                {selectedItem === 'cd-drive-d' && (
+                  <div className="com__content__left__card__detail">
+                    <strong>CD 驱动器 (D:)</strong>
+                    <br />
+                    CD 驱动器
+                    <br />
+                    修改日期: {buildDate}
+                  </div>
+                )}
+                {selectedItem === 'about-github' && (
+                  <div className="com__content__left__card__detail">
+                    <strong>Github</strong>
+                    <br />
+                    快捷方式
+                    <br />
+                    修改日期: {buildDate}
+                  </div>
+                )}
+                {selectedItem === 'about-website' && (
+                  <div className="com__content__left__card__detail">
+                    <strong>我的网站</strong>
+                    <br />
+                    快捷方式
+                    <br />
+                    修改日期: {buildDate}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -819,6 +844,12 @@ const Div = styled.div`
   .com__content__left__card__row {
     display: flex;
     margin-bottom: 2px;
+  }
+  .com__content__left__card__detail {
+    padding: 4px 8px;
+    font-size: 11px;
+    line-height: 16px;
+    color: #000;
   }
 
   .com__content__left__card__img {
