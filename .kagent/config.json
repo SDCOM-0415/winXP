@@ -6,7 +6,8 @@
     "**/.kagent/**",
     ".kagent/**",
     "**/dist/**",
-    "**/out/**"
+    "**/out/**",
+    "node_modules/**"
   ],
   "capture": {
     "onSave": true,
