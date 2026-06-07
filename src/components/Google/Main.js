@@ -90,7 +90,7 @@ export default styled(Main)`
     color: rgb(80, 80, 80);
     * {
       padding-right: 15px;
-      cursor: url('../../assets/cursors/my-mouse-pointer.cur'), pointer;
+      cursor: pointer;
     }
     .text:hover {
       text-decoration: underline;
@@ -138,7 +138,7 @@ export default styled(Main)`
         width: 40px;
         padding: 0 8px;
         height: 44px;
-        cursor: url('../../assets/cursors/my-mouse-pointer.cur'), pointer;
+        cursor: pointer;
         display: flex;
         align-items: center;
         img {
@@ -197,7 +197,7 @@ export default styled(Main)`
       font-size: 13px;
       width: 100%;
       .item {
-        cursor: url('../../assets/cursors/my-mouse-pointer.cur'), pointer;
+        cursor: pointer;
       }
       .item:hover {
         text-decoration: underline;

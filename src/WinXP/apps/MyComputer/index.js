@@ -783,7 +783,7 @@ const Div = styled.div`
     height: 23px;
     padding-left: 11px;
     padding-right: 2px;
-    cursor: url('../../assets/cursors/my-mouse-pointer.cur'), pointer;
+    cursor: pointer;
     background: linear-gradient(
       to right,
       rgb(240, 240, 255) 0,
@@ -838,7 +838,7 @@ const Div = styled.div`
     }
 
     &.link:hover {
-      cursor: url('../../assets/cursors/my-mouse-pointer.cur'), pointer;
+      cursor: pointer;
       color: #2b72ff;
       text-decoration: underline;
     }
@@ -887,7 +887,7 @@ const Div = styled.div`
     font-size: 11px;
     text-align: left;
     text-decoration: none;
-    cursor: url('../../assets/cursors/Original Arrow Windows 95.cur'), default;
+    cursor: default;
     outline: none;
   }
   .com__content__right__card__item.selected .com__content__right__card__img {

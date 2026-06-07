@@ -2,7 +2,6 @@ html,
 body {
   height: 100%;
   box-sizing: border-box;
-  cursor: url('./cursors/Original Arrow Windows 95.cur'), default;
 }
 
 *,

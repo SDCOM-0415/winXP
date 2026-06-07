@@ -341,7 +341,7 @@ const Div = styled.div`
     align-items: center;
     border: 1px solid rgba(0, 0, 0, 0);
     border-radius: 3px;
-    cursor: url('../../assets/cursors/my-mouse-pointer.cur'), pointer;
+    cursor: pointer;
     &:hover {
       border: 1px solid rgba(0, 0, 0, 0.1);
       box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0.1);
@@ -477,7 +477,7 @@ const Div = styled.div`
     padding: 0 18px 0 5px;
     height: 100%;
     position: relative;
-    cursor: url('../../assets/cursors/my-mouse-pointer.cur'), pointer;
+    cursor: pointer;
     &__img {
       height: 95%;
       border: 1px solid rgba(255, 255, 255, 0.2);

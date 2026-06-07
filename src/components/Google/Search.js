@@ -139,7 +139,7 @@ export default styled(Search)`
     width: 150px;
     height: 34px;
     padding: 4px 28px 0 30px;
-    cursor: url('../../assets/cursors/my-mouse-pointer.cur'), pointer;
+    cursor: pointer;
   }
   .search-bar {
     display: flex;
@@ -164,7 +164,7 @@ export default styled(Search)`
       width: 40px;
     }
     .icon:nth-of-type(1) {
-      cursor: url('../../assets/cursors/my-mouse-pointer.cur'), pointer;
+      cursor: pointer;
     }
     .icon:nth-of-type(2) {
       fill: rgb(66, 133, 244);
@@ -179,7 +179,7 @@ export default styled(Search)`
     img {
       margin: 8px;
       width: 24px;
-      cursor: url('../../assets/cursors/my-mouse-pointer.cur'), pointer;
+      cursor: pointer;
       height: 24px;
     }
   }
