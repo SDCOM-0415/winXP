@@ -19,7 +19,7 @@ import folderSmall from 'assets/windowsIcons/318(16x16).png';
 import menu from 'assets/windowsIcons/358(32x32).png';
 import folder from 'assets/windowsIcons/318(48x48).png';
 import folderOpen from 'assets/windowsIcons/337(32x32).png';
-import disk from 'assets/windowsIcons/334(48x48).png';
+import disk from 'assets/windowsIcons/svg/Local Disk.svg';
 import cd from 'assets/windowsIcons/111(48x48).png';
 import dropdown from 'assets/windowsIcons/dropdown.png';
 import pullup from 'assets/windowsIcons/pullup.png';
@@ -887,16 +887,14 @@ const Div = styled.div`
     outline: none;
   }
   .com__content__right__card__item.selected .com__content__right__card__img {
-    filter: drop-shadow(1px 1px 0 rgba(255, 255, 255, 0.9));
-    opacity: 0.5;
     background-color: #316ac5;
     border-radius: 3px;
+    outline: 1px dotted #ffffff;
+    outline-offset: -1px;
   }
   .com__content__right__card__item.selected .com__content__right__card__text {
     background-color: #316ac5;
     color: #ffffff;
-    outline: 1px dotted #ffffff;
-    outline-offset: -1px;
   }
   .com__content__right__card__img {
     width: 45px;

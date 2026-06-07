@@ -101,12 +101,12 @@
     },
     "node_modules/.cache/default-development/index.pack.old": {
       "ipo_ts": 1780660489378,
-      "edit_count": 38,
-      "last_lines": 10394,
-      "last_ts": 1780757512517,
+      "edit_count": 40,
+      "last_lines": 10391,
+      "last_ts": 1780758834645,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "cae24ac2"
+      "last_content_hash": "8ddc7d24"
     },
     "node_modules/.cache/babel-loader/00187c73c443e0bc641a8966a2afd9f157200548bf8926e7d11fc17d6e8eaa15.json": {
       "ipo_ts": 1780660517161,
@@ -290,12 +290,12 @@
     },
     "node_modules/.cache/default-development/index.pack": {
       "ipo_ts": 1780660571516,
-      "edit_count": 37,
-      "last_lines": 10393,
-      "last_ts": 1780757512466,
+      "edit_count": 39,
+      "last_lines": 10391,
+      "last_ts": 1780758834745,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "93281908"
+      "last_content_hash": "6028247c"
     },
     "node_modules/.cache/babel-loader/d37834a7ff054e8e632db21a46b3674d8d1702d4791a0182f1d633b93b7dd347.json": {
       "ipo_ts": 1780660571524,
@@ -1676,12 +1676,12 @@
     },
     "src/WinXP/apps/MyComputer/index.js": {
       "ipo_ts": 1780661768410,
-      "edit_count": 24,
-      "last_lines": 916,
-      "last_ts": 1780757449990,
+      "edit_count": 26,
+      "last_lines": 914,
+      "last_ts": 1780758745952,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "425dacc1"
+      "last_content_hash": "7adb73a3"
     },
     "node_modules/.cache/babel-loader/dadfca4936d3bdda8a29763215efc6f94d9e1c6479b69bd51cc07eb801c8dcc4.json": {
       "ipo_ts": 1780661770757,
@@ -2414,21 +2414,21 @@
     },
     "node_modules/.cache/default-development/17.pack": {
       "ipo_ts": 1780737232752,
-      "edit_count": 4,
-      "last_lines": 1230264,
-      "last_ts": 1780757515032,
+      "edit_count": 5,
+      "last_lines": 1196,
+      "last_ts": 1780758459691,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "252a3eb4"
+      "last_content_hash": "870cebbf"
     },
     "node_modules/.cache/default-development/18.pack": {
       "ipo_ts": 1780737232884,
-      "edit_count": 1,
-      "last_lines": 11232,
-      "last_ts": 1780737232884,
+      "edit_count": 3,
+      "last_lines": 1369,
+      "last_ts": 1780758821605,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "e3c1dcdb"
+      "last_content_hash": "70d54c61"
     },
     "node_modules/.cache/babel-loader/25c2b5649d7ed88850ffc7020ac0886c65c4902771701da1741749a67c0198e0.json": {
       "ipo_ts": 1780739912179,
@@ -2558,12 +2558,12 @@
     },
     "node_modules/.cache/.eslintcache": {
       "ipo_ts": 1780753310703,
-      "edit_count": 4,
+      "edit_count": 6,
       "last_lines": 1,
-      "last_ts": 1780757484244,
+      "last_ts": 1780758807289,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "9baf087f"
+      "last_content_hash": "ec799243"
     },
     "node_modules/.cache/babel-loader/3f443924de0e09a58399c25a52a6bdcb4bed131337b8c399a548a736389dc2f1.json": {
       "ipo_ts": 1780753678498,
@@ -2735,6 +2735,4551 @@
       "delisted": false,
       "last_source": "onEdit",
       "last_content_hash": "2b03a528"
+    },
+    "src/assets/windowsIcons/svg/Activation.svg": {
+      "ipo_ts": 1780758192490,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192490,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c5af2b66"
+    },
+    "src/assets/windowsIcons/svg/Add New Programs.svg": {
+      "ipo_ts": 1780758192508,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192508,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d76e3340"
+    },
+    "src/assets/windowsIcons/svg/Add.svg": {
+      "ipo_ts": 1780758192513,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192513,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "17240f61"
+    },
+    "src/assets/windowsIcons/svg/Address Book.svg": {
+      "ipo_ts": 1780758192526,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192526,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5f6188f0"
+    },
+    "src/assets/windowsIcons/svg/Application Window.svg": {
+      "ipo_ts": 1780758192529,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192529,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "47070dfb"
+    },
+    "src/assets/windowsIcons/svg/Attributes.svg": {
+      "ipo_ts": 1780758192541,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192541,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a00cfdd9"
+    },
+    "src/assets/windowsIcons/svg/Backup Wizard.svg": {
+      "ipo_ts": 1780758192547,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192547,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b7745ef9"
+    },
+    "src/assets/windowsIcons/svg/Backups.svg": {
+      "ipo_ts": 1780758192556,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192556,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e775b997"
+    },
+    "src/assets/windowsIcons/svg/Battery Backup.svg": {
+      "ipo_ts": 1780758192564,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192564,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5c504f0a"
+    },
+    "src/assets/windowsIcons/svg/Certificate.svg": {
+      "ipo_ts": 1780758192570,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192570,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "9ba8c1d2"
+    },
+    "src/assets/windowsIcons/svg/Click To Record.svg": {
+      "ipo_ts": 1780758192583,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192583,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e46bcbdb"
+    },
+    "src/assets/windowsIcons/svg/Command Prompt.svg": {
+      "ipo_ts": 1780758192586,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192586,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c08382db"
+    },
+    "src/assets/windowsIcons/svg/Component Services.svg": {
+      "ipo_ts": 1780758192592,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192592,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f3f784d7"
+    },
+    "src/assets/windowsIcons/svg/Computer Management.svg": {
+      "ipo_ts": 1780758192601,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192601,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5de7d3dc"
+    },
+    "src/assets/windowsIcons/svg/Configure Your Server Wizard.svg": {
+      "ipo_ts": 1780758192606,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192606,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e9341e70"
+    },
+    "src/assets/windowsIcons/svg/Cover Page Editor.svg": {
+      "ipo_ts": 1780758192612,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192612,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f3c3cb00"
+    },
+    "src/assets/windowsIcons/svg/DLL.svg": {
+      "ipo_ts": 1780758192616,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192616,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "61acfefb"
+    },
+    "src/assets/windowsIcons/svg/DVD-RAM.svg": {
+      "ipo_ts": 1780758192629,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192629,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f50bd6c5"
+    },
+    "src/assets/windowsIcons/svg/DVD.svg": {
+      "ipo_ts": 1780758192642,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192642,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "aaaf0fe2"
+    },
+    "src/assets/windowsIcons/svg/Date and Region.svg": {
+      "ipo_ts": 1780758192651,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192651,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "abadcac3"
+    },
+    "src/assets/windowsIcons/svg/Default Programs (SP1 Version).svg": {
+      "ipo_ts": 1780758192655,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192655,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "162fc357"
+    },
+    "src/assets/windowsIcons/svg/Desktop.svg": {
+      "ipo_ts": 1780758192663,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192663,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "309a3ac3"
+    },
+    "src/assets/windowsIcons/svg/Digital Camera.svg": {
+      "ipo_ts": 1780758192667,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192667,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "722aa7d5"
+    },
+    "src/assets/windowsIcons/svg/Disable Network Connection.svg": {
+      "ipo_ts": 1780758192672,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192672,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "cb6d3a8c"
+    },
+    "src/assets/windowsIcons/svg/Discard Fax.svg": {
+      "ipo_ts": 1780758192677,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192677,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d63e6a04"
+    },
+    "src/assets/windowsIcons/svg/Disk Management.svg": {
+      "ipo_ts": 1780758192687,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192687,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "44482c8f"
+    },
+    "src/assets/windowsIcons/svg/Display Adaptor.svg": {
+      "ipo_ts": 1780758192695,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192695,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "96c65f4a"
+    },
+    "src/assets/windowsIcons/svg/Email.svg": {
+      "ipo_ts": 1780758192698,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192698,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "361de58c"
+    },
+    "src/assets/windowsIcons/svg/Explorer.svg": {
+      "ipo_ts": 1780758192701,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192701,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "efa9514f"
+    },
+    "src/assets/windowsIcons/svg/Fax Devices.svg": {
+      "ipo_ts": 1780758192710,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192710,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "8edfd3af"
+    },
+    "src/assets/windowsIcons/svg/Fax Sent Succesfully.svg": {
+      "ipo_ts": 1780758192714,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192714,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d39c94f4"
+    },
+    "src/assets/windowsIcons/svg/Fax.svg": {
+      "ipo_ts": 1780758192722,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192722,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "16af3d9e"
+    },
+    "src/assets/windowsIcons/svg/Floppy Disk.svg": {
+      "ipo_ts": 1780758192731,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192731,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "83d2602a"
+    },
+    "src/assets/windowsIcons/svg/Folder View - Classic.svg": {
+      "ipo_ts": 1780758192737,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192737,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3f210a2b"
+    },
+    "src/assets/windowsIcons/svg/Folders open in new window.svg": {
+      "ipo_ts": 1780758192745,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192745,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1603afd1"
+    },
+    "src/assets/windowsIcons/svg/Folders open in same window.svg": {
+      "ipo_ts": 1780758192751,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192751,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ec1b394d"
+    },
+    "src/assets/windowsIcons/svg/Freecell.svg": {
+      "ipo_ts": 1780758192760,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192760,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "434ae02c"
+    },
+    "src/assets/windowsIcons/svg/GIF.svg": {
+      "ipo_ts": 1780758192763,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192763,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a67dd313"
+    },
+    "src/assets/windowsIcons/svg/Get Going with Tablet PC.svg": {
+      "ipo_ts": 1780758192766,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192766,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "8ebf0284"
+    },
+    "src/assets/windowsIcons/svg/Graph View.svg": {
+      "ipo_ts": 1780758192769,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192769,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5530b347"
+    },
+    "src/assets/windowsIcons/svg/Grayscale Scan.svg": {
+      "ipo_ts": 1780758192772,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192772,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "63204e27"
+    },
+    "src/assets/windowsIcons/svg/HLP.svg": {
+      "ipo_ts": 1780758192777,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192777,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "cf47c074"
+    },
+    "src/assets/windowsIcons/svg/IE Home.svg": {
+      "ipo_ts": 1780758192781,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192781,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "34ee8a7e"
+    },
+    "src/assets/windowsIcons/svg/IR File Transfer.svg": {
+      "ipo_ts": 1780758192784,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192784,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ed12eccc"
+    },
+    "src/assets/windowsIcons/svg/Icon View.svg": {
+      "ipo_ts": 1780758192787,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192787,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b34f67ac"
+    },
+    "src/assets/windowsIcons/svg/Iexpress.svg": {
+      "ipo_ts": 1780758192791,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192791,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "35aa37ca"
+    },
+    "src/assets/windowsIcons/svg/Internet Explorer 6.svg": {
+      "ipo_ts": 1780758192795,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192795,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e3d6c23c"
+    },
+    "src/assets/windowsIcons/svg/Internet Options.svg": {
+      "ipo_ts": 1780758192812,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192812,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "9dd7b1f5"
+    },
+    "src/assets/windowsIcons/svg/Java Script.svg": {
+      "ipo_ts": 1780758192815,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192815,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "13e14bdf"
+    },
+    "src/assets/windowsIcons/svg/Key.svg": {
+      "ipo_ts": 1780758192819,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192819,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "35d0b3d5"
+    },
+    "src/assets/windowsIcons/svg/Keyboard.svg": {
+      "ipo_ts": 1780758192822,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192822,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e65dc155"
+    },
+    "src/assets/windowsIcons/svg/Legacy Floppy Disk.svg": {
+      "ipo_ts": 1780758192826,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192826,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "906e8aa6"
+    },
+    "src/assets/windowsIcons/svg/Local Security Policy.svg": {
+      "ipo_ts": 1780758192830,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192830,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "57c4ae9"
+    },
+    "src/assets/windowsIcons/svg/Lock.svg": {
+      "ipo_ts": 1780758192833,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192833,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ccdb93b4"
+    },
+    "src/assets/windowsIcons/svg/MP3 player.svg": {
+      "ipo_ts": 1780758192836,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192836,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "59395437"
+    },
+    "src/assets/windowsIcons/svg/Manage Server Roles.svg": {
+      "ipo_ts": 1780758192841,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192841,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "12d0a8bc"
+    },
+    "src/assets/windowsIcons/svg/Manage Your Server.svg": {
+      "ipo_ts": 1780758192846,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192846,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d2a1f610"
+    },
+    "src/assets/windowsIcons/svg/Memory Stick.svg": {
+      "ipo_ts": 1780758192852,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192852,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a3fa9b3b"
+    },
+    "src/assets/windowsIcons/svg/Microsoft Windows Network.svg": {
+      "ipo_ts": 1780758192863,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192863,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "372f0094"
+    },
+    "src/assets/windowsIcons/svg/Minimize.svg": {
+      "ipo_ts": 1780758192866,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192866,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "80745a2f"
+    },
+    "src/assets/windowsIcons/svg/Narrator.svg": {
+      "ipo_ts": 1780758192870,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192870,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a3bfdfb"
+    },
+    "src/assets/windowsIcons/svg/Netmeeting.svg": {
+      "ipo_ts": 1780758192881,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192881,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "13263db9"
+    },
+    "src/assets/windowsIcons/svg/Network Connection.svg": {
+      "ipo_ts": 1780758192887,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192887,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4444257"
+    },
+    "src/assets/windowsIcons/svg/Network Drive Disconnected.svg": {
+      "ipo_ts": 1780758192891,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192891,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "8a6061e5"
+    },
+    "src/assets/windowsIcons/svg/Notepad.svg": {
+      "ipo_ts": 1780758192895,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192895,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4ebb1f4d"
+    },
+    "src/assets/windowsIcons/svg/ODBC Data Sources.svg": {
+      "ipo_ts": 1780758192902,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192902,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5c94f22a"
+    },
+    "src/assets/windowsIcons/svg/OE Create Mail.svg": {
+      "ipo_ts": 1780758192907,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192907,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "687f0812"
+    },
+    "src/assets/windowsIcons/svg/OE Decode.svg": {
+      "ipo_ts": 1780758192910,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192910,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "85421af0"
+    },
+    "src/assets/windowsIcons/svg/OE Inbox.svg": {
+      "ipo_ts": 1780758192916,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192916,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "6e92d20e"
+    },
+    "src/assets/windowsIcons/svg/OE Mark as read.svg": {
+      "ipo_ts": 1780758192920,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192920,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "311fb27a"
+    },
+    "src/assets/windowsIcons/svg/OE News Post.svg": {
+      "ipo_ts": 1780758192923,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192923,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "cb928f3d"
+    },
+    "src/assets/windowsIcons/svg/OE Reply.svg": {
+      "ipo_ts": 1780758192928,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192928,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a568c22f"
+    },
+    "src/assets/windowsIcons/svg/OE Sign.svg": {
+      "ipo_ts": 1780758192935,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192935,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f4404e7d"
+    },
+    "src/assets/windowsIcons/svg/Offline Web Pages.svg": {
+      "ipo_ts": 1780758192939,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192939,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "6f7928e4"
+    },
+    "src/assets/windowsIcons/svg/On-Screen Keyboard.svg": {
+      "ipo_ts": 1780758192945,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192945,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "276370f8"
+    },
+    "src/assets/windowsIcons/svg/Outlook Express.svg": {
+      "ipo_ts": 1780758192951,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192951,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4c69d9b2"
+    },
+    "src/assets/windowsIcons/svg/Performance Monitor.svg": {
+      "ipo_ts": 1780758192958,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192958,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "7656dd42"
+    },
+    "src/assets/windowsIcons/svg/Pinball.svg": {
+      "ipo_ts": 1780758192966,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192966,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "84470367"
+    },
+    "src/assets/windowsIcons/svg/Pop up allowed.svg": {
+      "ipo_ts": 1780758192969,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192969,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "368143b"
+    },
+    "src/assets/windowsIcons/svg/Pop up information.svg": {
+      "ipo_ts": 1780758192972,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192972,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f103d9e"
+    },
+    "src/assets/windowsIcons/svg/Prohibited.svg": {
+      "ipo_ts": 1780758192975,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192975,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1f8673ac"
+    },
+    "src/assets/windowsIcons/svg/Question.svg": {
+      "ipo_ts": 1780758192978,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192978,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "787e4827"
+    },
+    "src/assets/windowsIcons/svg/Recent Documents.svg": {
+      "ipo_ts": 1780758192982,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192982,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "292804f8"
+    },
+    "src/assets/windowsIcons/svg/Record.svg": {
+      "ipo_ts": 1780758192988,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758192988,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "fa5a57a4"
+    },
+    "src/assets/windowsIcons/svg/Regional Settings.svg": {
+      "ipo_ts": 1780758193005,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193005,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ea56f101"
+    },
+    "src/assets/windowsIcons/svg/Registry Document.svg": {
+      "ipo_ts": 1780758193016,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193016,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "6ee8fcd4"
+    },
+    "src/assets/windowsIcons/svg/Rename.svg": {
+      "ipo_ts": 1780758193022,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193022,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f69f9dc1"
+    },
+    "src/assets/windowsIcons/svg/Restore All Items.svg": {
+      "ipo_ts": 1780758193025,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193025,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "354ac504"
+    },
+    "src/assets/windowsIcons/svg/SD Card - Alt.svg": {
+      "ipo_ts": 1780758193036,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193036,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "67684de5"
+    },
+    "src/assets/windowsIcons/svg/Scanner and Camera Wizard.svg": {
+      "ipo_ts": 1780758193048,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193048,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "186fdfa4"
+    },
+    "src/assets/windowsIcons/svg/Search for people.svg": {
+      "ipo_ts": 1780758193069,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193069,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "22e12c94"
+    },
+    "src/assets/windowsIcons/svg/Security Center.svg": {
+      "ipo_ts": 1780758193085,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193085,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "231f307f"
+    },
+    "src/assets/windowsIcons/svg/Security Error.svg": {
+      "ipo_ts": 1780758193098,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193098,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "66a40551"
+    },
+    "src/assets/windowsIcons/svg/Send a Fax.svg": {
+      "ipo_ts": 1780758193109,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193109,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a42b1a7d"
+    },
+    "src/assets/windowsIcons/svg/Shortcut overlay.svg": {
+      "ipo_ts": 1780758193116,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193116,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "db201e7c"
+    },
+    "src/assets/windowsIcons/svg/Single Click.svg": {
+      "ipo_ts": 1780758193124,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193124,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a6dd3fe"
+    },
+    "src/assets/windowsIcons/svg/SmartMedia Card.svg": {
+      "ipo_ts": 1780758193128,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193128,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5a2512f5"
+    },
+    "src/assets/windowsIcons/svg/Sort Alphabetically.svg": {
+      "ipo_ts": 1780758193131,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193131,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5bf3c705"
+    },
+    "src/assets/windowsIcons/svg/Sort by size.svg": {
+      "ipo_ts": 1780758193134,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193134,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e7976c6c"
+    },
+    "src/assets/windowsIcons/svg/StickyNotes.svg": {
+      "ipo_ts": 1780758193137,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193137,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f8e01099"
+    },
+    "src/assets/windowsIcons/svg/Stop.svg": {
+      "ipo_ts": 1780758193141,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193141,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a4e5e500"
+    },
+    "src/assets/windowsIcons/svg/Switch User.svg": {
+      "ipo_ts": 1780758193146,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193146,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b652e89b"
+    },
+    "src/assets/windowsIcons/svg/System Information.svg": {
+      "ipo_ts": 1780758193151,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193151,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "951b8248"
+    },
+    "src/assets/windowsIcons/svg/System Restore.svg": {
+      "ipo_ts": 1780758193155,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193155,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "8c3d2efc"
+    },
+    "src/assets/windowsIcons/svg/Tablet and Pen settings.svg": {
+      "ipo_ts": 1780758193158,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193158,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "423d7c7a"
+    },
+    "src/assets/windowsIcons/svg/Task Manager.svg": {
+      "ipo_ts": 1780758193163,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193163,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ad2b09c3"
+    },
+    "src/assets/windowsIcons/svg/Tip of the day.svg": {
+      "ipo_ts": 1780758193168,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193168,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b6cda023"
+    },
+    "src/assets/windowsIcons/svg/Troubleshoot.svg": {
+      "ipo_ts": 1780758193172,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193172,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2bb17ac8"
+    },
+    "src/assets/windowsIcons/svg/Unknown Disc.svg": {
+      "ipo_ts": 1780758193180,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193180,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "15b338fb"
+    },
+    "src/assets/windowsIcons/svg/Up.svg": {
+      "ipo_ts": 1780758193184,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193184,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "59a29e22"
+    },
+    "src/assets/windowsIcons/svg/Volume.svg": {
+      "ipo_ts": 1780758193194,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193194,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f0c63c43"
+    },
+    "src/assets/windowsIcons/svg/WMP Copy Protected Music.svg": {
+      "ipo_ts": 1780758193213,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193213,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1765ed6f"
+    },
+    "src/assets/windowsIcons/svg/WMP General Error.svg": {
+      "ipo_ts": 1780758193229,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193229,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c221e7e3"
+    },
+    "src/assets/windowsIcons/svg/WMP Import Playlist.svg": {
+      "ipo_ts": 1780758193238,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193238,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5ef75a15"
+    },
+    "src/assets/windowsIcons/svg/WMP Missing File.svg": {
+      "ipo_ts": 1780758193249,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193249,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "961725c5"
+    },
+    "src/assets/windowsIcons/svg/WMP Network Error.svg": {
+      "ipo_ts": 1780758193257,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193257,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1c5bda58"
+    },
+    "src/assets/windowsIcons/svg/WMP Timed Lyrics.svg": {
+      "ipo_ts": 1780758193262,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193262,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "47d42776"
+    },
+    "src/assets/windowsIcons/svg/WMS Allow Connections.svg": {
+      "ipo_ts": 1780758193264,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193264,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "71287b3c"
+    },
+    "src/assets/windowsIcons/svg/WMS Broadcast.svg": {
+      "ipo_ts": 1780758193270,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193270,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b1733044"
+    },
+    "src/assets/windowsIcons/svg/WMS Wrapper File.svg": {
+      "ipo_ts": 1780758193273,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193273,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c91c4fdb"
+    },
+    "src/assets/windowsIcons/svg/WMV.svg": {
+      "ipo_ts": 1780758193278,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193278,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a83f1f59"
+    },
+    "src/assets/windowsIcons/svg/Web services printer.svg": {
+      "ipo_ts": 1780758193285,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193285,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "84ec6f23"
+    },
+    "src/assets/windowsIcons/svg/Webcam.svg": {
+      "ipo_ts": 1780758193289,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193289,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4faed601"
+    },
+    "src/assets/windowsIcons/svg/Windows Catalog.svg": {
+      "ipo_ts": 1780758193293,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193293,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "52e0508b"
+    },
+    "src/assets/windowsIcons/svg/Windows Media Encoder.svg": {
+      "ipo_ts": 1780758193301,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193301,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "745ccfe3"
+    },
+    "src/assets/windowsIcons/svg/Windows Messenger.svg": {
+      "ipo_ts": 1780758193313,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193313,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "560845f2"
+    },
+    "src/assets/windowsIcons/svg/Windows Update.svg": {
+      "ipo_ts": 1780758193327,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193327,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ac59c1ec"
+    },
+    "src/assets/windowsIcons/svg/XPS document.svg": {
+      "ipo_ts": 1780758193341,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193341,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "9f74800c"
+    },
+    "src/assets/windowsIcons/svg/XSL.svg": {
+      "ipo_ts": 1780758193348,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193348,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5b825df6"
+    },
+    "src/assets/windowsIcons/svg/explorer properties.svg": {
+      "ipo_ts": 1780758193351,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193351,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "36b71c67"
+    },
+    "src/assets/windowsIcons/svg/Accessibility Wizard.svg": {
+      "ipo_ts": 1780758193356,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193356,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "76f7597e"
+    },
+    "src/assets/windowsIcons/svg/Add or Remove Windows Components.svg": {
+      "ipo_ts": 1780758193361,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193361,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "31cc62b3"
+    },
+    "src/assets/windowsIcons/svg/Alert.svg": {
+      "ipo_ts": 1780758193364,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193364,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3d1d2330"
+    },
+    "src/assets/windowsIcons/svg/Audio Devices.svg": {
+      "ipo_ts": 1780758193372,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193372,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "85215397"
+    },
+    "src/assets/windowsIcons/svg/Bluetooth Access Point.svg": {
+      "ipo_ts": 1780758193375,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193375,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f916ecd"
+    },
+    "src/assets/windowsIcons/svg/Bluetooth Devices.svg": {
+      "ipo_ts": 1780758193379,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193379,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "26284687"
+    },
+    "src/assets/windowsIcons/svg/Briefcase.svg": {
+      "ipo_ts": 1780758193382,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193382,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "225f0ae4"
+    },
+    "src/assets/windowsIcons/svg/Burn audio CD.svg": {
+      "ipo_ts": 1780758193391,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193391,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e19310c7"
+    },
+    "src/assets/windowsIcons/svg/Camcorder.svg": {
+      "ipo_ts": 1780758193401,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193401,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "fae2130d"
+    },
+    "src/assets/windowsIcons/svg/Change Connection Settings.svg": {
+      "ipo_ts": 1780758193415,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193415,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3b3ac3f3"
+    },
+    "src/assets/windowsIcons/svg/Chip.svg": {
+      "ipo_ts": 1780758193423,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193423,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5c5d9454"
+    },
+    "src/assets/windowsIcons/svg/Compose a fax.svg": {
+      "ipo_ts": 1780758193437,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193437,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "752c4afa"
+    },
+    "src/assets/windowsIcons/svg/Computer to Computer connection.svg": {
+      "ipo_ts": 1780758193450,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193450,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5ea6af65"
+    },
+    "src/assets/windowsIcons/svg/Content Advisor.svg": {
+      "ipo_ts": 1780758193477,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193477,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "9a9b9c1a"
+    },
+    "src/assets/windowsIcons/svg/Copying Conflict.svg": {
+      "ipo_ts": 1780758193499,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193499,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "542b21f9"
+    },
+    "src/assets/windowsIcons/svg/DVD-R.svg": {
+      "ipo_ts": 1780758193509,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193509,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a881df90"
+    },
+    "src/assets/windowsIcons/svg/Delete Internet History.svg": {
+      "ipo_ts": 1780758193520,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193520,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1d662715"
+    },
+    "src/assets/windowsIcons/svg/Detail View.svg": {
+      "ipo_ts": 1780758193523,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193523,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "55a5e4f5"
+    },
+    "src/assets/windowsIcons/svg/Disconnect Network Drive.svg": {
+      "ipo_ts": 1780758193526,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193526,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "bf141b4b"
+    },
+    "src/assets/windowsIcons/svg/Disk Defragmenter.svg": {
+      "ipo_ts": 1780758193530,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193530,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "8da7a520"
+    },
+    "src/assets/windowsIcons/svg/Document Search.svg": {
+      "ipo_ts": 1780758193537,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193537,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "61b2df97"
+    },
+    "src/assets/windowsIcons/svg/Fax Archive.svg": {
+      "ipo_ts": 1780758193541,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193541,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "fa8d55e5"
+    },
+    "src/assets/windowsIcons/svg/Fax Cover Page.svg": {
+      "ipo_ts": 1780758193549,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193549,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "71a4482e"
+    },
+    "src/assets/windowsIcons/svg/Fax Received Succesfully.svg": {
+      "ipo_ts": 1780758193556,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193556,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c8fc11c4"
+    },
+    "src/assets/windowsIcons/svg/File and Settings Transfer Wizard.svg": {
+      "ipo_ts": 1780758193563,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193563,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1ba7b8ff"
+    },
+    "src/assets/windowsIcons/svg/Firewall.svg": {
+      "ipo_ts": 1780758193578,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193578,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "26bb232"
+    },
+    "src/assets/windowsIcons/svg/Folder View - Common Tasks.svg": {
+      "ipo_ts": 1780758193593,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193593,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1ea0baeb"
+    },
+    "src/assets/windowsIcons/svg/Font.svg": {
+      "ipo_ts": 1780758193600,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193600,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f49f4943"
+    },
+    "src/assets/windowsIcons/svg/Game Controller.svg": {
+      "ipo_ts": 1780758193610,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193610,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e61c4683"
+    },
+    "src/assets/windowsIcons/svg/Generic Document.svg": {
+      "ipo_ts": 1780758193615,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193615,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1568d5fb"
+    },
+    "src/assets/windowsIcons/svg/Generic Text Document.svg": {
+      "ipo_ts": 1780758193620,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193620,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f91b4dc3"
+    },
+    "src/assets/windowsIcons/svg/Get Pictures.svg": {
+      "ipo_ts": 1780758193632,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193632,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "65f618c1"
+    },
+    "src/assets/windowsIcons/svg/Get Support.svg": {
+      "ipo_ts": 1780758193639,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193639,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f8b489f5"
+    },
+    "src/assets/windowsIcons/svg/Help and Support.svg": {
+      "ipo_ts": 1780758193643,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193643,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e6c27444"
+    },
+    "src/assets/windowsIcons/svg/IE Enlarge Image.svg": {
+      "ipo_ts": 1780758193646,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193646,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "49f76485"
+    },
+    "src/assets/windowsIcons/svg/IE Media.svg": {
+      "ipo_ts": 1780758193655,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193655,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4d8ac68c"
+    },
+    "src/assets/windowsIcons/svg/IE Size.svg": {
+      "ipo_ts": 1780758193659,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193659,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "974dfb1d"
+    },
+    "src/assets/windowsIcons/svg/IE Stop.svg": {
+      "ipo_ts": 1780758193661,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193661,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "cbc75895"
+    },
+    "src/assets/windowsIcons/svg/Important.svg": {
+      "ipo_ts": 1780758193666,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193666,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "24d8e709"
+    },
+    "src/assets/windowsIcons/svg/Information.svg": {
+      "ipo_ts": 1780758193692,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193692,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f5eb120c"
+    },
+    "src/assets/windowsIcons/svg/Internet Connection Wizard.svg": {
+      "ipo_ts": 1780758193699,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193699,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "fb388b56"
+    },
+    "src/assets/windowsIcons/svg/Internet Hearts.svg": {
+      "ipo_ts": 1780758193704,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193704,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3f569223"
+    },
+    "src/assets/windowsIcons/svg/Internet Shortcut.svg": {
+      "ipo_ts": 1780758193710,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193710,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "746fb2bb"
+    },
+    "src/assets/windowsIcons/svg/Internet Spades.svg": {
+      "ipo_ts": 1780758193717,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193717,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "6a3389ea"
+    },
+    "src/assets/windowsIcons/svg/Logout.svg": {
+      "ipo_ts": 1780758193721,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193721,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2d935fcb"
+    },
+    "src/assets/windowsIcons/svg/MSN Email.svg": {
+      "ipo_ts": 1780758193727,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193727,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ba4ce9cf"
+    },
+    "src/assets/windowsIcons/svg/MSN Messenger.svg": {
+      "ipo_ts": 1780758193738,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193738,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4211fdaf"
+    },
+    "src/assets/windowsIcons/svg/MSWMM.svg": {
+      "ipo_ts": 1780758193753,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193753,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "656c19e"
+    },
+    "src/assets/windowsIcons/svg/Manage Server Licenses.svg": {
+      "ipo_ts": 1780758193762,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193762,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "29512d5f"
+    },
+    "src/assets/windowsIcons/svg/Maximize.svg": {
+      "ipo_ts": 1780758193765,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193765,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "30d15c1d"
+    },
+    "src/assets/windowsIcons/svg/Media Center File.svg": {
+      "ipo_ts": 1780758193771,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193771,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "723df163"
+    },
+    "src/assets/windowsIcons/svg/Media Center.svg": {
+      "ipo_ts": 1780758193778,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193778,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a8fe1d38"
+    },
+    "src/assets/windowsIcons/svg/Mobile Device.svg": {
+      "ipo_ts": 1780758193782,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193782,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "57814569"
+    },
+    "src/assets/windowsIcons/svg/Modem.svg": {
+      "ipo_ts": 1780758193785,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193785,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2324cfac"
+    },
+    "src/assets/windowsIcons/svg/Move to folder.svg": {
+      "ipo_ts": 1780758193790,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193790,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5faa7e04"
+    },
+    "src/assets/windowsIcons/svg/My Videos.svg": {
+      "ipo_ts": 1780758193794,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193794,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "438a7894"
+    },
+    "src/assets/windowsIcons/svg/Network Drive.svg": {
+      "ipo_ts": 1780758193800,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193800,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d6cc1f85"
+    },
+    "src/assets/windowsIcons/svg/Network Folder.svg": {
+      "ipo_ts": 1780758193805,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193805,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "be9f1d64"
+    },
+    "src/assets/windowsIcons/svg/Network Setup.svg": {
+      "ipo_ts": 1780758193809,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193809,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "54575fa8"
+    },
+    "src/assets/windowsIcons/svg/New Folder.svg": {
+      "ipo_ts": 1780758193813,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193813,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1b68a6b3"
+    },
+    "src/assets/windowsIcons/svg/New Internet Connection.svg": {
+      "ipo_ts": 1780758193819,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193819,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e3543be2"
+    },
+    "src/assets/windowsIcons/svg/New Network Connection.svg": {
+      "ipo_ts": 1780758193828,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193828,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "de2f7d6d"
+    },
+    "src/assets/windowsIcons/svg/OE Attatch.svg": {
+      "ipo_ts": 1780758193834,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193834,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f34d4069"
+    },
+    "src/assets/windowsIcons/svg/OE Encrypt.svg": {
+      "ipo_ts": 1780758193849,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193849,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5ad86479"
+    },
+    "src/assets/windowsIcons/svg/OE Folder List.svg": {
+      "ipo_ts": 1780758193856,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193856,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "fffac306"
+    },
+    "src/assets/windowsIcons/svg/OE Outbox.svg": {
+      "ipo_ts": 1780758193859,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193859,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "449df1e3"
+    },
+    "src/assets/windowsIcons/svg/OE Preview Pane.svg": {
+      "ipo_ts": 1780758193862,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193862,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "cbecba6e"
+    },
+    "src/assets/windowsIcons/svg/OE Reply All.svg": {
+      "ipo_ts": 1780758193868,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193868,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "9cf20c6e"
+    },
+    "src/assets/windowsIcons/svg/Padlock Alt.svg": {
+      "ipo_ts": 1780758193872,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193872,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a3aff6f1"
+    },
+    "src/assets/windowsIcons/svg/Paint.svg": {
+      "ipo_ts": 1780758193877,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193877,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "bbd3806a"
+    },
+    "src/assets/windowsIcons/svg/Portable Media Devices.svg": {
+      "ipo_ts": 1780758193883,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193883,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "acdc5fb8"
+    },
+    "src/assets/windowsIcons/svg/Power.svg": {
+      "ipo_ts": 1780758193887,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193887,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "7e0ce804"
+    },
+    "src/assets/windowsIcons/svg/Print photos.svg": {
+      "ipo_ts": 1780758193892,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193892,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ab1581c6"
+    },
+    "src/assets/windowsIcons/svg/Printer Missing.svg": {
+      "ipo_ts": 1780758193897,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193897,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d0221eb6"
+    },
+    "src/assets/windowsIcons/svg/Printers and Faxes.svg": {
+      "ipo_ts": 1780758193904,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193904,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c9f10158"
+    },
+    "src/assets/windowsIcons/svg/Privacy.svg": {
+      "ipo_ts": 1780758193911,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193911,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "8f99353a"
+    },
+    "src/assets/windowsIcons/svg/Programs.svg": {
+      "ipo_ts": 1780758193916,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193916,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "402968a0"
+    },
+    "src/assets/windowsIcons/svg/Properties.svg": {
+      "ipo_ts": 1780758193921,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193921,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a624dcf"
+    },
+    "src/assets/windowsIcons/svg/Publish photos to web.svg": {
+      "ipo_ts": 1780758193940,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193940,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "fdd573f0"
+    },
+    "src/assets/windowsIcons/svg/Publish to web.svg": {
+      "ipo_ts": 1780758193959,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193959,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3e68feb2"
+    },
+    "src/assets/windowsIcons/svg/RTF.svg": {
+      "ipo_ts": 1780758193968,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193968,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "db0e6e15"
+    },
+    "src/assets/windowsIcons/svg/Recycle Bin (empty).svg": {
+      "ipo_ts": 1780758193973,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193973,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "966491de"
+    },
+    "src/assets/windowsIcons/svg/Remote Desktop.svg": {
+      "ipo_ts": 1780758193978,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193978,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2056ae7f"
+    },
+    "src/assets/windowsIcons/svg/Removable Media.svg": {
+      "ipo_ts": 1780758193981,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193981,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "8349b329"
+    },
+    "src/assets/windowsIcons/svg/Restart.svg": {
+      "ipo_ts": 1780758193985,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193985,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "aac6e78f"
+    },
+    "src/assets/windowsIcons/svg/Restricted.svg": {
+      "ipo_ts": 1780758193988,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193988,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "222eef4f"
+    },
+    "src/assets/windowsIcons/svg/Search.svg": {
+      "ipo_ts": 1780758193991,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193991,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d53efa20"
+    },
+    "src/assets/windowsIcons/svg/Security - Ok.svg": {
+      "ipo_ts": 1780758193996,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758193996,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ae220d9b"
+    },
+    "src/assets/windowsIcons/svg/Services.svg": {
+      "ipo_ts": 1780758194000,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194000,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "7aa12ca2"
+    },
+    "src/assets/windowsIcons/svg/Setup Language.svg": {
+      "ipo_ts": 1780758194004,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194004,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "bf20c50c"
+    },
+    "src/assets/windowsIcons/svg/Setup Skip.svg": {
+      "ipo_ts": 1780758194007,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194007,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "174b9f1f"
+    },
+    "src/assets/windowsIcons/svg/Setup task.svg": {
+      "ipo_ts": 1780758194010,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194010,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "eac4aef7"
+    },
+    "src/assets/windowsIcons/svg/Shared Folder Alt.svg": {
+      "ipo_ts": 1780758194015,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194015,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "465eb7cf"
+    },
+    "src/assets/windowsIcons/svg/Standby.svg": {
+      "ipo_ts": 1780758194019,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194019,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ab1d3968"
+    },
+    "src/assets/windowsIcons/svg/TIFF.svg": {
+      "ipo_ts": 1780758194022,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194022,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "fb02e37d"
+    },
+    "src/assets/windowsIcons/svg/TXT.svg": {
+      "ipo_ts": 1780758194025,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194025,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "7e121dc5"
+    },
+    "src/assets/windowsIcons/svg/Taskbar and Start Menu.svg": {
+      "ipo_ts": 1780758194035,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194035,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2f29bf6"
+    },
+    "src/assets/windowsIcons/svg/Theme.svg": {
+      "ipo_ts": 1780758194056,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194056,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2a74c0fa"
+    },
+    "src/assets/windowsIcons/svg/Tile View.svg": {
+      "ipo_ts": 1780758194061,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194061,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f5c0443b"
+    },
+    "src/assets/windowsIcons/svg/TrueType2.svg": {
+      "ipo_ts": 1780758194064,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194064,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "6115c2de"
+    },
+    "src/assets/windowsIcons/svg/VPN Connection.svg": {
+      "ipo_ts": 1780758194069,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194069,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c4cf3e69"
+    },
+    "src/assets/windowsIcons/svg/Volume Alt.svg": {
+      "ipo_ts": 1780758194074,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194074,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b1d30c8f"
+    },
+    "src/assets/windowsIcons/svg/Volume Level.svg": {
+      "ipo_ts": 1780758194077,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194077,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "7eb04dff"
+    },
+    "src/assets/windowsIcons/svg/WME Broadcast Company Meeting.svg": {
+      "ipo_ts": 1780758194084,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194084,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "76c021ef"
+    },
+    "src/assets/windowsIcons/svg/WME Broadcast Live Event.svg": {
+      "ipo_ts": 1780758194092,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194092,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d8442f59"
+    },
+    "src/assets/windowsIcons/svg/WME Capture Audio or Video.svg": {
+      "ipo_ts": 1780758194100,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194100,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "343e70d9"
+    },
+    "src/assets/windowsIcons/svg/WME Capture Screen.svg": {
+      "ipo_ts": 1780758194107,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194107,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b49c1cf4"
+    },
+    "src/assets/windowsIcons/svg/WME Custom Session.svg": {
+      "ipo_ts": 1780758194114,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194114,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "76a5339c"
+    },
+    "src/assets/windowsIcons/svg/WMP Missing Disc.svg": {
+      "ipo_ts": 1780758194122,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194122,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "9366772c"
+    },
+    "src/assets/windowsIcons/svg/WMP Performance.svg": {
+      "ipo_ts": 1780758194130,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194130,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3b673f64"
+    },
+    "src/assets/windowsIcons/svg/WMP Playlist.svg": {
+      "ipo_ts": 1780758194138,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194138,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5f530b31"
+    },
+    "src/assets/windowsIcons/svg/WMP Plugin.svg": {
+      "ipo_ts": 1780758194143,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194143,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5bdabef"
+    },
+    "src/assets/windowsIcons/svg/WMP Stream Error.svg": {
+      "ipo_ts": 1780758194165,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194165,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e32fa58d"
+    },
+    "src/assets/windowsIcons/svg/Windows Media Connect.svg": {
+      "ipo_ts": 1780758194169,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194169,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3ab52758"
+    },
+    "src/assets/windowsIcons/svg/Windows Media Player 10.svg": {
+      "ipo_ts": 1780758194175,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194175,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f03b03d0"
+    },
+    "src/assets/windowsIcons/svg/Windows Media Player Skin.svg": {
+      "ipo_ts": 1780758194182,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194182,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "588d2a3b"
+    },
+    "src/assets/windowsIcons/svg/Windows Media Services.svg": {
+      "ipo_ts": 1780758194190,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194190,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1167f5ef"
+    },
+    "src/assets/windowsIcons/svg/Windows Picture and Fax Viewer.svg": {
+      "ipo_ts": 1780758194194,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194194,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "34f64816"
+    },
+    "src/assets/windowsIcons/svg/Wireless Connection Settings.svg": {
+      "ipo_ts": 1780758194200,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194200,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "7eead1c9"
+    },
+    "src/assets/windowsIcons/svg/Wizard.svg": {
+      "ipo_ts": 1780758194208,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194208,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "7a5d57f3"
+    },
+    "src/assets/windowsIcons/svg/Wordpad.svg": {
+      "ipo_ts": 1780758194212,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194212,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2a761c76"
+    },
+    "src/assets/windowsIcons/svg/XML.svg": {
+      "ipo_ts": 1780758194222,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194222,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b669668f"
+    },
+    "src/assets/windowsIcons/svg/XPS Viewer.svg": {
+      "ipo_ts": 1780758194235,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194235,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "cb7a34be"
+    },
+    "src/assets/windowsIcons/svg/Zip folder.svg": {
+      "ipo_ts": 1780758194249,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194249,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5a703dc7"
+    },
+    "src/assets/windowsIcons/svg/Accessibility.svg": {
+      "ipo_ts": 1780758194258,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194258,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "560569b8"
+    },
+    "src/assets/windowsIcons/svg/Add Network Place.svg": {
+      "ipo_ts": 1780758194273,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194273,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "9a4f489b"
+    },
+    "src/assets/windowsIcons/svg/Add New Hardware.svg": {
+      "ipo_ts": 1780758194287,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194287,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "7de7cc2c"
+    },
+    "src/assets/windowsIcons/svg/Audio CD.svg": {
+      "ipo_ts": 1780758194292,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194292,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "fff428cd"
+    },
+    "src/assets/windowsIcons/svg/Authorization Manager.svg": {
+      "ipo_ts": 1780758194299,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194299,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ad6c0e32"
+    },
+    "src/assets/windowsIcons/svg/BAT.svg": {
+      "ipo_ts": 1780758194303,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194303,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ac094982"
+    },
+    "src/assets/windowsIcons/svg/Bridged Connection.svg": {
+      "ipo_ts": 1780758194306,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194306,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a2d413fb"
+    },
+    "src/assets/windowsIcons/svg/CAB.svg": {
+      "ipo_ts": 1780758194311,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194311,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "6018e27a"
+    },
+    "src/assets/windowsIcons/svg/CD-RW.svg": {
+      "ipo_ts": 1780758194317,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194317,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "652b3174"
+    },
+    "src/assets/windowsIcons/svg/Calculator.svg": {
+      "ipo_ts": 1780758194321,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194321,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "93b5daff"
+    },
+    "src/assets/windowsIcons/svg/Change Language.svg": {
+      "ipo_ts": 1780758194327,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194327,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "7ae13810"
+    },
+    "src/assets/windowsIcons/svg/Change or Remove Programs.svg": {
+      "ipo_ts": 1780758194335,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194335,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c50b0496"
+    },
+    "src/assets/windowsIcons/svg/Checklist.svg": {
+      "ipo_ts": 1780758194342,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194342,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f96704de"
+    },
+    "src/assets/windowsIcons/svg/Connection Status.svg": {
+      "ipo_ts": 1780758194361,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194361,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2dcae294"
+    },
+    "src/assets/windowsIcons/svg/Copy To.svg": {
+      "ipo_ts": 1780758194369,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194369,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2075866f"
+    },
+    "src/assets/windowsIcons/svg/Copy to disc.svg": {
+      "ipo_ts": 1780758194382,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194382,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "200fe568"
+    },
+    "src/assets/windowsIcons/svg/Cut.svg": {
+      "ipo_ts": 1780758194385,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194385,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a591bf74"
+    },
+    "src/assets/windowsIcons/svg/DVD alt.svg": {
+      "ipo_ts": 1780758194389,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194389,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "65f12771"
+    },
+    "src/assets/windowsIcons/svg/Data Execution Prevention.svg": {
+      "ipo_ts": 1780758194393,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194393,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e956fb22"
+    },
+    "src/assets/windowsIcons/svg/Date and Time.svg": {
+      "ipo_ts": 1780758194397,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194397,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "443c6ffa"
+    },
+    "src/assets/windowsIcons/svg/Default Programs.svg": {
+      "ipo_ts": 1780758194402,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194402,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "73a0ad1b"
+    },
+    "src/assets/windowsIcons/svg/Delete Confirmation.svg": {
+      "ipo_ts": 1780758194408,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194408,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "35dd0f33"
+    },
+    "src/assets/windowsIcons/svg/Delete.svg": {
+      "ipo_ts": 1780758194411,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194411,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "37c26e90"
+    },
+    "src/assets/windowsIcons/svg/Dialer.svg": {
+      "ipo_ts": 1780758194420,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194420,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f96625e0"
+    },
+    "src/assets/windowsIcons/svg/DirectX.svg": {
+      "ipo_ts": 1780758194427,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194427,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "fe93a6f2"
+    },
+    "src/assets/windowsIcons/svg/Display Properties.svg": {
+      "ipo_ts": 1780758194441,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194441,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f8dd0664"
+    },
+    "src/assets/windowsIcons/svg/Double Click.svg": {
+      "ipo_ts": 1780758194445,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194445,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "912714dc"
+    },
+    "src/assets/windowsIcons/svg/Entire Network.svg": {
+      "ipo_ts": 1780758194464,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194464,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e55930d6"
+    },
+    "src/assets/windowsIcons/svg/Erase Disc.svg": {
+      "ipo_ts": 1780758194483,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194483,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b1f6fe8"
+    },
+    "src/assets/windowsIcons/svg/Exit.svg": {
+      "ipo_ts": 1780758194491,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194491,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "8750d879"
+    },
+    "src/assets/windowsIcons/svg/Fax Event.svg": {
+      "ipo_ts": 1780758194500,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194500,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2c11715e"
+    },
+    "src/assets/windowsIcons/svg/Fax Sender Information.svg": {
+      "ipo_ts": 1780758194507,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194507,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "7e88cf3e"
+    },
+    "src/assets/windowsIcons/svg/Folder Closed.svg": {
+      "ipo_ts": 1780758194511,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194511,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "86c56208"
+    },
+    "src/assets/windowsIcons/svg/Folder Opened.svg": {
+      "ipo_ts": 1780758194515,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194515,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "afd9c57d"
+    },
+    "src/assets/windowsIcons/svg/Folder Options.svg": {
+      "ipo_ts": 1780758194519,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194519,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "acd49ed2"
+    },
+    "src/assets/windowsIcons/svg/Folder View.svg": {
+      "ipo_ts": 1780758194525,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194525,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5a9a3e89"
+    },
+    "src/assets/windowsIcons/svg/Font Similarity View.svg": {
+      "ipo_ts": 1780758194529,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194529,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "abd19442"
+    },
+    "src/assets/windowsIcons/svg/Font2.svg": {
+      "ipo_ts": 1780758194533,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194533,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c2846e3a"
+    },
+    "src/assets/windowsIcons/svg/Fonts.svg": {
+      "ipo_ts": 1780758194537,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194537,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "54d4857"
+    },
+    "src/assets/windowsIcons/svg/Forward.svg": {
+      "ipo_ts": 1780758194541,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194541,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5222244d"
+    },
+    "src/assets/windowsIcons/svg/Generic Media.svg": {
+      "ipo_ts": 1780758194545,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194545,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d3e15462"
+    },
+    "src/assets/windowsIcons/svg/Go.svg": {
+      "ipo_ts": 1780758194550,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194550,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "abca3e4c"
+    },
+    "src/assets/windowsIcons/svg/HTML.svg": {
+      "ipo_ts": 1780758194554,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194554,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "643327b0"
+    },
+    "src/assets/windowsIcons/svg/Hearts.svg": {
+      "ipo_ts": 1780758194559,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194559,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e458eaa0"
+    },
+    "src/assets/windowsIcons/svg/Help and Support - Change view 1.svg": {
+      "ipo_ts": 1780758194563,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194563,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f29ff503"
+    },
+    "src/assets/windowsIcons/svg/Help and Support - Change view 2.svg": {
+      "ipo_ts": 1780758194569,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194569,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5e867ff9"
+    },
+    "src/assets/windowsIcons/svg/Help and Support - Index.svg": {
+      "ipo_ts": 1780758194585,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194585,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "52975151"
+    },
+    "src/assets/windowsIcons/svg/Hyper Terminal.svg": {
+      "ipo_ts": 1780758194604,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194604,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c9cae9cd"
+    },
+    "src/assets/windowsIcons/svg/IE Discuss.svg": {
+      "ipo_ts": 1780758194607,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194607,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1b94e4cd"
+    },
+    "src/assets/windowsIcons/svg/IE Edit.svg": {
+      "ipo_ts": 1780758194612,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194612,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "fc039f4b"
+    },
+    "src/assets/windowsIcons/svg/IE Encoding.svg": {
+      "ipo_ts": 1780758194616,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194616,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d3db56c"
+    },
+    "src/assets/windowsIcons/svg/IE Refresh.svg": {
+      "ipo_ts": 1780758194619,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194619,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "840673ab"
+    },
+    "src/assets/windowsIcons/svg/INF.svg": {
+      "ipo_ts": 1780758194624,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194624,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b840dd84"
+    },
+    "src/assets/windowsIcons/svg/Information Bar.svg": {
+      "ipo_ts": 1780758194628,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194628,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f0083e55"
+    },
+    "src/assets/windowsIcons/svg/InkBall.svg": {
+      "ipo_ts": 1780758194638,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194638,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "9436cd3f"
+    },
+    "src/assets/windowsIcons/svg/Internet Information Services 6.svg": {
+      "ipo_ts": 1780758194643,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194643,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c5a06618"
+    },
+    "src/assets/windowsIcons/svg/Internet Reversi.svg": {
+      "ipo_ts": 1780758194651,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194651,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1ba1ddb0"
+    },
+    "src/assets/windowsIcons/svg/JAZ Drive.svg": {
+      "ipo_ts": 1780758194658,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194658,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4c073abb"
+    },
+    "src/assets/windowsIcons/svg/JPG.svg": {
+      "ipo_ts": 1780758194664,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194664,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4a236952"
+    },
+    "src/assets/windowsIcons/svg/Journal Note.svg": {
+      "ipo_ts": 1780758194668,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194668,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b9954fe0"
+    },
+    "src/assets/windowsIcons/svg/Login Question.svg": {
+      "ipo_ts": 1780758194672,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194672,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "42c089af"
+    },
+    "src/assets/windowsIcons/svg/Magnifier.svg": {
+      "ipo_ts": 1780758194696,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194696,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3bcdfb1c"
+    },
+    "src/assets/windowsIcons/svg/Malicious Software Removal Tool.svg": {
+      "ipo_ts": 1780758194702,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194702,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f019c338"
+    },
+    "src/assets/windowsIcons/svg/Map Network Drive.svg": {
+      "ipo_ts": 1780758194706,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194706,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "68caa762"
+    },
+    "src/assets/windowsIcons/svg/Microsoft ActiveSync.svg": {
+      "ipo_ts": 1780758194714,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194714,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "15239b56"
+    },
+    "src/assets/windowsIcons/svg/Microsoft Update.svg": {
+      "ipo_ts": 1780758194722,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194722,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "cb428a34"
+    },
+    "src/assets/windowsIcons/svg/Minesweeper.svg": {
+      "ipo_ts": 1780758194726,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194726,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "158427a6"
+    },
+    "src/assets/windowsIcons/svg/Missing Setup Information.svg": {
+      "ipo_ts": 1780758194733,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194733,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d3fc7614"
+    },
+    "src/assets/windowsIcons/svg/Mouse.svg": {
+      "ipo_ts": 1780758194737,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194737,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "295d58f4"
+    },
+    "src/assets/windowsIcons/svg/My Documents.svg": {
+      "ipo_ts": 1780758194742,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194742,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "baabb1fb"
+    },
+    "src/assets/windowsIcons/svg/My Music.svg": {
+      "ipo_ts": 1780758194750,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194750,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3c31d756"
+    },
+    "src/assets/windowsIcons/svg/Network printer.svg": {
+      "ipo_ts": 1780758194758,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194758,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3c9d1b58"
+    },
+    "src/assets/windowsIcons/svg/New Imaging Device.svg": {
+      "ipo_ts": 1780758194762,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194762,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d7fe20d3"
+    },
+    "src/assets/windowsIcons/svg/New Printer.svg": {
+      "ipo_ts": 1780758194767,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194767,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d8213513"
+    },
+    "src/assets/windowsIcons/svg/New Scheduled Task.svg": {
+      "ipo_ts": 1780758194772,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194772,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "9f3fb187"
+    },
+    "src/assets/windowsIcons/svg/OE Send and Receive.svg": {
+      "ipo_ts": 1780758194777,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194777,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3378231"
+    },
+    "src/assets/windowsIcons/svg/OE Send.svg": {
+      "ipo_ts": 1780758194788,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194788,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "95dbb615"
+    },
+    "src/assets/windowsIcons/svg/OE Sent Items.svg": {
+      "ipo_ts": 1780758194806,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194806,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f2b10aa6"
+    },
+    "src/assets/windowsIcons/svg/OE Unscramble.svg": {
+      "ipo_ts": 1780758194824,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194824,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e3c420fc"
+    },
+    "src/assets/windowsIcons/svg/Open.svg": {
+      "ipo_ts": 1780758194828,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194828,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "52662136"
+    },
+    "src/assets/windowsIcons/svg/Optical Drive.svg": {
+      "ipo_ts": 1780758194832,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194832,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "18da3986"
+    },
+    "src/assets/windowsIcons/svg/PCMCIA Card.svg": {
+      "ipo_ts": 1780758194836,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194836,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2762234e"
+    },
+    "src/assets/windowsIcons/svg/Packager.svg": {
+      "ipo_ts": 1780758194842,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194842,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d9c55f85"
+    },
+    "src/assets/windowsIcons/svg/Performance.svg": {
+      "ipo_ts": 1780758194845,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194845,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b0f25ca1"
+    },
+    "src/assets/windowsIcons/svg/Phone.svg": {
+      "ipo_ts": 1780758194849,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194849,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "38f3af5a"
+    },
+    "src/assets/windowsIcons/svg/Power Options.svg": {
+      "ipo_ts": 1780758194853,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194853,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5bc352c5"
+    },
+    "src/assets/windowsIcons/svg/Power Status.svg": {
+      "ipo_ts": 1780758194858,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194858,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f43081d7"
+    },
+    "src/assets/windowsIcons/svg/Print Server Properties.svg": {
+      "ipo_ts": 1780758194862,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194862,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e4cd7757"
+    },
+    "src/assets/windowsIcons/svg/Print to file.svg": {
+      "ipo_ts": 1780758194868,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194868,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c31eb5ef"
+    },
+    "src/assets/windowsIcons/svg/Proxy Server.svg": {
+      "ipo_ts": 1780758194875,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194875,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c7eb34b2"
+    },
+    "src/assets/windowsIcons/svg/RTC Share.svg": {
+      "ipo_ts": 1780758194885,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194885,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "9951513f"
+    },
+    "src/assets/windowsIcons/svg/Restore.svg": {
+      "ipo_ts": 1780758194896,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194896,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e8e988fb"
+    },
+    "src/assets/windowsIcons/svg/Router.svg": {
+      "ipo_ts": 1780758194908,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194908,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "6651c361"
+    },
+    "src/assets/windowsIcons/svg/Run.svg": {
+      "ipo_ts": 1780758194920,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194920,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "55770c22"
+    },
+    "src/assets/windowsIcons/svg/Safely Remove Hardware.svg": {
+      "ipo_ts": 1780758194945,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194945,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "125a5521"
+    },
+    "src/assets/windowsIcons/svg/Scanner.svg": {
+      "ipo_ts": 1780758194952,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194952,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "95a6682a"
+    },
+    "src/assets/windowsIcons/svg/Scanners and Cameras.svg": {
+      "ipo_ts": 1780758194959,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194959,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b8327747"
+    },
+    "src/assets/windowsIcons/svg/Scheduled Tasks.svg": {
+      "ipo_ts": 1780758194964,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194964,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "db7b602e"
+    },
+    "src/assets/windowsIcons/svg/Security Question.svg": {
+      "ipo_ts": 1780758194968,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194968,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4f1c4b3a"
+    },
+    "src/assets/windowsIcons/svg/Security Settings.svg": {
+      "ipo_ts": 1780758194972,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194972,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "db34cfef"
+    },
+    "src/assets/windowsIcons/svg/Serial Connection.svg": {
+      "ipo_ts": 1780758194975,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194975,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "80d29e82"
+    },
+    "src/assets/windowsIcons/svg/Server License.svg": {
+      "ipo_ts": 1780758194991,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194991,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "405aa25"
+    },
+    "src/assets/windowsIcons/svg/Setup.svg": {
+      "ipo_ts": 1780758194998,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758194998,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "8b31e8bc"
+    },
+    "src/assets/windowsIcons/svg/Shared Folder.svg": {
+      "ipo_ts": 1780758195002,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195002,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "62a1f619"
+    },
+    "src/assets/windowsIcons/svg/Sharing Hand.svg": {
+      "ipo_ts": 1780758195006,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195006,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c09bb533"
+    },
+    "src/assets/windowsIcons/svg/Slideshow.svg": {
+      "ipo_ts": 1780758195011,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195011,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "dda72863"
+    },
+    "src/assets/windowsIcons/svg/Smart Card Reader.svg": {
+      "ipo_ts": 1780758195015,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195015,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "dce1e18b"
+    },
+    "src/assets/windowsIcons/svg/SmartScreen.svg": {
+      "ipo_ts": 1780758195019,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195019,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "147d37a9"
+    },
+    "src/assets/windowsIcons/svg/Solitaire.svg": {
+      "ipo_ts": 1780758195025,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195025,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5a076ac3"
+    },
+    "src/assets/windowsIcons/svg/Sort by date.svg": {
+      "ipo_ts": 1780758195044,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195044,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "747576ba"
+    },
+    "src/assets/windowsIcons/svg/Start Menu Programs Alt.svg": {
+      "ipo_ts": 1780758195076,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195076,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a5ba4924"
+    },
+    "src/assets/windowsIcons/svg/Start Menu Programs.svg": {
+      "ipo_ts": 1780758195081,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195081,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c656f29f"
+    },
+    "src/assets/windowsIcons/svg/Success.svg": {
+      "ipo_ts": 1780758195086,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195086,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "9bf39603"
+    },
+    "src/assets/windowsIcons/svg/Support Topic.svg": {
+      "ipo_ts": 1780758195090,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195090,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "446f45fe"
+    },
+    "src/assets/windowsIcons/svg/Sync All.svg": {
+      "ipo_ts": 1780758195094,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195094,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "eebfac04"
+    },
+    "src/assets/windowsIcons/svg/Sync.svg": {
+      "ipo_ts": 1780758195101,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195101,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4fa16384"
+    },
+    "src/assets/windowsIcons/svg/Synchronize.svg": {
+      "ipo_ts": 1780758195108,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195108,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ff6c48fc"
+    },
+    "src/assets/windowsIcons/svg/System Properties.svg": {
+      "ipo_ts": 1780758195116,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195116,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c08d9512"
+    },
+    "src/assets/windowsIcons/svg/Take Picture.svg": {
+      "ipo_ts": 1780758195121,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195121,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "eac32879"
+    },
+    "src/assets/windowsIcons/svg/Tape Drive 2.svg": {
+      "ipo_ts": 1780758195125,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195125,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1ffd0ae7"
+    },
+    "src/assets/windowsIcons/svg/Tape Drive.svg": {
+      "ipo_ts": 1780758195129,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195129,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5c0c731f"
+    },
+    "src/assets/windowsIcons/svg/Thumbnail View.svg": {
+      "ipo_ts": 1780758195132,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195132,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4c204dde"
+    },
+    "src/assets/windowsIcons/svg/Tour XP.svg": {
+      "ipo_ts": 1780758195143,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195143,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e1cb78e9"
+    },
+    "src/assets/windowsIcons/svg/Tweak UI.svg": {
+      "ipo_ts": 1780758195168,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195168,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2914fd00"
+    },
+    "src/assets/windowsIcons/svg/UDDI Services.svg": {
+      "ipo_ts": 1780758195185,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195185,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5e6154f6"
+    },
+    "src/assets/windowsIcons/svg/URL.svg": {
+      "ipo_ts": 1780758195192,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195192,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "12bd4aaf"
+    },
+    "src/assets/windowsIcons/svg/Undo.svg": {
+      "ipo_ts": 1780758195196,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195196,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "bb4076ec"
+    },
+    "src/assets/windowsIcons/svg/Undock PC.svg": {
+      "ipo_ts": 1780758195200,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195200,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2a52447e"
+    },
+    "src/assets/windowsIcons/svg/User Accounts.svg": {
+      "ipo_ts": 1780758195206,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195206,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "54416791"
+    },
+    "src/assets/windowsIcons/svg/VBS.svg": {
+      "ipo_ts": 1780758195210,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195210,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "24c54c4f"
+    },
+    "src/assets/windowsIcons/svg/Virus Protection.svg": {
+      "ipo_ts": 1780758195215,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195215,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "271a4d6e"
+    },
+    "src/assets/windowsIcons/svg/WME Capture live content for streaming.svg": {
+      "ipo_ts": 1780758195220,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195220,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2e96f259"
+    },
+    "src/assets/windowsIcons/svg/WME Capture live content locally.svg": {
+      "ipo_ts": 1780758195226,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195226,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4644125e"
+    },
+    "src/assets/windowsIcons/svg/WME Convert a File.svg": {
+      "ipo_ts": 1780758195237,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195237,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2cf8d803"
+    },
+    "src/assets/windowsIcons/svg/WMP Device Error.svg": {
+      "ipo_ts": 1780758195242,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195242,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a0c2d53d"
+    },
+    "src/assets/windowsIcons/svg/WMP Import Audio CD.svg": {
+      "ipo_ts": 1780758195253,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195253,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f57d0ac9"
+    },
+    "src/assets/windowsIcons/svg/WMP Import Video.svg": {
+      "ipo_ts": 1780758195267,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195267,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "87636e51"
+    },
+    "src/assets/windowsIcons/svg/WMP Library.svg": {
+      "ipo_ts": 1780758195284,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195284,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e7029b6d"
+    },
+    "src/assets/windowsIcons/svg/WMS Broadcast Alt.svg": {
+      "ipo_ts": 1780758195291,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195291,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ce7429d"
+    },
+    "src/assets/windowsIcons/svg/WMS Playlist.svg": {
+      "ipo_ts": 1780758195297,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195297,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "9917117c"
+    },
+    "src/assets/windowsIcons/svg/WMS Streaming Server.svg": {
+      "ipo_ts": 1780758195301,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195301,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "6d75cf2a"
+    },
+    "src/assets/windowsIcons/svg/WMS Troubleshoot.svg": {
+      "ipo_ts": 1780758195306,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195306,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "bdc3b44c"
+    },
+    "src/assets/windowsIcons/svg/WMV 2.svg": {
+      "ipo_ts": 1780758195313,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195313,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e7f9628f"
+    },
+    "src/assets/windowsIcons/svg/WRI.svg": {
+      "ipo_ts": 1780758195317,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195317,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ccf75f96"
+    },
+    "src/assets/windowsIcons/svg/Windows Journal Viewer.svg": {
+      "ipo_ts": 1780758195325,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195325,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "9e08c520"
+    },
+    "src/assets/windowsIcons/svg/Windows Journal.svg": {
+      "ipo_ts": 1780758195333,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195333,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "df8b82fd"
+    },
+    "src/assets/windowsIcons/svg/Wireless Network Connection.svg": {
+      "ipo_ts": 1780758195336,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195336,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3ddec17d"
+    },
+    "src/assets/windowsIcons/svg/Wireless Network Setup.svg": {
+      "ipo_ts": 1780758195354,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195354,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "77e9632c"
+    },
+    "src/assets/windowsIcons/svg/Workgroup.svg": {
+      "ipo_ts": 1780758195387,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195387,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b5eef232"
+    },
+    "src/assets/windowsIcons/svg/XPSP3RES Unknown 1.svg": {
+      "ipo_ts": 1780758195400,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195400,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "286975c6"
+    },
+    "src/assets/windowsIcons/svg/XPSP3RES Unknown 2.svg": {
+      "ipo_ts": 1780758195414,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195414,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "aa951ead"
+    },
+    "src/assets/windowsIcons/svg/ZIP Drive.svg": {
+      "ipo_ts": 1780758195421,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195421,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f3e016c1"
+    },
+    "src/assets/windowsIcons/svg/Additional Settings.svg": {
+      "ipo_ts": 1780758195425,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195425,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5c659781"
+    },
+    "src/assets/windowsIcons/svg/Administrative Tools.svg": {
+      "ipo_ts": 1780758195432,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195432,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "548231f5"
+    },
+    "src/assets/windowsIcons/svg/Appearance.svg": {
+      "ipo_ts": 1780758195439,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195439,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c4fcd82d"
+    },
+    "src/assets/windowsIcons/svg/AutoComplete.svg": {
+      "ipo_ts": 1780758195446,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195446,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ba4984d1"
+    },
+    "src/assets/windowsIcons/svg/BLG.svg": {
+      "ipo_ts": 1780758195451,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195451,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "cc9084bc"
+    },
+    "src/assets/windowsIcons/svg/Back.svg": {
+      "ipo_ts": 1780758195455,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195455,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "dba3b465"
+    },
+    "src/assets/windowsIcons/svg/Bitmap.svg": {
+      "ipo_ts": 1780758195459,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195459,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2711b059"
+    },
+    "src/assets/windowsIcons/svg/CD-R.svg": {
+      "ipo_ts": 1780758195466,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195466,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "78afb195"
+    },
+    "src/assets/windowsIcons/svg/CD-ROM.svg": {
+      "ipo_ts": 1780758195491,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195491,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "58b0900e"
+    },
+    "src/assets/windowsIcons/svg/CSS.svg": {
+      "ipo_ts": 1780758195496,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195496,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "70cea0d6"
+    },
+    "src/assets/windowsIcons/svg/Charmap.svg": {
+      "ipo_ts": 1780758195509,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195509,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "8e91462a"
+    },
+    "src/assets/windowsIcons/svg/Color Profile.svg": {
+      "ipo_ts": 1780758195555,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195555,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ce8d802b"
+    },
+    "src/assets/windowsIcons/svg/Color Scan.svg": {
+      "ipo_ts": 1780758195579,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195579,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c464df9c"
+    },
+    "src/assets/windowsIcons/svg/CompactFlash card.svg": {
+      "ipo_ts": 1780758195583,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195583,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "266678d2"
+    },
+    "src/assets/windowsIcons/svg/Connection Manager.svg": {
+      "ipo_ts": 1780758195587,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195587,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "821da3a6"
+    },
+    "src/assets/windowsIcons/svg/Control Panel.svg": {
+      "ipo_ts": 1780758195592,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195592,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3abc3dc2"
+    },
+    "src/assets/windowsIcons/svg/Copy.svg": {
+      "ipo_ts": 1780758195597,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195597,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e80823d6"
+    },
+    "src/assets/windowsIcons/svg/Critical.svg": {
+      "ipo_ts": 1780758195601,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195601,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "be497897"
+    },
+    "src/assets/windowsIcons/svg/DVD-ROM.svg": {
+      "ipo_ts": 1780758195607,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195607,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d22d88a"
+    },
+    "src/assets/windowsIcons/svg/DVD-RW.svg": {
+      "ipo_ts": 1780758195614,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195614,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "64f2fb7b"
+    },
+    "src/assets/windowsIcons/svg/Default.svg": {
+      "ipo_ts": 1780758195618,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195618,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "40a6081d"
+    },
+    "src/assets/windowsIcons/svg/Dial Up Connection.svg": {
+      "ipo_ts": 1780758195626,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195626,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5a3cd5f9"
+    },
+    "src/assets/windowsIcons/svg/Direct Connection.svg": {
+      "ipo_ts": 1780758195635,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195635,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "6986550c"
+    },
+    "src/assets/windowsIcons/svg/Disk Cleanup.svg": {
+      "ipo_ts": 1780758195651,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195651,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "6dae6171"
+    },
+    "src/assets/windowsIcons/svg/Erase.svg": {
+      "ipo_ts": 1780758195675,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195675,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "87f73ee0"
+    },
+    "src/assets/windowsIcons/svg/Event Viewer.svg": {
+      "ipo_ts": 1780758195693,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195693,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "13ebc32f"
+    },
+    "src/assets/windowsIcons/svg/Explorer Delete.svg": {
+      "ipo_ts": 1780758195706,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195706,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f6808f2f"
+    },
+    "src/assets/windowsIcons/svg/Favorites.svg": {
+      "ipo_ts": 1780758195729,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195729,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2c7fc405"
+    },
+    "src/assets/windowsIcons/svg/Fax Console.svg": {
+      "ipo_ts": 1780758195734,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195734,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a666551"
+    },
+    "src/assets/windowsIcons/svg/Full Screen.svg": {
+      "ipo_ts": 1780758195737,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195737,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "254b7cf4"
+    },
+    "src/assets/windowsIcons/svg/Generic Audio.svg": {
+      "ipo_ts": 1780758195741,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195741,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "37f0ebd5"
+    },
+    "src/assets/windowsIcons/svg/Generic Video.svg": {
+      "ipo_ts": 1780758195746,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195746,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1746308d"
+    },
+    "src/assets/windowsIcons/svg/Help and Support - Task List.svg": {
+      "ipo_ts": 1780758195753,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195753,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "dfedf1e2"
+    },
+    "src/assets/windowsIcons/svg/Hibernate.svg": {
+      "ipo_ts": 1780758195757,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195757,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2b6edaca"
+    },
+    "src/assets/windowsIcons/svg/High Contrast Settings.svg": {
+      "ipo_ts": 1780758195763,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195763,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ca72c5ce"
+    },
+    "src/assets/windowsIcons/svg/IE History.svg": {
+      "ipo_ts": 1780758195781,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195781,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "791f91ff"
+    },
+    "src/assets/windowsIcons/svg/IE Shrink Image.svg": {
+      "ipo_ts": 1780758195787,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195787,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "9c6a2a53"
+    },
+    "src/assets/windowsIcons/svg/Incoming Connections.svg": {
+      "ipo_ts": 1780758195793,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195793,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d416d061"
+    },
+    "src/assets/windowsIcons/svg/Indexing Service.svg": {
+      "ipo_ts": 1780758195803,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195803,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "87e313c5"
+    },
+    "src/assets/windowsIcons/svg/Input Panel.svg": {
+      "ipo_ts": 1780758195817,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195817,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "30097b07"
+    },
+    "src/assets/windowsIcons/svg/Internet Backgammon.svg": {
+      "ipo_ts": 1780758195829,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195829,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3583416d"
+    },
+    "src/assets/windowsIcons/svg/Internet Checkers.svg": {
+      "ipo_ts": 1780758195846,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195846,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2eb456f7"
+    },
+    "src/assets/windowsIcons/svg/Journal Template.svg": {
+      "ipo_ts": 1780758195855,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195855,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e1e53415"
+    },
+    "src/assets/windowsIcons/svg/Local Disk.svg": {
+      "ipo_ts": 1780758195859,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195859,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "6d1aae13"
+    },
+    "src/assets/windowsIcons/svg/MSN.svg": {
+      "ipo_ts": 1780758195865,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195865,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "da960ca8"
+    },
+    "src/assets/windowsIcons/svg/Media Center Extender Manager.svg": {
+      "ipo_ts": 1780758195869,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195869,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ad315340"
+    },
+    "src/assets/windowsIcons/svg/Memory Stick with MagicGate.svg": {
+      "ipo_ts": 1780758195873,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195873,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d35eb495"
+    },
+    "src/assets/windowsIcons/svg/Move To.svg": {
+      "ipo_ts": 1780758195878,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195878,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1d1f232e"
+    },
+    "src/assets/windowsIcons/svg/Move this folder.svg": {
+      "ipo_ts": 1780758195885,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195885,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "59e71e49"
+    },
+    "src/assets/windowsIcons/svg/Mute.svg": {
+      "ipo_ts": 1780758195890,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195890,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5c465d76"
+    },
+    "src/assets/windowsIcons/svg/My Computer.svg": {
+      "ipo_ts": 1780758195901,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195901,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d4943866"
+    },
+    "src/assets/windowsIcons/svg/My Network Places.svg": {
+      "ipo_ts": 1780758195910,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195910,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f8c8c486"
+    },
+    "src/assets/windowsIcons/svg/My Pictures.svg": {
+      "ipo_ts": 1780758195919,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195919,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3febfecf"
+    },
+    "src/assets/windowsIcons/svg/Network Connections.svg": {
+      "ipo_ts": 1780758195939,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195939,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e8715f8e"
+    },
+    "src/assets/windowsIcons/svg/Network Fax.svg": {
+      "ipo_ts": 1780758195955,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195955,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "67164665"
+    },
+    "src/assets/windowsIcons/svg/Network and Internet.svg": {
+      "ipo_ts": 1780758195968,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195968,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c304bc7f"
+    },
+    "src/assets/windowsIcons/svg/OE Forward.svg": {
+      "ipo_ts": 1780758195973,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195973,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "91fc578"
+    },
+    "src/assets/windowsIcons/svg/OE Mark as unread.svg": {
+      "ipo_ts": 1780758195980,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195980,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5df8c9b6"
+    },
+    "src/assets/windowsIcons/svg/OE Recipients.svg": {
+      "ipo_ts": 1780758195984,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195984,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5e466e5b"
+    },
+    "src/assets/windowsIcons/svg/OE Signature.svg": {
+      "ipo_ts": 1780758195988,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195988,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a6f69fec"
+    },
+    "src/assets/windowsIcons/svg/OpenType.svg": {
+      "ipo_ts": 1780758195993,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195993,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e97c098f"
+    },
+    "src/assets/windowsIcons/svg/Padlock.svg": {
+      "ipo_ts": 1780758195997,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758195997,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "25e145e9"
+    },
+    "src/assets/windowsIcons/svg/Paste.svg": {
+      "ipo_ts": 1780758196002,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196002,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "99464879"
+    },
+    "src/assets/windowsIcons/svg/Phone and Modem Options.svg": {
+      "ipo_ts": 1780758196007,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196007,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "33050242"
+    },
+    "src/assets/windowsIcons/svg/Play.svg": {
+      "ipo_ts": 1780758196012,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196012,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4bba01a0"
+    },
+    "src/assets/windowsIcons/svg/Pop up blocked.svg": {
+      "ipo_ts": 1780758196018,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196018,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "70bec48a"
+    },
+    "src/assets/windowsIcons/svg/Printer.svg": {
+      "ipo_ts": 1780758196030,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196030,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "66a43700"
+    },
+    "src/assets/windowsIcons/svg/Printers and Hardware.svg": {
+      "ipo_ts": 1780758196048,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196048,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b5900dd"
+    },
+    "src/assets/windowsIcons/svg/Recycle Bin (full).svg": {
+      "ipo_ts": 1780758196068,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196068,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "7c0f1cdb"
+    },
+    "src/assets/windowsIcons/svg/Redo.svg": {
+      "ipo_ts": 1780758196072,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196072,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c7573183"
+    },
+    "src/assets/windowsIcons/svg/Registry Editor.svg": {
+      "ipo_ts": 1780758196077,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196077,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f4a6e0f8"
+    },
+    "src/assets/windowsIcons/svg/Related Web Content.svg": {
+      "ipo_ts": 1780758196082,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196082,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "8fd1a999"
+    },
+    "src/assets/windowsIcons/svg/Remote Access Service.svg": {
+      "ipo_ts": 1780758196088,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196088,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "586b2093"
+    },
+    "src/assets/windowsIcons/svg/Remote Assistance.svg": {
+      "ipo_ts": 1780758196093,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196093,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b0bc4013"
+    },
+    "src/assets/windowsIcons/svg/Remote Desktop Server.svg": {
+      "ipo_ts": 1780758196098,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196098,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3f0f4cb7"
+    },
+    "src/assets/windowsIcons/svg/SD Card.svg": {
+      "ipo_ts": 1780758196102,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196102,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "35d053da"
+    },
+    "src/assets/windowsIcons/svg/Save.svg": {
+      "ipo_ts": 1780758196109,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196109,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "64852caf"
+    },
+    "src/assets/windowsIcons/svg/Scrap.svg": {
+      "ipo_ts": 1780758196118,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196118,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b2f77bb6"
+    },
+    "src/assets/windowsIcons/svg/Script Component.svg": {
+      "ipo_ts": 1780758196153,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196153,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1ddb74e1"
+    },
+    "src/assets/windowsIcons/svg/Search Results.svg": {
+      "ipo_ts": 1780758196180,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196180,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "8dccaf29"
+    },
+    "src/assets/windowsIcons/svg/Security Alert.svg": {
+      "ipo_ts": 1780758196230,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196230,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a3e96a7c"
+    },
+    "src/assets/windowsIcons/svg/Settings Alert.svg": {
+      "ipo_ts": 1780758196317,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196317,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "9571e93c"
+    },
+    "src/assets/windowsIcons/svg/Setup back.svg": {
+      "ipo_ts": 1780758196342,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196342,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1571632d"
+    },
+    "src/assets/windowsIcons/svg/Shared Printer.svg": {
+      "ipo_ts": 1780758196393,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196393,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "9baf2418"
+    },
+    "src/assets/windowsIcons/svg/Speech.svg": {
+      "ipo_ts": 1780758196419,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196419,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b8e78616"
+    },
+    "src/assets/windowsIcons/svg/Spider Solitaire.svg": {
+      "ipo_ts": 1780758196432,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196432,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "49cd3e5e"
+    },
+    "src/assets/windowsIcons/svg/TrueType.svg": {
+      "ipo_ts": 1780758196441,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196441,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ebbf8985"
+    },
+    "src/assets/windowsIcons/svg/WME Convert Film.svg": {
+      "ipo_ts": 1780758196490,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196490,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e34f606c"
+    },
+    "src/assets/windowsIcons/svg/WMP Auto Playlist.svg": {
+      "ipo_ts": 1780758196521,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196521,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "65d9135f"
+    },
+    "src/assets/windowsIcons/svg/WMP Library Error.svg": {
+      "ipo_ts": 1780758196565,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196565,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3cb78e7d"
+    },
+    "src/assets/windowsIcons/svg/WMS Cache.svg": {
+      "ipo_ts": 1780758196574,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196574,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "6852d261"
+    },
+    "src/assets/windowsIcons/svg/WMS Deny Connections.svg": {
+      "ipo_ts": 1780758196579,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196579,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3fe93fc2"
+    },
+    "src/assets/windowsIcons/svg/Windows Movie Maker.svg": {
+      "ipo_ts": 1780758196590,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196590,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5e8e424a"
+    },
+    "src/assets/windowsIcons/svg/Write Files to Disc.svg": {
+      "ipo_ts": 1780758196607,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780758196607,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "de8eed4"
+    },
+    "node_modules/.cache/babel-loader/9c1f6278c11322b1efb7688c3fa57af03e63b6e3a5c64d769904553788791a10.json": {
+      "ipo_ts": 1780758399088,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780758399088,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "38525b26"
+    },
+    "node_modules/.cache/babel-loader/278a24816c3c8b278f7534529c521b9b593e509e057163824f0a8ee380455604.json": {
+      "ipo_ts": 1780758424775,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780758424775,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "8d4007b1"
+    },
+    "node_modules/.cache/babel-loader/98b7ed2c48f51056bda0d79f27af8c8f9d9bdcde1cbb983cba8387da5b9e9d57.json": {
+      "ipo_ts": 1780758754234,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780758754234,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d3cd5b5a"
+    },
+    "node_modules/.cache/babel-loader/67d596108ac1886ede231bf5620aa3716c366ea0a1630c60df432356c6924256.json": {
+      "ipo_ts": 1780758793841,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780758793841,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "acf48a97"
+    },
+    "node_modules/.cache/default-development/19.pack": {
+      "ipo_ts": 1780758834317,
+      "edit_count": 1,
+      "last_lines": 1230578,
+      "last_ts": 1780758834317,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "af3c33ca"
     }
   }
 }
