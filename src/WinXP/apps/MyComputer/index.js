@@ -7,8 +7,8 @@ import dropDownData from './dropDownData';
 import go from 'assets/windowsIcons/svg/Go.svg';
 import search from 'assets/windowsIcons/svg/Search.svg';
 import computer from 'assets/windowsIcons/svg/My Computer.svg';
-import back from 'assets/windowsIcons/svg/Back.svg';
-import forward from 'assets/windowsIcons/svg/Forward.svg';
+import back from 'assets/windowsIcons/back.png';
+import forward from 'assets/windowsIcons/forward.png';
 import up from 'assets/windowsIcons/svg/Up.svg';
 import viewInfo from 'assets/windowsIcons/svg/Help and Support.svg';
 import remove from 'assets/windowsIcons/svg/Delete.svg';
@@ -20,7 +20,7 @@ import menu from 'assets/windowsIcons/svg/Explorer.svg';
 import folder from 'assets/windowsIcons/svg/Folder Closed.svg';
 import folderOpen from 'assets/windowsIcons/svg/Folder Opened.svg';
 import disk from 'assets/windowsIcons/svg/Local Disk.svg';
-import cd from 'assets/windowsIcons/svg/CD-ROM.svg';
+import cd from 'assets/windowsIcons/svg/DVD alt.svg';
 import dropdown from 'assets/windowsIcons/dropdown.png';
 import pullup from 'assets/windowsIcons/pullup.png';
 import windows from 'assets/windowsIcons/windows.png';
@@ -133,6 +133,9 @@ function MyComputer({ onClose }) {
     switch (item) {
       case '关闭':
         onClose();
+        break;
+      case '关于 Windows':
+        window.postMessage({ type: 'open-app', app: 'AboutWindows' }, '*');
         break;
       default:
     }

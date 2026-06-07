@@ -16,6 +16,8 @@ import notepadLarge from 'assets/windowsIcons/svg/Notepad.svg';
 import winamp from 'assets/windowsIcons/winamp.png';
 import paintLarge from 'assets/windowsIcons/svg/Paint.svg';
 import paint from 'assets/windowsIcons/svg/Paint.svg';
+import AboutWindows from 'components/AboutWindows';
+import windowsLogo from 'assets/windowsIcons/WinXPlogo.svg';
 
 const gen = () => {
   let id = -1;
@@ -292,6 +294,35 @@ export const appSettings = {
     maximized: window.innerWidth < 800,
     multiInstance: true,
   },
+  AboutWindows: {
+    header: {
+      icon: windowsLogo,
+      title: '关于 Windows',
+      buttons: ['close'],
+      noFooterWindow: true,
+    },
+    component: AboutWindows,
+    defaultSize: {
+      width: 413,
+      height: 0,
+    },
+    defaultOffset: {
+      x: window.innerWidth / 2 - 206,
+      y: window.innerHeight / 2 - 150,
+    },
+    resizable: false,
+    minimized: false,
+    maximized: false,
+    multiInstance: false,
+  },
 };
 
-export { InternetExplorer, Minesweeper, ErrorBox, MyComputer, Notepad, Winamp };
+export {
+  InternetExplorer,
+  Minesweeper,
+  ErrorBox,
+  MyComputer,
+  Notepad,
+  Winamp,
+  AboutWindows,
+};

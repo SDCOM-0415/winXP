@@ -253,6 +253,14 @@ function WinXP() {
             },
           },
         });
+      } else if (e.data && e.data.type === 'open-app') {
+        const appSetting = appSettings[e.data.app];
+        if (appSetting) {
+          dispatch({
+            type: ADD_APP,
+            payload: appSetting,
+          });
+        }
       }
     }
     window.addEventListener('message', handleMessage);
