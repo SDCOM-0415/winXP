@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  generate:
+  sync:
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
