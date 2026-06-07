@@ -7,19 +7,13 @@ function AboutWindows({ onClose }) {
     <Content>
       <Banner>
         <BannerLeft>
-          <BannerCopy>Copyright © 1985-2001</BannerCopy>
-          <BannerCopy>Microsoft Corporation</BannerCopy>
+          <BannerCopy>Copyright</BannerCopy>
+          <BannerCopy>© 1985-2001</BannerCopy>
+          <BannerCopy>Microsoft</BannerCopy>
+          <BannerCopy>Corporation</BannerCopy>
         </BannerLeft>
         <BannerCenter>
           <BannerIcon src={windowsLogo} alt="Windows" />
-          <BannerText>
-            <BannerMicrosoft>Microsoft</BannerMicrosoft>
-            <BannerWindowsLine>
-              <BannerWindows>Windows</BannerWindows>
-              <BannerXP>xp</BannerXP>
-            </BannerWindowsLine>
-            <BannerProfessional>Professional</BannerProfessional>
-          </BannerText>
         </BannerCenter>
         <BannerRight>Microsoft</BannerRight>
       </Banner>
@@ -37,8 +31,8 @@ function AboutWindows({ onClose }) {
           </BodyText>
         </LicenseBlock>
         <LicenseeBox>
-          <BodyText>番茄花园</BodyText>
-          <BodyText>www.tomatoll.com</BodyText>
+          <BodyText>SDCOM</BodyText>
+          <BodyText>www.sdcom.top</BodyText>
         </LicenseeBox>
         <Divider />
         <SystemInfo>
@@ -61,24 +55,28 @@ const Content = styled.div`
   flex-direction: column;
   user-select: none;
   font-family: 'SimSun', '宋体', sans-serif;
+  border-left: 1px solid #ece9d8;
+  border-right: 1px solid #404040;
+  border-bottom: 1px solid #404040;
 `;
 
 const Banner = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
-  min-height: 138px;
+  min-height: 85px;
   background: linear-gradient(90deg, #6282d6 0%, #7897e6 56%, #9db6f1 100%);
-  padding: 12px 14px 10px 12px;
+  padding: 8px 14px 6px 12px;
 `;
 
 const BannerLeft = styled.div`
-  width: 112px;
+  width: 80px;
   color: #fff;
-  font-size: 8px;
+  font-size: 10px;
   line-height: 1.25;
   align-self: flex-end;
-  padding-bottom: 10px;
+  padding-bottom: 4px;
+  font-family: Tahoma, sans-serif;
 `;
 
 const BannerCopy = styled.div``;
@@ -86,54 +84,15 @@ const BannerCopy = styled.div``;
 const BannerCenter = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   flex: 1;
   padding: 0 4px 0 10px;
 `;
 
 const BannerIcon = styled.img`
-  width: 140px;
+  width: 210px;
   height: auto;
   object-fit: contain;
-  margin-right: 10px;
-`;
-
-const BannerText = styled.div`
-  display: flex;
-  flex-direction: column;
-  color: #fff;
-  line-height: 1;
-`;
-
-const BannerMicrosoft = styled.span`
-  font-size: 10px;
-  margin-bottom: 2px;
-  opacity: 0.95;
-`;
-
-const BannerWindowsLine = styled.div`
-  display: flex;
-  align-items: flex-start;
-`;
-
-const BannerWindows = styled.span`
-  font-size: 48px;
-  font-weight: 300;
-  letter-spacing: -1.2px;
-  line-height: 0.88;
-`;
-
-const BannerXP = styled.span`
-  font-size: 26px;
-  color: #ff6b1a;
-  margin-left: 4px;
-  margin-top: 4px;
-  font-weight: 500;
-`;
-
-const BannerProfessional = styled.span`
-  font-size: 30px;
-  line-height: 1;
-  margin-top: 2px;
 `;
 
 const BannerRight = styled.div`
@@ -142,11 +101,12 @@ const BannerRight = styled.div`
   font-style: italic;
   font-weight: bold;
   align-self: flex-end;
-  padding-bottom: 8px;
+  padding-bottom: 4px;
+  font-family: Tahoma, sans-serif;
 `;
 
 const OrangeLine = styled.div`
-  height: 6px;
+  height: 4px;
   background: linear-gradient(
     90deg,
     #e6dfcf 0%,
@@ -157,28 +117,27 @@ const OrangeLine = styled.div`
 `;
 
 const Body = styled.div`
-  padding: 28px 18px 16px 54px;
+  padding: 20px 18px 16px 54px;
   background: #ece9d8;
   flex: 1;
 `;
 
 const ProductName = styled.div`
-  font-size: 15px;
+  font-size: 12px;
   color: #000;
-  margin-bottom: 22px;
-  font-weight: bold;
+  margin-bottom: 16px;
   letter-spacing: 1px;
 `;
 
 const BodyText = styled.div`
   font-size: 12px;
   color: #000;
-  line-height: 1.45;
-  margin-bottom: 24px;
+  line-height: 1.6;
+  margin-bottom: 16px;
 `;
 
 const LicenseBlock = styled.div`
-  margin-top: 10px;
+  margin-top: 24px;
 `;
 
 const LicenseLink = styled.span`
@@ -187,15 +146,15 @@ const LicenseLink = styled.span`
 `;
 
 const LicenseeBox = styled.div`
-  margin-top: 6px;
-  margin-left: 42px;
+  margin-top: 16px;
+  margin-left: 16px;
 `;
 
 const Divider = styled.hr`
   border: none;
   border-top: 1px solid #b9b5a7;
   border-bottom: 1px solid #fff;
-  margin: 26px 0 16px;
+  margin: 20px 0 16px;
 `;
 
 const SystemInfo = styled.div`

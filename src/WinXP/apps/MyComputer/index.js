@@ -369,7 +369,7 @@ function MyComputer({ onClose }) {
                 )}
                 {selectedItem === 'about-github' && (
                   <div className="com__content__left__card__detail">
-                    <strong>Github</strong>
+                    <strong>CNB</strong>
                     <br />
                     快捷方式
                     <br />

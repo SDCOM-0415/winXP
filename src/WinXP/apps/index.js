@@ -300,6 +300,7 @@ export const appSettings = {
       title: '关于 Windows',
       buttons: ['close'],
       noFooterWindow: true,
+      noIcon: true,
     },
     component: AboutWindows,
     defaultSize: {

@@ -111,13 +111,15 @@ const Window = memo(function ({
         ref={dragRef}
         onDoubleClick={onDoubleClickHeader}
       >
-        <img
-          onDoubleClick={_onMouseUpClose}
-          src={header.icon}
-          alt={header.title}
-          className="app__header__icon"
-          draggable={false}
-        />
+        {!header.noIcon && (
+          <img
+            onDoubleClick={_onMouseUpClose}
+            src={header.icon}
+            alt={header.title}
+            className="app__header__icon"
+            draggable={false}
+          />
+        )}
         <div className="app__header__title">{header.title}</div>
         <HeaderButtons
           buttons={header.buttons}
