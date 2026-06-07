@@ -23,7 +23,6 @@ import disk from 'assets/windowsIcons/svg/Local Disk.svg';
 import cd from 'assets/windowsIcons/111(48x48).png';
 import dropdown from 'assets/windowsIcons/dropdown.png';
 import pullup from 'assets/windowsIcons/pullup.png';
-import logo from 'assets/github-logo.png';
 import windows from 'assets/windowsIcons/windows.png';
 
 const EMPTY_AREA_MENU = [
@@ -511,7 +510,7 @@ function MyComputer({ onClose }) {
                   }}
                   onDoubleClick={() =>
                     window.open(
-                      'https://github.com/SDCOM-0415',
+                      'https://cnb.cool/SDCOM/winXP',
                       '_blank',
                       'noreferrer',
                     )
@@ -522,12 +521,10 @@ function MyComputer({ onClose }) {
                 >
                   <img
                     className="com__content__right__card__img"
-                    src={logo}
+                    src="https://blog.sdcom.top/upload/cnb-favicon.svg"
                     alt=""
                   />
-                  <span className="com__content__right__card__text">
-                    Github
-                  </span>
+                  <span className="com__content__right__card__text">CNB</span>
                 </div>
                 <div
                   className={`com__content__right__card__item${
@@ -546,7 +543,7 @@ function MyComputer({ onClose }) {
                 >
                   <img
                     className="com__content__right__card__img"
-                    src="https://a.ppy.sh/2926513_1448497605.png"
+                    src="https://blog.sdcom.top/upload/tubiao.jpeg"
                     alt=""
                   />
                   <span className="com__content__right__card__text">
