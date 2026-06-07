@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import risk from 'assets/windowsIcons/229(16x16).png';
+import risk from 'assets/windowsIcons/svg/Security Alert.svg';
 
 function Balloon({ startAfter = 3000, duration = 15000 }) {
   const [show, setShow] = useState(true);

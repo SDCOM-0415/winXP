@@ -5,17 +5,17 @@ import MyComputer from './MyComputer';
 import Notepad from './Notepad';
 import Winamp from './Winamp';
 import Paint from './Paint';
-import iePaper from 'assets/windowsIcons/ie-paper.png';
-import ie from 'assets/windowsIcons/ie.png';
+import iePaper from 'assets/windowsIcons/svg/Internet Explorer 6.svg';
+import ie from 'assets/windowsIcons/svg/Internet Explorer 6.svg';
 import mine from 'assets/minesweeper/mine-icon.png';
-import error from 'assets/windowsIcons/897(16x16).png';
-import computer from 'assets/windowsIcons/676(16x16).png';
-import computerLarge from 'assets/windowsIcons/676(32x32).png';
-import notepad from 'assets/windowsIcons/327(16x16).png';
-import notepadLarge from 'assets/windowsIcons/327(32x32).png';
+import error from 'assets/windowsIcons/svg/Security Error.svg';
+import computer from 'assets/windowsIcons/svg/My Computer.svg';
+import computerLarge from 'assets/windowsIcons/svg/My Computer.svg';
+import notepad from 'assets/windowsIcons/svg/Notepad.svg';
+import notepadLarge from 'assets/windowsIcons/svg/Notepad.svg';
 import winamp from 'assets/windowsIcons/winamp.png';
-import paintLarge from 'assets/windowsIcons/680(32x32).png';
-import paint from 'assets/windowsIcons/680(16x16).png';
+import paintLarge from 'assets/windowsIcons/svg/Paint.svg';
+import paint from 'assets/windowsIcons/svg/Paint.svg';
 
 const gen = () => {
   let id = -1;

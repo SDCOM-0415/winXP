@@ -1,28 +1,44 @@
 # WinXP
 
-🏁 Web based Windows XP desktop recreation.
+基于 Web 的 Windows XP 桌面复刻项目，使用 React 构建。
 
-Features:
+## 功能特性
 
-- Drag and resize, minimize, maximize windows
-- Open applications from desktop icons or start menu
-- Minesweeper, Internet Explorer, My Computer, Notepad, Winamp, Paint
-- Power off menu
+- 窗口拖拽、缩放、最小化、最大化
+- 通过桌面图标或开始菜单打开应用程序
+- 内置应用：扫雷、Internet Explorer、我的电脑、记事本、Winamp、画图
+- 开始菜单与关机界面
+- 右键菜单支持
+- 经典 Windows XP 界面风格还原
 
-## [Try it!](https://winxp.now.sh)
+## 访问地址
 
-Windows XP 👉 https://winxp.now.sh
+👉 https://winxp.sdcom.top
 
-[![](demo/demo.gif)](https://winxp.now.sh)
+[![演示](demo/demo.gif)](https://winxp.sdcom.top)
 
-## Contributing
+## 本地开发
 
-Generally open an issue (or comment on an issue if there's one already) before starting work on a PR.
+```bash
+# 安装依赖
+npm install
 
-## License
+# 启动开发服务器
+npm start
 
-The Windows XP name, artwork, trademark are surely property of Microsoft. This project is provided for educational purposes only. It is not affiliated with and has not been approved by Microsoft.
+# 构建生产版本
+npm run build
+```
 
-## Thanks
-- [Webamp](https://github.com/captbaritone/webamp), Winamp 2 reimplementation by: [captbaritone](https://github.com/captbaritone)
-- [JS Paint](https://github.com/1j01/jspaint), Paint reimplementation by: [1j01](https://github.com/1j01)
+## 参与贡献
+
+在提交 Pull Request 之前，请先创建 Issue 或在已有 Issue 中讨论。
+
+## 许可声明
+
+Windows XP 的名称、界面设计和商标均为 Microsoft 所有。本项目仅供学习交流使用，与 Microsoft 无关联，亦未经 Microsoft 认可或授权。
+
+## 致谢
+
+- [Webamp](https://github.com/captbaritone/webamp) — Winamp 2 的 Web 复刻，作者：[captbaritone](https://github.com/captbaritone)
+- [JS Paint](https://github.com/1j01/jspaint) — 画图的 Web 复刻，作者：[1j01](https://github.com/1j01)

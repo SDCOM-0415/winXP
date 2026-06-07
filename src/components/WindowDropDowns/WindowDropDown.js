@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import iePaper from 'assets/windowsIcons/ie-paper.png';
+import iePaper from 'assets/windowsIcons/svg/Internet Explorer 6.svg';
 import ieBook from 'assets/windowsIcons/ie-book.png';
 import check from 'assets/windowsIcons/checked.png';
-import folder from 'assets/windowsIcons/folder.png';
+import folder from 'assets/windowsIcons/svg/Folder Closed.svg';
 
 export function WindowDropDown({ items, position = {}, onClick }) {
   const [option, setOption] = useState('');
