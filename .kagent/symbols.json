@@ -74,12 +74,12 @@
     },
     "node_modules/.cache/default-development/5.pack": {
       "ipo_ts": 1780660489132,
-      "edit_count": 8,
-      "last_lines": 24862,
-      "last_ts": 1780753790085,
+      "edit_count": 9,
+      "last_lines": 22442,
+      "last_ts": 1780806923641,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "b67564ba"
+      "last_content_hash": "889cc5d5"
     },
     "node_modules/.cache/default-development/6.pack": {
       "ipo_ts": 1780660489279,
@@ -101,12 +101,12 @@
     },
     "node_modules/.cache/default-development/index.pack.old": {
       "ipo_ts": 1780660489378,
-      "edit_count": 42,
-      "last_lines": 10392,
-      "last_ts": 1780804217789,
+      "edit_count": 52,
+      "last_lines": 10391,
+      "last_ts": 1780806923713,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "db545a7c"
+      "last_content_hash": "aac42846"
     },
     "node_modules/.cache/babel-loader/00187c73c443e0bc641a8966a2afd9f157200548bf8926e7d11fc17d6e8eaa15.json": {
       "ipo_ts": 1780660517161,
@@ -272,12 +272,12 @@
     },
     "node_modules/.cache/default-development/4.pack": {
       "ipo_ts": 1780660564560,
-      "edit_count": 15,
-      "last_lines": 10387,
-      "last_ts": 1780753861794,
+      "edit_count": 18,
+      "last_lines": 6,
+      "last_ts": 1780806923496,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "847a62aa"
+      "last_content_hash": "cb576d4e"
     },
     "node_modules/.cache/default-development/7.pack": {
       "ipo_ts": 1780660571309,
@@ -290,12 +290,12 @@
     },
     "node_modules/.cache/default-development/index.pack": {
       "ipo_ts": 1780660571516,
-      "edit_count": 41,
-      "last_lines": 10395,
-      "last_ts": 1780804217609,
+      "edit_count": 51,
+      "last_lines": 10391,
+      "last_ts": 1780806923801,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "ce1be702"
+      "last_content_hash": "331987ca"
     },
     "node_modules/.cache/babel-loader/d37834a7ff054e8e632db21a46b3674d8d1702d4791a0182f1d633b93b7dd347.json": {
       "ipo_ts": 1780660571524,
@@ -659,12 +659,12 @@
     },
     "node_modules/.cache/default-development/3.pack": {
       "ipo_ts": 1780660811091,
-      "edit_count": 13,
-      "last_lines": 16081,
-      "last_ts": 1780753778855,
+      "edit_count": 14,
+      "last_lines": 13386,
+      "last_ts": 1780806923462,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "e8d3f1a9"
+      "last_content_hash": "c1b507be"
     },
     "node_modules/.cache/default-development/8.pack": {
       "ipo_ts": 1780660811350,
@@ -1649,12 +1649,12 @@
     },
     "src/WinXP/apps/InternetExplorer/index.js": {
       "ipo_ts": 1780661756672,
-      "edit_count": 35,
+      "edit_count": 37,
       "last_lines": 597,
-      "last_ts": 1780752667021,
+      "last_ts": 1780806784814,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "1aab0f29"
+      "last_content_hash": "1d707201"
     },
     "node_modules/.cache/babel-loader/4d667cccb7e0e06d5c8d195aa16ff20189f3f9dad0c7d1ac0bc93773742dfd6d.json": {
       "ipo_ts": 1780661756674,
@@ -1676,12 +1676,12 @@
     },
     "src/WinXP/apps/MyComputer/index.js": {
       "ipo_ts": 1780661768410,
-      "edit_count": 28,
-      "last_lines": 914,
-      "last_ts": 1780804142445,
+      "edit_count": 51,
+      "last_lines": 918,
+      "last_ts": 1780806766945,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "9b8aea67"
+      "last_content_hash": "99625d9d"
     },
     "node_modules/.cache/babel-loader/dadfca4936d3bdda8a29763215efc6f94d9e1c6479b69bd51cc07eb801c8dcc4.json": {
       "ipo_ts": 1780661770757,
@@ -1748,21 +1748,21 @@
     },
     "node_modules/.cache/default-development/11.pack": {
       "ipo_ts": 1780661850529,
-      "edit_count": 7,
-      "last_lines": 173603,
-      "last_ts": 1780753771297,
+      "edit_count": 9,
+      "last_lines": 172254,
+      "last_ts": 1780805926232,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "5dc17d37"
+      "last_content_hash": "5cba31c9"
     },
     "src/components/ContextMenu/index.js": {
       "ipo_ts": 1780661978310,
-      "edit_count": 1,
+      "edit_count": 2,
       "last_lines": 162,
-      "last_ts": 1780661978310,
+      "last_ts": 1780806793770,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "81cba0bf"
+      "last_content_hash": "63b56418"
     },
     "node_modules/.cache/babel-loader/362037aa8aeab95ac655aa556074a4d5347475693ca168e9a467ce3bafcdd320.json": {
       "ipo_ts": 1780662003780,
@@ -1865,21 +1865,21 @@
     },
     "node_modules/.cache/default-development/12.pack": {
       "ipo_ts": 1780662121310,
-      "edit_count": 8,
-      "last_lines": 3535,
-      "last_ts": 1780753880837,
+      "edit_count": 11,
+      "last_lines": 13370,
+      "last_ts": 1780805373393,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "23dc5dd7"
+      "last_content_hash": "83abfd5"
     },
     "node_modules/.cache/default-development/13.pack": {
       "ipo_ts": 1780662121357,
-      "edit_count": 4,
-      "last_lines": 2364,
-      "last_ts": 1780754027800,
+      "edit_count": 10,
+      "last_lines": 14263,
+      "last_ts": 1780806754177,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "7dfbfce0"
+      "last_content_hash": "2cda79b9"
     },
     "node_modules/.cache/babel-loader/9f272ac9e0816a8e91c10ba366b520aeb4abb002162a7ae9c1c1c90ab803edf4.json": {
       "ipo_ts": 1780662806068,
@@ -1910,12 +1910,12 @@
     },
     "node_modules/.cache/default-development/14.pack": {
       "ipo_ts": 1780662879868,
-      "edit_count": 8,
-      "last_lines": 2379,
-      "last_ts": 1780757142223,
+      "edit_count": 12,
+      "last_lines": 1252,
+      "last_ts": 1780806586388,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "e8c4f856"
+      "last_content_hash": "a1c10d50"
     },
     "node_modules/.cache/babel-loader/e516f6ef4201eaae30f685be4ca0d85d1e3626575dfd89fe8c68638fb87a9194.json": {
       "ipo_ts": 1780662882520,
@@ -1946,12 +1946,12 @@
     },
     "node_modules/.cache/default-development/15.pack": {
       "ipo_ts": 1780662970004,
-      "edit_count": 5,
-      "last_lines": 13599,
-      "last_ts": 1780753771831,
+      "edit_count": 6,
+      "last_lines": 12822,
+      "last_ts": 1780806918248,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "b10e64c9"
+      "last_content_hash": "cfdc35f1"
     },
     "node_modules/.cache/babel-loader/ea332570400b8c4ace6c164b47341ad82d84665d6aab92bbc2158811794c155f.json": {
       "ipo_ts": 1780663182949,
@@ -2009,12 +2009,12 @@
     },
     "node_modules/.cache/default-development/16.pack": {
       "ipo_ts": 1780663330191,
-      "edit_count": 8,
-      "last_lines": 1196,
-      "last_ts": 1780757512413,
+      "edit_count": 12,
+      "last_lines": 2383,
+      "last_ts": 1780806919442,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "b5e12bb1"
+      "last_content_hash": "6fb178ce"
     },
     "node_modules/.cache/babel-loader/7f9a38698a61d05c3dfb6788f5a98bc72bcee92b4ef4f0d5d1eaf78d44c5f771.json": {
       "ipo_ts": 1780663494884,
@@ -2414,12 +2414,12 @@
     },
     "node_modules/.cache/default-development/17.pack": {
       "ipo_ts": 1780737232752,
-      "edit_count": 5,
-      "last_lines": 1196,
-      "last_ts": 1780758459691,
+      "edit_count": 8,
+      "last_lines": 1237747,
+      "last_ts": 1780806923369,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "870cebbf"
+      "last_content_hash": "27029560"
     },
     "node_modules/.cache/default-development/18.pack": {
       "ipo_ts": 1780737232884,
@@ -2558,12 +2558,12 @@
     },
     "node_modules/.cache/.eslintcache": {
       "ipo_ts": 1780753310703,
-      "edit_count": 8,
+      "edit_count": 9,
       "last_lines": 1,
-      "last_ts": 1780804190497,
+      "last_ts": 1780804601373,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "a8e163bd"
+      "last_content_hash": "34801c21"
     },
     "node_modules/.cache/babel-loader/3f443924de0e09a58399c25a52a6bdcb4bed131337b8c399a548a736389dc2f1.json": {
       "ipo_ts": 1780753678498,
@@ -7274,12 +7274,12 @@
     },
     "node_modules/.cache/default-development/19.pack": {
       "ipo_ts": 1780758834317,
-      "edit_count": 2,
-      "last_lines": 1196,
-      "last_ts": 1780804038766,
+      "edit_count": 4,
+      "last_lines": 139,
+      "last_ts": 1780806761873,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "69a4f901"
+      "last_content_hash": "71b70f1c"
     },
     "node_modules/.cache/babel-loader/3c2b4e25c8fefe25917a8e9b9a476364ae4ecf69f2d30930d50b3826c504df38.json": {
       "ipo_ts": 1780803977449,
@@ -7301,12 +7301,12 @@
     },
     "node_modules/.cache/default-development/20.pack": {
       "ipo_ts": 1780804041801,
-      "edit_count": 2,
-      "last_lines": 1196,
-      "last_ts": 1780804211128,
+      "edit_count": 3,
+      "last_lines": 8809,
+      "last_ts": 1780806923406,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "b031920f"
+      "last_content_hash": "63210f16"
     },
     "node_modules/.cache/babel-loader/8bf03269dbbe0b35ff14ed444b3eecdebb8bcc2a7b2b72cc0cb309fe9cf278de.json": {
       "ipo_ts": 1780804153239,
@@ -7328,12 +7328,633 @@
     },
     "node_modules/.cache/default-development/21.pack": {
       "ipo_ts": 1780804217276,
-      "edit_count": 1,
-      "last_lines": 1230578,
-      "last_ts": 1780804217276,
+      "edit_count": 2,
+      "last_lines": 1196,
+      "last_ts": 1780804631417,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "20832507"
+      "last_content_hash": "2002858e"
+    },
+    "node_modules/.cache/babel-loader/9f7c31d7cf4a7e4a325892262b9bb16330a8ecd31d31c77f9981d3f0258a3cd9.json": {
+      "ipo_ts": 1780804568610,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780804568610,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "14a144f0"
+    },
+    "node_modules/.cache/babel-loader/fac2cea8750d2558f2d7d2bc396ace27b92bed08fb8dee530a2fc4470ea9d62f.json": {
+      "ipo_ts": 1780804587744,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780804587744,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "7b2a6d2d"
+    },
+    "node_modules/.cache/babel-loader/52694c54a95f905db3ad9859d3c62a37daa437600deb26174ad0f32c80926696.json": {
+      "ipo_ts": 1780804704596,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780804704596,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e9ef489b"
+    },
+    "node_modules/.cache/babel-loader/7dd7d1123a0dc25fece70965c4b0c0e5fbadaf185688d42afc2705c135795106.json": {
+      "ipo_ts": 1780804889811,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780804889811,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a4121347"
+    },
+    "node_modules/.cache/babel-loader/e334b9d14277acdfc4fa384e12b7a0c8a58f089d71ca924587793196ce3e960b.json": {
+      "ipo_ts": 1780804899343,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780804899343,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4836a8e6"
+    },
+    "node_modules/.cache/babel-loader/b78e15bdb14295f90ded9d5cd8e8e3c713655e0d4c409b6c8c33480ce5e81fd2.json": {
+      "ipo_ts": 1780804909090,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780804909090,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "74693078"
+    },
+    "node_modules/.cache/babel-loader/5035997762d4e11f6309ae03fef6d0f052ab9cab368e0a27166f9e7d56478e70.json": {
+      "ipo_ts": 1780804918479,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780804918479,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "806c564b"
+    },
+    "node_modules/.cache/babel-loader/b3b00e2a825ff4791975d2857eafe0e3c1fcd1c0bc97252713e98e0bf75816d6.json": {
+      "ipo_ts": 1780804933976,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780804933976,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "88776764"
+    },
+    "node_modules/.cache/babel-loader/1902365e9cc655cf8c79efa9b9ec5280693fa1d9810397d3c964a55020cfcaba.json": {
+      "ipo_ts": 1780804951263,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780804951263,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "6377b180"
+    },
+    "node_modules/.cache/babel-loader/7e77445b515161c621de87010482c4a9b6e290d8fca82589d96748f004d36ace.json": {
+      "ipo_ts": 1780804963863,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780804963863,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5f93a2aa"
+    },
+    "node_modules/.cache/babel-loader/2855e178962677a0ffdf81732c05815a36dc5c099f3b6e04064f523136166ead.json": {
+      "ipo_ts": 1780805094718,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780805094718,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1d0f0d5b"
+    },
+    "node_modules/.cache/babel-loader/7988aa87af9ff833bf45de8da497f4f5ea33415e5abd24506695514724f3552a.json": {
+      "ipo_ts": 1780805102752,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780805102752,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d692ed56"
+    },
+    "node_modules/.cache/babel-loader/e3b118a09a45fe707c1d3b3fe46fdfcc7f76ab79b67679b2107f34ab879f9993.json": {
+      "ipo_ts": 1780805115539,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780805115539,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "cb3e1980"
+    },
+    "node_modules/.cache/babel-loader/e8efebe2a20fd8904d100d2d63f992473b0a3ff57458e3076f22626a8429ef92.json": {
+      "ipo_ts": 1780805124770,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780805124770,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4c8f6ddf"
+    },
+    "node_modules/.cache/babel-loader/870cdffeb95c36ea2559131ce7eb74efef8e060c1b9ab7403912d92cf5275e24.json": {
+      "ipo_ts": 1780805139701,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780805139701,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "942b9d8b"
+    },
+    "node_modules/.cache/babel-loader/2af2fd6f87f0b17dc6227803c595227eb22c88ef7c21e7e205f6cbde114844e2.json": {
+      "ipo_ts": 1780805278789,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780805278789,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "40255a5a"
+    },
+    "node_modules/.cache/babel-loader/46a00dc82649c1313ea51269e5b4c16f82665174eeb1dbb9e07120b25a83e490.json": {
+      "ipo_ts": 1780805311204,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780805311204,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3765e323"
+    },
+    "node_modules/.cache/babel-loader/6cfcf8b1ee022d4e16a88b94ca9982f70dcdae90aee57f91ea9c30d96a376420.json": {
+      "ipo_ts": 1780805432711,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780805432711,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d6654edc"
+    },
+    "node_modules/.cache/babel-loader/0406ec019a8def6e2b16b93e6f63f9aae92fc8967aac54ffb7078d7895f09b70.json": {
+      "ipo_ts": 1780805440052,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780805440052,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f96a9fea"
+    },
+    "node_modules/.cache/babel-loader/c7d7faa4c4376b72268d49ee6161256fc3e08205ce3fa445b6aa8b9cc887cf58.json": {
+      "ipo_ts": 1780805472175,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780805472175,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4e20699c"
+    },
+    "node_modules/.cache/babel-loader/4715728ddb4a7fa064979a004ef5a31f7a47d8e071a47b4978f529ccdd816411.json": {
+      "ipo_ts": 1780805483376,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780805483376,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1099c9b1"
+    },
+    "node_modules/.cache/babel-loader/ae9905329755d77c65636f68141a76da50f1bf1b31826134d0fdfabed76d043d.json": {
+      "ipo_ts": 1780805850566,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780805850566,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "438cdba1"
+    },
+    "src/assets/clear.css": {
+      "ipo_ts": 1780805864538,
+      "edit_count": 2,
+      "last_lines": 14,
+      "last_ts": 1780806523387,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "cb625368"
+    },
+    "src/assets/cursors/Beam.cur": {
+      "ipo_ts": 1780806501773,
+      "edit_count": 1,
+      "last_lines": 3,
+      "last_ts": 1780806501773,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a9397f18"
+    },
+    "src/assets/cursors/Cursor_1.cur": {
+      "ipo_ts": 1780806501788,
+      "edit_count": 1,
+      "last_lines": 3,
+      "last_ts": 1780806501788,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "25110aa9"
+    },
+    "src/assets/cursors/Cursor_10.cur": {
+      "ipo_ts": 1780806501795,
+      "edit_count": 1,
+      "last_lines": 3,
+      "last_ts": 1780806501795,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "862c7277"
+    },
+    "src/assets/cursors/Cursor_11.cur": {
+      "ipo_ts": 1780806501805,
+      "edit_count": 1,
+      "last_lines": 3,
+      "last_ts": 1780806501805,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "9c5e3421"
+    },
+    "src/assets/cursors/Cursor_12.cur": {
+      "ipo_ts": 1780806501811,
+      "edit_count": 1,
+      "last_lines": 3,
+      "last_ts": 1780806501811,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "814189f3"
+    },
+    "src/assets/cursors/Cursor_13.cur": {
+      "ipo_ts": 1780806501819,
+      "edit_count": 1,
+      "last_lines": 3,
+      "last_ts": 1780806501819,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "8bc5d80b"
+    },
+    "src/assets/cursors/Cursor_14.cur": {
+      "ipo_ts": 1780806501831,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806501831,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "92ae8a3b"
+    },
+    "src/assets/cursors/Cursor_15.cur": {
+      "ipo_ts": 1780806501835,
+      "edit_count": 1,
+      "last_lines": 3,
+      "last_ts": 1780806501835,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "21f87611"
+    },
+    "src/assets/cursors/Cursor_16.cur": {
+      "ipo_ts": 1780806501840,
+      "edit_count": 1,
+      "last_lines": 3,
+      "last_ts": 1780806501840,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "47616421"
+    },
+    "src/assets/cursors/Cursor_17.cur": {
+      "ipo_ts": 1780806501845,
+      "edit_count": 1,
+      "last_lines": 3,
+      "last_ts": 1780806501845,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d9272b26"
+    },
+    "src/assets/cursors/Cursor_18.cur": {
+      "ipo_ts": 1780806501859,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806501859,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "12d9d986"
+    },
+    "src/assets/cursors/Cursor_19.cur": {
+      "ipo_ts": 1780806501864,
+      "edit_count": 1,
+      "last_lines": 3,
+      "last_ts": 1780806501864,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d5fe7206"
+    },
+    "src/assets/cursors/Cursor_20.cur": {
+      "ipo_ts": 1780806501870,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806501870,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "bfc7f63a"
+    },
+    "src/assets/cursors/Cursor_21.cur": {
+      "ipo_ts": 1780806501877,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806501877,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "676036f2"
+    },
+    "src/assets/cursors/Cursor_22.cur": {
+      "ipo_ts": 1780806501886,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806501886,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "faf638f2"
+    },
+    "src/assets/cursors/Cursor_23.cur": {
+      "ipo_ts": 1780806501891,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806501891,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e0a8603c"
+    },
+    "src/assets/cursors/Cursor_24.cur": {
+      "ipo_ts": 1780806501897,
+      "edit_count": 1,
+      "last_lines": 3,
+      "last_ts": 1780806501897,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "44d2a828"
+    },
+    "src/assets/cursors/Cursor_25.cur": {
+      "ipo_ts": 1780806501962,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806501962,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a34d9f7f"
+    },
+    "src/assets/cursors/Cursor_26.cur": {
+      "ipo_ts": 1780806501974,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806501974,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4afcdb73"
+    },
+    "src/assets/cursors/Cursor_27.cur": {
+      "ipo_ts": 1780806501990,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806501990,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "50afa3ff"
+    },
+    "src/assets/cursors/Cursor_28.cur": {
+      "ipo_ts": 1780806501998,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806501998,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "379e43f3"
+    },
+    "src/assets/cursors/Cursor_3.cur": {
+      "ipo_ts": 1780806502008,
+      "edit_count": 1,
+      "last_lines": 3,
+      "last_ts": 1780806502008,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c2a59e75"
+    },
+    "src/assets/cursors/Cursor_4.cur": {
+      "ipo_ts": 1780806502017,
+      "edit_count": 1,
+      "last_lines": 3,
+      "last_ts": 1780806502017,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ec7509e1"
+    },
+    "src/assets/cursors/Cursor_5.cur": {
+      "ipo_ts": 1780806502023,
+      "edit_count": 1,
+      "last_lines": 3,
+      "last_ts": 1780806502023,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "6b097492"
+    },
+    "src/assets/cursors/Cursor_6.cur": {
+      "ipo_ts": 1780806502065,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780806502065,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4ba298db"
+    },
+    "src/assets/cursors/Cursor_7.cur": {
+      "ipo_ts": 1780806502091,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780806502091,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b9c4fedb"
+    },
+    "src/assets/cursors/Cursor_8.cur": {
+      "ipo_ts": 1780806502096,
+      "edit_count": 1,
+      "last_lines": 3,
+      "last_ts": 1780806502096,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4b7b9bb7"
+    },
+    "src/assets/cursors/Cursor_9.cur": {
+      "ipo_ts": 1780806502103,
+      "edit_count": 1,
+      "last_lines": 3,
+      "last_ts": 1780806502103,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "700c3174"
+    },
+    "src/assets/cursors/CursorsXP.cur": {
+      "ipo_ts": 1780806502123,
+      "edit_count": 1,
+      "last_lines": 3,
+      "last_ts": 1780806502123,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "25110aa9"
+    },
+    "src/assets/cursors/Original Arrow Windows 95.cur": {
+      "ipo_ts": 1780806502129,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806502129,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2b82ef7c"
+    },
+    "src/assets/cursors/help_win95.cur": {
+      "ipo_ts": 1780806502134,
+      "edit_count": 1,
+      "last_lines": 3,
+      "last_ts": 1780806502134,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "8bc5d80b"
+    },
+    "src/assets/cursors/my-mouse-pointer.cur": {
+      "ipo_ts": 1780806502139,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806502139,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a348aea2"
+    },
+    "node_modules/.cache/babel-loader/c05ce1eed90b97ef8131ec0a2ef8d14fb4304eb0d6c873bdf12a57dfdad92ed9.json": {
+      "ipo_ts": 1780806746243,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806746243,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "70dbb75a"
+    },
+    "node_modules/.cache/babel-loader/f2a4c476e52d21ec59ec04809f289f3d4141efef6fd0b0cac5ce9af7787a5939.json": {
+      "ipo_ts": 1780806754137,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806754137,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d0a2a0bb"
+    },
+    "node_modules/.cache/babel-loader/6f8162129f6730dabb268c34b031f34cd99680baecfe3997ead71ad87895563a.json": {
+      "ipo_ts": 1780806767059,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806767059,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "830dea64"
+    },
+    "node_modules/.cache/babel-loader/98fa23c72acc51026ac26f94c19252fb735dc09895a1efb5724b0f989b63d485.json": {
+      "ipo_ts": 1780806774995,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806774995,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f621f78d"
+    },
+    "node_modules/.cache/babel-loader/a7c547707d687a81b4ba0a1a6a8576582caae37f13b167a50a1f9d3a730f2b85.json": {
+      "ipo_ts": 1780806785080,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806785080,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "374058d9"
+    },
+    "node_modules/.cache/babel-loader/7466c3c751db362bb901c8a20b9770037bbe32e2df8af85040dc0d530d2a417f.json": {
+      "ipo_ts": 1780806794004,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806794004,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d1de03aa"
+    },
+    "src/components/Google/Main.js": {
+      "ipo_ts": 1780806801880,
+      "edit_count": 3,
+      "last_lines": 255,
+      "last_ts": 1780806825928,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d56c7bc7"
+    },
+    "node_modules/.cache/babel-loader/12e18d0ead09dff672e64af75db07ffce393e521d005b1dc39468240afedd175.json": {
+      "ipo_ts": 1780806803931,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806803931,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b829b4a2"
+    },
+    "node_modules/.cache/babel-loader/dbfc1b18e7e1ea13e36c9563d888d75504462fca54d8c70a67a7978b1a788510.json": {
+      "ipo_ts": 1780806813742,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806813742,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "441bb00a"
+    },
+    "node_modules/.cache/babel-loader/6c7840f2574b1519b1b7ab23422b8b8e66d6d9c3cd72e9e0d1f6fa14509b7610.json": {
+      "ipo_ts": 1780806827995,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806827995,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "db9f7d8a"
+    },
+    "src/components/Google/Search.js": {
+      "ipo_ts": 1780806835781,
+      "edit_count": 3,
+      "last_lines": 312,
+      "last_ts": 1780806856514,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f62b2a75"
+    },
+    "node_modules/.cache/babel-loader/3d2d83ade8d3c910dfa3f9370c773370cea97b0d78b77992a2ef926a3ef16e2a.json": {
+      "ipo_ts": 1780806835987,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806835987,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "409e14a8"
+    },
+    "node_modules/.cache/babel-loader/661b38e607d07c92de1b570283f2f55d92a38228751bc8e14e3e2e2f33070458.json": {
+      "ipo_ts": 1780806846055,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806846055,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "cba650e8"
+    },
+    "node_modules/.cache/babel-loader/28302a6e5bfc7a320e197fe09f160e4d813f49fadc8d7d4891540b1d93b3fb53.json": {
+      "ipo_ts": 1780806858212,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780806858212,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "bcccb110"
     }
   }
 }

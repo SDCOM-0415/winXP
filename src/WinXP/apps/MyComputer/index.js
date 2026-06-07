@@ -476,10 +476,7 @@ function MyComputer({ onClose }) {
             <div className="com__content__right__card com__content__right__card--me">
               <div className="com__content__right__card__header">关于我</div>
               <div className="com__content__right__card__content">
-                <a
-                  href="https://github.com/SDCOM-0415"
-                  target="_blank"
-                  rel="noreferrer"
+                <div
                   className={`com__content__right__card__item${
                     selectedItem === 'about-github' ? ' selected' : ''
                   }`}
@@ -487,6 +484,13 @@ function MyComputer({ onClose }) {
                     e.stopPropagation();
                     selectItem('about-github');
                   }}
+                  onDoubleClick={() =>
+                    window.open(
+                      'https://github.com/SDCOM-0415',
+                      '_blank',
+                      'noreferrer',
+                    )
+                  }
                   onContextMenu={e =>
                     openContextMenu(e, ABOUT_MENU, 'about-github')
                   }
@@ -499,11 +503,8 @@ function MyComputer({ onClose }) {
                   <span className="com__content__right__card__text">
                     Github
                   </span>
-                </a>
-                <a
-                  href="https://www.sdcom.top"
-                  target="_blank"
-                  rel="noreferrer"
+                </div>
+                <div
                   className={`com__content__right__card__item${
                     selectedItem === 'about-website' ? ' selected' : ''
                   }`}
@@ -511,6 +512,9 @@ function MyComputer({ onClose }) {
                     e.stopPropagation();
                     selectItem('about-website');
                   }}
+                  onDoubleClick={() =>
+                    window.open('https://www.sdcom.top', '_blank', 'noreferrer')
+                  }
                   onContextMenu={e =>
                     openContextMenu(e, ABOUT_MENU, 'about-website')
                   }
@@ -523,7 +527,7 @@ function MyComputer({ onClose }) {
                   <span className="com__content__right__card__text">
                     我的网站
                   </span>
-                </a>
+                </div>
               </div>
             </div>
           </div>
@@ -747,20 +751,20 @@ const Div = styled.div`
     border: 1px solid rgba(0, 0, 0, 0.4);
     border-top-width: 0;
     background-color: #f1f1f1;
-    overflow: auto;
+    overflow: hidden;
     font-size: 11px;
     position: relative;
   }
   .com__content__inner {
     display: flex;
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
   }
   .com__content__left {
     width: 180px;
     height: 100%;
     background: linear-gradient(to bottom, #748aff 0%, #4057d3 100%);
-    overflow: auto;
+    overflow: hidden;
     padding: 10px;
   }
 
@@ -779,7 +783,7 @@ const Div = styled.div`
     height: 23px;
     padding-left: 11px;
     padding-right: 2px;
-    cursor: pointer;
+    cursor: url('../../assets/cursors/my-mouse-pointer.cur'), pointer;
     background: linear-gradient(
       to right,
       rgb(240, 240, 255) 0,
@@ -834,14 +838,14 @@ const Div = styled.div`
     }
 
     &.link:hover {
-      cursor: pointer;
+      cursor: url('../../assets/cursors/my-mouse-pointer.cur'), pointer;
       color: #2b72ff;
       text-decoration: underline;
     }
   }
   .com__content__right {
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
     background-color: #fff;
     flex: 1;
   }
@@ -883,18 +887,18 @@ const Div = styled.div`
     font-size: 11px;
     text-align: left;
     text-decoration: none;
-    cursor: default;
+    cursor: url('../../assets/cursors/Original Arrow Windows 95.cur'), default;
     outline: none;
   }
   .com__content__right__card__item.selected .com__content__right__card__img {
-    outline: 1px dotted #ffffff;
-    outline-offset: -1px;
-    box-shadow: 0 0 0 2px #316ac5 inset;
-    border-radius: 2px;
+    opacity: 0.5;
+    filter: drop-shadow(0 0 0 blue);
   }
   .com__content__right__card__item.selected .com__content__right__card__text {
     background-color: #316ac5;
     color: #ffffff;
+    outline: 1px dotted #000000;
+    outline-offset: -1px;
   }
   .com__content__right__card__img {
     width: 45px;

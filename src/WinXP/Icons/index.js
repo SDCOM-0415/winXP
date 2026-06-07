@@ -123,6 +123,9 @@ const StyledIcon = styled(Icon)`
     padding: 0 3px 2px;
     background-color: ${({ isFocus, displayFocus }) =>
       isFocus && displayFocus ? '#0b61ff' : 'transparent'};
+    outline: ${({ isFocus, displayFocus }) =>
+      isFocus && displayFocus ? '1px dotted #000000' : 'none'};
+    outline-offset: -1px;
     text-align: center;
     flex-shrink: 1;
   }

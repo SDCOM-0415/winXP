@@ -106,7 +106,7 @@ export default styled(ContextMenu)`
     align-items: center;
     height: 22px;
     padding: 0 24px 0 28px;
-    cursor: default;
+    cursor: url('../../assets/cursors/Original Arrow Windows 95.cur'), default;
     white-space: nowrap;
     position: relative;
     color: #000;
