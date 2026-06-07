@@ -1,4 +1,10 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
+import React, {
+  useState,
+  useRef,
+  useCallback,
+  useEffect,
+  useMemo,
+} from 'react';
 import styled from 'styled-components';
 
 import { WindowDropDowns } from 'components';
@@ -52,14 +58,32 @@ function createHistoryEntry(input) {
   };
 }
 
+function getStatusText(loading, url) {
+  if (loading) return '正在打开页面...';
+  if (url === HOME_URL) return '完成';
+  return '网页已完成加载';
+}
+
 function InternetExplorer({ onClose, openUrl }) {
   const iframeRef = useRef(null);
+  const addressBarRef = useRef(null);
   const initialEntry = createHistoryEntry(openUrl || HOME_URL);
   const [url, setUrl] = useState(initialEntry.requestUrl);
   const [loading, setLoading] = useState(true);
   const [inputValue, setInputValue] = useState(initialEntry.displayUrl);
   const [historyStack, setHistoryStack] = useState([initialEntry]);
   const [historyIndex, setHistoryIndex] = useState(0);
+  const [showAddressHistory, setShowAddressHistory] = useState(false);
+
+  const historyOptions = useMemo(() => {
+    const options = [];
+    historyStack.forEach(entry => {
+      if (!options.includes(entry.displayUrl)) {
+        options.push(entry.displayUrl);
+      }
+    });
+    return options.reverse();
+  }, [historyStack]);
 
   const navigate = useCallback(
     newUrl => {
@@ -67,6 +91,7 @@ function InternetExplorer({ onClose, openUrl }) {
       setUrl(entry.requestUrl);
       setInputValue(entry.displayUrl);
       setLoading(true);
+      setShowAddressHistory(false);
       setHistoryStack(prev => {
         const newStack = prev.slice(0, historyIndex + 1);
         newStack.push(entry);
@@ -82,6 +107,16 @@ function InternetExplorer({ onClose, openUrl }) {
       navigate(openUrl);
     }
   }, [openUrl, url, navigate]);
+
+  useEffect(() => {
+    function onDocumentMouseDown(e) {
+      if (addressBarRef.current && !addressBarRef.current.contains(e.target)) {
+        setShowAddressHistory(false);
+      }
+    }
+    document.addEventListener('mousedown', onDocumentMouseDown);
+    return () => document.removeEventListener('mousedown', onDocumentMouseDown);
+  }, []);
 
   function goBack() {
     if (historyIndex > 0) {
@@ -109,6 +144,13 @@ function InternetExplorer({ onClose, openUrl }) {
     navigate(HOME_URL);
   }
 
+  function onStop() {
+    setLoading(false);
+    if (iframeRef.current && iframeRef.current.contentWindow) {
+      iframeRef.current.contentWindow.stop();
+    }
+  }
+
   function onRefresh() {
     setLoading(true);
     if (iframeRef.current) {
@@ -120,9 +162,18 @@ function InternetExplorer({ onClose, openUrl }) {
     navigate(inputValue);
   }
 
+  function onSelectHistoryUrl(historyUrl) {
+    navigate(historyUrl);
+  }
+
   function onKeyDown(e) {
     if (e.key === 'Enter') {
       navigate(inputValue);
+    } else if (e.key === 'ArrowDown') {
+      setShowAddressHistory(true);
+    } else if (e.key === 'Escape') {
+      setShowAddressHistory(false);
+      setInputValue(toDisplayUrl(url));
     }
   }
 
@@ -134,6 +185,15 @@ function InternetExplorer({ onClose, openUrl }) {
       if (iframeSrc && /^https?:\/\//i.test(iframeSrc) && iframeSrc !== url) {
         setUrl(iframeSrc);
         setInputValue(toDisplayUrl(iframeSrc));
+        setHistoryStack(prev => {
+          const newStack = prev.slice();
+          const currentEntry = {
+            requestUrl: iframeSrc,
+            displayUrl: toDisplayUrl(iframeSrc),
+          };
+          newStack[historyIndex] = currentEntry;
+          return newStack;
+        });
       }
     } catch (e) {}
   }
@@ -185,7 +245,7 @@ function InternetExplorer({ onClose, openUrl }) {
           <img className="ie__function_bar__icon" src={forward} alt="" />
           <div className="ie__function_bar__arrow" />
         </div>
-        <div className="ie__function_bar__button">
+        <div className="ie__function_bar__button" onClick={onStop}>
           <img className="ie__function_bar__icon--margin-1" src={stop} alt="" />
         </div>
         <div className="ie__function_bar__button" onClick={onRefresh}>
@@ -239,20 +299,41 @@ function InternetExplorer({ onClose, openUrl }) {
       </section>
       <section className="ie__address_bar">
         <div className="ie__address_bar__title">地址</div>
-        <div className="ie__address_bar__content">
+        <div className="ie__address_bar__content" ref={addressBarRef}>
           <img src={ie} alt="ie" className="ie__address_bar__content__img" />
           <input
             className="ie__address_bar__content__input"
             value={inputValue}
             onChange={e => setInputValue(e.target.value)}
+            onFocus={() => setShowAddressHistory(true)}
             onKeyDown={onKeyDown}
             spellCheck={false}
           />
-          <img
-            src={dropdown}
-            alt="dropdown"
-            className="ie__address_bar__content__img"
-          />
+          <button
+            type="button"
+            className="ie__address_bar__content__dropdown"
+            onClick={() => setShowAddressHistory(prev => !prev)}
+          >
+            <img
+              src={dropdown}
+              alt="dropdown"
+              className="ie__address_bar__content__img"
+            />
+          </button>
+          {showAddressHistory && historyOptions.length > 0 && (
+            <div className="ie__address_bar__history">
+              {historyOptions.map(historyUrl => (
+                <button
+                  type="button"
+                  key={historyUrl}
+                  className="ie__address_bar__history__item"
+                  onClick={() => onSelectHistoryUrl(historyUrl)}
+                >
+                  {historyUrl}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
         <div className="ie__address_bar__go" onClick={onGo}>
           <img className="ie__address_bar__go__img" src={go} alt="go" />
@@ -281,7 +362,9 @@ function InternetExplorer({ onClose, openUrl }) {
       <footer className="ie__footer">
         <div className="ie__footer__status">
           <img className="ie__footer__status__img" src={ie} alt="" />
-          <span className="ie__footer__status__text">完成</span>
+          <span className="ie__footer__status__text">
+            {getStatusText(loading, url)}
+          </span>
         </div>
         <div className="ie__footer__block" />
         <div className="ie__footer__block" />
@@ -449,14 +532,20 @@ const Div = styled.div`
       margin-left: 2px;
       flex-shrink: 0;
     }
-    &__img:last-child {
-      width: 15px;
-      height: 15px;
-      right: 1px;
+    &__dropdown {
+      width: 17px;
+      height: 100%;
+      border: none;
+      background: transparent;
       position: absolute;
-      flex-shrink: 0;
+      right: 1px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
     }
-    &__img:last-child:hover {
+    &__dropdown:hover img {
       filter: brightness(1.1);
     }
     &__input {
@@ -466,10 +555,36 @@ const Div = styled.div`
       font-family: inherit;
       flex: 1;
       height: 100%;
-      padding: 0 4px;
+      padding: 0 22px 0 4px;
       background: transparent;
       min-width: 0;
     }
+  }
+  .ie__address_bar__history {
+    position: absolute;
+    left: -1px;
+    right: -1px;
+    top: calc(100% + 1px);
+    background: #fff;
+    border: 1px solid #7f9db9;
+    border-top: none;
+    z-index: 3;
+    max-height: 160px;
+    overflow-y: auto;
+  }
+  .ie__address_bar__history__item {
+    width: 100%;
+    border: none;
+    background: #fff;
+    text-align: left;
+    padding: 3px 6px;
+    font-size: 11px;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  .ie__address_bar__history__item:hover {
+    background: #316ac5;
+    color: #fff;
   }
   .ie__address_bar__go {
     display: flex;
