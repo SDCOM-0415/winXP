@@ -59,9 +59,13 @@ function createHistoryEntry(input) {
 }
 
 function getStatusText(loading, url) {
-  if (loading) return '正在打开页面...';
+  if (loading) return `正在打开 ${toDisplayUrl(url)}`;
   if (url === HOME_URL) return '完成';
-  return '网页已完成加载';
+  try {
+    return `已打开 ${new URL(url).hostname}`;
+  } catch (e) {
+    return '完成';
+  }
 }
 
 function InternetExplorer({ onClose, openUrl }) {
@@ -74,6 +78,7 @@ function InternetExplorer({ onClose, openUrl }) {
   const [historyStack, setHistoryStack] = useState([initialEntry]);
   const [historyIndex, setHistoryIndex] = useState(0);
   const [showAddressHistory, setShowAddressHistory] = useState(false);
+  const [addressInputFocused, setAddressInputFocused] = useState(false);
 
   const historyOptions = useMemo(() => {
     const options = [];
@@ -112,6 +117,7 @@ function InternetExplorer({ onClose, openUrl }) {
     function onDocumentMouseDown(e) {
       if (addressBarRef.current && !addressBarRef.current.contains(e.target)) {
         setShowAddressHistory(false);
+        setAddressInputFocused(false);
       }
     }
     document.addEventListener('mousedown', onDocumentMouseDown);
@@ -145,6 +151,7 @@ function InternetExplorer({ onClose, openUrl }) {
   }
 
   function onStop() {
+    if (!loading) return;
     setLoading(false);
     if (iframeRef.current && iframeRef.current.contentWindow) {
       iframeRef.current.contentWindow.stop();
@@ -214,7 +221,7 @@ function InternetExplorer({ onClose, openUrl }) {
   }
 
   return (
-    <Div>
+    <Div addressInputFocused={addressInputFocused}>
       <section className="ie__toolbar">
         <div className="ie__options">
           <WindowDropDowns
@@ -227,7 +234,7 @@ function InternetExplorer({ onClose, openUrl }) {
       </section>
       <section className="ie__function_bar">
         <div
-          onClick={goBack}
+          onClick={historyIndex <= 0 ? undefined : goBack}
           className={`ie__function_bar__button${
             historyIndex <= 0 ? '--disable' : ''
           }`}
@@ -237,7 +244,9 @@ function InternetExplorer({ onClose, openUrl }) {
           <div className="ie__function_bar__arrow" />
         </div>
         <div
-          onClick={goForward}
+          onClick={
+            historyIndex >= historyStack.length - 1 ? undefined : goForward
+          }
           className={`ie__function_bar__button${
             historyIndex >= historyStack.length - 1 ? '--disable' : ''
           }`}
@@ -245,7 +254,10 @@ function InternetExplorer({ onClose, openUrl }) {
           <img className="ie__function_bar__icon" src={forward} alt="" />
           <div className="ie__function_bar__arrow" />
         </div>
-        <div className="ie__function_bar__button" onClick={onStop}>
+        <div
+          className={`ie__function_bar__button${loading ? '' : '--disable'}`}
+          onClick={loading ? onStop : undefined}
+        >
           <img className="ie__function_bar__icon--margin-1" src={stop} alt="" />
         </div>
         <div className="ie__function_bar__button" onClick={onRefresh}>
@@ -305,7 +317,11 @@ function InternetExplorer({ onClose, openUrl }) {
             className="ie__address_bar__content__input"
             value={inputValue}
             onChange={e => setInputValue(e.target.value)}
-            onFocus={() => setShowAddressHistory(true)}
+            onFocus={() => {
+              setAddressInputFocused(true);
+              setShowAddressHistory(true);
+            }}
+            onBlur={() => setAddressInputFocused(false)}
             onKeyDown={onKeyDown}
             spellCheck={false}
           />
@@ -446,6 +462,8 @@ const Div = styled.div`
     height: 100%;
     align-items: center;
     border: 1px solid rgba(0, 0, 0, 0);
+    cursor: default;
+    pointer-events: none;
   }
   .ie__function_bar__text {
     margin-right: 4px;
@@ -518,6 +536,8 @@ const Div = styled.div`
   }
   .ie__address_bar__content {
     border: rgba(122, 122, 255, 0.6) 1px solid;
+    box-shadow: ${({ addressInputFocused }) =>
+      addressInputFocused ? 'inset 0 0 0 1px #2b72ff' : 'none'};
     height: 100%;
     display: flex;
     flex: 1;
@@ -571,14 +591,16 @@ const Div = styled.div`
     z-index: 3;
     max-height: 160px;
     overflow-y: auto;
+    box-shadow: 1px 1px 0 #fff, 2px 2px 3px rgba(0, 0, 0, 0.2);
   }
   .ie__address_bar__history__item {
     width: 100%;
     border: none;
     background: #fff;
     text-align: left;
-    padding: 3px 6px;
+    padding: 2px 6px;
     font-size: 11px;
+    line-height: 18px;
     font-family: inherit;
     cursor: pointer;
   }
