@@ -887,10 +887,10 @@ const Div = styled.div`
     outline: none;
   }
   .com__content__right__card__item.selected .com__content__right__card__img {
-    background-color: #316ac5;
-    border-radius: 3px;
     outline: 1px dotted #ffffff;
     outline-offset: -1px;
+    box-shadow: 0 0 0 2px #316ac5 inset;
+    border-radius: 2px;
   }
   .com__content__right__card__item.selected .com__content__right__card__text {
     background-color: #316ac5;
