@@ -58,8 +58,184 @@ function createHistoryEntry(input) {
   };
 }
 
-function getStatusText(loading, url) {
+function getReadableHost(url) {
+  try {
+    return new URL(url).hostname;
+  } catch (e) {
+    return toDisplayUrl(url);
+  }
+}
+
+function getErrorPageHtml(url) {
+  var displayUrl = toDisplayUrl(url);
+  return `<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>找不到服务器</title>
+    <style>
+      body {
+        margin: 0;
+        background: #fff;
+        color: #000;
+        font-family: SimSun, '宋体', serif;
+        font-size: 12px;
+        line-height: 1.35;
+      }
+      .page {
+        padding: 28px 30px 40px;
+      }
+      .address {
+        margin-bottom: 18px;
+        color: #000;
+      }
+      .heading {
+        display: flex;
+        align-items: flex-start;
+        gap: 18px;
+        margin-bottom: 22px;
+      }
+      .heading-icon {
+        width: 28px;
+        height: 44px;
+        border: 1px solid #666;
+        position: relative;
+        flex-shrink: 0;
+      }
+      .heading-icon:before {
+        content: 'i';
+        position: absolute;
+        left: 9px;
+        top: 3px;
+        font-size: 34px;
+        font-weight: bold;
+        color: #204aaf;
+        font-family: Times New Roman, serif;
+      }
+      h1 {
+        margin: 3px 0 0;
+        font-size: 28px;
+        font-weight: normal;
+      }
+      .desc {
+        font-size: 16px;
+        margin: 0 0 26px 46px;
+      }
+      .highlight {
+        margin: 0 0 28px 0;
+        border: 3px solid #ff2f2f;
+        padding: 14px 18px;
+        width: 620px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .highlight-icon {
+        width: 72px;
+        height: 72px;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .highlight-icon:before {
+        content: '🌐';
+        position: absolute;
+        left: 0;
+        top: 4px;
+        font-size: 46px;
+      }
+      .highlight-icon:after {
+        content: '?';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #f33;
+        color: #fff;
+        font-size: 22px;
+        line-height: 28px;
+        text-align: center;
+        font-weight: bold;
+      }
+      .highlight-text {
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .subheading {
+        margin: 26px 0 8px;
+        font-size: 18px;
+      }
+      ul {
+        margin: 0 0 0 24px;
+        padding-left: 24px;
+      }
+      li {
+        margin: 10px 0;
+        font-size: 18px;
+      }
+      .footer {
+        margin-top: 42px;
+        font-size: 18px;
+      }
+      .footer small {
+        display: block;
+        margin-top: 6px;
+      }
+      b {
+        font-weight: bold;
+      }
+      u {
+        text-decoration: underline;
+        text-decoration-color: #f00;
+        text-decoration-thickness: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="address">${displayUrl}</div>
+      <div class="heading">
+        <div class="heading-icon"></div>
+        <h1>无法显示网页</h1>
+      </div>
+      <div class="desc">
+        您正在查找的页当前不可用。网站可能遇到支持问题，或者您需要
+        调整您的浏览器设置。
+      </div>
+      <div class="highlight">
+        <div class="highlight-icon"></div>
+        <div class="highlight-text">
+          要试图修复网络连接问题，请单击 <b>工具</b>，然后单击 <b>“诊断
+          连接问题...”</b>
+        </div>
+      </div>
+      <div class="subheading">其他选项：</div>
+      <ul>
+        <li>单击 <b>刷新</b> 按钮，或稍后重试。</li>
+        <li>如果您已经在地址栏中输入该网页的地址，请确认其拼写正确。</li>
+        <li>
+          要检查您的网络连接，请单击工具菜单，然后单击 <b>Internet</b>
+          选项。在连接选项卡上，单击设置。
+        </li>
+        <li>
+          查看您的 Internet 连接设置是否正确检测到。您可能已设置让
+          Microsoft Windows 检查您的网站并自动发现网络连接设置。
+        </li>
+        <li>单击 <u>上一步</u> 按钮，尝试其他链接。</li>
+      </ul>
+      <div class="footer">
+        找不到服务器或 DNS 错误
+        <small>Internet Explorer</small>
+      </div>
+    </div>
+  </body>
+</html>`;
+}
+
+function getStatusText(loading, url, hasError) {
   if (loading) return `正在打开 ${toDisplayUrl(url)}`;
+  if (hasError) return `无法访问 ${getReadableHost(url)}`;
   if (url === HOME_URL) return '完成';
   try {
     return `已打开 ${new URL(url).hostname}`;
@@ -74,6 +250,7 @@ function InternetExplorer({ onClose, openUrl }) {
   const initialEntry = createHistoryEntry(openUrl || HOME_URL);
   const [url, setUrl] = useState(initialEntry.requestUrl);
   const [loading, setLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
   const [inputValue, setInputValue] = useState(initialEntry.displayUrl);
   const [historyStack, setHistoryStack] = useState([initialEntry]);
   const [historyIndex, setHistoryIndex] = useState(0);
@@ -96,6 +273,7 @@ function InternetExplorer({ onClose, openUrl }) {
       setUrl(entry.requestUrl);
       setInputValue(entry.displayUrl);
       setLoading(true);
+      setHasError(false);
       setShowAddressHistory(false);
       setHistoryStack(prev => {
         const newStack = prev.slice(0, historyIndex + 1);
@@ -132,6 +310,7 @@ function InternetExplorer({ onClose, openUrl }) {
       setUrl(targetEntry.requestUrl);
       setInputValue(targetEntry.displayUrl);
       setLoading(true);
+      setHasError(false);
     }
   }
 
@@ -143,6 +322,7 @@ function InternetExplorer({ onClose, openUrl }) {
       setUrl(targetEntry.requestUrl);
       setInputValue(targetEntry.displayUrl);
       setLoading(true);
+      setHasError(false);
     }
   }
 
@@ -160,6 +340,7 @@ function InternetExplorer({ onClose, openUrl }) {
 
   function onRefresh() {
     setLoading(true);
+    setHasError(false);
     if (iframeRef.current) {
       iframeRef.current.src = url;
     }
@@ -187,8 +368,13 @@ function InternetExplorer({ onClose, openUrl }) {
   function onIframeLoad() {
     setLoading(false);
     try {
-      var iframeSrc =
-        iframeRef.current && iframeRef.current.contentWindow.location.href;
+      var iframeWindow = iframeRef.current && iframeRef.current.contentWindow;
+      var iframeDocument = iframeWindow && iframeWindow.document;
+      var iframeSrc = iframeWindow && iframeWindow.location.href;
+      var iframeTitle = iframeDocument && iframeDocument.title;
+      var iframeBodyText =
+        iframeDocument && iframeDocument.body && iframeDocument.body.innerText;
+
       if (iframeSrc && /^https?:\/\//i.test(iframeSrc) && iframeSrc !== url) {
         setUrl(iframeSrc);
         setInputValue(toDisplayUrl(iframeSrc));
@@ -202,7 +388,38 @@ function InternetExplorer({ onClose, openUrl }) {
           return newStack;
         });
       }
-    } catch (e) {}
+
+      if (iframeSrc && /^chrome-error:\/\//i.test(iframeSrc)) {
+        setHasError(true);
+        if (iframeDocument) {
+          iframeDocument.open();
+          iframeDocument.write(getErrorPageHtml(url));
+          iframeDocument.close();
+        }
+        return;
+      }
+
+      if (
+        iframeTitle === '无法访问此网站' ||
+        iframeTitle === 'This site can’t be reached' ||
+        iframeTitle === "This site can't be reached" ||
+        (iframeBodyText && iframeBodyText.includes('ERR_NAME_NOT_RESOLVED')) ||
+        (iframeBodyText && iframeBodyText.includes('DNS_PROBE_FINISHED')) ||
+        (iframeBodyText && iframeBodyText.includes('无法访问此网站'))
+      ) {
+        setHasError(true);
+        if (iframeDocument) {
+          iframeDocument.open();
+          iframeDocument.write(getErrorPageHtml(url));
+          iframeDocument.close();
+        }
+        return;
+      }
+
+      setHasError(false);
+    } catch (e) {
+      setHasError(false);
+    }
   }
 
   function onClickOptionItem(item) {
@@ -379,7 +596,7 @@ function InternetExplorer({ onClose, openUrl }) {
         <div className="ie__footer__status">
           <img className="ie__footer__status__img" src={ie} alt="" />
           <span className="ie__footer__status__text">
-            {getStatusText(loading, url)}
+            {getStatusText(loading, url, hasError)}
           </span>
         </div>
         <div className="ie__footer__block" />
