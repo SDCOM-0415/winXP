@@ -30,6 +30,7 @@ import dropdown from 'assets/windowsIcons/dropdown.png';
 
 const HOME_URL = 'https://search.sdcom.asia/';
 const SEARCH_URL = 'https://search.sdcom.asia/?q=';
+const LOAD_TIMEOUT = 12000;
 
 function toRequestUrl(input) {
   var url = input.trim();
@@ -66,8 +67,34 @@ function getReadableHost(url) {
   }
 }
 
-function getErrorPageHtml(url) {
+function getErrorPageHtml(url, errorType) {
   var displayUrl = toDisplayUrl(url);
+  var footerText = '找不到服务器或 DNS 错误';
+  var description =
+    '您正在查找的页当前不可用。网站可能遇到支持问题，或者您需要调整您的浏览器设置。';
+  var highlightText =
+    '要试图修复网络连接问题，请单击 <b>工具</b>，然后单击 <b>“诊断连接问题...”</b>';
+
+  if (errorType === 'refused') {
+    footerText = '网站拒绝显示该网页';
+    description =
+      '您正在尝试访问的网站拒绝在当前窗口中显示该页面。该站点可能禁止被嵌入或拒绝连接。';
+    highlightText =
+      '此网站可能阻止了页面在浏览器窗口内加载。您可以尝试打开其他链接，或返回上一页。';
+  } else if (errorType === 'timeout') {
+    footerText = '连接超时';
+    description =
+      '服务器响应时间过长，Internet Explorer 无法在限定时间内完成该网页的加载。';
+    highlightText =
+      '请检查网络连接是否稳定，或稍后重试。如果问题持续存在，网站服务器可能暂时不可用。';
+  } else if (errorType === 'blocked') {
+    footerText = '内容被阻止或不可显示';
+    description =
+      '当前网页内容无法在此浏览器环境中显示，可能受到浏览器安全策略、站点限制或内容类型影响。';
+    highlightText =
+      '您可以尝试访问该网站的其他页面，或返回上一页后重新输入地址。';
+  }
+
   return `<!doctype html>
 <html lang="zh-CN">
   <head>
@@ -200,14 +227,12 @@ function getErrorPageHtml(url) {
         <h1>无法显示网页</h1>
       </div>
       <div class="desc">
-        您正在查找的页当前不可用。网站可能遇到支持问题，或者您需要
-        调整您的浏览器设置。
+        ${description}
       </div>
       <div class="highlight">
         <div class="highlight-icon"></div>
         <div class="highlight-text">
-          要试图修复网络连接问题，请单击 <b>工具</b>，然后单击 <b>“诊断
-          连接问题...”</b>
+          ${highlightText}
         </div>
       </div>
       <div class="subheading">其他选项：</div>
@@ -225,7 +250,7 @@ function getErrorPageHtml(url) {
         <li>单击 <u>上一步</u> 按钮，尝试其他链接。</li>
       </ul>
       <div class="footer">
-        找不到服务器或 DNS 错误
+        ${footerText}
         <small>Internet Explorer</small>
       </div>
     </div>
@@ -233,9 +258,12 @@ function getErrorPageHtml(url) {
 </html>`;
 }
 
-function getStatusText(loading, url, hasError) {
+function getStatusText(loading, url, errorType) {
   if (loading) return `正在打开 ${toDisplayUrl(url)}`;
-  if (hasError) return `无法访问 ${getReadableHost(url)}`;
+  if (errorType === 'refused') return `${getReadableHost(url)} 拒绝连接`;
+  if (errorType === 'timeout') return `连接 ${getReadableHost(url)} 超时`;
+  if (errorType === 'blocked') return `${getReadableHost(url)} 无法在此处显示`;
+  if (errorType) return `无法访问 ${getReadableHost(url)}`;
   if (url === HOME_URL) return '完成';
   try {
     return `已打开 ${new URL(url).hostname}`;
@@ -247,10 +275,11 @@ function getStatusText(loading, url, hasError) {
 function InternetExplorer({ onClose, openUrl }) {
   const iframeRef = useRef(null);
   const addressBarRef = useRef(null);
+  const loadTimeoutRef = useRef(null);
   const initialEntry = createHistoryEntry(openUrl || HOME_URL);
   const [url, setUrl] = useState(initialEntry.requestUrl);
   const [loading, setLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
+  const [errorType, setErrorType] = useState('');
   const [inputValue, setInputValue] = useState(initialEntry.displayUrl);
   const [historyStack, setHistoryStack] = useState([initialEntry]);
   const [historyIndex, setHistoryIndex] = useState(0);
@@ -270,10 +299,13 @@ function InternetExplorer({ onClose, openUrl }) {
   const navigate = useCallback(
     newUrl => {
       const entry = createHistoryEntry(newUrl);
+      if (loadTimeoutRef.current) {
+        clearTimeout(loadTimeoutRef.current);
+      }
       setUrl(entry.requestUrl);
       setInputValue(entry.displayUrl);
       setLoading(true);
-      setHasError(false);
+      setErrorType('');
       setShowAddressHistory(false);
       setHistoryStack(prev => {
         const newStack = prev.slice(0, historyIndex + 1);
@@ -292,6 +324,36 @@ function InternetExplorer({ onClose, openUrl }) {
   }, [openUrl, url, navigate]);
 
   useEffect(() => {
+    if (!loading) {
+      if (loadTimeoutRef.current) {
+        clearTimeout(loadTimeoutRef.current);
+      }
+      return;
+    }
+
+    loadTimeoutRef.current = setTimeout(() => {
+      setLoading(false);
+      setErrorType('timeout');
+      try {
+        const iframeWindow =
+          iframeRef.current && iframeRef.current.contentWindow;
+        const iframeDocument = iframeWindow && iframeWindow.document;
+        if (iframeDocument) {
+          iframeDocument.open();
+          iframeDocument.write(getErrorPageHtml(url, 'timeout'));
+          iframeDocument.close();
+        }
+      } catch (e) {}
+    }, LOAD_TIMEOUT);
+
+    return () => {
+      if (loadTimeoutRef.current) {
+        clearTimeout(loadTimeoutRef.current);
+      }
+    };
+  }, [loading, url]);
+
+  useEffect(() => {
     function onDocumentMouseDown(e) {
       if (addressBarRef.current && !addressBarRef.current.contains(e.target)) {
         setShowAddressHistory(false);
@@ -307,10 +369,13 @@ function InternetExplorer({ onClose, openUrl }) {
       const newIndex = historyIndex - 1;
       setHistoryIndex(newIndex);
       const targetEntry = historyStack[newIndex];
+      if (loadTimeoutRef.current) {
+        clearTimeout(loadTimeoutRef.current);
+      }
       setUrl(targetEntry.requestUrl);
       setInputValue(targetEntry.displayUrl);
       setLoading(true);
-      setHasError(false);
+      setErrorType('');
     }
   }
 
@@ -319,10 +384,13 @@ function InternetExplorer({ onClose, openUrl }) {
       const newIndex = historyIndex + 1;
       setHistoryIndex(newIndex);
       const targetEntry = historyStack[newIndex];
+      if (loadTimeoutRef.current) {
+        clearTimeout(loadTimeoutRef.current);
+      }
       setUrl(targetEntry.requestUrl);
       setInputValue(targetEntry.displayUrl);
       setLoading(true);
-      setHasError(false);
+      setErrorType('');
     }
   }
 
@@ -332,6 +400,9 @@ function InternetExplorer({ onClose, openUrl }) {
 
   function onStop() {
     if (!loading) return;
+    if (loadTimeoutRef.current) {
+      clearTimeout(loadTimeoutRef.current);
+    }
     setLoading(false);
     if (iframeRef.current && iframeRef.current.contentWindow) {
       iframeRef.current.contentWindow.stop();
@@ -339,8 +410,11 @@ function InternetExplorer({ onClose, openUrl }) {
   }
 
   function onRefresh() {
+    if (loadTimeoutRef.current) {
+      clearTimeout(loadTimeoutRef.current);
+    }
     setLoading(true);
-    setHasError(false);
+    setErrorType('');
     if (iframeRef.current) {
       iframeRef.current.src = url;
     }
@@ -366,14 +440,23 @@ function InternetExplorer({ onClose, openUrl }) {
   }
 
   function onIframeLoad() {
+    if (loadTimeoutRef.current) {
+      clearTimeout(loadTimeoutRef.current);
+    }
     setLoading(false);
     try {
       var iframeWindow = iframeRef.current && iframeRef.current.contentWindow;
       var iframeDocument = iframeWindow && iframeWindow.document;
       var iframeSrc = iframeWindow && iframeWindow.location.href;
-      var iframeTitle = iframeDocument && iframeDocument.title;
+      var iframeTitle = (iframeDocument && iframeDocument.title) || '';
       var iframeBodyText =
-        iframeDocument && iframeDocument.body && iframeDocument.body.innerText;
+        (iframeDocument &&
+          iframeDocument.body &&
+          iframeDocument.body.innerText) ||
+        '';
+      var normalizedTitle = iframeTitle.toLowerCase();
+      var normalizedBodyText = iframeBodyText.toLowerCase();
+      var nextErrorType = '';
 
       if (iframeSrc && /^https?:\/\//i.test(iframeSrc) && iframeSrc !== url) {
         setUrl(iframeSrc);
@@ -390,35 +473,61 @@ function InternetExplorer({ onClose, openUrl }) {
       }
 
       if (iframeSrc && /^chrome-error:\/\//i.test(iframeSrc)) {
-        setHasError(true);
-        if (iframeDocument) {
-          iframeDocument.open();
-          iframeDocument.write(getErrorPageHtml(url));
-          iframeDocument.close();
-        }
-        return;
-      }
-
-      if (
-        iframeTitle === '无法访问此网站' ||
-        iframeTitle === 'This site can’t be reached' ||
-        iframeTitle === "This site can't be reached" ||
-        (iframeBodyText && iframeBodyText.includes('ERR_NAME_NOT_RESOLVED')) ||
-        (iframeBodyText && iframeBodyText.includes('DNS_PROBE_FINISHED')) ||
-        (iframeBodyText && iframeBodyText.includes('无法访问此网站'))
+        nextErrorType = 'dns';
+      } else if (
+        normalizedTitle === '无法访问此网站' ||
+        normalizedTitle === 'this site can’t be reached' ||
+        normalizedTitle === "this site can't be reached" ||
+        normalizedBodyText.includes('err_name_not_resolved') ||
+        normalizedBodyText.includes('dns_probe_finished') ||
+        normalizedBodyText.includes('server dns address could not be found') ||
+        normalizedBodyText.includes('无法访问此网站') ||
+        normalizedBodyText.includes('找不到服务器')
       ) {
-        setHasError(true);
+        nextErrorType = 'dns';
+      } else if (
+        normalizedBodyText.includes('refused to connect') ||
+        normalizedBodyText.includes('拒绝连接') ||
+        normalizedBodyText.includes('refused this connection') ||
+        normalizedBodyText.includes('已拒绝连接')
+      ) {
+        nextErrorType = 'refused';
+      } else if (
+        normalizedBodyText.includes('err_connection_refused') ||
+        normalizedBodyText.includes('err_blocked_by_response') ||
+        normalizedBodyText.includes('err_failed') ||
+        normalizedBodyText.includes('无法在此网页中显示') ||
+        normalizedBodyText.includes('content security policy') ||
+        normalizedBodyText.includes('x-frame-options')
+      ) {
+        nextErrorType = 'blocked';
+      } else if (!iframeSrc || iframeSrc === 'about:blank') {
+        nextErrorType = 'blocked';
+      }
+
+      if (nextErrorType) {
+        setErrorType(nextErrorType);
         if (iframeDocument) {
           iframeDocument.open();
-          iframeDocument.write(getErrorPageHtml(url));
+          iframeDocument.write(getErrorPageHtml(url, nextErrorType));
           iframeDocument.close();
         }
         return;
       }
 
-      setHasError(false);
+      setErrorType('');
     } catch (e) {
-      setHasError(false);
+      setErrorType('blocked');
+      try {
+        const iframeWindow =
+          iframeRef.current && iframeRef.current.contentWindow;
+        const iframeDocument = iframeWindow && iframeWindow.document;
+        if (iframeDocument) {
+          iframeDocument.open();
+          iframeDocument.write(getErrorPageHtml(url, 'blocked'));
+          iframeDocument.close();
+        }
+      } catch (innerError) {}
     }
   }
 
@@ -596,7 +705,7 @@ function InternetExplorer({ onClose, openUrl }) {
         <div className="ie__footer__status">
           <img className="ie__footer__status__img" src={ie} alt="" />
           <span className="ie__footer__status__text">
-            {getStatusText(loading, url, hasError)}
+            {getStatusText(loading, url, errorType)}
           </span>
         </div>
         <div className="ie__footer__block" />

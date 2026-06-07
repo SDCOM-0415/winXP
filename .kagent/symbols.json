@@ -1,0 +1,526 @@
+{
+  "symbols": {
+    "src/WinXP/apps/InternetExplorer/index.js": {
+      "ipo_ts": 1780825541283,
+      "edit_count": 16,
+      "last_lines": 1060,
+      "last_ts": 1780825992530,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1d35d936"
+    },
+    "build/static/media/Accessibility.5f9d90ba889391fc967f1320e1772b0c.svg": {
+      "ipo_ts": 1780826019500,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019500,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "560569b8"
+    },
+    "build/static/media/Control Panel.db8619a357e058e7717a787b875e09c8.svg": {
+      "ipo_ts": 1780826019515,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019515,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3abc3dc2"
+    },
+    "build/static/media/Exit.bb96d8042c726f76c972726627c3f17f.svg": {
+      "ipo_ts": 1780826019523,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019523,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "8750d879"
+    },
+    "build/static/media/Favorites.85b5391806e026046ccbb807b4c34d78.svg": {
+      "ipo_ts": 1780826019533,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019533,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2c7fc405"
+    },
+    "build/static/media/Help and Support.6f8e11682f1c8b06dffefea996feef7c.svg": {
+      "ipo_ts": 1780826019537,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019537,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e6c27444"
+    },
+    "build/static/media/Internet Explorer 6.f386837714f620fc4976e3d8311bfe1a.svg": {
+      "ipo_ts": 1780826019544,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019544,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e3d6c23c"
+    },
+    "build/static/media/Lock.ff38cb0fb92455e79ff6d9b3d660cb1f.svg": {
+      "ipo_ts": 1780826019551,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019551,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ccdb93b4"
+    },
+    "build/static/media/MSN Messenger.d2fba57db3a135979a0a933f8164c227.svg": {
+      "ipo_ts": 1780826019558,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019558,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4211fdaf"
+    },
+    "build/static/media/Minesweeper.b60c639aa71ab033910da22994bb5d85.svg": {
+      "ipo_ts": 1780826019564,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019564,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "158427a6"
+    },
+    "build/static/media/My Computer.039d7ca84d89b5564847402d5d7e6a51.svg": {
+      "ipo_ts": 1780826019580,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019580,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d4943866"
+    },
+    "build/static/media/My Documents.6dd191ed6ea54f0726a788a6570411fb.svg": {
+      "ipo_ts": 1780826019584,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019584,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "baabb1fb"
+    },
+    "build/static/media/My Music.956e9ce39ebee4ebf3edb63989f00196.svg": {
+      "ipo_ts": 1780826019594,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019594,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3c31d756"
+    },
+    "build/static/media/My Pictures.daac0494c97f189d1b8dca1d44c98775.svg": {
+      "ipo_ts": 1780826019600,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019600,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3febfecf"
+    },
+    "build/static/media/Network Connection.04e61f11e4dac50eaafb823fcd515288.svg": {
+      "ipo_ts": 1780826019604,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019604,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4444257"
+    },
+    "build/static/media/Notepad.24d273bff9533bd261c4e48aa2c1fdc7.svg": {
+      "ipo_ts": 1780826019607,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019607,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4ebb1f4d"
+    },
+    "build/static/media/Outlook Express.868828b2325a3bdcc0896a23302345fb.svg": {
+      "ipo_ts": 1780826019616,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019616,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4c69d9b2"
+    },
+    "build/static/media/Paint.9140e0a3e1b33f64af25ba1f22a35d4b.svg": {
+      "ipo_ts": 1780826019622,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019622,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "bbd3806a"
+    },
+    "build/static/media/Printer.fed78a7dfb33674fa1c34eca445fa5d4.svg": {
+      "ipo_ts": 1780826019626,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019626,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "66a43700"
+    },
+    "build/static/media/Recent Documents.00799fb226f7f025670f82dc954fb1e0.svg": {
+      "ipo_ts": 1780826019631,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019631,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "292804f8"
+    },
+    "build/static/media/Run.d6b1cdf93679110d393c95aa225b4278.svg": {
+      "ipo_ts": 1780826019634,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019634,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "55770c22"
+    },
+    "build/static/media/Search.414e343eabf9cf87673d254a0285bc6c.svg": {
+      "ipo_ts": 1780826019637,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019637,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d53efa20"
+    },
+    "build/static/media/Security Error.f7c08703cb699837a4a219228d9611da.svg": {
+      "ipo_ts": 1780826019642,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019642,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "66a40551"
+    },
+    "build/static/media/User Accounts.a8b9cfcd7a322ca46ce69384a4e45fa6.svg": {
+      "ipo_ts": 1780826019650,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019650,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "54416791"
+    },
+    "build/static/media/WinXPlogo.76a0af5f14dca6b44b0549dc831af83f.svg": {
+      "ipo_ts": 1780826019652,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780826019652,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4871ce77"
+    },
+    "build/static/media/Windows Media Player 10.279300ea40662084e9c4d08c212faa81.svg": {
+      "ipo_ts": 1780826019662,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019662,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f03b03d0"
+    },
+    "build/static/media/Back.01876f9dd8d208cc4fb92f3d331348ee.svg": {
+      "ipo_ts": 1780826019667,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019667,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "dba3b465"
+    },
+    "build/static/media/DVD alt.233fd349eb074b68e6b77eb70993abee.svg": {
+      "ipo_ts": 1780826019688,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019688,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "65f12771"
+    },
+    "build/static/media/Delete.ddba99274fdf70a9a8c5d4c4c24eecd4.svg": {
+      "ipo_ts": 1780826019692,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019692,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "37c26e90"
+    },
+    "build/static/media/Email.99584fc71c8dfbd178d717b52b5bb35a.svg": {
+      "ipo_ts": 1780826019702,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019702,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "361de58c"
+    },
+    "build/static/media/Explorer.15137887a38632288f1ba6bb6691dbae.svg": {
+      "ipo_ts": 1780826019706,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019706,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "efa9514f"
+    },
+    "build/static/media/Folder Closed.002eca78660e4b30430df4826e69a6d8.svg": {
+      "ipo_ts": 1780826019758,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019758,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "86c56208"
+    },
+    "build/static/media/Folder Opened.688bc0635ecd5e10182ffb60345350f2.svg": {
+      "ipo_ts": 1780826019769,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019769,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "afd9c57d"
+    },
+    "build/static/media/Forward.d07778662ac7abe633918f7b4defa585.svg": {
+      "ipo_ts": 1780826019775,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019775,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5222244d"
+    },
+    "build/static/media/Go.63e6fc098dea803fe9c4d4fe0afd332e.svg": {
+      "ipo_ts": 1780826019782,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019782,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "abca3e4c"
+    },
+    "build/static/media/IE Edit.d19561808e60ddaffa4ed13edf082b3d.svg": {
+      "ipo_ts": 1780826019788,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019788,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "fc039f4b"
+    },
+    "build/static/media/IE History.64d05aff9939e841877e0e030d399232.svg": {
+      "ipo_ts": 1780826019799,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019799,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "791f91ff"
+    },
+    "build/static/media/IE Home.5b0471818aee331a395eecade79ae5e8.svg": {
+      "ipo_ts": 1780826019803,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019803,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "34ee8a7e"
+    },
+    "build/static/media/IE Refresh.5e5c3128a8768e303a4af15c97b542f9.svg": {
+      "ipo_ts": 1780826019805,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019805,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "840673ab"
+    },
+    "build/static/media/IE Stop.6958efb8676935f3320bec02ae981d27.svg": {
+      "ipo_ts": 1780826019806,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019806,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "cbc75895"
+    },
+    "build/static/media/Local Disk.7481bac3befbb4f2f91e5d37003f6f31.svg": {
+      "ipo_ts": 1780826019818,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019818,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "6d1aae13"
+    },
+    "build/static/media/MSN.f3d75bc41febc280525e821a3576d6bd.svg": {
+      "ipo_ts": 1780826019828,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019828,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "da960ca8"
+    },
+    "build/static/media/My Network Places.b001ff35888b601deaff9a1ba1f4d6ab.svg": {
+      "ipo_ts": 1780826019848,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019848,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f8c8c486"
+    },
+    "build/static/media/Up.4237f60497ed3af49090f4cc3ab7b904.svg": {
+      "ipo_ts": 1780826019854,
+      "edit_count": 1,
+      "last_lines": 4,
+      "last_ts": 1780826019854,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "59a29e22"
+    },
+    "build/static/media/error.c8da1695dd177fc9e8ec.wav": {
+      "ipo_ts": 1780826019858,
+      "edit_count": 1,
+      "last_lines": 187,
+      "last_ts": 1780826019858,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e8e86166"
+    },
+    "build/static/media/find.303b87f499358979b1c66a3da1584e67.svg": {
+      "ipo_ts": 1780826019860,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780826019860,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f96d6115"
+    },
+    "build/static/media/smile.45b54b9d335aea400da0859475daa434.svg": {
+      "ipo_ts": 1780826019862,
+      "edit_count": 1,
+      "last_lines": 48,
+      "last_ts": 1780826019862,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c8b970c7"
+    },
+    "build/static/js/main.be988a56.js.map": {
+      "ipo_ts": 1780826020411,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780826020411,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "7dd4682d"
+    },
+    "build/asset-manifest.json": {
+      "ipo_ts": 1780826020412,
+      "edit_count": 1,
+      "last_lines": 63,
+      "last_ts": 1780826020412,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "49d77e37"
+    },
+    "build/index.html": {
+      "ipo_ts": 1780826020413,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780826020413,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "41f1c132"
+    },
+    "build/static/css/main.f012863c.css": {
+      "ipo_ts": 1780826020414,
+      "edit_count": 1,
+      "last_lines": 2,
+      "last_ts": 1780826020414,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "41a1a8c8"
+    },
+    "build/static/css/main.f012863c.css.map": {
+      "ipo_ts": 1780826020416,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1780826020416,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d4926825"
+    },
+    "build/static/js/main.be988a56.js": {
+      "ipo_ts": 1780826020437,
+      "edit_count": 1,
+      "last_lines": 3,
+      "last_ts": 1780826020437,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "43a9b8c0"
+    },
+    "build/static/js/main.be988a56.js.LICENSE.txt": {
+      "ipo_ts": 1780826020438,
+      "edit_count": 1,
+      "last_lines": 144,
+      "last_ts": 1780826020438,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1714f084"
+    },
+    "build/static/media/all-programs.bcaf5973986a068c6a92.ico": {
+      "ipo_ts": 1780826020440,
+      "edit_count": 1,
+      "last_lines": 25,
+      "last_ts": 1780826020440,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "68f83b8d"
+    },
+    "build/static/media/narrator.aeadcf16c506a1b17f3e.ico": {
+      "ipo_ts": 1780826020442,
+      "edit_count": 1,
+      "last_lines": 23,
+      "last_ts": 1780826020442,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "22b28b62"
+    },
+    "build/static/media/restart.dc491046c84e4c14e552.ico": {
+      "ipo_ts": 1780826020444,
+      "edit_count": 1,
+      "last_lines": 45,
+      "last_ts": 1780826020444,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "bd1e8d34"
+    },
+    "build/static/media/restore.13115734763eedd58881.ico": {
+      "ipo_ts": 1780826020445,
+      "edit_count": 1,
+      "last_lines": 5,
+      "last_ts": 1780826020445,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ee3b2b29"
+    }
+  }
+}
