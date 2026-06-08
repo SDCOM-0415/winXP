@@ -15,10 +15,10 @@ import go from 'assets/windowsIcons/svg/Go.svg';
 import links from 'assets/windowsIcons/links.png';
 import search from 'assets/windowsIcons/svg/Search.svg';
 import favorite from 'assets/windowsIcons/svg/Favorites.svg';
-import back from 'assets/windowsIcons/svg/Back.svg';
+import back from 'assets/windowsIcons/back.png';
 import earth from 'assets/windowsIcons/earth.png';
 import edit from 'assets/windowsIcons/svg/IE Edit.svg';
-import forward from 'assets/windowsIcons/svg/Forward.svg';
+import forward from 'assets/windowsIcons/forward.png';
 import history from 'assets/windowsIcons/svg/IE History.svg';
 import home from 'assets/windowsIcons/svg/IE Home.svg';
 import mail from 'assets/windowsIcons/svg/Email.svg';
@@ -95,131 +95,31 @@ function getErrorPageHtml(url, errorType) {
       '您可以尝试访问该网站的其他页面，或返回上一页后重新输入地址。';
   }
 
-  return `<!doctype html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <title>找不到服务器</title>
-    <style>
-      body {
-        margin: 0;
-        background: #fff;
-        color: #000;
-        font-family: SimSun, '宋体', serif;
-        font-size: 12px;
-        line-height: 1.35;
-      }
-      .page {
-        padding: 28px 30px 40px;
-      }
-      .address {
-        margin-bottom: 18px;
-        color: #000;
-      }
-      .heading {
-        display: flex;
-        align-items: flex-start;
-        gap: 18px;
-        margin-bottom: 22px;
-      }
-      .heading-icon {
-        width: 28px;
-        height: 44px;
-        border: 1px solid #666;
-        position: relative;
-        flex-shrink: 0;
-      }
-      .heading-icon:before {
-        content: 'i';
-        position: absolute;
-        left: 9px;
-        top: 3px;
-        font-size: 34px;
-        font-weight: bold;
-        color: #204aaf;
-        font-family: Times New Roman, serif;
-      }
-      h1 {
-        margin: 3px 0 0;
-        font-size: 28px;
-        font-weight: normal;
-      }
-      .desc {
-        font-size: 16px;
-        margin: 0 0 26px 46px;
-      }
-      .highlight {
-        margin: 0 0 28px 0;
-        border: 3px solid #ff2f2f;
-        padding: 14px 18px;
-        width: 620px;
-        display: flex;
-        align-items: center;
-        gap: 16px;
-      }
-      .highlight-icon {
-        width: 72px;
-        height: 72px;
-        flex-shrink: 0;
-        position: relative;
-      }
-      .highlight-icon:before {
-        content: '🌐';
-        position: absolute;
-        left: 0;
-        top: 4px;
-        font-size: 46px;
-      }
-      .highlight-icon:after {
-        content: '?';
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        background: #f33;
-        color: #fff;
-        font-size: 22px;
-        line-height: 28px;
-        text-align: center;
-        font-weight: bold;
-      }
-      .highlight-text {
-        font-size: 16px;
-        font-weight: bold;
-      }
-      .subheading {
-        margin: 26px 0 8px;
-        font-size: 18px;
-      }
-      ul {
-        margin: 0 0 0 24px;
-        padding-left: 24px;
-      }
-      li {
-        margin: 10px 0;
-        font-size: 18px;
-      }
-      .footer {
-        margin-top: 42px;
-        font-size: 18px;
-      }
-      .footer small {
-        display: block;
-        margin-top: 6px;
-      }
-      b {
-        font-weight: bold;
-      }
-      u {
-        text-decoration: underline;
-        text-decoration-color: #f00;
-        text-decoration-thickness: 2px;
-      }
-    </style>
-  </head>
-  <body>
+  return `<style>
+  .xp-error { margin:0; background:#fff; color:#000; font-family:'宋体',SimSun,serif; font-size:12px; line-height:1.5; }
+  .xp-error .page { padding:22px 28px 40px; }
+  .xp-error .address { margin-bottom:16px; color:#000; font-size:12px; }
+  .xp-error .heading { display:flex; align-items:flex-start; gap:14px; margin-bottom:18px; }
+  .xp-error .heading-icon { width:26px; height:42px; border:1px solid #666; position:relative; flex-shrink:0; }
+  .xp-error .heading-icon:before { content:'i'; position:absolute; left:8px; top:2px; font-size:32px; font-weight:bold; color:#204aaf; font-family:Times New Roman,serif; }
+  .xp-error h1 { margin:2px 0 0; font-size:22px; font-weight:normal; }
+  .xp-error .desc { font-size:12px; margin:0 0 20px 40px; line-height:1.6; }
+  .xp-error .highlight { margin:0 0 22px 0; border:3px solid #ff0000; padding:12px 16px; max-width:580px; display:flex; align-items:center; gap:14px; }
+  .xp-error .highlight-icon { width:60px; height:60px; flex-shrink:0; position:relative; }
+  .xp-error .highlight-icon:before { content:'🌐'; position:absolute; left:0; top:2px; font-size:40px; }
+  .xp-error .highlight-icon:after { content:'?'; position:absolute; right:2px; bottom:0; width:24px; height:24px; border-radius:50%; background:#f00; color:#fff; font-size:18px; line-height:24px; text-align:center; font-weight:bold; }
+  .xp-error .highlight-text { font-size:12px; font-weight:bold; line-height:1.6; }
+  .xp-error .subheading { margin:22px 0 6px; font-size:12px; font-weight:bold; }
+  .xp-error ul { margin:6px 0 0 18px; padding-left:18px; }
+  .xp-error li { margin:8px 0; font-size:12px; line-height:1.6; list-style-type:disc; }
+  .xp-error ol { margin:6px 0 0 0; padding-left:24px; }
+  .xp-error ol li { list-style-type:decimal; }
+  .xp-error .footer { margin-top:36px; font-size:12px; line-height:1.6; }
+  .xp-error .footer small { display:block; margin-top:4px; }
+  .xp-error b { font-weight:bold; }
+  .xp-error u { text-decoration:underline; text-decoration-color:#f00; text-decoration-thickness:2px; }
+  </style>
+  <div class="xp-error">
     <div class="page">
       <div class="address">${displayUrl}</div>
       <div class="heading">
@@ -239,14 +139,16 @@ function getErrorPageHtml(url, errorType) {
       <ul>
         <li>单击 <b>刷新</b> 按钮，或稍后重试。</li>
         <li>如果您已经在地址栏中输入该网页的地址，请确认其拼写正确。</li>
-        <li>
-          要检查您的网络连接，请单击工具菜单，然后单击 <b>Internet</b>
-          选项。在连接选项卡上，单击设置。
+        <li>要检查您的网络连接，请单击工具菜单，然后单击 <b>Internet 选项</b>。在连接选项卡上，单击 <b>设置</b>。设置必须与您的局域网 (LAN) 管理员或 Internet 服务供应商 (ISP) 提供的一致。</li>
+        <li>查看您的 Internet 连接设置是否正确被检测。您可能设置让 Microsoft Windows 检查您的网站并自动发现网络连接设置 (如果您的网络管理员已经启用此设置)。
+          <ol>
+            <li>单击工具菜单，然后单击 <b>Internet 选项</b>。</li>
+            <li>在连接选项卡上，单击 <b>LAN 设置</b>。</li>
+            <li>选择自动检测设置，然后单击 <b>确定</b>。</li>
+          </ol>
         </li>
-        <li>
-          查看您的 Internet 连接设置是否正确检测到。您可能已设置让
-          Microsoft Windows 检查您的网站并自动发现网络连接设置。
-        </li>
+        <li>某些站点要求 128 位连接安全。单击帮助菜单，然后单击关于 <b>Internet Explorer</b> 可以查看您所安装的安全强度。</li>
+        <li>如果您要访问某安全站点，请确保您的安全设置能够支持。请单击工具菜单，然后单击 <b>Internet 选项</b>。在"高级"选项卡上，滚动到"安全"部分，复选 SSL 2.0、SSL 3.0、TLS 1.0、PCT 1.0 设置。</li>
         <li>单击 <u>上一步</u> 按钮，尝试其他链接。</li>
       </ul>
       <div class="footer">
@@ -254,8 +156,7 @@ function getErrorPageHtml(url, errorType) {
         <small>Internet Explorer</small>
       </div>
     </div>
-  </body>
-</html>`;
+  </div>`;
 }
 
 function getStatusText(loading, url, errorType) {
@@ -334,16 +235,6 @@ function InternetExplorer({ onClose, openUrl }) {
     loadTimeoutRef.current = setTimeout(() => {
       setLoading(false);
       setErrorType('timeout');
-      try {
-        const iframeWindow =
-          iframeRef.current && iframeRef.current.contentWindow;
-        const iframeDocument = iframeWindow && iframeWindow.document;
-        if (iframeDocument) {
-          iframeDocument.open();
-          iframeDocument.write(getErrorPageHtml(url, 'timeout'));
-          iframeDocument.close();
-        }
-      } catch (e) {}
     }, LOAD_TIMEOUT);
 
     return () => {
@@ -507,27 +398,36 @@ function InternetExplorer({ onClose, openUrl }) {
 
       if (nextErrorType) {
         setErrorType(nextErrorType);
-        if (iframeDocument) {
-          iframeDocument.open();
-          iframeDocument.write(getErrorPageHtml(url, nextErrorType));
-          iframeDocument.close();
-        }
         return;
       }
 
       setErrorType('');
     } catch (e) {
-      setErrorType('blocked');
       try {
-        const iframeWindow =
-          iframeRef.current && iframeRef.current.contentWindow;
-        const iframeDocument = iframeWindow && iframeWindow.document;
-        if (iframeDocument) {
-          iframeDocument.open();
-          iframeDocument.write(getErrorPageHtml(url, 'blocked'));
-          iframeDocument.close();
+        var checkWin = iframeRef.current && iframeRef.current.contentWindow;
+        if (!checkWin) {
+          setErrorType('blocked');
+          return;
         }
-      } catch (innerError) {}
+        var checkHref;
+        try {
+          checkHref = checkWin.location.href;
+        } catch (locErr) {
+          setErrorType('');
+          return;
+        }
+        if (
+          !checkHref ||
+          checkHref === 'about:blank' ||
+          /^chrome-error:\/\//i.test(checkHref)
+        ) {
+          setErrorType('blocked');
+        } else {
+          setErrorType('');
+        }
+      } catch (innerErr) {
+        setErrorType('');
+      }
     }
   }
 
@@ -614,7 +514,7 @@ function InternetExplorer({ onClose, openUrl }) {
           <span className="ie__function_bar__text">收藏夹</span>
         </div>
         <div className="ie__function_bar__button">
-          <img className="ie__function_bar__icon" src={history} alt="" />
+          <img className="ie__function_bar__icon--small" src={history} alt="" />
         </div>
         <div className="ie__function_bar__separate" />
         <div className="ie__function_bar__button">
@@ -629,7 +529,7 @@ function InternetExplorer({ onClose, openUrl }) {
           />
         </div>
         <div className="ie__function_bar__button--disable">
-          <img className="ie__function_bar__icon" src={edit} alt="" />
+          <img className="ie__function_bar__icon--small" src={edit} alt="" />
         </div>
         <div className="ie__function_bar__button">
           <img className="ie__function_bar__icon--margin12" src={msn} alt="" />
@@ -647,7 +547,11 @@ function InternetExplorer({ onClose, openUrl }) {
               setAddressInputFocused(true);
               setShowAddressHistory(true);
             }}
-            onBlur={() => setAddressInputFocused(false)}
+            onBlur={() => {
+              setAddressInputFocused(false);
+              // 失去焦点时，如果没有发生导航，地址栏应该恢复为当前页面的 URL
+              setInputValue(toDisplayUrl(url));
+            }}
             onKeyDown={onKeyDown}
             spellCheck={false}
           />
@@ -693,12 +597,21 @@ function InternetExplorer({ onClose, openUrl }) {
       </section>
       <div className="ie__content">
         {loading && <div className="ie__loading">正在加载页面...</div>}
+        {errorType && (
+          <div
+            className="ie__error_page"
+            dangerouslySetInnerHTML={{
+              __html: getErrorPageHtml(url, errorType),
+            }}
+          />
+        )}
         <iframe
           ref={iframeRef}
           className="ie__iframe"
           src={url}
           title="Internet Explorer"
           onLoad={onIframeLoad}
+          style={errorType ? { visibility: 'hidden' } : undefined}
         />
       </div>
       <footer className="ie__footer">
@@ -809,8 +722,12 @@ const Div = styled.div`
     }
     &--margin-1 {
       margin: 0 -1px;
-      height: 30px;
-      width: 30px;
+      height: 22px;
+      width: 22px;
+    }
+    &--small {
+      height: 22px;
+      width: 22px;
     }
   }
   .ie__function_bar__separate {
@@ -980,6 +897,16 @@ const Div = styled.div`
     width: 100%;
     height: 100%;
     border: none;
+  }
+  .ie__error_page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    overflow: auto;
+    background: #fff;
   }
   .ie__loading {
     position: absolute;
