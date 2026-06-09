@@ -19,98 +19,16 @@ import paint from 'assets/windowsIcons/svg/Paint.svg';
 import AboutWindows from 'components/AboutWindows';
 import windowsLogo from 'assets/windowsIcons/WinXPlogo.svg';
 
-const gen = () => {
-  let id = -1;
-  return () => {
-    id += 1;
-    return id;
-  };
-};
-const genId = gen();
-const genIndex = gen();
-export const defaultAppState = [
-  {
-    component: InternetExplorer,
-    header: {
-      title: 'Internet Explorer',
-      icon: iePaper,
-    },
-    defaultSize: {
-      width: 700,
-      height: 500,
-    },
-    defaultOffset: {
-      x: 130,
-      y: 20,
-    },
-    resizable: true,
-    minimized: false,
-    maximized: window.innerWidth < 800,
-    id: genId(),
-    zIndex: genIndex(),
-  },
-  {
-    component: Minesweeper,
-    header: {
-      title: '扫雷',
-      icon: mine,
-    },
-    defaultSize: {
-      width: 0,
-      height: 0,
-    },
-    defaultOffset: {
-      x: 180,
-      y: 170,
-    },
-    resizable: false,
-    minimized: false,
-    maximized: false,
-    id: genId(),
-    zIndex: genIndex(),
-  },
-  {
-    component: Winamp,
-    header: {
-      title: 'Winamp',
-      icon: winamp,
-      invisible: true,
-    },
-    defaultSize: {
-      width: 0,
-      height: 0,
-    },
-    defaultOffset: {
-      x: 0,
-      y: 0,
-    },
-    resizable: false,
-    minimized: false,
-    maximized: false,
-    id: genId(),
-    zIndex: genIndex(),
-  },
-  {
-    component: MyComputer,
-    header: {
-      title: '我的电脑',
-      icon: computer,
-    },
-    defaultSize: {
-      width: 660,
-      height: 500,
-    },
-    defaultOffset: {
-      x: 250,
-      y: 40,
-    },
-    resizable: true,
-    minimized: false,
-    maximized: window.innerWidth < 800,
-    id: genId(),
-    zIndex: genIndex(),
-  },
-];
+// const gen = () => {
+//   let id = -1;
+//   return () => {
+//     id += 1;
+//     return id;
+//   };
+// };
+// const genId = gen();
+// const genIndex = gen();
+export const defaultAppState = [];
 
 export const defaultIconState = [
   {

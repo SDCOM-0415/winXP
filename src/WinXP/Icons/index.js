@@ -11,10 +11,21 @@ function Icons({
   setSelectedIcons,
 }) {
   const [iconsRect, setIconsRect] = useState([]);
+  const [iconPositions, setIconPositions] = useState(() => {
+    const positions = {};
+    icons.forEach((icon, index) => {
+      positions[icon.id] = { x: 0, y: index * 100 };
+    });
+    return positions;
+  });
+  const [draggingId, setDraggingId] = useState(null);
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+
   function measure(rect) {
     if (iconsRect.find(r => r.id === rect.id)) return;
     setIconsRect(iconsRect => [...iconsRect, rect]);
   }
+
   useEffect(() => {
     if (!selecting) return;
     const sx = Math.min(selecting.x, mouse.docX);
@@ -29,6 +40,57 @@ function Icons({
       .map(icon => icon.id);
     setSelectedIcons(selectedIds);
   }, [iconsRect, setSelectedIcons, selecting, mouse.docX, mouse.docY]);
+
+  useEffect(() => {
+    if (draggingId === null) return;
+
+    function handleMouseMove(e) {
+      const newX = e.clientX - dragOffset.x - 40; // 40 is IconsContainer margin-left
+      const newY = e.clientY - dragOffset.y - 40; // 40 is IconsContainer margin-top
+
+      setIconPositions(prev => ({
+        ...prev,
+        [draggingId]: { x: newX, y: newY },
+      }));
+
+      // Update iconsRect for selection
+      setIconsRect(prev =>
+        prev.map(rect => {
+          if (rect.id === draggingId) {
+            return {
+              ...rect,
+              x: e.clientX - dragOffset.x,
+              y: e.clientY - dragOffset.y,
+            };
+          }
+          return rect;
+        }),
+      );
+    }
+
+    function handleMouseUp() {
+      setDraggingId(null);
+    }
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [draggingId, dragOffset]);
+
+  function handleIconMouseDown(e, id) {
+    onMouseDown(id);
+    setDraggingId(id);
+    const rect = e.currentTarget.getBoundingClientRect();
+    setDragOffset({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  }
+
   return (
     <IconsContainer>
       {icons.map(icon => (
@@ -36,9 +98,14 @@ function Icons({
           key={icon.id}
           {...icon}
           displayFocus={displayFocus}
-          onMouseDown={onMouseDown}
+          onMouseDown={e => handleIconMouseDown(e, icon.id)}
           onDoubleClick={onDoubleClick}
           measure={measure}
+          style={{
+            position: 'absolute',
+            left: iconPositions[icon.id]?.x || 0,
+            top: iconPositions[icon.id]?.y || 0,
+          }}
         />
       ))}
     </IconsContainer>
@@ -54,9 +121,10 @@ function Icon({
   id,
   component,
   measure,
+  style,
 }) {
   const ref = useRef(null);
-  function _onMouseDown() {
+  function _onMouseDown(e) {
     onMouseDown(id);
   }
   function _onDoubleClick() {
@@ -76,6 +144,7 @@ function Icon({
       onMouseDown={_onMouseDown}
       onDoubleClick={_onDoubleClick}
       ref={ref}
+      style={style}
     >
       <div className={`${className}__img__container`}>
         <img src={icon} alt={title} className={`${className}__img`} />
@@ -95,7 +164,6 @@ const IconsContainer = styled.div`
 
 const StyledIcon = styled(Icon)`
   width: 70px;
-  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
