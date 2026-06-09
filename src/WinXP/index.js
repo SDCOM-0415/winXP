@@ -33,8 +33,18 @@ import Windows from './Windows';
 import Icons from './Icons';
 import { DashedBox } from 'components';
 import windowsLogo from 'assets/windowsIcons/WinXPlogo.svg';
+import windowsOffLogo from 'assets/windowsIcons/windows-off.png';
+import bootGif from 'assets/windowsIcons/boot.gif';
+import userIcon from 'assets/windowsIcons/user.png';
 
 const BOOT_MS = 3200;
+const LOADING_MS = 1300;
+const LOGGING_OFF_MS = 1300;
+const SHUTTING_DOWN_MS = 1800;
+const LOGON_WELCOME_MS = 1000;
+const DEFAULT_LOGON_ACCOUNT = 'Administrator';
+const LOGON_SOUND_URL =
+  'https://cdn.glitch.com/01d2e04f-e49d-4304-aa9e-55b9849b4cce%2FWindows%20XP%20Logon%20Sound.wav?1522620571979';
 
 const initState = {
   apps: defaultAppState,
@@ -274,6 +284,30 @@ function WinXP() {
   }, [state.powerState]);
 
   useEffect(() => {
+    if (state.powerState !== POWER_STATE.LOADING) return undefined;
+    const timer = window.setTimeout(() => {
+      dispatch({ type: POWER_OFF, payload: POWER_STATE.START });
+    }, LOADING_MS);
+    return () => window.clearTimeout(timer);
+  }, [state.powerState]);
+
+  useEffect(() => {
+    if (state.powerState !== POWER_STATE.LOGGING_OFF) return undefined;
+    const timer = window.setTimeout(() => {
+      dispatch({ type: RESET_SYSTEM });
+    }, LOGGING_OFF_MS);
+    return () => window.clearTimeout(timer);
+  }, [state.powerState]);
+
+  useEffect(() => {
+    if (state.powerState !== POWER_STATE.SHUTTING_DOWN) return undefined;
+    const timer = window.setTimeout(() => {
+      dispatch({ type: RESET_SYSTEM });
+    }, SHUTTING_DOWN_MS);
+    return () => window.clearTimeout(timer);
+  }, [state.powerState]);
+
+  useEffect(() => {
     function handleMessage(e) {
       if (e.data && e.data.type === 'ie-open-window') {
         const ieSetting = appSettings['Internet Explorer'];
@@ -414,7 +448,11 @@ function WinXP() {
 
   function onClickModalButton(text) {
     if (text === '注销') {
-      dispatch({ type: RESET_SYSTEM });
+      dispatch({ type: POWER_OFF, payload: POWER_STATE.LOGGING_OFF });
+      return;
+    }
+    if (text === '切换用户') {
+      dispatch({ type: POWER_OFF, payload: POWER_STATE.LOGON });
       return;
     }
     if (text === '重新启动') {
@@ -422,7 +460,7 @@ function WinXP() {
       return;
     }
     if (text === '关机') {
-      dispatch({ type: POWER_OFF, payload: POWER_STATE.BSOD });
+      dispatch({ type: POWER_OFF, payload: POWER_STATE.SHUTTING_DOWN });
       return;
     }
     dispatch({ type: CANCEL_POWER_OFF });
@@ -433,7 +471,7 @@ function WinXP() {
   }
 
   function onLogon() {
-    dispatch({ type: POWER_OFF, payload: POWER_STATE.START });
+    dispatch({ type: POWER_OFF, payload: POWER_STATE.LOADING });
   }
 
   function onRestartFromBsod() {
@@ -451,6 +489,9 @@ function WinXP() {
       {state.powerState === POWER_STATE.BOOT && <BootScreen />}
       {state.powerState === POWER_STATE.LOGON && (
         <LogonScreen onLogon={onLogon} />
+      )}
+      {state.powerState === POWER_STATE.LOADING && (
+        <TransitionScreen text="欢迎使用" subText="正在加载您的个人设置..." />
       )}
       {state.powerState === POWER_STATE.START && (
         <>
@@ -498,6 +539,10 @@ function WinXP() {
           mode={state.powerState}
         />
       )}
+      {state.powerState === POWER_STATE.LOGGING_OFF && (
+        <TransitionScreen text="正在注销" subText="请稍候..." />
+      )}
+      {state.powerState === POWER_STATE.SHUTTING_DOWN && <ShutdownScreen />}
       {state.powerState === POWER_STATE.BSOD && (
         <BsodScreen onRestart={onRestartFromBsod} />
       )}
@@ -508,48 +553,130 @@ function WinXP() {
 function BootScreen() {
   return (
     <BootOverlay>
-      <div className="boot-box">
-        <img src={windowsLogo} alt="Windows XP" className="logo" />
-        <div className="bar">
-          <div className="chunks">
-            <span />
-            <span />
-            <span />
-          </div>
-        </div>
-        <div className="caption">Microsoft Windows XP Professional</div>
-      </div>
+      <img src={bootGif} alt="Windows XP Boot" className="boot-gif" />
     </BootOverlay>
   );
 }
 
 function LogonScreen({ onLogon }) {
+  const [selectedAccount, setSelectedAccount] = useState('');
+  const [showWelcome, setShowWelcome] = useState(false);
+
+  function handleSelectAccount(name) {
+    setSelectedAccount(name);
+  }
+
+  function handleLogon() {
+    if (!selectedAccount) return;
+    setShowWelcome(true);
+  }
+
+  useEffect(() => {
+    if (!showWelcome) return undefined;
+    try {
+      const audio = new Audio(LOGON_SOUND_URL);
+      audio.play().catch(() => {});
+    } catch (e) {
+      /* ignore audio errors */
+    }
+    const timer = window.setTimeout(() => {
+      onLogon();
+    }, LOGON_WELCOME_MS);
+    return () => window.clearTimeout(timer);
+  }, [onLogon, showWelcome]);
+
   return (
-    <LogonOverlay onDoubleClick={onLogon}>
-      <div className="top" />
-      <div className="middle">
-        <div className="left">
-          <div className="left-inner">
-            <img src={windowsLogo} alt="Windows XP" className="left-logo" />
-            <div className="tip">要开始，请单击您的用户名</div>
+    <LogonOverlay>
+      <div className="logon-window">
+        <div className="logon-titlebar">
+          <div className="titleBar_left" />
+          <div className="titleBar_middle">
+            <span className="windowTitle">Welcome to RebornXP</span>
           </div>
+          <div className="titleBar_right" />
         </div>
-        <div className="right">
-          <button className="user-tile" onClick={onLogon}>
-            <div className="avatar">A</div>
-            <div className="texts">
-              <div className="name">Administrator</div>
-              <div className="welcome">单击此处开始</div>
+        <div className="logon-body">
+          {!showWelcome ? (
+            <div style={{ marginLeft: 32 }}>
+              <h1 style={{ fontWeight: 'normal' }}>Welcome to RebornXP!</h1>
+              <h2 style={{ fontWeight: 'normal' }}>
+                Choose a user account to log in
+              </h2>
+              <br />
+              <br />
+              <center
+                style={{
+                  width: 'calc(100% - 32px)',
+                  overflowX: 'auto',
+                }}
+              >
+                <table style={{ fontSize: 11, color: '#000' }}>
+                  <tbody>
+                    <tr className="accounts">
+                      <td>
+                        <img
+                          className={`userimgopt${
+                            selectedAccount === DEFAULT_LOGON_ACCOUNT
+                              ? ' selected'
+                              : ''
+                          }`}
+                          alt={DEFAULT_LOGON_ACCOUNT}
+                          src={userIcon}
+                          onClick={() =>
+                            handleSelectAccount(DEFAULT_LOGON_ACCOUNT)
+                          }
+                        />
+                        <div style={{ textAlign: 'center' }}>
+                          {DEFAULT_LOGON_ACCOUNT}
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </center>
+              <div
+                style={{
+                  position: 'absolute',
+                  right: 8,
+                  bottom: 8,
+                }}
+              >
+                <button
+                  className="next"
+                  disabled={!selectedAccount}
+                  onClick={handleLogon}
+                >
+                  Log in
+                </button>
+              </div>
             </div>
-          </button>
-        </div>
-      </div>
-      <div className="bottom">
-        <div className="text">
-          登录后，您可以添加或更改帐户。只需转到“控制面板”，然后单击“用户帐户”。
+          ) : (
+            <div style={{ marginLeft: 32 }}>
+              <h1 style={{ fontWeight: 'normal' }}>Welcome</h1>
+            </div>
+          )}
         </div>
       </div>
     </LogonOverlay>
+  );
+}
+
+function TransitionScreen({ text, subText }) {
+  return (
+    <TransitionOverlay>
+      <img src={windowsLogo} alt="Windows XP" className="transition-logo" />
+      <div className="transition-text">{text}</div>
+      <div className="transition-subtext">{subText}</div>
+    </TransitionOverlay>
+  );
+}
+
+function ShutdownScreen() {
+  return (
+    <ShutdownOverlay>
+      <img src={windowsOffLogo} alt="Windows XP" className="shutdown-logo" />
+      <div className="shutdown-text">Windows 正在关闭...</div>
+    </ShutdownOverlay>
   );
 }
 
@@ -599,9 +726,12 @@ const powerOffAnimation = keyframes`
 const animation = {
   [POWER_STATE.BOOT]: '',
   [POWER_STATE.LOGON]: '',
+  [POWER_STATE.LOADING]: '',
   [POWER_STATE.START]: '',
-  [POWER_STATE.TURN_OFF]: powerOffAnimation,
   [POWER_STATE.LOG_OFF]: powerOffAnimation,
+  [POWER_STATE.TURN_OFF]: powerOffAnimation,
+  [POWER_STATE.LOGGING_OFF]: '',
+  [POWER_STATE.SHUTTING_DOWN]: '',
   [POWER_STATE.BSOD]: '',
 };
 
@@ -628,133 +758,201 @@ const ScreenFill = styled.div`
 
 const BootOverlay = styled(ScreenFill)`
   background: #000;
-  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  .boot-box {
-    width: 420px;
-    text-align: center;
-  }
-  .logo {
-    width: 280px;
-    margin-bottom: 24px;
-    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.2));
-  }
-  .caption {
-    margin-top: 18px;
-    font-size: 18px;
-    letter-spacing: 0.5px;
-  }
-  .bar {
-    height: 24px;
-    border: 2px solid #222;
-    background: #111;
-    overflow: hidden;
-    border-radius: 3px;
-    position: relative;
-  }
-  .chunks {
-    position: absolute;
-    inset: 3px;
-    animation: move 1.2s linear infinite;
-    display: flex;
-    width: 140px;
-    justify-content: space-between;
-  }
-  .chunks span {
-    width: 36px;
-    background: linear-gradient(to bottom, #74b9ff 0%, #0b61ff 100%);
-    border-radius: 2px;
-  }
-  @keyframes move {
-    0% {
-      transform: translateX(-120px);
-    }
-    100% {
-      transform: translateX(380px);
-    }
+  .boot-gif {
+    display: block;
+    max-width: min(90vw, 720px);
+    max-height: min(90vh, 540px);
+    width: auto;
+    height: auto;
+    object-fit: contain;
   }
 `;
 
 const LogonOverlay = styled(ScreenFill)`
-  background: linear-gradient(to bottom, #0f45a8 0%, #2b7bd8 100%);
+  background: rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .logon-window {
+    width: 594px;
+    height: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .logon-titlebar {
+    display: flex;
+    height: 30px;
+    flex-shrink: 0;
+  }
+  .titleBar_left {
+    width: 6px;
+    height: 30px;
+    background: linear-gradient(
+      to bottom,
+      #0058ee 0%,
+      #3593ff 4%,
+      #288eff 6%,
+      #127dff 8%,
+      #036ffc 10%,
+      #0262ee 14%,
+      #0057e5 20%,
+      #0054e3 24%,
+      #0055eb 56%,
+      #005bf5 66%,
+      #026afe 76%,
+      #0062ef 86%,
+      #0052d6 92%,
+      #0040ab 94%,
+      #003092 100%
+    );
+    border-top-left-radius: 8px;
+    flex-shrink: 0;
+  }
+  .titleBar_middle {
+    flex: 1;
+    height: 30px;
+    background: linear-gradient(
+      to bottom,
+      #0058ee 0%,
+      #3593ff 4%,
+      #288eff 6%,
+      #127dff 8%,
+      #036ffc 10%,
+      #0262ee 14%,
+      #0057e5 20%,
+      #0054e3 24%,
+      #0055eb 56%,
+      #005bf5 66%,
+      #026afe 76%,
+      #0062ef 86%,
+      #0052d6 92%,
+      #0040ab 94%,
+      #003092 100%
+    );
+    display: flex;
+    align-items: center;
+    padding: 0 2px;
+  }
+  .titleBar_right {
+    width: 6px;
+    height: 30px;
+    background: linear-gradient(
+      to bottom,
+      #0058ee 0%,
+      #3593ff 4%,
+      #288eff 6%,
+      #127dff 8%,
+      #036ffc 10%,
+      #0262ee 14%,
+      #0057e5 20%,
+      #0054e3 24%,
+      #0055eb 56%,
+      #005bf5 66%,
+      #026afe 76%,
+      #0062ef 86%,
+      #0052d6 92%,
+      #0040ab 94%,
+      #003092 100%
+    );
+    border-top-right-radius: 8px;
+    flex-shrink: 0;
+  }
+  .windowTitle {
+    color: #fff;
+    font-family: 'Trebuchet MS', 'Noto Sans', sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+    padding-left: 4px;
+    white-space: nowrap;
+  }
+  .logon-body {
+    flex: 1;
+    background-color: #ece9d8;
+    border-left: 3px solid #0831d9;
+    border-right: 3px solid #0831d9;
+    border-bottom: 3px solid #0831d9;
+    position: relative;
+    overflow: hidden;
+    color: #000;
+  }
+  .logon-body h1 {
+    margin: 4px 0 0;
+    font-size: 2em;
+  }
+  .logon-body h2 {
+    margin: 0;
+    font-size: 1.5em;
+  }
+  .userimgopt {
+    border: 1px solid transparent;
+    width: 48px;
+    height: 48px;
+    padding: 4px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+  }
+  .userimgopt.selected {
+    border: 1px solid #68b3db;
+    background-color: #e1f2fb;
+  }
+  .next {
+    min-width: 72px;
+    height: 23px;
+    font-size: 11px;
+    cursor: pointer;
+  }
+  .next:disabled {
+    color: #808080;
+    cursor: default;
+  }
+`;
+
+const TransitionOverlay = styled(ScreenFill)`
+  background: linear-gradient(to bottom, #1147a8 0%, #08307f 100%);
   color: #fff;
   display: flex;
   flex-direction: column;
-  .top,
-  .bottom {
-    height: 72px;
-    background: linear-gradient(to bottom, #1d57c8 0%, #0a2d7a 100%);
-    box-shadow: inset 0 -1px rgba(255, 255, 255, 0.35);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  .transition-logo {
+    width: 220px;
+    margin-bottom: 26px;
   }
-  .middle {
-    flex: 1;
-    display: flex;
-  }
-  .left,
-  .right {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .left {
-    border-right: 1px solid rgba(255, 255, 255, 0.25);
-  }
-  .left-inner {
-    max-width: 320px;
-  }
-  .left-logo {
-    width: 240px;
-    margin-bottom: 18px;
-  }
-  .tip {
-    font-size: 22px;
-    line-height: 1.4;
-  }
-  .user-tile {
-    width: 280px;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.45);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    padding: 18px;
-    cursor: pointer;
-    color: #fff;
-  }
-  .user-tile:hover {
-    background: rgba(255, 255, 255, 0.2);
-  }
-  .avatar {
-    width: 64px;
-    height: 64px;
-    border-radius: 8px;
-    background: linear-gradient(to bottom, #f5d76e, #d68910);
-    color: #002b7f;
-    font-size: 40px;
+  .transition-text {
+    font-size: 30px;
     font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 16px;
+    margin-bottom: 8px;
   }
-  .name {
-    font-size: 28px;
-    font-weight: bold;
-  }
-  .welcome {
-    margin-top: 6px;
+  .transition-subtext {
     font-size: 14px;
+    opacity: 0.92;
+  }
+`;
+
+const ShutdownOverlay = styled(ScreenFill)`
+  background: #000;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .shutdown-logo {
+    width: 220px;
+    margin-bottom: 20px;
     opacity: 0.95;
   }
-  .bottom {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 0 32px;
-    font-size: 13px;
+  .shutdown-text {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 0.3px;
   }
 `;
 
