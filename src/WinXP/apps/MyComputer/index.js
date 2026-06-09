@@ -355,7 +355,11 @@ function MyComputer({ onClose }) {
                     <br />
                     本地磁盘
                     <br />
-                    修改日期: {buildDate}
+                    文件系统: NTFS
+                    <br />
+                    可用空间: 10.5 GB
+                    <br />
+                    总大小: 40.0 GB
                   </div>
                 )}
                 {selectedItem === 'cd-drive-d' && (
@@ -363,8 +367,6 @@ function MyComputer({ onClose }) {
                     <strong>CD 驱动器 (D:)</strong>
                     <br />
                     CD 驱动器
-                    <br />
-                    修改日期: {buildDate}
                   </div>
                 )}
                 {selectedItem === 'about-github' && (
