@@ -5,7 +5,7 @@ import React, {
   useState,
   useEffect,
 } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import useMouse from 'react-use/lib/useMouse';
 
 import ContextMenu from 'components/ContextMenu';
@@ -35,16 +35,13 @@ import { DashedBox } from 'components';
 import windowsLogo from 'assets/windowsIcons/WinXPlogo.svg';
 import windowsOffLogo from 'assets/windowsIcons/windows-off.png';
 import bootGif from 'assets/windowsIcons/boot.gif';
-import userIcon from 'assets/windowsIcons/user.png';
+import Logon from './Logon';
+import './index.css';
 
-const BOOT_MS = 3200;
-const LOADING_MS = 1300;
-const LOGGING_OFF_MS = 1300;
-const SHUTTING_DOWN_MS = 1800;
-const LOGON_WELCOME_MS = 1000;
-const DEFAULT_LOGON_ACCOUNT = 'Administrator';
-const LOGON_SOUND_URL =
-  'https://cdn.glitch.com/01d2e04f-e49d-4304-aa9e-55b9849b4cce%2FWindows%20XP%20Logon%20Sound.wav?1522620571979';
+const BOOT_MS = 4000;
+const BOOT_FADE_MS = 500;
+const LOGGING_OFF_MS = 3000;
+const SHUTTING_DOWN_MS = 3000;
 
 const initState = {
   apps: defaultAppState,
@@ -211,6 +208,7 @@ function WinXP() {
     x: 0,
     y: 0,
   });
+  const [bootFading, setBootFading] = useState(false);
   const focusedAppId = getFocusedAppId();
 
   const onFocusApp = useCallback(id => {
@@ -277,18 +275,17 @@ function WinXP() {
 
   useEffect(() => {
     if (state.powerState !== POWER_STATE.BOOT) return undefined;
-    const timer = window.setTimeout(() => {
-      dispatch({ type: POWER_OFF, payload: POWER_STATE.LOGON });
+    const fadeTimer = window.setTimeout(() => {
+      setBootFading(true);
     }, BOOT_MS);
-    return () => window.clearTimeout(timer);
-  }, [state.powerState]);
-
-  useEffect(() => {
-    if (state.powerState !== POWER_STATE.LOADING) return undefined;
-    const timer = window.setTimeout(() => {
-      dispatch({ type: POWER_OFF, payload: POWER_STATE.START });
-    }, LOADING_MS);
-    return () => window.clearTimeout(timer);
+    const transitionTimer = window.setTimeout(() => {
+      setBootFading(false);
+      dispatch({ type: POWER_OFF, payload: POWER_STATE.LOGON });
+    }, BOOT_MS + BOOT_FADE_MS + 500);
+    return () => {
+      window.clearTimeout(fadeTimer);
+      window.clearTimeout(transitionTimer);
+    };
   }, [state.powerState]);
 
   useEffect(() => {
@@ -421,7 +418,7 @@ function WinXP() {
         type: ADD_APP,
         payload: {
           ...appSettings.Error,
-          injectProps: { message: 'C:\\n找不到应用程序' },
+          injectProps: { message: 'C:\\\\\n找不到应用程序' },
         },
       });
     }
@@ -471,12 +468,16 @@ function WinXP() {
   }
 
   function onLogon() {
-    dispatch({ type: POWER_OFF, payload: POWER_STATE.LOADING });
+    dispatch({ type: POWER_OFF, payload: POWER_STATE.START });
   }
 
   function onRestartFromBsod() {
     dispatch({ type: RESET_SYSTEM });
   }
+
+  const isFadeToGray =
+    state.powerState === POWER_STATE.LOG_OFF ||
+    state.powerState === POWER_STATE.TURN_OFF;
 
   return (
     <Container
@@ -484,15 +485,14 @@ function WinXP() {
       onMouseUp={onMouseUpDesktop}
       onMouseDown={onMouseDownDesktop}
       onContextMenu={onContextMenuDesktop}
-      state={state.powerState}
+      className={`winxp-container${isFadeToGray ? ' fadetogray' : ''}`}
     >
-      {state.powerState === POWER_STATE.BOOT && <BootScreen />}
-      {state.powerState === POWER_STATE.LOGON && (
-        <LogonScreen onLogon={onLogon} />
+      {state.powerState === POWER_STATE.BOOT && (
+        <div className={`scene_bootscreen${bootFading ? ' fading' : ''}`}>
+          <img src={bootGif} alt="" />
+        </div>
       )}
-      {state.powerState === POWER_STATE.LOADING && (
-        <TransitionScreen text="欢迎使用" subText="正在加载您的个人设置..." />
-      )}
+      {state.powerState === POWER_STATE.LOGON && <Logon onLogin={onLogon} />}
       {state.powerState === POWER_STATE.START && (
         <>
           <Icons
@@ -540,433 +540,55 @@ function WinXP() {
         />
       )}
       {state.powerState === POWER_STATE.LOGGING_OFF && (
-        <TransitionScreen text="正在注销" subText="请稍候..." />
+        <div className="scene_logoff">
+          <img src={windowsLogo} alt="" className="logoff-logo" />
+          <div className="logoff-text">Logging off...</div>
+          <div className="logoff-subtext">Saving your settings...</div>
+        </div>
       )}
-      {state.powerState === POWER_STATE.SHUTTING_DOWN && <ShutdownScreen />}
+      {state.powerState === POWER_STATE.SHUTTING_DOWN && (
+        <div className="scene_shutdownscreen">
+          <img src={windowsOffLogo} alt="" className="shutdown-logo" />
+          <div className="shutdown-text">Windows is shutting down...</div>
+        </div>
+      )}
       {state.powerState === POWER_STATE.BSOD && (
-        <BsodScreen onRestart={onRestartFromBsod} />
+        <div className="scene_bsod" onDoubleClick={onRestartFromBsod}>
+          <pre>{`A problem has been detected and Windows has been shut down to prevent damage
+to your computer.
+
+The problem seems to be caused by the following file: UXTHEME.DLL
+ILLEGAL_UXSTYLE_INPUT_VALUE
+
+If this is the first time you've seen this Stop error screen,
+restart your computer. If this screen appears again, follow
+these steps:
+
+Check to make sure any new hardware or software is properly installed.
+If this is a new installation, ask your hardware or software manufacturer
+for any Windows updates you might need.
+
+If problems continue, disable or remove any newly installed hardware
+or software. Disable BIOS memory options such as caching or shadowing.
+If you need to use Safe Mode to remove or disable components, restart
+your computer, press F8 to select Advanced Startup Options, and then
+select Safe Mode.
+
+Technical information:
+*** STOP: 0x00000069 (0xFD3094C2,0x00000001,0xFBFE7617,0x00000000)
+*** UXTHEME.DLL - Address FDF23422 base at FDF24000, DateStamp 3d6dd67c
+
+Double-click this screen to restart.`}</pre>
+        </div>
       )}
     </Container>
   );
 }
 
-function BootScreen() {
-  return (
-    <BootOverlay>
-      <img src={bootGif} alt="Windows XP Boot" className="boot-gif" />
-    </BootOverlay>
-  );
-}
-
-function LogonScreen({ onLogon }) {
-  const [selectedAccount, setSelectedAccount] = useState('');
-  const [showWelcome, setShowWelcome] = useState(false);
-
-  function handleSelectAccount(name) {
-    setSelectedAccount(name);
-  }
-
-  function handleLogon() {
-    if (!selectedAccount) return;
-    setShowWelcome(true);
-  }
-
-  useEffect(() => {
-    if (!showWelcome) return undefined;
-    try {
-      const audio = new Audio(LOGON_SOUND_URL);
-      audio.play().catch(() => {});
-    } catch (e) {
-      /* ignore audio errors */
-    }
-    const timer = window.setTimeout(() => {
-      onLogon();
-    }, LOGON_WELCOME_MS);
-    return () => window.clearTimeout(timer);
-  }, [onLogon, showWelcome]);
-
-  return (
-    <LogonOverlay>
-      <div className="logon-window">
-        <div className="logon-titlebar">
-          <div className="titleBar_left" />
-          <div className="titleBar_middle">
-            <span className="windowTitle">Welcome to RebornXP</span>
-          </div>
-          <div className="titleBar_right" />
-        </div>
-        <div className="logon-body">
-          {!showWelcome ? (
-            <div style={{ marginLeft: 32 }}>
-              <h1 style={{ fontWeight: 'normal' }}>Welcome to RebornXP!</h1>
-              <h2 style={{ fontWeight: 'normal' }}>
-                Choose a user account to log in
-              </h2>
-              <br />
-              <br />
-              <center
-                style={{
-                  width: 'calc(100% - 32px)',
-                  overflowX: 'auto',
-                }}
-              >
-                <table style={{ fontSize: 11, color: '#000' }}>
-                  <tbody>
-                    <tr className="accounts">
-                      <td>
-                        <img
-                          className={`userimgopt${
-                            selectedAccount === DEFAULT_LOGON_ACCOUNT
-                              ? ' selected'
-                              : ''
-                          }`}
-                          alt={DEFAULT_LOGON_ACCOUNT}
-                          src={userIcon}
-                          onClick={() =>
-                            handleSelectAccount(DEFAULT_LOGON_ACCOUNT)
-                          }
-                        />
-                        <div style={{ textAlign: 'center' }}>
-                          {DEFAULT_LOGON_ACCOUNT}
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </center>
-              <div
-                style={{
-                  position: 'absolute',
-                  right: 8,
-                  bottom: 8,
-                }}
-              >
-                <button
-                  className="next"
-                  disabled={!selectedAccount}
-                  onClick={handleLogon}
-                >
-                  Log in
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div style={{ marginLeft: 32 }}>
-              <h1 style={{ fontWeight: 'normal' }}>Welcome</h1>
-            </div>
-          )}
-        </div>
-      </div>
-    </LogonOverlay>
-  );
-}
-
-function TransitionScreen({ text, subText }) {
-  return (
-    <TransitionOverlay>
-      <img src={windowsLogo} alt="Windows XP" className="transition-logo" />
-      <div className="transition-text">{text}</div>
-      <div className="transition-subtext">{subText}</div>
-    </TransitionOverlay>
-  );
-}
-
-function ShutdownScreen() {
-  return (
-    <ShutdownOverlay>
-      <img src={windowsOffLogo} alt="Windows XP" className="shutdown-logo" />
-      <div className="shutdown-text">Windows 正在关闭...</div>
-    </ShutdownOverlay>
-  );
-}
-
-function BsodScreen({ onRestart }) {
-  return (
-    <BsodOverlay onDoubleClick={onRestart}>
-      <pre>{`已检测到问题，Windows 已经关闭以防止损坏您的计算机。
-
-问题似乎由以下文件引起: UXTHEME.DLL
-ILLEGAL_UXSTYLE_INPUT_VALUE
-
-如果这是您第一次看到这个停止错误屏幕，
-请重新启动您的计算机。如果此屏幕再次出现，请按照
-以下步骤操作:
-
-检查以确保任何新硬件或软件都已正确安装。
-如果这是一次新安装，请向您的硬件或软件制造商咨询
-所需的任何 Windows 更新。
-
-如果问题仍然存在，请禁用或删除任何新安装的硬件
-或软件。禁用 BIOS 内存选项，例如缓存或阴影。
-如果您需要使用安全模式来删除或禁用组件，
-请重新启动计算机，按 F8 选择高级启动选项，
-然后选择“安全模式”。
-
-技术信息:
-*** STOP: 0x00000069 (0xFD3094C2,0x00000001,0xFBFE7617,0x00000000)
-*** UXTHEME.DLL - Address FDF23422 base at FDF24000, DateStamp 3d6dd67c
-
-双击此屏幕以重新启动。`}</pre>
-    </BsodOverlay>
-  );
-}
-
-const powerOffAnimation = keyframes`
-  0% {
-    filter: brightness(1) grayscale(0);
-  }
-  30% {
-    filter: brightness(1) grayscale(0);
-  }
-  100% {
-    filter: brightness(0.6) grayscale(1);
-  }
-`;
-
-const animation = {
-  [POWER_STATE.BOOT]: '',
-  [POWER_STATE.LOGON]: '',
-  [POWER_STATE.LOADING]: '',
-  [POWER_STATE.START]: '',
-  [POWER_STATE.LOG_OFF]: powerOffAnimation,
-  [POWER_STATE.TURN_OFF]: powerOffAnimation,
-  [POWER_STATE.LOGGING_OFF]: '',
-  [POWER_STATE.SHUTTING_DOWN]: '',
-  [POWER_STATE.BSOD]: '',
-};
-
 const Container = styled.div`
-  @import url('https://fonts.googleapis.com/css?family=Noto+Sans');
-  font-family: Tahoma, 'Noto Sans', sans-serif;
   height: 100%;
   overflow: hidden;
   position: relative;
-  background: url(https://blog.sdcom.top/upload/Zk6TR5k.jpg) no-repeat center
-    center fixed;
-  background-size: cover;
-  animation: ${({ state }) => animation[state]} 5s forwards;
-  *:not(input):not(textarea) {
-    user-select: none;
-  }
-`;
-
-const ScreenFill = styled.div`
-  position: absolute;
-  inset: 0;
-  z-index: 9999;
-`;
-
-const BootOverlay = styled(ScreenFill)`
-  background: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  .boot-gif {
-    display: block;
-    max-width: min(90vw, 720px);
-    max-height: min(90vh, 540px);
-    width: auto;
-    height: auto;
-    object-fit: contain;
-  }
-`;
-
-const LogonOverlay = styled(ScreenFill)`
-  background: rgba(0, 0, 0, 0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  .logon-window {
-    width: 594px;
-    height: 300px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-  }
-  .logon-titlebar {
-    display: flex;
-    height: 30px;
-    flex-shrink: 0;
-  }
-  .titleBar_left {
-    width: 6px;
-    height: 30px;
-    background: linear-gradient(
-      to bottom,
-      #0058ee 0%,
-      #3593ff 4%,
-      #288eff 6%,
-      #127dff 8%,
-      #036ffc 10%,
-      #0262ee 14%,
-      #0057e5 20%,
-      #0054e3 24%,
-      #0055eb 56%,
-      #005bf5 66%,
-      #026afe 76%,
-      #0062ef 86%,
-      #0052d6 92%,
-      #0040ab 94%,
-      #003092 100%
-    );
-    border-top-left-radius: 8px;
-    flex-shrink: 0;
-  }
-  .titleBar_middle {
-    flex: 1;
-    height: 30px;
-    background: linear-gradient(
-      to bottom,
-      #0058ee 0%,
-      #3593ff 4%,
-      #288eff 6%,
-      #127dff 8%,
-      #036ffc 10%,
-      #0262ee 14%,
-      #0057e5 20%,
-      #0054e3 24%,
-      #0055eb 56%,
-      #005bf5 66%,
-      #026afe 76%,
-      #0062ef 86%,
-      #0052d6 92%,
-      #0040ab 94%,
-      #003092 100%
-    );
-    display: flex;
-    align-items: center;
-    padding: 0 2px;
-  }
-  .titleBar_right {
-    width: 6px;
-    height: 30px;
-    background: linear-gradient(
-      to bottom,
-      #0058ee 0%,
-      #3593ff 4%,
-      #288eff 6%,
-      #127dff 8%,
-      #036ffc 10%,
-      #0262ee 14%,
-      #0057e5 20%,
-      #0054e3 24%,
-      #0055eb 56%,
-      #005bf5 66%,
-      #026afe 76%,
-      #0062ef 86%,
-      #0052d6 92%,
-      #0040ab 94%,
-      #003092 100%
-    );
-    border-top-right-radius: 8px;
-    flex-shrink: 0;
-  }
-  .windowTitle {
-    color: #fff;
-    font-family: 'Trebuchet MS', 'Noto Sans', sans-serif;
-    font-weight: bold;
-    font-size: 13px;
-    text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
-    padding-left: 4px;
-    white-space: nowrap;
-  }
-  .logon-body {
-    flex: 1;
-    background-color: #ece9d8;
-    border-left: 3px solid #0831d9;
-    border-right: 3px solid #0831d9;
-    border-bottom: 3px solid #0831d9;
-    position: relative;
-    overflow: hidden;
-    color: #000;
-  }
-  .logon-body h1 {
-    margin: 4px 0 0;
-    font-size: 2em;
-  }
-  .logon-body h2 {
-    margin: 0;
-    font-size: 1.5em;
-  }
-  .userimgopt {
-    border: 1px solid transparent;
-    width: 48px;
-    height: 48px;
-    padding: 4px;
-    border-radius: 5px;
-    cursor: pointer;
-    display: block;
-    margin: 0 auto;
-  }
-  .userimgopt.selected {
-    border: 1px solid #68b3db;
-    background-color: #e1f2fb;
-  }
-  .next {
-    min-width: 72px;
-    height: 23px;
-    font-size: 11px;
-    cursor: pointer;
-  }
-  .next:disabled {
-    color: #808080;
-    cursor: default;
-  }
-`;
-
-const TransitionOverlay = styled(ScreenFill)`
-  background: linear-gradient(to bottom, #1147a8 0%, #08307f 100%);
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  .transition-logo {
-    width: 220px;
-    margin-bottom: 26px;
-  }
-  .transition-text {
-    font-size: 30px;
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-  .transition-subtext {
-    font-size: 14px;
-    opacity: 0.92;
-  }
-`;
-
-const ShutdownOverlay = styled(ScreenFill)`
-  background: #000;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  .shutdown-logo {
-    width: 220px;
-    margin-bottom: 20px;
-    opacity: 0.95;
-  }
-  .shutdown-text {
-    font-size: 28px;
-    font-weight: bold;
-    letter-spacing: 0.3px;
-  }
-`;
-
-const BsodOverlay = styled(ScreenFill)`
-  background: #0000aa;
-  color: #fff;
-  padding: 36px 28px;
-  font-family: 'Lucida Console', Monaco, monospace;
-  line-height: 1.45;
-  pre {
-    margin: 0;
-    font-size: 20px;
-    white-space: pre-wrap;
-  }
 `;
 
 export default WinXP;

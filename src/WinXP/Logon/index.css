@@ -1,0 +1,352 @@
+.scene_logon {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 90px auto 96px;
+  grid-template-columns: auto;
+  position: absolute;
+  overflow: hidden;
+  background-color: #5a7edc;
+  z-index: 1000;
+}
+
+.scene_logon .logontop {
+  grid-column: 1;
+  grid-row: 1;
+  border-width: 0 0 2px 0;
+  border-style: solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(
+    to right,
+    #5076d4 0%,
+    #c7ddff 20%,
+    #c7ddff 50%,
+    #5076d4 100%
+  );
+  background-color: #00309c;
+}
+
+.scene_logon .logonmid {
+  display: grid;
+  grid-column: 1;
+  grid-row: 2;
+  grid-template-rows: auto;
+  grid-template-columns: 50% 50%;
+  background: radial-gradient(
+    circle at 10% 10%,
+    #94b4efff 0,
+    #94b4ef00 25%,
+    #94b4ef00 100%
+  );
+}
+
+.scene_logon .logonmid .left {
+  position: relative;
+}
+
+.scene_logon .logonmid .left .leftcontain {
+  padding-right: 20px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translateY(-50%);
+}
+
+.scene_logon .logonmid .left .leftcontain img {
+  height: 81px;
+  width: 134px;
+  float: right;
+  display: block;
+  pointer-events: none;
+}
+
+.scene_logon .logonmid .left .leftcontain #tip,
+.scene_logon .logonmid .left .leftcontain #welcome {
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: right;
+  display: block;
+  margin-top: 24px;
+  margin-right: 24px;
+}
+
+.scene_logon .logonmid .left .leftcontain #welcome {
+  font-style: italic;
+  font-size: 48px;
+  text-shadow: 2px 3px #3451bb;
+  margin-top: -76px;
+  display: none;
+  letter-spacing: -0.5px;
+}
+
+.scene_logon .logonmid .right {
+  padding-left: 17px;
+  border-left: 1px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(
+    to bottom,
+    #5a7edc 0%,
+    #91aeee 50%,
+    #5a7edc 100%
+  );
+  position: relative;
+}
+
+.scene_logon .logonmid .right .rightcontain {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  gap: 0;
+}
+
+.scene_logon .logonmid .right .user {
+  padding: 10px 9px 6px;
+  opacity: 1;
+  transition: all ease 0.5s;
+  width: 350px;
+  border-radius: 9px;
+  margin: 2px 0;
+  height: 55px;
+  user-select: none;
+  position: relative;
+}
+
+.scene_logon .logonmid .right .user.active {
+  opacity: 1 !important;
+  pointer-events: none !important;
+}
+
+.scene_logon .logonmid .right .user:active {
+  background: linear-gradient(to right, #1242a6ff 0, #1242a600 99%);
+}
+
+.scene_logon .logonmid .right .user:active::before {
+  transition: none;
+  z-index: -1;
+  width: 352px;
+  height: 73px;
+  content: " ";
+  position: absolute;
+  left: 0;
+  border-radius: 9px;
+  margin-top: -11px;
+  margin-left: -1px;
+  background: linear-gradient(to right, #9cb2eaff 0, #9cb2ea00 100%);
+}
+
+.scene_logon .logonmid .right .usericon {
+  margin: 0;
+  display: inline-block;
+  height: 52px;
+  position: relative;
+}
+
+.scene_logon .logonmid .right .usericon img {
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+  margin-left: 2px;
+  border: 1px solid #d5d3e8;
+  border-radius: 2px;
+  box-shadow: 1px 0 #d5d3e8, -1px 0 #d5d3e8, 0 1px #d5d3e8, 0 -1px #d5d3e8,
+    2px 2px 3px #0003;
+}
+
+.scene_logon .logonmid .right .usericon .name {
+  display: inline-block;
+  line-height: 17px;
+  font-family: Tahoma, sans-serif;
+  color: #fff;
+  margin: 0 0 0 12px;
+  font-weight: 500;
+  vertical-align: top;
+  font-size: 19px;
+}
+
+.scene_logon .logonmid .right:hover .user {
+  opacity: 0.3;
+}
+
+.scene_logon .logonmid .right:hover :hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.scene_logon .logonmid .right:hover .user:hover .usericon img {
+  border: 1px solid #fe0;
+  box-shadow: 1px 0 #ffb600, -1px 0 #ffb600, 0 1px #ffb600, 0 -1px #ffb600,
+    2px 2px 3px #0003;
+}
+
+.scene_logon.isLoggingOn .logonbtm .btncontain,
+.scene_logon.isLoggingOn .logonbtm p,
+.scene_logon.isLoggingOn .logonbtm span,
+.scene_logon.isLoggingOn .logonmid .leftcontain img,
+.scene_logon.isLoggingOn .logonmid .leftcontain #tip {
+  display: none;
+}
+
+.scene_logon.isLoggingOn .logonmid .leftcontain #welcome {
+  display: block;
+}
+
+.scene_logon.isLoggingOn .user:not(.active) {
+  height: 0;
+  opacity: 0 !important;
+  padding: 0;
+  margin: 0;
+  pointer-events: none !important;
+  transition: all ease 0.5s, opacity linear 0s !important;
+}
+
+.scene_logon .logonmid .right .user .loading-text {
+  display: none;
+  color: #fff;
+  font-family: Tahoma, sans-serif;
+  font-size: 12px;
+  margin-top: 4px;
+  margin-left: 62px;
+}
+
+.scene_logon.isLoggingOn .user.active .loading-text {
+  display: block;
+}
+
+.scene_logon.isLoggingOn .user.active {
+  cursor: wait;
+}
+
+.scene_logon.isLoggingOn {
+  cursor: wait;
+}
+
+.scene_logon .logonbtm {
+  grid-column: 1;
+  grid-row: 3;
+  border-style: solid;
+  border-width: 2px 0 0 0;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(
+    to right,
+    #003399 0%,
+    #f49439 20%,
+    #f49439 50%,
+    #003399 100%
+  );
+  background: linear-gradient(to right, #3934ad, #00309c);
+  position: relative;
+}
+
+.scene_logon .logonbtm .softbutton {
+  height: 22px;
+  width: 22px;
+  margin: 20px 0 0 25px;
+  border-radius: 3px;
+  display: inline-block;
+  box-shadow: 3px 3px 0 #0d2086;
+  padding-bottom: 1px;
+  position: relative;
+  background: radial-gradient(
+      at 10%,
+      10%,
+      #faac9f 0,
+      #faac9f 10%,
+      #faac9f00 20%
+    ),
+    radial-gradient(at 10% 10%, #ea8268 0, #ea826800 35%),
+    radial-gradient(at 75% 75%, #e44816 0, #e4481600 70%);
+  background-color: #e2512c;
+}
+
+.scene_logon .logonbtm .softbutton::before {
+  content: " ";
+  display: block;
+  height: inherit;
+  width: inherit;
+  margin: 0 0 0 -1px;
+  border-radius: 3px;
+  box-shadow: inset -1.5px -1.5px 4.5px #00000088, inset 1px 1px 1px #00000029;
+  background: radial-gradient(at 100% 100%, #00000022 0, #00000000 40%);
+  border: 1px solid #fff;
+}
+
+.scene_logon .logonbtm .softbutton.red::before {
+  box-shadow: inset -1px -1px 0 #9d2607, inset -1.5px -1.5px 3px #9d2607,
+    inset 1px 1px 1px #e2512c;
+  background: radial-gradient(at 100% 100%, #db3909 0, #db390900 40%);
+}
+
+.scene_logon .logonbtm .softbutton:hover span {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.scene_logon .logonbtm .softbutton:hover {
+  background: radial-gradient(at 10% 10%, #f1c8b3 0, #f1c8b300 35%);
+  background-color: #f9523d;
+  cursor: pointer;
+}
+
+.scene_logon .logonbtm .softbutton:hover::before {
+  box-shadow: inset -1px -1px 0 #c23c2a, inset -1.5px -1.5px 3px #c23c2a,
+    inset 1px 1px 1px #fc5f4c;
+  background: radial-gradient(at 70% 70%, #fe8664 0, #fe866400 40%);
+}
+
+.scene_logon .logonbtm .softbutton:active {
+  background: radial-gradient(at 70% 70%, #cd4823 0, #882b14 150%);
+  background-color: #a43418;
+}
+
+.scene_logon .logonbtm .softbutton:active::before {
+  box-shadow: inset 1px 1px 0 #5d270a, inset 1.5px 1.5px 3px #5d270a,
+    inset 0 -1px 0 #d16f54, inset -1px -1px 1px #c3411e;
+  background: radial-gradient(at 70% 70%, #cd4823 0, #cd482300 30%);
+}
+
+.scene_logon .logonbtm span {
+  width: 300px;
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  display: inline-block;
+  line-height: 24px;
+  transform: translate(32px, -24px);
+  pointer-events: none;
+}
+
+.scene_logon .logonbtm p {
+  width: 300px;
+  color: #fff;
+  font-family: Tahoma, sans-serif;
+  font-size: 12px;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  padding: 8px 31px 0 0;
+}
+
+.scene_logon .logonbtm .btncontain {
+  cursor: pointer;
+}
+
+.scene_logon.fadetogray {
+  animation: 5s linear 1s 1 normal forwards fadeToGray;
+}
+
+@keyframes fadeToGray {
+  0% {
+    filter: saturate(1);
+  }
+  100% {
+    filter: saturate(0.08);
+  }
+}
