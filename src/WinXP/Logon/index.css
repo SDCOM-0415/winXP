@@ -71,7 +71,7 @@
   text-align: right;
   display: block;
   margin-top: 24px;
-  margin-right: 24px;
+  margin-right: 0px;
 }
 
 .scene_logon .logonmid .left .leftcontain #welcome {
@@ -121,6 +121,21 @@
 .scene_logon .logonmid .right .user.active {
   opacity: 1 !important;
   pointer-events: none !important;
+}
+
+.scene_logon .logonmid .right .user.active span.apps {
+  display: inline-block;
+}
+
+.scene_logon .logonmid .right .user span.apps {
+  color: #00309c;
+  position: absolute;
+  left: 64px;
+  top: 20px;
+  font-family: Tahoma, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  display: none;
 }
 
 .scene_logon .logonmid .right .user:active {
@@ -204,16 +219,6 @@
   margin: 0;
   pointer-events: none !important;
   transition: all ease 0.5s, opacity linear 0s !important;
-}
-
-.scene_logon .logonmid .right .usericon span.apps {
-  color: #00309c;
-  position: absolute;
-  left: 64px;
-  top: 20px;
-  font-family: Tahoma, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
 }
 
 .scene_logon.isLoggingOn {

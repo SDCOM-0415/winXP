@@ -34,7 +34,7 @@ function Logon({ onLogin }) {
             <br />
             <br />
             <span id="tip">To begin, click your user name</span>
-            <span id="welcome">welcome</span>
+            <span id="welcome">Welcome</span>
           </div>
         </div>
         <div className="right">
@@ -46,11 +46,7 @@ function Logon({ onLogin }) {
               <div className="usericon">
                 <img src={userIcon} alt="" />
                 <span className="name">Administrator</span>
-                {isLoggingOn && (
-                  <span className="apps">
-                    Loading your personal settings...
-                  </span>
-                )}
+                <span className="apps">Loading your personal settings...</span>
               </div>
             </div>
           </div>
