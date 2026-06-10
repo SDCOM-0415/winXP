@@ -29,12 +29,12 @@
     },
     "src/WinXP/apps/index.js": {
       "ipo_ts": 1780995071947,
-      "edit_count": 2,
+      "edit_count": 3,
       "last_lines": 247,
-      "last_ts": 1780995186925,
+      "last_ts": 1781134860397,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "a51a05d1"
+      "last_content_hash": "1186685f"
     },
     "src/WinXP/index.js": {
       "ipo_ts": 1780996788492,
@@ -74,21 +74,21 @@
     },
     "src/WinXP/Logon/index.css": {
       "ipo_ts": 1781066629852,
-      "edit_count": 19,
+      "edit_count": 21,
       "last_lines": 390,
-      "last_ts": 1781102199958,
+      "last_ts": 1781134156218,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "4c1196bc"
+      "last_content_hash": "bd7e1dfc"
     },
     "src/WinXP/Logon/index.js": {
       "ipo_ts": 1781066629961,
-      "edit_count": 29,
+      "edit_count": 32,
       "last_lines": 70,
-      "last_ts": 1781102324267,
+      "last_ts": 1781134603290,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "77300b38"
+      "last_content_hash": "46c389bf"
     },
     "src/WinXP/Modal/index.css": {
       "ipo_ts": 1781070075001,
@@ -146,21 +146,21 @@
     },
     "src/assets/.DS_Store": {
       "ipo_ts": 1781088128042,
-      "edit_count": 4,
-      "last_lines": 4,
-      "last_ts": 1781100152256,
+      "edit_count": 7,
+      "last_lines": 6,
+      "last_ts": 1781135786161,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "3c11a7a"
+      "last_content_hash": "8993d34"
     },
     "src/assets/windowsIcons/.DS_Store": {
       "ipo_ts": 1781088147171,
-      "edit_count": 2,
-      "last_lines": 3,
-      "last_ts": 1781098780155,
+      "edit_count": 5,
+      "last_lines": 4,
+      "last_ts": 1781135781299,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "a5b2192a"
+      "last_content_hash": "e232af8"
     },
     "src/assets/windowsIcons/xp-shutdown.png": {
       "ipo_ts": 1781098217939,
@@ -170,6 +170,15 @@
       "delisted": false,
       "last_source": "onEdit",
       "last_content_hash": "65668bff"
+    },
+    "src/WinXP/Footer/FooterMenu.js": {
+      "ipo_ts": 1781135618019,
+      "edit_count": 2,
+      "last_lines": 468,
+      "last_ts": 1781135651390,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "9e324b5a"
     }
   }
 }

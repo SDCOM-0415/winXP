@@ -33,8 +33,8 @@ function Logon({ onLogin }) {
             <br />
             <br />
             <br />
-            <span id="tip">To begin, click your user name</span>
-            <span id="welcome">Welcome</span>
+            <span id="tip">要开始，请点击您的用户名</span>
+            <span id="welcome">欢迎</span>
           </div>
         </div>
         <div className="right">
@@ -46,7 +46,7 @@ function Logon({ onLogin }) {
               <div className="usericon">
                 <img src={userIcon} alt="" />
                 <span className="name">Administrator</span>
-                <span className="apps">Loading your personal settings...</span>
+                <span className="apps">正在加载您的个人设置...</span>
               </div>
             </div>
           </div>
@@ -54,13 +54,13 @@ function Logon({ onLogin }) {
       </div>
       <div className="logonbtm">
         <p>
-          After you log on, you can add and change accounts.
+          登录后，您可以添加和更改帐户。
           <br />
-          Just go to Control Panel and click User Accounts.
+          请前往“控制面板”并点击“用户帐户”。
         </p>
         <div className="btncontain shutdown-link">
           <img src={turnOffIcon} alt="" className="shutdown-icon" />
-          <span>Turn off computer</span>
+          <span>关闭计算机</span>
         </div>
       </div>
     </div>
