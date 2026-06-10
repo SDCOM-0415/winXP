@@ -50,7 +50,7 @@
   margin: 0;
   position: absolute;
   top: 50%;
-  right: 50%;
+  right: 0;
   transform: translateY(-50%);
 }
 
@@ -262,6 +262,16 @@
   background-color: #e2512c;
 }
 
+.scene_logon .logonbtm .softbutton .shutdown-icon {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  z-index: 2;
+  pointer-events: none;
+}
+
 .scene_logon .logonbtm .softbutton::before {
   content: " ";
   display: block;
@@ -320,6 +330,16 @@
   pointer-events: none;
 }
 
+.scene_logon .logonbtm .shutdown-link span {
+  width: auto;
+  margin-left: 10px;
+  line-height: normal;
+  transform: none;
+  vertical-align: middle;
+  display: inline-block;
+  pointer-events: none;
+}
+
 .scene_logon .logonbtm p {
   width: 300px;
   color: #fff;
@@ -333,6 +353,22 @@
 
 .scene_logon .logonbtm .btncontain {
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  position: absolute;
+  left: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.scene_logon .logonbtm .btncontain:hover span {
+  text-decoration: underline;
+}
+
+.scene_logon .logonbtm .btncontain img.shutdown-icon {
+  width: 32px;
+  height: 32px;
+  display: block;
 }
 
 .scene_logon.fadetogray {

@@ -74,21 +74,21 @@
     },
     "src/WinXP/Logon/index.css": {
       "ipo_ts": 1781066629852,
-      "edit_count": 8,
-      "last_lines": 349,
-      "last_ts": 1781084381450,
+      "edit_count": 14,
+      "last_lines": 385,
+      "last_ts": 1781100431606,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "4b9a5e3b"
+      "last_content_hash": "df24e6be"
     },
     "src/WinXP/Logon/index.js": {
       "ipo_ts": 1781066629961,
-      "edit_count": 19,
+      "edit_count": 25,
       "last_lines": 74,
-      "last_ts": 1781087275784,
+      "last_ts": 1781098837024,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "b2c3fa3"
+      "last_content_hash": "596e3f55"
     },
     "src/WinXP/Modal/index.css": {
       "ipo_ts": 1781070075001,
@@ -117,28 +117,6 @@
       "last_source": "onEdit",
       "last_content_hash": "e5d1d5e2"
     },
-    "src/assets/windowsIcons/windows_xp_logo.png": {
-      "ipo_ts": 1781084996524,
-      "edit_count": 1,
-      "last_lines": 1158,
-      "last_ts": 1781084996524,
-      "delisted": true,
-      "last_source": "onEdit",
-      "last_content_hash": "cedfa4a9",
-      "delisted_at": 1781087448685,
-      "delist_rounds": 0
-    },
-    "src/assets/windowsIcons/windows_xp_logo_light.png": {
-      "ipo_ts": 1781085311401,
-      "edit_count": 1,
-      "last_lines": 363,
-      "last_ts": 1781085311401,
-      "delisted": true,
-      "last_source": "onEdit",
-      "last_content_hash": "e7707ad2",
-      "delisted_at": 1781087448685,
-      "delist_rounds": 0
-    },
     "src/assets/windowsIcons/microsoft-windows-xp-seeklogo.png": {
       "ipo_ts": 1781087274876,
       "edit_count": 1,
@@ -147,6 +125,51 @@
       "delisted": false,
       "last_source": "onEdit",
       "last_content_hash": "fd1bc0f2"
+    },
+    "src/.DS_Store": {
+      "ipo_ts": 1781088117831,
+      "edit_count": 2,
+      "last_lines": 1,
+      "last_ts": 1781088122709,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "244ba850"
+    },
+    "src/WinXP/.DS_Store": {
+      "ipo_ts": 1781088122707,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1781088122707,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "96cca51a"
+    },
+    "src/assets/.DS_Store": {
+      "ipo_ts": 1781088128042,
+      "edit_count": 4,
+      "last_lines": 4,
+      "last_ts": 1781100152256,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3c11a7a"
+    },
+    "src/assets/windowsIcons/.DS_Store": {
+      "ipo_ts": 1781088147171,
+      "edit_count": 2,
+      "last_lines": 3,
+      "last_ts": 1781098780155,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a5b2192a"
+    },
+    "src/assets/windowsIcons/xp-shutdown.png": {
+      "ipo_ts": 1781098217939,
+      "edit_count": 1,
+      "last_lines": 9,
+      "last_ts": 1781098217939,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "65668bff"
     }
   }
 }

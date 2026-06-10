@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './index.css';
 import logonLogo from 'assets/windowsIcons/microsoft-windows-xp-seeklogo.png';
+import turnOffIcon from 'assets/windowsIcons/310(32x32).png';
 import userIcon from 'assets/windowsIcons/user.png';
 
 const LOGON_SOUND_URL =
@@ -61,10 +62,9 @@ function Logon({ onLogin }) {
           <br />
           Just go to Control Panel and click User Accounts.
         </p>
-        <div className="btncontain">
-          <div className="softbutton red shutdown">
-            <span>Turn off computer</span>
-          </div>
+        <div className="btncontain shutdown-link">
+          <img src={turnOffIcon} alt="" className="shutdown-icon" />
+          <span>Turn off computer</span>
         </div>
       </div>
     </div>
