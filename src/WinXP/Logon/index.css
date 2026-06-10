@@ -206,25 +206,22 @@
   transition: all ease 0.5s, opacity linear 0s !important;
 }
 
-.scene_logon .logonmid .right .user .loading-text {
-  display: none;
-  color: #fff;
+.scene_logon .logonmid .right .usericon span.apps {
+  color: #00309c;
+  position: absolute;
+  left: 64px;
+  top: 20px;
   font-family: Tahoma, sans-serif;
-  font-size: 12px;
-  margin-top: 4px;
-  margin-left: 62px;
-}
-
-.scene_logon.isLoggingOn .user.active .loading-text {
-  display: block;
-}
-
-.scene_logon.isLoggingOn .user.active {
-  cursor: wait;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .scene_logon.isLoggingOn {
-  cursor: wait;
+  cursor: progress;
+}
+
+.scene_logon.isLoggingOn .logonmid .right .user {
+  cursor: progress;
 }
 
 .scene_logon .logonbtm {

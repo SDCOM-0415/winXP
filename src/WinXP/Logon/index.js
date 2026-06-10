@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './index.css';
-import logonLogo from 'assets/windowsIcons/logonlogo.png';
+import logonLogo from 'assets/windowsIcons/microsoft-windows-xp-seeklogo.png';
 import userIcon from 'assets/windowsIcons/user.png';
 
 const LOGON_SOUND_URL =
@@ -45,9 +45,11 @@ function Logon({ onLogin }) {
               <div className="usericon">
                 <img src={userIcon} alt="" />
                 <span className="name">Administrator</span>
-              </div>
-              <div className="loading-text">
-                Loading your personal settings...
+                {isLoggingOn && (
+                  <span className="apps">
+                    Loading your personal settings...
+                  </span>
+                )}
               </div>
             </div>
           </div>
