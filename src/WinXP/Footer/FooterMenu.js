@@ -175,14 +175,16 @@ function FooterMenu({ className, onClick }) {
         </div>
       </section>
       <footer>
-        <div className="footer__item" onClick={() => onClick('注销')}>
-          <img className="footer__item__img" src={lock} alt="" />
-          <span>注销</span>
-        </div>
-        <div className="footer__item" onClick={() => onClick('关闭计算机')}>
-          <img className="footer__item__img" src={shut} alt="" />
-          <span>关闭计算机</span>
-        </div>
+        <ul id="poweropt">
+          <li onClick={() => onClick('注销')}>
+            <img src={lock} alt="" />
+            注销
+          </li>
+          <li onClick={() => onClick('关闭计算机')}>
+            <img src={shut} alt="" />
+            关闭计算机
+          </li>
+        </ul>
       </footer>
     </div>
   );
@@ -291,49 +293,55 @@ export default styled(FooterMenu)`
   }
   footer {
     display: flex;
-    align-self: flex-end;
     align-items: center;
     justify-content: flex-end;
     color: #fff;
-    height: 36px;
-    width: 100%;
+    height: 42px;
     background: linear-gradient(
       to bottom,
       #4282d6 0%,
       #3b85e0 3%,
       #418ae3 5%,
       #418ae3 17%,
-      #3c87e2 21%,
-      #3786e4 26%,
-      #3482e3 29%,
-      #2e7ee1 39%,
-      #2374df 49%,
-      #2072db 57%,
-      #196edb 62%,
-      #176bd8 72%,
-      #1468d5 75%,
-      #1165d2 83%,
-      #0f61cb 88%
+      #3cb8ff 21%,
+      #3cb8ff 26%,
+      #418ae3 28%,
+      #418ae3 58%,
+      #3b85e0 97%,
+      #4282d6 100%
     );
+    position: relative;
   }
 
-  .footer__item {
-    padding: 3px;
+  #poweropt {
+    list-style: none;
+    margin: 0;
+    padding: 4px;
     display: flex;
-    margin-right: 10px;
-    align-items: center;
-    &:hover {
-      background-color: rgba(60, 80, 210, 0.5);
-    }
-    &:hover:active > * {
-      transform: translate(1px, 1px);
-    }
+    position: absolute;
+    bottom: 0;
+    right: 0;
   }
-  .footer__item__img {
+  #poweropt li {
+    padding: 3px;
+    border: 1px solid transparent;
     border-radius: 3px;
+    cursor: pointer;
+    margin-right: 2px;
+    display: flex;
+    align-items: center;
+  }
+  #poweropt li:hover {
+    background-color: #0000004f;
+  }
+  #poweropt li:hover:active > * {
+    transform: translate(1px, 1px);
+  }
+  #poweropt li img {
     margin-right: 2px;
     width: 22px;
     height: 22px;
+    border-radius: 3px;
   }
   .menu {
     display: flex;
