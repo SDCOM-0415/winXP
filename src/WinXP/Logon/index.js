@@ -3,9 +3,7 @@ import './index.css';
 import logonLogo from 'assets/windowsIcons/microsoft-windows-xp-seeklogo.png';
 import turnOffIcon from 'assets/windowsIcons/310(32x32).png';
 import userIcon from 'assets/windowsIcons/user.png';
-
-const LOGON_SOUND_URL =
-  'https://cdn.glitch.com/01d2e04f-e49d-4304-aa9e-55b9849b4cce%2FWindows%20XP%20Logon%20Sound.wav?1522620571979';
+import logonSound from 'assets/sounds/logon.wav';
 
 function Logon({ onLogin }) {
   const [isLoggingOn, setIsLoggingOn] = useState(false);
@@ -14,7 +12,7 @@ function Logon({ onLogin }) {
     if (isLoggingOn) return;
     setIsLoggingOn(true);
     try {
-      const audio = new Audio(LOGON_SOUND_URL);
+      const audio = new Audio(logonSound);
       audio.play().catch(() => {});
     } catch (e) {}
     setTimeout(() => {

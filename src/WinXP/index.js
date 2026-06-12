@@ -35,6 +35,10 @@ import { DashedBox } from 'components';
 import windowsLogo from 'assets/windowsIcons/WinXPlogo.svg';
 import windowsOffLogo from 'assets/windowsIcons/windows-off.png';
 import bootGif from 'assets/windowsIcons/boot.gif';
+import startupSound from 'assets/sounds/startup.wav';
+import startSound from 'assets/sounds/start.wav';
+import logoffSound from 'assets/sounds/logoff.wav';
+import shutdownSound from 'assets/sounds/shutdown.wav';
 import Logon from './Logon';
 import './index.css';
 
@@ -42,6 +46,14 @@ const BOOT_MS = 4000;
 const BOOT_FADE_MS = 500;
 const LOGGING_OFF_MS = 3000;
 const SHUTTING_DOWN_MS = 3000;
+
+function playSystemSound(src) {
+  if (!src) return;
+  try {
+    const audio = new Audio(src);
+    audio.play().catch(() => {});
+  } catch (e) {}
+}
 
 const initState = {
   apps: defaultAppState,
@@ -255,6 +267,7 @@ function WinXP() {
   }
 
   function onDoubleClickIcon(component) {
+    playSystemSound(startSound);
     const appSetting = Object.values(appSettings).find(
       setting => setting.component === component,
     );
@@ -275,6 +288,7 @@ function WinXP() {
 
   useEffect(() => {
     if (state.powerState !== POWER_STATE.BOOT) return undefined;
+    playSystemSound(startupSound);
     const fadeTimer = window.setTimeout(() => {
       setBootFading(true);
     }, BOOT_MS);
@@ -290,6 +304,7 @@ function WinXP() {
 
   useEffect(() => {
     if (state.powerState !== POWER_STATE.LOGGING_OFF) return undefined;
+    playSystemSound(logoffSound);
     const timer = window.setTimeout(() => {
       dispatch({ type: RESET_SYSTEM });
     }, LOGGING_OFF_MS);
@@ -298,6 +313,7 @@ function WinXP() {
 
   useEffect(() => {
     if (state.powerState !== POWER_STATE.SHUTTING_DOWN) return undefined;
+    playSystemSound(shutdownSound);
     const timer = window.setTimeout(() => {
       dispatch({ type: RESET_SYSTEM });
     }, SHUTTING_DOWN_MS);
@@ -392,11 +408,13 @@ function WinXP() {
 
   function onClickContextMenuItem(text) {
     if (text === '属性') {
+      playSystemSound(startSound);
       dispatch({ type: ADD_APP, payload: appSettings.Error });
     }
   }
 
   function onClickMenuItem(o) {
+    playSystemSound(startSound);
     if (o === 'Internet') {
       dispatch({ type: ADD_APP, payload: appSettings['Internet Explorer'] });
     } else if (o === '扫雷') {
