@@ -1,0 +1,3656 @@
+{
+    "type": "directory",
+    "contents": {
+        "BOOT.INI": {
+            "type": "file",
+            "icon": "config.png",
+            "contents": "[boot loader] timeout=4 /fastdetect"
+        },
+        "Documents and Settings": {
+            "type": "directory",
+            "contents": {
+                "Default User": {
+                    "type": "directory",
+                    "metadata": {
+                        "hidden": true
+                    },
+                    "contents": {
+                        "Desktop": {
+                            "type": "directory",
+                            "contents": {
+                                "My Documents.lnk": {
+                                    "type": "file",
+                                    "icon": "mydocuments.png",
+                                    "contents": "C:/Documents and Settings/Default User/My Documents"
+                                },
+                                "Internet Explorer.lnk": {
+                                    "type": "file",
+                                    "icon": "iexplore.png",
+                                    "contents": {
+                                        "action": "apps.load('iexplore').then(app => { if(app) app.start({}); })"
+                                    }
+                                },
+                                "Windows Media Player.lnk": {
+                                    "type": "file",
+                                    "icon": "wmplayer.png",
+                                    "contents": {
+                                        "action": "apps.load('wmp').then(app => app.start());"
+                                    }
+                                },
+                                "App Market.lnk": {
+                                    "type": "file",
+                                    "icon": "appstore.png",
+                                    "contents": {
+                                        "action": "apps.load('appstore').then(app => app.start())"
+                                    }
+                                }
+                            }
+                        },
+                        "My Documents": {
+                            "type": "directory",
+                            "icon": "mydocuments.png",
+                            "contents": {
+                                "My Music": {
+                                    "type": "directory",
+                                    "icon": "mymusic.png",
+                                    "contents": {
+                                        "Sample Music.lnk": {
+                                            "type": "file",
+                                            "icon": "folder.png",
+                                            "contents": "C:/Documents and Settings/All Users/Shared Music/Sample Music"
+                                        },
+                                        "Shared Music.lnk": {
+                                            "type": "file",
+                                            "icon": "mymusic.png",
+                                            "contents": "C:/Documents and Settings/All Users/Shared Music"
+                                        }
+                                    }
+                                },
+                                "My Videos": {
+                                    "type": "directory",
+                                    "icon": "myvideos.png",
+                                    "contents": {}
+                                },
+                                "My Pictures": {
+                                    "type": "directory",
+                                    "icon": "mypictures.png",
+                                    "contents": {
+                                        "Sample Pictures.lnk": {
+                                            "type": "file",
+                                            "icon": "folder.png",
+                                            "contents": "C:/Documents and Settings/All Users/Shared Pictures/Sample Pictures"
+                                        },
+                                        "Shared Pictures.lnk": {
+                                            "type": "file",
+                                            "icon": "mypictures.png",
+                                            "contents": "C:/Documents and Settings/All Users/Shared Pictures"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "All Users": {
+                    "type": "directory",
+                    "contents": {
+                        "Desktop": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "Favorites": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "Shared Music": {
+                            "type": "directory",
+                            "icon": "mymusic.png",
+                            "contents": {
+                                "Sample Music": {
+                                    "type": "directory",
+                                    "contents": {
+                                        "David Byrne - Like Humans Do.mp3": {
+                                            "type": "file",
+                                            "icon": "mediafile.png",
+                                            "contents": "res/audio/likehumansdo.mp3"
+                                        },
+                                        "New Stories - Highway Blues.mp3": {
+                                            "type": "file",
+                                            "icon": "mediafile.png",
+                                            "contents": "res/audio/highway.mp3"
+                                        },
+                                        "Beethoven's Symphony No. 9 (Scherzo).mp3": {
+                                            "type": "file",
+                                            "icon": "mediafile.png",
+                                            "contents": "res/audio/symphony.mp3"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "Shared Pictures": {
+                            "type": "directory",
+                            "icon": "mypictures.png",
+                            "contents": {
+                                "Sample Pictures": {
+                                    "type": "directory",
+                                    "contents": {
+                                        "Blue Hills.jpg": {
+                                            "type": "file",
+                                            "contents": "res/pictures/bluehills.jpg"
+                                        },
+                                        "Sunset.jpg": {
+                                            "type": "file",
+                                            "contents": "res/pictures/sunset.jpg"
+                                        },
+                                        "Water Lilies.jpg": {
+                                            "type": "file",
+                                            "contents": "res/pictures/waterlilies.jpg"
+                                        },
+                                        "Winter.jpg": {
+                                            "type": "file",
+                                            "contents": "res/pictures/winter.jpg"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "Shared Video": {
+                            "type": "directory",
+                            "icon": "myvideos.png",
+                            "contents": {}
+                        },
+                        "Start Menu": {
+                            "type": "directory",
+                            "contents": {
+                                "Programs": {
+                                    "type": "directory",
+                                    "contents": {
+                                        "Accessories": {
+                                            "type": "directory",
+                                            "icon": "programgroup.png",
+                                            "contents": {
+                                                "Entertainment": {
+                                                    "type": "directory",
+                                                    "icon": "programgroup.png",
+                                                    "contents": {
+                                                        "Sound Recorder.lnk": {
+                                                            "type": "file",
+                                                            "icon": "sound.png",
+                                                            "contents": {
+                                                                "action": "apps.load('sndrec32').then(app => app.start())"
+                                                            }
+                                                        },
+                                                        "Volume Control.lnk": {
+                                                            "type": "file",
+                                                            "icon": "sndvol.png",
+                                                            "contents": {
+                                                                "action": "apps.load('sndvol32').then(app => app.start())"
+                                                            }
+                                                        },
+                                                        "Windows Media Player.lnk": {
+                                                            "type": "file",
+                                                            "icon": "wmplayer.png",
+                                                            "contents": {
+                                                                "action": "apps.load('wmp').then(app => app.start());"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "System Tools": {
+    "type": "directory",
+    "icon": "programgroup.png",
+    "contents": {
+        "Backup.lnk": {
+            "type": "file",
+            "icon": "backup.png",
+            "contents": {
+                "action": "apps.load('ntbackup').then(app => app.start())"
+            }
+        },
+        "Files and Settings Transfer Wizard.lnk": {
+            "type": "file",
+            "icon": "migrate.png",
+            "contents": {
+                "action": "apps.load('migwiz').then(app => app.start())"
+            }
+        },
+        "Scheduled Tasks.lnk": {
+            "type": "file",
+            "icon": "tasks.png",
+            "contents": "C:/WINDOWS/Tasks"
+        },
+        "Security Center.lnk": {
+            "type": "file",
+            "icon": "security.png",
+            "contents": {
+                "action": "apps.load('tbd').then(app => app.start())"
+            }
+        },
+        "System Information.lnk": {
+            "type": "file",
+            "icon": "sysinfo.png",
+            "contents": {
+                "action": "apps.load('systemprops').then(app => app.start())"
+            }
+        }
+    }
+},
+                                                "Calculator.lnk": {
+                                                    "type": "file",
+                                                    "icon": "calc.png",
+                                                    "contents": {
+                                                        "action": "apps.load('calc').then(app => app.start())"
+                                                    }
+                                                },
+                                                "Command Prompt.lnk": {
+                                                    "type": "file",
+                                                    "icon": "cmd.png",
+                                                    "contents": {
+                                                        "action": "apps.load('cmd').then(app => app.start())"
+                                                    }
+                                                },
+                                                "Notepad.lnk": {
+                                                    "type": "file",
+                                                    "icon": "notepad.png",
+                                                    "contents": {
+                                                        "action": "apps.load('notepad').then(app => app.start())"
+                                                    }
+                                                },
+                                                "Paint.lnk": {
+                                                    "type": "file",
+                                                    "icon": "mspaint.png",
+                                                    "contents": {
+                                                        "action": "apps.load('mspaint').then(app => app.start())"
+                                                    }
+                                                },
+                                                "Tour Windows XP.lnk": {
+                                                    "type": "file",
+                                                    "icon": "xptour.png",
+                                                    "contents": {
+                                                        "action": "apps.load('xptour').then(app => app.start())"
+                                                    }
+                                                },
+                                                "Windows Explorer.lnk": {
+                                                    "type": "file",
+                                                    "icon": "explorer.png",
+                                                    "contents": {
+                                                        "action": "explorer.open()"
+                                                    }
+                                                },
+                                                "Wordpad.lnk": {
+                                                    "type": "file",
+                                                    "icon": "wordpad.png",
+                                                    "contents": {
+                                                        "action": "apps.load('wordpad').then(app => app.start())"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "Games": {
+                                            "type": "directory",
+                                            "icon": "programgroup.png",
+                                            "contents": {
+                                                "Minesweeper.lnk": {
+                                                    "type": "file",
+                                                    "icon": "mines.png",
+                                                    "contents": {
+                                                        "action": "apps.load('winmine').then(app => app.start())"
+                                                    }
+                                                },
+                                                "Pinball.lnk": {
+                                                    "type": "file",
+                                                    "icon": "pinball.png",
+                                                    "contents": {
+                                                        "action": "apps.load('pinball').then(app => app.start())"
+                                                    }
+                                                },
+                                                "Solitaire.lnk": {
+                                                    "type": "file",
+                                                    "icon": "solitaire.png",
+                                                    "contents": {
+                                                        "action": "apps.load('sol').then(app => app.start())"
+                                                    }
+                                                },
+                                                "Spider Solitaire.lnk": {
+                                                    "type": "file",
+                                                    "icon": "spider.png",
+                                                    "contents": {
+                                                        "action": "apps.load('spider').then(app => app.start())"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "Startup": {
+                                            "type": "directory",
+                                            "icon": "programgroup.png",
+                                            "contents": {}
+                                        },
+                                        "Internet Explorer.lnk": {
+                                            "type": "file",
+                                            "icon": "iexplore.png",
+                                            "contents": {
+                                                "action": "apps.load('iexplore').then(app => { if(app) app.start({}); })"
+                                            }
+                                        },
+                                        "Outlook Express.lnk": {
+                                            "type": "file",
+                                            "icon": "outlook.png",
+                                            "contents": {
+                                                "action": "apps.load('outlook').then(app => app.start());"
+                                            }
+                                        },
+                                        "Windows Media Player.lnk": {
+                                            "type": "file",
+                                            "icon": "wmplayer.png",
+                                            "contents": {
+                                                "action": "apps.load('wmp').then(app => app.start());"
+                                            }
+                                        },
+                                        "Windows Messenger.lnk": {
+                                            "type": "file",
+                                            "icon": "messenger.png",
+                                            "contents": {
+                                                "action": "apps.load('msnmsgr').then(app => app.start())"
+                                            }
+                                        },
+                                        "Web App Installer.lnk": {
+                                            "type": "file",
+                                            "icon": "install.png",
+                                            "contents": {
+                                                "action": "apps.load('webappinstaller').then(app => app.start())"
+                                            }
+                                        },
+                                        "App Market.lnk": {
+                                            "type": "file",
+                                            "icon": "appstore.png",
+                                            "contents": {
+                                                "action": "apps.load('appstore').then(app => app.start())"
+                                            }
+                                        }
+                                    }
+                                },
+                                "Set Program Access and Defaults.lnk": {
+                                    "type": "file",
+                                    "icon": "defaults.png",
+                                    "contents": {
+                                        "action": "apps.load('appwiz').then(app => app.start())"
+                                    }
+                                },
+                                "Windows Catalog.lnk": {
+                                    "type": "file",
+                                    "icon": "catalog.png",
+                                    "contents": {
+                                        "action": "apps.load('iexplore').then(app => { if (app?.start) app.start({ contents: `https://web.archive.org/web/20020601221159/http://microsoft.com/windows/catalog/Catalogshell/shell.asp?page=1&pgn=about&subid=22` }); });"
+                                    }
+                                },
+                                "Windows Update.lnk": {
+    "type": "file",
+    "icon": "winupdate.png",
+    "contents": {
+        "action": "apps.load('help').then(app => { if (app && app.start) app.start({ page: 'updates' }); })"
+    }
+}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "Program Files": {
+            "type": "directory",
+            "contents": {
+                "Common Files": {
+                    "type": "directory",
+                    "contents": {}
+                },
+                "Internet Explorer": {
+                    "type": "directory",
+                    "contents": {
+                        "en-US": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "hmmapi.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "IEShims.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "sqmapi.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "iediagcmd.exe": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "iexplore.exe": {
+                            "type": "file",
+                            "icon": "iexplore.png",
+                            "contents": {
+                                "action": "apps.load('iexplore').then(app => { if(app) app.start({}); })"
+                            }
+                        },
+                        "ielowutil.exe": {
+                            "type": "file",
+                            "contents": ""
+                        }
+                    }
+                },
+                "Movie Maker": {
+                    "type": "directory",
+                    "contents": {}
+                },
+                "Outlook Express": {
+                    "type": "directory",
+                    "contents": {}
+                },
+                "Windows Media Player": {
+                    "type": "directory",
+                    "contents": {
+                        "en-US": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "Media Renderer": {
+                            "type": "directory",
+                            "contents": {
+                                "avtransport.xml": {
+                                    "type": "file",
+                                    "contents": ""
+                                },
+                                "connectionmanager_drm.xml": {
+                                    "type": "file",
+                                    "contents": ""
+                                },
+                                "RenderingControl_DMP.xml": {
+                                    "type": "file",
+                                    "contents": ""
+                                },
+                                "RenderingControl.xml": {
+                                    "type": "file",
+                                    "contents": ""
+                                }
+                            }
+                        },
+                        "Network Sharing": {
+                            "type": "directory",
+                            "contents": {
+                                "ConnectionManager.xml": {
+                                    "type": "file",
+                                    "contents": ""
+                                },
+                                "ContentDirectory.xml": {
+                                    "type": "file",
+                                    "contents": ""
+                                },
+                                "MediaReceiverRegistar.xml": {
+                                    "type": "file",
+                                    "contents": ""
+                                },
+                                "RenderingControl.xml": {
+                                    "type": "file",
+                                    "contents": ""
+                                }
+                            }
+                        },
+                        "Skins": {
+                            "type": "directory",
+                            "contents": {
+                                "Revert.wmz": {
+                                    "type": "file",
+                                    "contents": ""
+                                },
+                                "Headspace.wmz": {
+                                    "type": "file",
+                                    "contents": ""
+                                },
+                                "Toothy.wmz": {
+                                    "type": "file",
+                                    "contents": ""
+                                },
+                                "Canvas.wmz": {
+                                    "type": "file",
+                                    "contents": ""
+                                },
+                                "Classic.wmz": {
+                                    "type": "file",
+                                    "contents": ""
+                                },
+                                "Compact.wmz": {
+                                    "type": "file",
+                                    "contents": ""
+                                },
+                                "Optik.wmz": {
+                                    "type": "file",
+                                    "contents": ""
+                                },
+                                "Roundlet.wmz": {
+                                    "type": "file",
+                                    "contents": ""
+                                }
+                            }
+                        },
+                        "Visualizations": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "mpvis.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "wmpband.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "WMPMediaSharing.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "wmpnssci.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "WMPNSSUI.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "setup_wm.exe": {
+                            "type": "file",
+                            "contents": {
+                                "icon": "wmplayer.png"
+                            }
+                        },
+                        "wmplayer.exe": {
+                            "type": "file",
+                            "contents": {
+                                "icon": "wmplayer.png"
+                            }
+                        },
+                        "migrate.exe": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "mplayer2.exe": {
+                            "type": "file",
+                            "contents": {
+                                "icon": "mplay32.png"
+                            }
+                        }
+                    }
+                },
+                "Windows NT": {
+                    "type": "directory",
+                    "contents": {}
+                }
+            }
+        },
+        "WINDOWS": {
+            "type": "directory",
+            "systemDirectory": true,
+            "contents": {
+                "addins": {
+                    "type": "directory",
+                    "contents": {}
+                },
+                "AppPatch": {
+                    "type": "directory",
+                    "contents": {
+                        "AcGenral.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "AcLayers.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "AcLua.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "AcSpecfc.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "AcXtrnal.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "apph_sp.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "apphelp.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "drvmain.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "msimain.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "sysmain.dll": {
+                            "type": "file",
+                            "contents": {}
+                        }
+                    }
+                },
+                "Config": {
+                    "type": "directory",
+                    "contents": {}
+                },
+                "Connection Wizard": {
+                    "type": "directory",
+                    "contents": {}
+                },
+                "Cursors": {
+                    "type": "directory",
+                    "contents": {}
+                },
+                "Debug": {
+                    "type": "directory",
+                    "icon": "folder.png",
+                    "contents": {}
+                },
+                "Downloaded Program Files": {
+                    "type": "directory",
+                    "icon": "downloadedprograms.png",
+                    "contents": {}
+                },
+                "Driver Cache": {
+                    "type": "directory",
+                    "contents": {
+                        "i386": {
+                            "type": "directory",
+                            "contents": {
+                                "driver.cab": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "sp2.cab": {
+                                    "type": "file",
+                                    "contents": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "ehome": {
+                    "type": "directory",
+                    "contents": {
+                        "custsat.dll": {
+                            "type": "file",
+                            "contents": {}
+                        }
+                    }
+                },
+                "Fonts": {
+                    "type": "directory",
+                    "contents": {
+                        "Arial (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Arial",
+                                "500",
+                                "normal"
+                            ]
+                        },
+                        "Arial Black (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Arial",
+                                "900",
+                                "normal"
+                            ]
+                        },
+                        "Arial Bold (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Arial",
+                                "700",
+                                "normal"
+                            ]
+                        },
+                        "Arial Bold Italic (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Arial",
+                                "700",
+                                "italic"
+                            ]
+                        },
+                        "Arial Italic (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Arial",
+                                "500",
+                                "italic"
+                            ]
+                        },
+                        "Comic Sans MS (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Comic Sans MS",
+                                "500",
+                                "normal"
+                            ]
+                        },
+                        "Comic Sans MS Bold (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Comic Sans MS",
+                                "700",
+                                "normal"
+                            ]
+                        },
+                        "Courier New (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Courier New",
+                                "500",
+                                "normal"
+                            ]
+                        },
+                        "Courier New Bold (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Courier New",
+                                "700",
+                                "normal"
+                            ]
+                        },
+                        "Courier New Bold Italic (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Courier New",
+                                "700",
+                                "italic"
+                            ]
+                        },
+                        "Courier New Italic (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Courier New",
+                                "500",
+                                "italic"
+                            ]
+                        },
+                        "Franklin Gothic Medium (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Franklin Gothic",
+                                "500",
+                                "normal"
+                            ]
+                        },
+                        "Franklin Gothic Medium Italic (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Franklin Gothic",
+                                "500",
+                                "italic"
+                            ]
+                        },
+                        "Impact (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Impact",
+                                "500",
+                                "normal"
+                            ]
+                        },
+                        "Tahoma (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Tahoma",
+                                "500",
+                                "normal"
+                            ]
+                        },
+                        "Tahoma Bold (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Tahoma",
+                                "700",
+                                "normal"
+                            ]
+                        },
+                        "Times New Roman (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Times New Roman",
+                                "500",
+                                "normal"
+                            ]
+                        },
+                        "Times New Roman Bold (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Times New Roman",
+                                "700",
+                                "normal"
+                            ]
+                        },
+                        "Times New Roman Bold Italic (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Times New Roman",
+                                "700",
+                                "italic"
+                            ]
+                        },
+                        "Times New Roman Italic (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Times New Roman",
+                                "500",
+                                "italic"
+                            ]
+                        },
+                        "Trebuchet MS (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Trebuchet MS",
+                                "500",
+                                "normal"
+                            ]
+                        },
+                        "Trebuchet MS Bold (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Trebuchet MS",
+                                "700",
+                                "normal"
+                            ]
+                        },
+                        "Trebuchet MS Bold Italic (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Trebuchet MS",
+                                "700",
+                                "italic"
+                            ]
+                        },
+                        "Trebuchet MS Italic (TrueType).otf": {
+                            "type": "file",
+                            "contents": [
+                                "Trebuchet MS",
+                                "500",
+                                "italic"
+                            ]
+                        }
+                    }
+                },
+                "Help": {
+                    "type": "directory",
+                    "contents": {
+                        "Tours": {
+                            "type": "directory",
+                            "contents": {
+                                "htmlTour": {
+                                    "type": "directory",
+                                    "contents": {
+                                        "best_road.htm": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/best_road.htm"
+                                        },
+                                        "best_road.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/best_road.jpg"
+                                        },
+                                        "best_road_big.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/best_road_big.jpg"
+                                        },
+                                        "best_road_ghost.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/best_road_ghost.jpg"
+                                        },
+                                        "best_robust.htm": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/best_robust.htm"
+                                        },
+                                        "best_robust.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/best_robust.jpg"
+                                        },
+                                        "best_robust_big.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/best_robust_big.jpg"
+                                        },
+                                        "best_robust_ghost.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/best_robust_ghost.jpg"
+                                        },
+                                        "best_secure.htm": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/best_secure.htm"
+                                        },
+                                        "best_secure.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/best_secure.jpg"
+                                        },
+                                        "best_secure_big.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/best_secure_big.jpg"
+                                        },
+                                        "best_secure_ghost.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/best_secure_ghost.jpg"
+                                        },
+                                        "bluearrow.gif": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/bluearrow.gif"
+                                        },
+                                        "bot_bar.gif": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/bot_bar.gif"
+                                        },
+                                        "connected_data.htm": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/connected_data.htm"
+                                        },
+                                        "connected_data.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/connected_data.jpg"
+                                        },
+                                        "connected_data_big.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/connected_data_big.jpg"
+                                        },
+                                        "connected_data_ghost.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/connected_data_ghost.jpg"
+                                        },
+                                        "connected_multiple.htm": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/connected_multiple.htm"
+                                        },
+                                        "connected_multiple.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/connected_multiple.jpg"
+                                        },
+                                        "connected_multiple_big.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/connected_multiple_big.jpg"
+                                        },
+                                        "connected_multiple_ghost.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/connected_multiple_ghost.jpg"
+                                        },
+                                        "connected_networks.htm": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/connected_networks.htm"
+                                        },
+                                        "connected_networks.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/connected_networks.jpg"
+                                        },
+                                        "connected_networks_big.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/connected_networks_big.jpg"
+                                        },
+                                        "connected_networks_ghost.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/connected_networks_ghost.jpg"
+                                        },
+                                        "connected_wizard.htm": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/connected_wizard.htm"
+                                        },
+                                        "connected_wizard.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/connected_wizard.jpg"
+                                        },
+                                        "connected_wizard_big.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/connected_wizard_big.jpg"
+                                        },
+                                        "connected_wizard_ghost.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/connected_wizard_ghost.jpg"
+                                        },
+                                        "control_up.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/control_up.jpg"
+                                        },
+                                        "default.htm": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/default.htm"
+                                        },
+                                        "desktop_screen_shot.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/desktop_screen_shot.jpg"
+                                        },
+                                        "desktop_up.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/desktop_up.jpg"
+                                        },
+                                        "end_up.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/end_up.jpg"
+                                        },
+                                        "folder_up.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/folder_up.jpg"
+                                        },
+                                        "gradient.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/gradient.jpg"
+                                        },
+                                        "icon_up.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/icon_up.jpg"
+                                        },
+                                        "img004b.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/img004b.jpg"
+                                        },
+                                        "img014.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/img014.jpg"
+                                        },
+                                        "img033.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/img033.jpg"
+                                        },
+                                        "img033a.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/img033a.jpg"
+                                        },
+                                        "img034.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/img034.jpg"
+                                        },
+                                        "img040.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/img040.jpg"
+                                        },
+                                        "img046.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/img046.jpg"
+                                        },
+                                        "img060.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/img060.jpg"
+                                        },
+                                        "img068.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/img068.jpg"
+                                        },
+                                        "img072.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/img072.jpg"
+                                        },
+                                        "img074a.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/img074a.jpg"
+                                        },
+                                        "img089.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/img089.jpg"
+                                        },
+                                        "img100.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/img100.jpg"
+                                        },
+                                        "img109.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/img109.jpg"
+                                        },
+                                        "img110.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/img110.jpg"
+                                        },
+                                        "img116.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/img116.jpg"
+                                        },
+                                        "img121.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/img121.jpg"
+                                        },
+                                        "img123.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/img123.jpg"
+                                        },
+                                        "img126.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/img126.jpg"
+                                        },
+                                        "img136.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/img136.jpg"
+                                        },
+                                        "img149.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/img149.jpg"
+                                        },
+                                        "intro_logo.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/intro_logo.jpg"
+                                        },
+                                        "logo.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/logo.jpg"
+                                        },
+                                        "nav_best.gif": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/nav_best.gif"
+                                        },
+                                        "nav_best_down.gif": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/nav_best_down.gif"
+                                        },
+                                        "nav_blank.gif": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/nav_blank.gif"
+                                        },
+                                        "nav_connected.gif": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/nav_connected.gif"
+                                        },
+                                        "nav_connected_down.gif": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/nav_connected_down.gif"
+                                        },
+                                        "nav_gray.gif": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/nav_gray.gif"
+                                        },
+                                        "nav_safe_easy.gif": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/nav_safe_easy.gif"
+                                        },
+                                        "nav_safe_easy_down.gif": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/nav_safe_easy_down.gif"
+                                        },
+                                        "nav_start_here.gif": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/nav_start_here.gif"
+                                        },
+                                        "nav_start_here_down.gif": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/nav_start_here_down.gif"
+                                        },
+                                        "nav_unlock.gif": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/nav_unlock.gif"
+                                        },
+                                        "nav_unlock_down.gif": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/nav_unlock_down.gif"
+                                        },
+                                        "pen_icon.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/pen_icon.jpg"
+                                        },
+                                        "question_icon.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/question_icon.jpg"
+                                        },
+                                        "read_icon.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/read_icon.jpg"
+                                        },
+                                        "safe_better.htm": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/safe_better.htm"
+                                        },
+                                        "safe_easier.htm": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/safe_easier.htm"
+                                        },
+                                        "safe_easy_better.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/safe_easy_better.jpg"
+                                        },
+                                        "safe_easy_better_big.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/safe_easy_better_big.jpg"
+                                        },
+                                        "safe_easy_better_ghost.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/safe_easy_better_ghost.jpg"
+                                        },
+                                        "safe_easy_easier.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/safe_easy_easier.jpg"
+                                        },
+                                        "safe_easy_easier_big.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/safe_easy_easier_big.jpg"
+                                        },
+                                        "safe_easy_easier_ghost.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/safe_easy_easier_ghost.jpg"
+                                        },
+                                        "safe_easy_faster.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/safe_easy_faster.jpg"
+                                        },
+                                        "safe_easy_faster_big.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/safe_easy_faster_big.jpg"
+                                        },
+                                        "safe_easy_faster_ghost.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/safe_easy_faster_ghost.jpg"
+                                        },
+                                        "safe_faster.htm": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/safe_faster.htm"
+                                        },
+                                        "scripts.js": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/scripts.js"
+                                        },
+                                        "spacer.gif": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/spacer.gif"
+                                        },
+                                        "start_control.htm": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/start_control.htm"
+                                        },
+                                        "start_desktop.htm": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/start_desktop.htm"
+                                        },
+                                        "start_ending.htm": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/start_ending.htm"
+                                        },
+                                        "start_files.htm": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/start_files.htm"
+                                        },
+                                        "start_icons.htm": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/start_icons.htm"
+                                        },
+                                        "start_menu.htm": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/start_menu.htm"
+                                        },
+                                        "start_taskbar.htm": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/start_taskbar.htm"
+                                        },
+                                        "start_up.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/start_up.jpg"
+                                        },
+                                        "start_windows.htm": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/start_windows.htm"
+                                        },
+                                        "style.css": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/style.css"
+                                        },
+                                        "taskbar_up.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/taskbar_up.jpg"
+                                        },
+                                        "ul_logo.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/ul_logo.jpg"
+                                        },
+                                        "unlock_built.htm": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/unlock_built.htm"
+                                        },
+                                        "unlock_built.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/unlock_built.jpg"
+                                        },
+                                        "unlock_built_big.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/unlock_built_big.jpg"
+                                        },
+                                        "unlock_built_ghost.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/unlock_built_ghost.jpg"
+                                        },
+                                        "unlock_optimized.htm": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/unlock_optimized.htm"
+                                        },
+                                        "unlock_optimized.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/unlock_optimized.jpg"
+                                        },
+                                        "unlock_optimized_big.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/unlock_optimized_big.jpg"
+                                        },
+                                        "unlock_optimized_ghost.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/unlock_optimized_ghost.jpg"
+                                        },
+                                        "window_up.jpg": {
+                                            "type": "file",
+                                            "contents": "res/sites/htmlTour/window_up.jpg"
+                                        }
+                                    }
+                                },
+                                "mmTour": {
+                                    "type": "directory",
+                                    "contents": {
+                                        "intro.swf": {
+                                            "type": "file",
+                                            "contents": "res/video/mmTour/intro.swf"
+                                        },
+                                        "nav.swf": {
+                                            "type": "file",
+                                            "contents": "res/video/mmTour/nav.swf"
+                                        },
+                                        "segment1.swf": {
+                                            "type": "file",
+                                            "contents": "res/video/mmTour/segment1.swf"
+                                        },
+                                        "segment2.swf": {
+                                            "type": "file",
+                                            "contents": "res/video/mmTour/segment2.swf"
+                                        },
+                                        "segment3.swf": {
+                                            "type": "file",
+                                            "contents": "res/video/mmTour/segment3.swf"
+                                        },
+                                        "segment4.swf": {
+                                            "type": "file",
+                                            "contents": "res/video/mmTour/segment4.swf"
+                                        },
+                                        "segment5.swf": {
+                                            "type": "file",
+                                            "contents": "res/video/mmTour/segment5.swf"
+                                        },
+                                        "intro.txt": {
+                                            "type": "file",
+                                            "contents": "res/video/mmTour/intro.txt"
+                                        },
+                                        "nav.txt": {
+                                            "type": "file",
+                                            "contents": "res/video/mmTour/nav.txt"
+                                        },
+                                        "segment1.txt": {
+                                            "type": "file",
+                                            "contents": "res/video/mmTour/segment1.txt"
+                                        },
+                                        "segment2.txt": {
+                                            "type": "file",
+                                            "contents": "res/video/mmTour/segment2.txt"
+                                        },
+                                        "segment3.txt": {
+                                            "type": "file",
+                                            "contents": "res/video/mmTour/segment3.txt"
+                                        },
+                                        "segment4.txt": {
+                                            "type": "file",
+                                            "contents": "res/video/mmTour/segment4.txt"
+                                        },
+                                        "segment5.txt": {
+                                            "type": "file",
+                                            "contents": "res/video/mmTour/segment5.txt"
+                                        },
+                                        "tour.exe": {
+                                            "type": "file",
+                                            "icon": "macromedia.png",
+                                            "contents": {
+                                                "action": "apps.load('xptour').then(app => { if(app) app.start({}); })"
+                                            }
+                                        }
+                                    }
+                                },
+                                "WindowsMediaPlayer": {
+                                    "type": "directory",
+                                    "contents": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "ime": {
+                    "type": "directory",
+                    "contents": {
+                        "chsime": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "CHTIME": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "imejp": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "immejp98": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "imjp8_1": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "imkr6_1": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "shared": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "mscandui.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "SOFTKBD.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "SPGRMR.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "SPTIP.dll": {
+                            "type": "file",
+                            "contents": {}
+                        }
+                    }
+                },
+                "Java": {
+                    "type": "directory",
+                    "contents": {
+                        "classes": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "trustlib": {
+                            "type": "directory",
+                            "contents": {}
+                        }
+                    }
+                },
+                "LastGood": {
+                    "type": "directory",
+                    "contents": {
+                        "INF": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "system32": {
+                            "type": "directory",
+                            "contents": {
+                                "DRIVERS": {
+                                    "type": "directory",
+                                    "contents": {
+                                        "i8042prt.sys": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "mouclass.sys": {
+                                            "type": "file",
+                                            "contents": {}
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "Media": {
+                    "type": "directory",
+                    "contents": {
+                        "chimes.wav": {
+                            "type": "file",
+                            "contents": "res/sounds/chimes.wav"
+                        },
+                        "chord.wav": {
+                            "type": "file",
+                            "contents": "res/sounds/chord.wav"
+                        },
+                        "ding.wav": {
+                            "type": "file",
+                            "contents": "res/sounds/ding.wav"
+                        },
+                        "flourish.mid": {
+                            "type": "file",
+                            "icon": "mediafile.png",
+                            "contents": "res/sounds/flourish.mp3"
+                        },
+                        "onestop.mid": {
+                            "type": "file",
+                            "icon": "mediafile.png",
+                            "contents": "res/sounds/onestop.mp3"
+                        },
+                        "recycle.wav": {
+                            "type": "file",
+                            "contents": "res/sounds/recycle.wav"
+                        },
+                        "tada.wav": {
+                            "type": "file",
+                            "contents": "res/sounds/tada.wav"
+                        },
+                        "town.mid": {
+                            "type": "file",
+                            "icon": "mediafile.png",
+                            "contents": "res/sounds/town.mp3"
+                        },
+                        "Windows XP Balloon.wav": {
+                            "type": "file",
+                            "contents": "res/sounds/balloon.wav"
+                        },
+                        "Windows XP Battery Critical.wav": {
+                            "type": "file",
+                            "contents": "res/sounds/battcritical.wav"
+                        },
+                        "Windows XP Battery Low.wav": {
+                            "type": "file",
+                            "contents": "res/sounds/lowbatt.wav"
+                        },
+                        "Windows XP Critical Stop.wav": {
+                            "type": "file",
+                            "contents": "res/sounds/error.wav"
+                        },
+                        "Windows XP Ding.wav": {
+                            "type": "file",
+                            "contents": "res/sounds/xpding.wav"
+                        },
+                        "Windows XP Error.wav": {
+                            "type": "file",
+                            "contents": "res/sounds/alert.wav"
+                        },
+                        "Windows XP Exclamation.wav": {
+                            "type": "file",
+                            "contents": "res/sounds/exclamation.wav"
+                        },
+                        "Windows XP Hardware Fail.wav": {
+                            "type": "file",
+                            "contents": "res/sounds/hdw_fail.wav"
+                        },
+                        "Windows XP Hardware Insert.wav": {
+                            "type": "file",
+                            "contents": "res/sounds/hdw_insert.wav"
+                        },
+                        "Windows XP Hardware Remove.wav": {
+                            "type": "file",
+                            "contents": "res/sounds/hdw_remove.wav"
+                        },
+                        "Windows XP Logoff Sound.wav": {
+                            "type": "file",
+                            "contents": "res/sounds/logoff.wav"
+                        },
+                        "Windows XP Logon Sound.wav": {
+                            "type": "file",
+                            "contents": "res/sounds/logon.wav"
+                        },
+                        "Windows XP Shutdown.wav": {
+                            "type": "file",
+                            "contents": "res/sounds/shutdown.wav"
+                        },
+                        "Windows XP Start.wav": {
+                            "type": "file",
+                            "contents": "res/sounds/start.wav"
+                        },
+                        "Windows XP Startup.wav": {
+                            "type": "file",
+                            "contents": "res/sounds/startup.wav"
+                        }
+                    }
+                },
+                "msagent": {
+                    "type": "directory",
+                    "contents": {
+                        "chars": {
+                            "type": "directory",
+                            "contents": {
+                                "merlin.acs": {
+                                    "type": "file",
+                                    "contents": {}
+                                }
+                            }
+                        },
+                        "intl": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "agentanm.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "agentctl.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "agentdp2.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "agentdpv.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "agentmpx.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "agentpsh.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "agentsr.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "agentsvr.exe": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "agtctl15.tlb": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "agtintl.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "mslwvtts.dll": {
+                            "type": "file",
+                            "contents": {}
+                        }
+                    }
+                },
+                "msapps": {
+                    "type": "directory",
+                    "contents": {
+                        "msinfo": {
+                            "type": "directory",
+                            "contents": {}
+                        }
+                    }
+                },
+                "mui": {
+                    "type": "directory",
+                    "contents": {
+                        "muisetup.exe": {
+                            "type": "file",
+                            "icon": "world.png",
+                            "contents": {}
+                        }
+                    }
+                },
+                "Offline Web Pages": {
+                    "type": "directory",
+                    "icon": "offlinepages.png",
+                    "contents": {}
+                },
+                "pchealth": {
+                    "type": "directory",
+                    "contents": {
+                        "helpctr": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "UploadLB": {
+                            "type": "directory",
+                            "contents": {
+                                "Binaries": {
+                                    "type": "directory",
+                                    "contents": {
+                                        "UploadM.exe": {
+                                            "type": "file",
+                                            "contents": {}
+                                        }
+                                    }
+                                },
+                                "Config": {
+                                    "type": "directory",
+                                    "contents": {
+                                        "config.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "PeerNet": {
+                    "type": "directory",
+                    "contents": {
+                        "sqlbd20.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "sqlqp20.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "sqlse20.dll": {
+                            "type": "file",
+                            "contents": {}
+                        }
+                    }
+                },
+                "Prefetch": {
+                    "type": "directory",
+                    "contents": {}
+                },
+                "Provisioning": {
+                    "type": "directory",
+                    "contents": {
+                        "Schemas": {
+                            "type": "directory",
+                            "contents": {
+                                "baseeapconnectionpropertiesv1.xdr": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "baseeapuserpropertiesv1.xdr": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "branding.xdr": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "eapconnectionpropertiesv1.xdr": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "eapuserpropertiesv1.xdr": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "flashconfig.xdr": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "flashconfigdevice.xdr": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "help.xdr": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "locations.xdr": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "masterfile.xdr": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "mschapv2connectionpropertiesv1.xdr": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "mschapv2userpropertiesv1.xdr": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "mspeapconnectionpropertiesv1.xdr": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "mspeapuserpropertiesv1.xdr": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "register.xdr": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "ssid.xdr": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "wirelessprofile.xdr": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "wizard.xdr": {
+                                    "type": "file",
+                                    "contents": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "pss": {
+                    "type": "directory",
+                    "contents": {
+                        "system.ini.backup": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "win.ini.backup": {
+                            "type": "file",
+                            "contents": {}
+                        }
+                    }
+                },
+                "Registration": {
+                    "type": "directory",
+                    "contents": {
+                        "CRMLog": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "{02D4B3F1-FD88-11D1-960D-00805FC79235}.{FA7DDE03-E67E-4B09-A5E1-40CC2E075605}.crmlog": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "R000000000001.clb": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "R000000000003.clb": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "R000000000006.clb": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "R000000000007.clb": {
+                            "type": "file",
+                            "contents": {}
+                        }
+                    }
+                },
+                "repair": {
+                    "type": "directory",
+                    "contents": {
+                        "autoexec.nt": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "config.nt": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "default": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "sam": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "secsetup.inf": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "security": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "setup.log": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "software": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "system": {
+                            "type": "file",
+                            "contents": {}
+                        }
+                    }
+                },
+                "Resources": {
+                    "type": "directory",
+                    "contents": {
+                        "Themes": {
+                            "type": "directory",
+                            "contents": {
+                                "Luna": {
+                                    "type": "directory",
+                                    "contents": {
+                                        "Shell": {
+                                            "type": "directory",
+                                            "contents": {
+                                                "Homestead": {
+                                                    "type": "directory",
+                                                    "contents": {
+                                                        "shellstyle.dll": {
+                                                            "type": "file",
+                                                            "contents": ""
+                                                        }
+                                                    }
+                                                },
+                                                "Metallic": {
+                                                    "type": "directory",
+                                                    "contents": {
+                                                        "shellstyle.dll": {
+                                                            "type": "file",
+                                                            "contents": ""
+                                                        }
+                                                    }
+                                                },
+                                                "NormalColor": {
+                                                    "type": "directory",
+                                                    "contents": {
+                                                        "shellstyle.dll": {
+                                                            "type": "file",
+                                                            "contents": ""
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "luna.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('luna', 'blue');"
+                                            }
+                                        },
+                                        "homestead.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('luna', 'homestead');"
+                                            }
+                                        },
+                                        "metallic.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('luna', 'metallic');"
+                                            }
+                                        }
+                                    }
+                                },
+                                "Royale": {
+                                    "type": "directory",
+                                    "contents": {
+                                        "Shell": {
+                                            "type": "directory",
+                                            "contents": {
+                                                "NormalColor": {
+                                                    "type": "directory",
+                                                    "contents": {
+                                                        "shellstyle.dll": {
+                                                            "type": "file",
+                                                            "contents": ""
+                                                        }
+                                                    }
+                                                },
+                                                "Noir": {
+                                                    "type": "directory",
+                                                    "contents": {
+                                                        "shellstyle.dll": {
+                                                            "type": "file",
+                                                            "contents": ""
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "royale.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('royale', 'royale');"
+                                            }
+                                        },
+                                        "noir.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('royale', 'noir');"
+                                            }
+                                        }
+                                    }
+                                },
+                                "Zune": {
+                                    "type": "directory",
+                                    "contents": {
+                                        "Shell": {
+                                            "type": "directory",
+                                            "contents": {
+                                                "NormalColor": {
+                                                    "type": "directory",
+                                                    "contents": {
+                                                        "shellstyle.dll": {
+                                                            "type": "file",
+                                                            "contents": ""
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "zune.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('zune', 'zune');"
+                                            }
+                                        }
+                                    }
+                                },
+                                "Pro": {
+                                    "type": "directory",
+                                    "contents": {
+                                        "Shell": {
+                                            "type": "directory",
+                                            "contents": {
+                                                "NormalColor": {
+                                                    "type": "directory",
+                                                    "contents": {
+                                                        "shellstyle.dll": {
+                                                            "type": "file",
+                                                            "contents": ""
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "pro.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('watercolor', 'watercolor');"
+                                            }
+                                        }
+                                    }
+                                },
+                                "Classic": {
+                                    "type": "directory",
+                                    "contents": {
+                                        "Brick.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'brick')"
+                                            }
+                                        },
+                                        "Desert.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'desert')"
+                                            }
+                                        },
+                                        "Eggplant.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'eggplant')"
+                                            }
+                                        },
+                                        "High Contrast #1.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'highcontr1')"
+                                            }
+                                        },
+                                        "High Contrast #2.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'highcontr2')"
+                                            }
+                                        },
+                                        "High Contrast Black.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'highcontrblack')"
+                                            }
+                                        },
+                                        "High Contrast White.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'highcontrwhite')"
+                                            }
+                                        },
+                                        "Hot Dog Stand.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'hotdog')"
+                                            }
+                                        },
+                                        "Lilac.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'lilac')"
+                                            }
+                                        },
+                                        "Maple.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'maple')"
+                                            }
+                                        },
+                                        "Marine (High Color).msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'marine')"
+                                            }
+                                        },
+                                        "Plum (High Color).msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'plum')"
+                                            }
+                                        },
+                                        "Pumpkin.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'pumpkin')"
+                                            }
+                                        },
+                                        "Rainy Day.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'rainyday')"
+                                            }
+                                        },
+                                        "Red, White, and Blue (VGA).msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'redwhiteblue')"
+                                            }
+                                        },
+                                        "Rose.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'rose')"
+                                            }
+                                        },
+                                        "Slate.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'slate')"
+                                            }
+                                        },
+                                        "Spruce.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'spruce')"
+                                            }
+                                        },
+                                        "Storm (VGA).msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'storm')"
+                                            }
+                                        },
+                                        "Teal (VGA).msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'teal')"
+                                            }
+                                        },
+                                        "Wheat.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'wheat')"
+                                            }
+                                        },
+                                        "Windows Classic.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'winclassic')"
+                                            }
+                                        },
+                                        "Windows Standard.msstyles": {
+                                            "type": "file",
+                                            "contents": {
+                                                "action": "themehandler.changeTheme('classic', 'winstandard')"
+                                            }
+                                        }
+                                    }
+                                },
+                                
+                                "Luna.theme": {
+                                    "type": "file",
+                                    "contents": {
+                                        "action": "themehandler.changeTheme('luna', 'blue'); themehandler.changeWallpaper('stock-wallpapers/Bliss.jpg', 'stretch');"
+                                    }
+                                },
+                                "Olive.theme": {
+                                    "type": "file",
+                                    "contents": {
+                                        "action": "themehandler.changeTheme('luna', 'homestead'); themehandler.changeWallpaper('stock-wallpapers/Autumn.jpg', 'stretch');"
+                                    }
+                                },
+                                "Silver.theme": {
+                                    "type": "file",
+                                    "contents": {
+                                        "action": "themehandler.changeTheme('luna', 'metallic'); themehandler.changeWallpaper('stock-wallpapers/Peace.jpg', 'stretch');"
+                                    }
+                                },
+                                "Royale.theme": {
+                                    "type": "file",
+                                    "contents": {
+                                        "action": "themehandler.changeTheme('royale', 'royale'); themehandler.changeWallpaper('stock-wallpapers/Energy_bliss.jpg', 'stretch');"
+                                    }
+                                },
+                                "Noir.theme": {
+                                    "type": "file",
+                                    "contents": {
+                                        "action": "themehandler.changeTheme('royale', 'noir'); themehandler.changeWallpaper('stock-wallpapers/New Bliss.jpg', 'stretch');"
+                                    }
+                                },
+                                "Zune.theme": {
+                                    "type": "file",
+                                    "contents": {
+                                        "action": "themehandler.changeTheme('zune', 'zune'); themehandler.changeWallpaper('stock-wallpapers/Zune.jpg', 'stretch');"
+                                    }
+                                },
+                                "Watercolor.theme": {
+                                    "type": "file",
+                                    "contents": {
+                                        "action": "themehandler.changeTheme('watercolor', 'watercolor'); themehandler.changeWallpaper('stock-wallpapers/Watercolor.jpg', 'stretch');"
+                                    }
+                                },
+                                "Windows Classic.theme": {
+                                    "type": "file",
+                                    "contents": {
+                                        "action": "themehandler.changeTheme('classic', 'winstandard');"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": {
+                    "type": "directory",
+                    "contents": {
+                        "Database": {
+                            "type": "directory",
+                            "contents": {
+                                "secedit.sdb": {
+                                    "type": "file",
+                                    "contents": {}
+                                }
+                            }
+                        },
+                        "logs": {
+                            "type": "directory",
+                            "contents": {
+                                "backup.log": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "SceRoot.log": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "scesetup.log": {
+                                    "type": "file",
+                                    "contents": {}
+                                }
+                            }
+                        },
+                        "templates": {
+                            "type": "directory",
+                            "contents": {
+                                "compatws.inf": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "hisecdc.inf": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "hisecws.inf": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "rootsec.inf": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "securedc.inf": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "securews.inf": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "setup security.inf": {
+                                    "type": "file",
+                                    "contents": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "SoftwareDistribution": {
+                    "type": "directory",
+                    "contents": {
+                        "DataStore": {
+                            "type": "directory",
+                            "contents": {
+                                "Logs": {
+                                    "type": "directory",
+                                    "contents": {
+                                        "edb.chk": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "edb.log": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "res1.log": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "res2.log": {
+                                            "type": "file",
+                                            "contents": {}
+                                        }
+                                    }
+                                },
+                                "DataStore.edb": {
+                                    "type": "file",
+                                    "contents": {}
+                                }
+                            }
+                        },
+                        "Download": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "EventCache": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "SelfUpdate": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "ReportingEvents.log": {
+                            "type": "file",
+                            "contents": {}
+                        }
+                    }
+                },
+                "srchasst": {
+                    "type": "directory",
+                    "contents": {
+                        "chars": {
+                            "type": "directory",
+                            "contents": {
+                                "courtney.acs": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "earl.acs": {
+                                    "type": "file",
+                                    "contents": {}
+                                },
+                                "rover.acs": {
+                                    "type": "file",
+                                    "contents": {}
+                                }
+                            }
+                        },
+                        "mui": {
+                            "type": "directory",
+                            "contents": {
+                                "0409": {
+                                    "type": "directory",
+                                    "contents": {
+                                        "balloon.xsl": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "bar.xsl": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "charchsr.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "charctxt.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "error.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "finish.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "indxsvc.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "inetfind.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "inetopts.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "inetpref.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "inetsrch.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "intents.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "intro.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "lcladv.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "lcladvd.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "lcladvdf.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "lcladvmm.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "lclcomp.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "lcldate.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "lcldocs.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "lclkwrds.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "lcllook.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "lclmm.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "lclmode.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "lclother.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "lclprog.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "lclrfine.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "lclsize.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "lclsrch.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        },
+                                        "lcltechy.xml": {
+                                            "type": "file",
+                                            "contents": {}
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "msgr3en.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "nls302en.lex": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "srchctls.dll": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "srchui.dll": {
+                            "type": "file",
+                            "contents": {}
+                        }
+                    }
+                },
+                "system": {
+                    "type": "directory",
+                    "contents": {
+                        "AVICAP.DLL": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "AVIFILE.DLL": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "COMDLG.DLL": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "KEYBOARD.DRV": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "LZEXPAND.DLL": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "MCIAVI.DRV": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "MCISEQ.DRV": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "MCIWAVE.DRV": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "MMSYSTEM.DLL": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "MMTASK.TSK": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "MOUSE.DRV": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "MSVIDEO.DLL": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "OLECLI.DLL": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "OLESVR.DLL": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "setup.inf": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "SHELL.DLL": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "SOUND.DRV": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "stdole.tlb": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "SYSTEM.DRV": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "TAPI.DLL": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "TIMER.DRV": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "VER.DLL": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "VGA.DRV": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "WFWNET.DRV": {
+                            "type": "file",
+                            "contents": {}
+                        },
+                        "WINSPOOL.DRV": {
+                            "type": "file",
+                            "contents": {}
+                        }
+                    }
+                },
+                "system32": {
+                    "type": "directory",
+                    "systemDirectory": true,
+                    "contents": {
+                        "Com": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "config": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "drivers": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "oobe": {
+                            "type": "directory",
+                            "contents": {
+                                "images": {
+                                    "type": "directory",
+                                    "contents": {
+                                        "title.wma": {
+                                            "type": "file",
+                                            "icon": "mediafile.png",
+                                            "contents": "res/audio/title.mp3"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "Setup": {
+                            "type": "directory",
+                            "contents": {}
+                        },
+                        "access.cpl": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "appwiz.cpl": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "desk.cpl": {
+                            "type": "file",
+                            "contents": {
+                                "action": "apps.load('desk').then(app => app.start({contents: ' '}))"
+                            }
+                        },
+                        "firewall.cpl": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "intl.cpl": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "main.cpl": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "mmsys.cpl": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "netsetup.cpl": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "nusrmgr.cpl": {
+                            "type": "file",
+                            "contents": {
+                                "action": "apps.load('userprops').then(app => app.start({contents: ' '}))"
+                            }
+                        },
+                        "sysdm.cpl": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "timedate.cpl": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "wscui.cpl": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "calc.exe": {
+                            "type": "file",
+                            "contents": {
+                                "action": "apps.load('calc').then(app => app.start({contents: ' '}))",
+                                "icon": "calc.png"
+                            }
+                        },
+                        "charmap.exe": {
+                            "type": "file",
+                            "contents": {
+                                "icon": "charmap.png"
+                            }
+                        },
+                        "cleanmgr.exe": {
+                            "type": "file",
+                            "contents": {
+                                "icon": "diskclean.png"
+                            }
+                        },
+                        "cmd.exe": {
+                            "type": "file",
+                            "contents": {
+                                "action": "apps.load('cmd').then(app => app.start())",
+                                "icon": "cmd.png"
+                            }
+                        },
+                        "drwatson.exe": {
+                            "type": "file",
+                            "contents": {
+                                "icon": "drwatson.png"
+                            }
+                        },
+                        "dxdiag.exe": {
+                            "type": "file",
+                            "contents": {
+                                "icon": "dxdiag.png"
+                            }
+                        },
+                        "freecell.exe": {
+                            "type": "file",
+                            "contents": {
+                                "icon": "freecell.png"
+                            }
+                        },
+                        "ipconfig.exe": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "magnify.exe": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "mplay32.exe": {
+                            "type": "file",
+                            "contents": {
+                                "icon": "mplay32.png"
+                            }
+                        },
+                        "mshearts.exe": {
+                            "type": "file",
+                            "contents": {
+                                "icon": "hearts.png"
+                            }
+                        },
+                        "mspaint.exe": {
+                            "type": "file",
+                            "contents": {
+                                "action": "apps.load('mspaint').then(app => app.start({contents: ' '}))",
+                                "icon": "mspaint.png"
+                            }
+                        },
+                        "notepad.exe": {
+                            "type": "file",
+                            "contents": {
+                                "action": "apps.load('notepad').then(app => app.start({contents: ' '}))",
+                                "icon": "notepad.png"
+                            }
+                        },
+                        "osuninst.exe": {
+                            "type": "file",
+                            "contents": {
+                                "icon": "install.png"
+                            }
+                        },
+                        "regedt32.exe": {
+                            "type": "file",
+                            "contents": {
+                                "action": "apps.load('regedit').then(app => app.start({contents: ' '}))",
+                                "icon": "regedit.png"
+                            }
+                        },
+                        "rundll32.exe": {
+                            "type": "file",
+                            "contents": {
+                                "icon": "rundll.png"
+                            }
+                        },
+                        "sndrec32.exe": {
+                            "type": "file",
+                            "contents": {
+                                "action": "apps.load('sndrec32').then(app => app.start({contents: ' '}))"}
+                        },
+                        "sndvol32.exe": {
+                            "type": "file",
+                            "contents": {
+                                "action": "apps.load('sndvol32').then(app => app.start({contents: ' '}))",
+                                "icon": "sndvol.png"
+                            }
+                        },
+                        "sol.exe": {
+                            "type": "file",
+                            "contents": {
+                                "icon": "solitaire.png"
+                            }
+                        },
+                        "spider.exe": {
+                            "type": "file",
+                            "contents": {
+                                "icon": "spider.png"
+                            }
+                        },
+                        "syncapp.exe": {
+                            "type": "file",
+                            "contents": {
+                                "icon": "briefcase.png"
+                            }
+                        },
+                        "taskmgr.exe": {
+                            "type": "file",
+                            "contents": {
+                                "icon": "taskmgr.png"
+                            }
+                        },
+                        "tourstart.exe": {
+                            "type": "file",
+                            "contents": {
+                                "icon": "xptour.png"
+                            }
+                        },
+                        "utilman.exe": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "winhlp32.exe": {
+                            "type": "file",
+                            "contents": {
+                                "action": "apps.load('help').then(app => app.start({contents: ' '}))",
+                                "icon": "winhlp32.png"
+                            }
+                        },
+                        "winlogon.exe": {
+                            "type": "file",
+                            "contents": {
+                                "action": "apps.load('logonprompt').then(app => app.start({contents: ' '}))",
+                                "icon": "winlogon.png"
+                            }
+                        },
+                        "winmine.exe": {
+                            "type": "file",
+                            "contents": {
+                                "action": "apps.load('winmine').then(app => app.start({contents: ' '}))",
+                                "icon": "mines.png"
+                            }
+                        },
+                        "winver.exe": {
+                            "type": "file",
+                            "contents": {
+                        "action": "apps.load('winver').then(app => app.start())",
+                        "icon": "win.png"
+                    }
+                        },
+                        "write.exe": {
+                            "type": "file",
+                            "contents": {
+                                "action": "apps.load('wordpad').then(app => app.start())",
+                                "icon": "wordpad.png"
+                            }
+                        },
+                        "wupdmgr.exe": {
+                            "type": "file",
+                            "contents": {
+                                "icon": "winupdate.png"
+                            }
+                        },
+                        "msoobe.exe": {
+                            "type": "file",
+                            "contents": {
+                                "icon": "xptour.png"
+                            }
+                        },
+                        "migwiz.exe": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "aaaamon.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "audiosrv.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "batt.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "bootvid.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "browser.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "browseui.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "cabview.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "cards.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "catsrv.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "certmgr.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "cfgmgr32.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "cliconfig.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "cmutil.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "compatUI.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "console.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "crypt32.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "cryptdll.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "cryptext.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "cryptnet.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "cryptui.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "d3d8.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "d3d9.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "d3drm.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "ddraw.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "deskmon.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "devmgr.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "digest.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "dinput.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "diskcopy.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "dmstyle.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "dmsynth.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "dmusic.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "dogprop.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "dogsetup.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "dskquota.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "dsound3d.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "dsound.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "dxtrans.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "eventlog.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "exts.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "fdeploy.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "framebuf.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "gdi32.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "hal.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "hypertm.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "jscript.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "jsproxy.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "keymgr.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "midimap.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "moricons.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "msconf.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "mshtml.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "msports.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "mycomput.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "mydocs.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "netlogon.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "netman.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "noodleman.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "ntdll.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "oddfox32.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "opengl32.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "osuinst.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "panmap.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "pidgen.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "quartz.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "query.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "regsvc.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "rtm.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "secur32.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "security.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "serialui.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "setupapi.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "setupdll.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "shell32.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "shell.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "shellstyle.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "slayerxp.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "storage.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "themeui.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "traffic.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "untfs.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "url.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "usbmon.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "user32.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "userenv.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "uxtheme.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "vga256.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "vga.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "wifeman.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "win32spl.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "winbrand.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "winhttp.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "wintrust.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "wmp.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "wmpcore.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "wmploc.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "wmpshell.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "wmpui.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "wmvcore.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "wow32.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "wowfax.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "xpsp1res.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "xpsp2res.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "xpsps3res.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "winver.dll": {
+                            "type": "file",
+                            "contents": ""
+                        },
+                        "zipfldr.dll": {
+                            "type": "file",
+                            "contents": ""
+                        }
+                    }
+                },
+                "Tasks": {
+                    "type": "directory",
+                    "icon": "tasks.png",
+                    "contents": {}
+                },
+                "Temp": {
+                    "type": "directory",
+                    "contents": {}
+                },
+                "twain_32": {
+                    "type": "directory",
+                    "contents": {}
+                },
+                "Web": {
+                    "type": "directory",
+                    "systemDirectory": true,
+                    "contents": {
+                        "Wallpaper": {
+                            "type": "directory",
+                            "contents": {
+                                "Ascent.jpg": {
+                                    "type": "file",
+                                    "contents": "res/background/stock-wallpapers/Ascent.jpg"
+                                },
+                                "Autumn.jpg": {
+                                    "type": "file",
+                                    "contents": "res/background/stock-wallpapers/Autumn.jpg"
+                                },
+                                "Azul.jpg": {
+                                    "type": "file",
+                                    "contents": "res/background/stock-wallpapers/Azul.jpg"
+                                },
+                                "Bliss.jpg": {
+                                    "type": "file",
+                                    "contents": "res/background/stock-wallpapers/Bliss.jpg"
+                                },
+                                "Crystal.jpg": {
+                                    "type": "file",
+                                    "contents": "res/background/stock-wallpapers/Crystal.jpg"
+                                },
+                                "Follow.jpg": {
+                                    "type": "file",
+                                    "contents": "res/background/stock-wallpapers/Follow.jpg"
+                                },
+                                "Friend.jpg": {
+                                    "type": "file",
+                                    "contents": "res/background/stock-wallpapers/Friend.jpg"
+                                },
+                                "Home.jpg": {
+                                    "type": "file",
+                                    "contents": "res/background/stock-wallpapers/Home.jpg"
+                                },
+                                "Moon flower.jpg": {
+                                    "type": "file",
+                                    "contents": "res/background/stock-wallpapers/Moon_flower.jpg"
+                                },
+                                "Peace.jpg": {
+                                    "type": "file",
+                                    "contents": "res/background/stock-wallpapers/Peace.jpg"
+                                },
+                                "Power.jpg": {
+                                    "type": "file",
+                                    "contents": "res/background/stock-wallpapers/Power.jpg"
+                                },
+                                "Purple flower.jpg": {
+                                    "type": "file",
+                                    "contents": "res/background/stock-wallpapers/Purple_flower.jpg"
+                                },
+                                "Radiance.jpg": {
+                                    "type": "file",
+                                    "contents": "res/background/stock-wallpapers/Radiance.jpg"
+                                },
+                                "Red moon desert.jpg": {
+                                    "type": "file",
+                                    "contents": "res/background/stock-wallpapers/Red_moon_desert.jpg"
+                                },
+                                "Ripple.jpg": {
+                                    "type": "file",
+                                    "contents": "res/background/stock-wallpapers/Ripple.jpg"
+                                },
+                                "Stonehenge.jpg": {
+                                    "type": "file",
+                                    "contents": "res/background/stock-wallpapers/Stonehenge.jpg"
+                                },
+                                "Tulips.jpg": {
+                                    "type": "file",
+                                    "contents": "res/background/stock-wallpapers/Tulips.jpg"
+                                },
+                                "Vortec space.jpg": {
+                                    "type": "file",
+                                    "contents": "res/background/stock-wallpapers/Vortec_space.jpg"
+                                },
+                                "Wind.jpg": {
+                                    "type": "file",
+                                    "contents": "res/background/stock-wallpapers/Wind.jpg"
+                                },
+                                "Windows XP.jpg": {
+                                    "type": "file",
+                                    "contents": "res/background/stock-wallpapers/Windows_XP_Professional.jpg"
+                                }
+                            }
+                        }
+                    }
+                },
+                "WinSxS": {
+                    "type": "directory",
+                    "contents": {}
+                },
+                "explorer.exe": {
+                    "type": "file",
+                    "contents": {
+                        "action": "window.explorer.open(\"C:/\")",
+                        "icon": "mycomputer.png"
+                    }
+                },
+                "NOTEPAD.exe": {
+                    "type": "file",
+                    "contents": {
+                        "action": "apps.load('notepad').then(app => app.start({contents: ' '}))",
+                        "icon": "notepad.png"
+                    }
+                },
+                "regedit.exe": {
+                    "type": "file",
+                    "contents": {
+                        "action": "apps.load('regedit').then(app => app.start({contents: ' '}))",
+                        "icon": "regedit.png"
+                    }
+                },
+                "TASKMAN.EXE": {
+                    "type": "file",
+                    "contents": {
+                        "action": "apps.load('taskmgr').then(app => app.start({contents: ' '}))",
+                        "icon": "taskmgr.png"
+                    }
+                },
+                "twunk_16.exe": {
+                    "type": "file",
+                    "icon": "twunk.png",
+                    "contents": {}
+                },
+                "twunk_32.exe": {
+                    "type": "file",
+                    "icon": "twunk.png",
+                    "contents": {}
+                },
+                "winhelp.exe": {
+                    "type": "file",
+                    "icon": "winhelp.png",
+                    "contents": {"action": "apps.load('help').then(app => app.start())"}
+                },
+                "winhlp32.exe": {
+                    "type": "file",
+                    "icon": "winhlp32.png",
+                    "contents": {"action": "apps.load('help').then(app => app.start())"}
+                },
+                "winver.exe": {
+                    "type": "file",
+                    "contents": {
+                        "action": "apps.load('winver').then(app => app.start())",
+                        "icon": "win.png"
+                    }
+                },
+                "twain.dll": {
+                    "type": "file",
+                    "contents": ""
+                },
+                "twain_32.dll": {
+                    "type": "file",
+                    "contents": ""
+                },
+                "vmmreg32.dll": {
+                    "type": "file",
+                    "contents": ""
+                },
+                "Blue Lace 16.bmp": {
+                    "type": "file",
+                    "contents": "res/background/tiled-wallpapers/BlueLace16.bmp"
+                },
+                "Coffee Bean.bmp": {
+                    "type": "file",
+                    "contents": "res/background/tiled-wallpapers/CoffeeBean.bmp"
+                },
+                "FeatherTexture.bmp": {
+                    "type": "file",
+                    "contents": "res/background/tiled-wallpapers/FeatherTexture.bmp"
+                },
+                "Gone Fishing.bmp": {
+                    "type": "file",
+                    "contents": "res/background/tiled-wallpapers/GoneFishing.bmp"
+                },
+                "Greenstone.bmp": {
+                    "type": "file",
+                    "contents": "res/background/tiled-wallpapers/Greenstone.bmp"
+                },
+                "Prairie Wind.bmp": {
+                    "type": "file",
+                    "contents": "res/background/tiled-wallpapers/PrairieWind.bmp"
+                },
+                "Rhododendron.bmp": {
+                    "type": "file",
+                    "contents": "res/background/tiled-wallpapers/Rhododendron.bmp"
+                },
+                "River Sumida.bmp": {
+                    "type": "file",
+                    "contents": "res/background/tiled-wallpapers/RiverSumida.bmp"
+                },
+                "Santa Fe Stucco.bmp": {
+                    "type": "file",
+                    "contents": "res/background/tiled-wallpapers/SantaFeStucco.bmp"
+                },
+                "Soap Bubbles.bmp": {
+                    "type": "file",
+                    "contents": "res/background/tiled-wallpapers/SoapBubbles.bmp"
+                },
+                "Zapotec.bmp": {
+                    "type": "file",
+                    "contents": "res/background/tiled-wallpapers/Zapotec.bmp"
+                },
+                "control.ini": {
+                    "type": "file",
+                    "contents": ""
+                },
+                "desktop.ini": {
+                    "type": "file",
+                    "contents": ""
+                },
+                "msdfmap.ini": {
+                    "type": "file",
+                    "contents": ""
+                },
+                "ODBCINST.INI": {
+                    "type": "file",
+                    "contents": ""
+                },
+                "system.ini": {
+                    "type": "file",
+                    "icon": "config.png",
+                    "contents": "MaxPhysPage=40000"
+                },
+                "vb.ini": {
+                    "type": "file",
+                    "contents": ""
+                },
+                "vbaddin.ini": {
+                    "type": "file",
+                    "contents": ""
+                },
+                "win.ini": {
+                    "type": "file",
+                    "contents": ""
+                },
+                "bootstat.dat": {
+                    "type": "file",
+                    "contents": ""
+                },
+                "REGLOCS.OLD": {
+                    "type": "file",
+                    "contents": ""
+                },
+                "WMSysPr9.prx": {
+                    "type": "file",
+                    "contents": ""
+                },
+                "_default.lnk": {
+                    "type": "file",
+                    "icon": "msdos.png",
+                    "contents": ""
+                },
+                "SET3.tmp": {
+                    "type": "file",
+                    "contents": {}
+                },
+                "SET4.tmp": {
+                    "type": "file",
+                    "contents": {}
+                },
+                "SET8.tmp": {
+                    "type": "file",
+                    "contents": {}
+                },
+                "SET29.tmp": {
+                    "type": "file",
+                    "contents": {}
+                },
+                "clock.avi": {
+                    "type": "file",
+                    "icon": "mediafile.png",
+                    "contents": "res/anim/clock.mp4"
+                },
+                "explorer.lnk": {
+                    "type": "file",
+                    "icon": "explorer.png",
+                    "contents": {
+                        "action": "window.explorer.open(\"C:/\")"
+                    }
+                }
+            }
+        }
+    }
+}

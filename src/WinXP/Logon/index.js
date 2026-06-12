@@ -3,7 +3,7 @@ import './index.css';
 import logonLogo from 'assets/windowsIcons/microsoft-windows-xp-seeklogo.png';
 import turnOffIcon from 'assets/windowsIcons/310(32x32).png';
 import userIcon from 'assets/windowsIcons/user.png';
-import logonSound from 'assets/sounds/logon.wav';
+import logonSound from 'assets/sounds/startup.wav';
 
 function Logon({ onLogin }) {
   const [isLoggingOn, setIsLoggingOn] = useState(false);

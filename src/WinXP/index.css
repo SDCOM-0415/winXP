@@ -119,28 +119,68 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, #1147a8 0%, #08307f 100%);
+  display: grid;
+  grid-template-rows: 90px auto 96px;
+  grid-template-columns: auto;
+  overflow: hidden;
+  background-color: #5a7edc;
   z-index: 9999;
+}
+
+.scene_logoff__top {
+  grid-row: 1;
+  border-width: 0 0 2px 0;
+  border-style: solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(
+    to right,
+    #5076d4 0%,
+    #c7ddff 20%,
+    #c7ddff 50%,
+    #5076d4 100%
+  );
+  background-color: #00309c;
+}
+
+.scene_logoff__mid {
+  grid-row: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  text-align: center;
+  background: radial-gradient(
+    circle at 10% 10%,
+    #94b4efff 0,
+    #94b4ef00 25%,
+    #94b4ef00 100%
+  );
 }
 
-.scene_logoff .logoff-logo {
+.scene_logoff__logo {
   width: 220px;
   margin-bottom: 26px;
+  pointer-events: none;
 }
 
-.scene_logoff .logoff-text {
-  font-size: 30px;
-  font-weight: bold;
-  margin-bottom: 8px;
+.scene_logoff__status {
+  color: #fff;
+  font-family: Tahoma, sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  text-shadow: 1px 1px #3451bb;
 }
 
-.scene_logoff .logoff-subtext {
-  font-size: 14px;
-  opacity: 0.92;
+.scene_logoff__btm {
+  grid-row: 3;
+  border-style: solid;
+  border-width: 2px 0 0 0;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(
+    to right,
+    #003399 0%,
+    #f49439 20%,
+    #f49439 50%,
+    #003399 100%
+  );
+  background: linear-gradient(to right, #3934ad, #00309c);
 }

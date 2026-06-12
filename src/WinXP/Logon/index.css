@@ -138,22 +138,10 @@
   display: none;
 }
 
-.scene_logon .logonmid .right .user:active {
-  background: linear-gradient(to right, #1242a6ff 0, #1242a600 99%);
-}
-
-.scene_logon .logonmid .right .user:active::before {
-  transition: none;
-  z-index: -1;
-  width: 352px;
-  height: 73px;
-  content: " ";
-  position: absolute;
-  left: 0;
-  border-radius: 9px;
-  margin-top: -11px;
-  margin-left: -1px;
-  background: linear-gradient(to right, #9cb2eaff 0, #9cb2ea00 100%);
+.scene_logon .logonmid .right .user:active .usericon img {
+  border: 1px solid #fe0;
+  box-shadow: 1px 0 #ffb600, -1px 0 #ffb600, 0 1px #ffb600, 0 -1px #ffb600,
+    2px 2px 3px #0003;
 }
 
 .scene_logon .logonmid .right .usericon {

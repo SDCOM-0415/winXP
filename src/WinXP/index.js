@@ -24,6 +24,7 @@ import {
   POWER_OFF,
   CANCEL_POWER_OFF,
   RESET_SYSTEM,
+  RESET_TO_LOGON,
 } from './constants/actions';
 import { FOCUSING, POWER_STATE } from './constants';
 import { defaultIconState, defaultAppState, appSettings } from './apps';
@@ -206,6 +207,11 @@ const reducer = (state, action = { type: '' }) => {
         ...initState,
         powerState: POWER_STATE.BOOT,
       };
+    case RESET_TO_LOGON:
+      return {
+        ...initState,
+        powerState: POWER_STATE.LOGON,
+      };
     default:
       return state;
   }
@@ -306,7 +312,7 @@ function WinXP() {
     if (state.powerState !== POWER_STATE.LOGGING_OFF) return undefined;
     playSystemSound(logoffSound);
     const timer = window.setTimeout(() => {
-      dispatch({ type: RESET_SYSTEM });
+      dispatch({ type: RESET_TO_LOGON });
     }, LOGGING_OFF_MS);
     return () => window.clearTimeout(timer);
   }, [state.powerState]);
@@ -559,9 +565,12 @@ function WinXP() {
       )}
       {state.powerState === POWER_STATE.LOGGING_OFF && (
         <div className="scene_logoff">
-          <img src={windowsLogo} alt="" className="logoff-logo" />
-          <div className="logoff-text">Logging off...</div>
-          <div className="logoff-subtext">Saving your settings...</div>
+          <div className="scene_logoff__top" />
+          <div className="scene_logoff__mid">
+            <img src={windowsLogo} alt="" className="scene_logoff__logo" />
+            <div className="scene_logoff__status">正在注销...</div>
+          </div>
+          <div className="scene_logoff__btm" />
         </div>
       )}
       {state.powerState === POWER_STATE.SHUTTING_DOWN && (

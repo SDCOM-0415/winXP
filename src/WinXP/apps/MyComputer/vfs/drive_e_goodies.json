@@ -1,0 +1,80 @@
+{
+    "type": "directory",
+    "contents": {
+        "Extras": {
+            "type": "directory",
+            "icon": "folder.png",
+            "contents": {
+                "No Themes.exe": {
+                    "type": "file",
+                    "icon": "theme.png",
+                    "contents": {
+                        "action": "themehandler.unload()"
+                    }
+                },
+                "you_are_a_genius.exe": {
+                    "type": "file",
+                    "icon": "defaultapp.png",
+                    "contents": {
+                        "action": "apps.load('genius').then((app) => {if(app) app.start()});"
+                    }
+                },
+                "Wanna Laugh.exe": {
+                    "type": "file",
+                    "icon": "gonnacry.png",
+                    "contents": {
+                        "action": "apps.load('gonnacry').then((app) => {if(app) app.start()});"
+                    }
+                },
+                "Ram Downloader.exe": {
+                    "type": "file",
+                    "icon": "repl.png",
+                    "contents": {
+                        "action": "apps.load('repl').then((app) => {if(app) app.start()});"
+                    }
+                },
+                "totally_safe_picture.jpeg.lnk": {
+                    "type": "file",
+                    "icon": "gif.png",
+                    "contents": {
+                        "action": "apps.load('bsod').then(app => app.start({ file: 'trojan.sys', message: 'TOTALLY_UNSAFE_PICTURE' }))"
+                    }
+                },
+                "System Cleanup.exe": {
+                    "type": "file",
+                    "icon": "diskclean.png",
+                    "contents": {
+                        "action": "apps.load('fakeformat').then(app => app.start())"
+                    }
+                },
+                "Display Enhancer.exe": {
+                    "type": "file",
+                    "icon": "displayprops.png",
+                    "contents": {
+                        "action": "apps.load('hotdog').then(app => app.start())"
+                    }
+                }
+            }
+        },
+        "README_GOODIES.txt": {
+            "type": "file",
+            "icon": "text.png",
+            "contents": "Welcome to the Reborn XP Goodies CD!\n\nThis disc is packed with early 2000s media and utilities for you to enjoy. Extract the zip files to relive the golden era of the internet.\n\n==================================================\nWARNING: READ BEFORE OPENING THE EXTRAS FOLDER\n==================================================\n\nThe Extras folder contains undocumented system utilities and joke programs. These applications are provided \"as-is\" and are completely unsupported. Some of them may alter your system configuration or contain startling visual effects.\n\nUse these tools at your own risk.\n\n--------------------------------------------------\n\nFor updates, ideas, or to report a bug, join our official Discord Server: https://dsc.gg/quenq\n\nThis CD will be updated with new content based on your feedback.\n\nHave fun exploring!"
+        },
+        "game_tracks.zip": {
+            "type": "file",
+            "icon": "zip.png",
+            "contents": "res/goodies/game_tracks.zip"
+        },
+        "personal_stuff.zip": {
+            "type": "file",
+            "icon": "zip.png",
+            "contents": "res/goodies/personal_stuff.zip"
+        },
+        "microsoft_nostalgic.zip": {
+            "type": "file",
+            "icon": "zip.png",
+            "contents": "res/goodies/microsoft_nostalgic.zip"
+        }
+    }
+}
