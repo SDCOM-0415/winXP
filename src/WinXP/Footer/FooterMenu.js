@@ -20,8 +20,8 @@ import paint from 'assets/windowsIcons/svg/Paint.svg';
 import help from 'assets/windowsIcons/svg/Help and Support.svg';
 import search from 'assets/windowsIcons/svg/Search.svg';
 import run from 'assets/windowsIcons/svg/Run.svg';
-import shut from 'assets/windowsIcons/svg/Exit.svg';
-import lock from 'assets/windowsIcons/546(32x32).png';
+import symbolLogoff from 'assets/windowsIcons/symbols-logoff.png';
+import symbolShutdown from 'assets/windowsIcons/symbols-shutdown.png';
 import user from 'assets/windowsIcons/user.png';
 import allProgramsIcon from 'assets/windowsIcons/all-programs.ico';
 import winamp from 'assets/windowsIcons/winamp.png';
@@ -175,16 +175,20 @@ function FooterMenu({ className, onClick }) {
         </div>
       </section>
       <footer>
-        <ul id="poweropt">
-          <li onClick={() => onClick('注销')}>
-            <img src={lock} alt="" />
-            注销
-          </li>
-          <li onClick={() => onClick('关闭计算机')}>
-            <img src={shut} alt="" />
-            关闭计算机
-          </li>
-        </ul>
+        <div className="poweropt">
+          <div className="poweropt__btn" onClick={() => onClick('注销')}>
+            <div className="poweropt__softbutton yellow">
+              <img src={symbolLogoff} alt="" />
+            </div>
+            <span>注销</span>
+          </div>
+          <div className="poweropt__btn" onClick={() => onClick('关闭计算机')}>
+            <div className="poweropt__softbutton red">
+              <img src={symbolShutdown} alt="" />
+            </div>
+            <span>关闭计算机</span>
+          </div>
+        </div>
       </footer>
     </div>
   );
@@ -230,6 +234,7 @@ export default styled(FooterMenu)`
   background-color: #4282d6;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  width: 380px;
   header {
     position: relative;
     align-self: flex-start;
@@ -297,6 +302,7 @@ export default styled(FooterMenu)`
     justify-content: flex-end;
     color: #fff;
     height: 42px;
+    width: 100%;
     background: linear-gradient(
       to bottom,
       #4282d6 0%,
@@ -311,37 +317,101 @@ export default styled(FooterMenu)`
       #4282d6 100%
     );
     position: relative;
+    z-index: 10;
   }
 
-  #poweropt {
-    list-style: none;
-    margin: 0;
-    padding: 4px;
+  .poweropt {
     display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0;
+    padding: 0 6px;
     position: absolute;
     bottom: 0;
     right: 0;
+    top: 0;
+    z-index: 20;
   }
-  #poweropt li {
-    padding: 3px;
-    border: 1px solid transparent;
-    border-radius: 3px;
-    cursor: pointer;
-    margin-right: 2px;
+  .poweropt__btn {
     display: flex;
     align-items: center;
+    cursor: pointer;
+    padding: 2px 4px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    margin-left: 2px;
   }
-  #poweropt li:hover {
-    background-color: #0000004f;
+  .poweropt__btn:hover .poweropt__softbutton {
+    box-shadow: 0 0 4px 2px rgba(255, 255, 255, 0.3);
   }
-  #poweropt li:hover:active > * {
-    transform: translate(1px, 1px);
+  .poweropt__btn:active > * {
+    transform: translate(0.5px, 0.5px);
   }
-  #poweropt li img {
-    margin-right: 2px;
+  .poweropt__btn span {
+    display: inline;
+    color: #fff;
+    line-height: 24px;
+    margin-left: 4px;
+    font-size: 11px;
+  }
+  .poweropt__softbutton {
+    display: inline-block;
     width: 22px;
     height: 22px;
     border-radius: 3px;
+    position: relative;
+    flex-shrink: 0;
+    background: radial-gradient(
+        at 10% 10%,
+        #ffffff4a 0,
+        #ffffff4a 10%,
+        #ffffff00 60%
+      ),
+      radial-gradient(at 85% 85%, #ffffff33 0, #ffffff19 30%, #ffffff00 50%);
+  }
+  .poweropt__softbutton::before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 3px;
+    box-shadow: inset -1.5px -1.5px 4.5px #00000088, inset 1px 1px 1px #00000029;
+    background: radial-gradient(at 100% 100%, #00000022 0, #00000000 40%);
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    z-index: 2;
+  }
+  .poweropt__softbutton img {
+    height: 22px;
+    width: 22px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+  .poweropt__softbutton.yellow {
+    background-color: #d7942d;
+  }
+  .poweropt__btn:hover .poweropt__softbutton.yellow {
+    background-color: #fdaf31;
+  }
+  .poweropt__btn:active .poweropt__softbutton.yellow {
+    background-color: #ca7502;
+  }
+  .poweropt__softbutton.red {
+    background-color: #e2512c;
+  }
+  .poweropt__btn:hover .poweropt__softbutton.red {
+    background-color: #f9523d;
+  }
+  .poweropt__btn:active .poweropt__softbutton.red {
+    background-color: #a43418;
   }
   .menu {
     display: flex;
@@ -349,6 +419,8 @@ export default styled(FooterMenu)`
     position: relative;
     border-top: 1px solid #385de7;
     box-shadow: 0 1px #385de7;
+    background-color: #fff;
+    width: 376px;
   }
   .orange-hr {
     position: absolute;
@@ -364,6 +436,7 @@ export default styled(FooterMenu)`
       rgba(0, 0, 0, 0) 100%
     );
     border: 0;
+    z-index: 10;
   }
   .menu__right {
     background-color: #cbe3ff;
@@ -371,6 +444,8 @@ export default styled(FooterMenu)`
     padding: 6px 5px 5px;
     width: 190px;
     color: #00136b;
+    z-index: 10;
+    flex-shrink: 0;
   }
   .menu__left {
     background-color: #fff;
@@ -378,6 +453,7 @@ export default styled(FooterMenu)`
     width: 190px;
     display: flex;
     flex-direction: column;
+    flex: 1;
   }
   .sub_menu {
     border: 1px solid black;
@@ -387,6 +463,7 @@ export default styled(FooterMenu)`
     background-color: #fff;
     display: flex;
     flex-direction: column;
+    z-index: 9999;
   }
 
   .menu__separator {
@@ -442,11 +519,14 @@ export default styled(FooterMenu)`
     margin-right: 3px;
     width: 22px;
     height: 22px;
+    flex-shrink: 0;
   }
+
   .menu__left .menu__item__img {
     margin-right: 3px;
     width: 30px;
     height: 30px;
+    flex-shrink: 0;
   }
   .menu__right .menu__item:nth-child(-n + 5),
   .menu__left .menu__item:nth-child(-n + 2),

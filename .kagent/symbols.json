@@ -92,21 +92,21 @@
     },
     "src/WinXP/Modal/index.css": {
       "ipo_ts": 1781070075001,
-      "edit_count": 1,
-      "last_lines": 275,
-      "last_ts": 1781070075001,
+      "edit_count": 3,
+      "last_lines": 290,
+      "last_ts": 1781259361312,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "cbf1a473"
+      "last_content_hash": "92e40888"
     },
     "src/WinXP/Modal/index.js": {
       "ipo_ts": 1781070104655,
-      "edit_count": 8,
-      "last_lines": 75,
-      "last_ts": 1781070332000,
+      "edit_count": 10,
+      "last_lines": 90,
+      "last_ts": 1781259308838,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "4181f9ec"
+      "last_content_hash": "543863ed"
     },
     "src/WinXP/index.css": {
       "ipo_ts": 1781070479915,
@@ -173,12 +173,57 @@
     },
     "src/WinXP/Footer/FooterMenu.js": {
       "ipo_ts": 1781135618019,
-      "edit_count": 30,
-      "last_lines": 476,
-      "last_ts": 1781157567719,
+      "edit_count": 50,
+      "last_lines": 556,
+      "last_ts": 1781260099783,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "1aac81c2"
+      "last_content_hash": "ec0de80d"
+    },
+    "src/components/SubMenu/index.js": {
+      "ipo_ts": 1781242418184,
+      "edit_count": 22,
+      "last_lines": 134,
+      "last_ts": 1781243214081,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d2c60e87"
+    },
+    "src/assets/windowsIcons/symbols-shutdown.png": {
+      "ipo_ts": 1781259148004,
+      "edit_count": 1,
+      "last_lines": 9,
+      "last_ts": 1781259148004,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "65668bff"
+    },
+    "src/assets/windowsIcons/symbols-logoff.png": {
+      "ipo_ts": 1781259148175,
+      "edit_count": 1,
+      "last_lines": 11,
+      "last_ts": 1781259148175,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "13ab763"
+    },
+    "src/assets/windowsIcons/symbols-restart.png": {
+      "ipo_ts": 1781259148656,
+      "edit_count": 1,
+      "last_lines": 3,
+      "last_ts": 1781259148656,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b365297d"
+    },
+    "src/assets/windowsIcons/symbols-standby.png": {
+      "ipo_ts": 1781259148940,
+      "edit_count": 1,
+      "last_lines": 7,
+      "last_ts": 1781259148940,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "436915dc"
     }
   }
 }

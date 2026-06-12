@@ -67,16 +67,16 @@ const SubMenuItem = ({ index, item, className, hover, onHover, onClick }) => {
 
 const StyledSubMenu = styled(SubMenu)`
   position: absolute;
-  z-index: 1;
+  z-index: 9999;
   left: ${({ left }) => left || '100%'};
   bottom: ${({ bottom }) => bottom || '-1px'};
   background-color: white;
   padding-left: 1px;
   box-shadow: inset 0 0 0 1px #72ade9, 2px 3px 3px rgb(0, 0, 0, 0.5);
+  border-left: 3px solid #4081ff;
   &-separator {
     padding: 0 5px;
     height: 2px;
-    box-shadow: inset 3px 0 #4081ff;
     background: linear-gradient(
       to right,
       rgba(0, 0, 0, 0) 0%,
@@ -89,23 +89,17 @@ const StyledSubMenu = styled(SubMenu)`
     display: flex;
     align-items: center;
     padding: 0 10px;
-    box-shadow: inset 3px 0 #4081ff;
     position: relative;
     padding-right: 22px;
     color: black;
+    z-index: 10000;
   }
+  &-item:hover,
   &-item.hover {
     background-color: #1b65cc;
     color: white;
   }
-  &-item:hover {
-    background-color: #1b65cc;
-    color: white;
-    &-arrow:before {
-      border-left-color: #fff;
-    }
-  }
-  &-item:hover,
+  &-item:hover &-arrow:before,
   &-item.hover > &-arrow:before {
     border-left-color: #fff;
   }
@@ -123,6 +117,7 @@ const StyledSubMenu = styled(SubMenu)`
     right: 0;
     height: 100%;
     width: 10px;
+    z-index: 10001;
     &:before {
       top: 9px;
       right: 6px;
