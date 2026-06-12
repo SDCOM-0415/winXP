@@ -92,21 +92,21 @@
     },
     "src/WinXP/Modal/index.css": {
       "ipo_ts": 1781070075001,
-      "edit_count": 3,
-      "last_lines": 290,
-      "last_ts": 1781259361312,
+      "edit_count": 4,
+      "last_lines": 264,
+      "last_ts": 1781262388160,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "92e40888"
+      "last_content_hash": "498ec1fd"
     },
     "src/WinXP/Modal/index.js": {
       "ipo_ts": 1781070104655,
-      "edit_count": 10,
-      "last_lines": 90,
-      "last_ts": 1781259308838,
+      "edit_count": 13,
+      "last_lines": 91,
+      "last_ts": 1781266274228,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "543863ed"
+      "last_content_hash": "84faeb90"
     },
     "src/WinXP/index.css": {
       "ipo_ts": 1781070479915,
@@ -173,12 +173,12 @@
     },
     "src/WinXP/Footer/FooterMenu.js": {
       "ipo_ts": 1781135618019,
-      "edit_count": 50,
-      "last_lines": 556,
-      "last_ts": 1781260099783,
+      "edit_count": 73,
+      "last_lines": 580,
+      "last_ts": 1781266671901,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "ec0de80d"
+      "last_content_hash": "12e29cc3"
     },
     "src/components/SubMenu/index.js": {
       "ipo_ts": 1781242418184,
@@ -224,6 +224,51 @@
       "delisted": false,
       "last_source": "onEdit",
       "last_content_hash": "436915dc"
+    },
+    "src/assets/windowsIcons/startarrow.png": {
+      "ipo_ts": 1781260729911,
+      "edit_count": 1,
+      "last_lines": 196,
+      "last_ts": 1781260729911,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "77e323d2"
+    },
+    "src/assets/windowsIcons/startarrow_press.png": {
+      "ipo_ts": 1781260730087,
+      "edit_count": 1,
+      "last_lines": 195,
+      "last_ts": 1781260730087,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "8c883017"
+    },
+    "src/assets/windowsIcons/chess.bmp": {
+      "ipo_ts": 1781260730271,
+      "edit_count": 1,
+      "last_lines": 139,
+      "last_ts": 1781260730271,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "dca5fb00"
+    },
+    "src/WinXP/Footer/index.js": {
+      "ipo_ts": 1781264802839,
+      "edit_count": 1,
+      "last_lines": 266,
+      "last_ts": 1781264802839,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "78d4d731"
+    },
+    "src/WinXP/Footer/FooterMenuData.js": {
+      "ipo_ts": 1781265737126,
+      "edit_count": 3,
+      "last_lines": 404,
+      "last_ts": 1781266245376,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e62b61a7"
     }
   }
 }

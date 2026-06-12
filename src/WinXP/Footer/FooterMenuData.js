@@ -1,59 +1,59 @@
 import empty from 'assets/empty.png';
-import backup from 'assets/windowsIcons/23(16x16).png';
-import keyboard from 'assets/windowsIcons/58(16x16).png';
-import cmd from 'assets/windowsIcons/56(16x16).png';
-import calculator from 'assets/windowsIcons/74(16x16).png';
-import utility from 'assets/windowsIcons/119(16x16).png';
-import volume from 'assets/windowsIcons/120(16x16).png';
-import characterMap from 'assets/windowsIcons/127(16x16).png';
-import cleanDisk from 'assets/windowsIcons/128(16x16).png';
-import wordPad from 'assets/windowsIcons/153(16x16).png';
-import winExplorer from 'assets/windowsIcons/156(16x16).png';
-import MSN from 'assets/windowsIcons/159(16x16).png';
-import sync from 'assets/windowsIcons/182(16x16).png';
-import security from 'assets/windowsIcons/214(16x16).png';
-import access from 'assets/windowsIcons/227(16x16).png';
-import wireless from 'assets/windowsIcons/234(16x16).png';
-import accessibility from 'assets/windowsIcons/238(16x16).png';
-import connection from 'assets/windowsIcons/309(16x16).png';
-import update from 'assets/windowsIcons/322(16x16).png';
-import notepad from 'assets/windowsIcons/327(16x16).png';
-import networkAssistance from 'assets/windowsIcons/357(16x16).png';
-import menu from 'assets/windowsIcons/358(16x16).png';
-import transfer from 'assets/windowsIcons/367(16x16).png';
-import defragmenter from 'assets/windowsIcons/374(16x16).png';
-import catalog from 'assets/windowsIcons/392(16x16).png';
-import networkConnection from 'assets/windowsIcons/404(16x16).png';
-import info from 'assets/windowsIcons/505(16x16).png';
-import address from 'assets/windowsIcons/554(16x16).png';
-import connectionWizard from 'assets/windowsIcons/663(16x16).png';
-import networkSetup from 'assets/windowsIcons/664(16x16).png';
-import hyperCmd from 'assets/windowsIcons/669(16x16).png';
-import painter from 'assets/windowsIcons/680(16x16).png';
-import sound from 'assets/windowsIcons/690(16x16).png';
-import recent from 'assets/windowsIcons/716(16x16).png';
-import compatibility from 'assets/windowsIcons/747(16x16).png';
-import magnifier from 'assets/windowsIcons/817(16x16).png';
-import mediaPlayer from 'assets/windowsIcons/846(16x16).png';
-import tour from 'assets/windowsIcons/853(32x32).png';
-import outlook from 'assets/windowsIcons/887(16x16).png';
-import spade from 'assets/windowsIcons/888(16x16).png';
-import reversi from 'assets/windowsIcons/889(16x16).png';
-import onlineHeart from 'assets/windowsIcons/890(16x16).png';
-import checker from 'assets/windowsIcons/891(16x16).png';
-import backgammon from 'assets/windowsIcons/892(16x16).png';
-import movieMaker from 'assets/windowsIcons/894(16x16).png';
-import ie from 'assets/windowsIcons/896(16x16).png';
-import messenger from 'assets/windowsIcons/msn.png';
-import spider from 'assets/windowsIcons/spider.png';
-import freecell from 'assets/windowsIcons/freecell.png';
-import heart from 'assets/windowsIcons/heart.png';
-import rdp from 'assets/windowsIcons/rdp.png';
-import solitaire from 'assets/windowsIcons/solitaire.png';
-import narrator from 'assets/windowsIcons/narrator.ico';
-import pinball from 'assets/windowsIcons/pinball.png';
-import restore from 'assets/windowsIcons/restore.ico';
-import mine from 'assets/minesweeper/mine-icon.png';
+import backup from 'assets/windowsIcons/svg/Backup Wizard.svg';
+import keyboard from 'assets/windowsIcons/svg/On-Screen Keyboard.svg';
+import cmd from 'assets/windowsIcons/svg/Command Prompt.svg';
+import calculator from 'assets/windowsIcons/svg/Calculator.svg';
+import utility from 'assets/windowsIcons/svg/Accessibility.svg';
+import volume from 'assets/windowsIcons/svg/Volume.svg';
+import characterMap from 'assets/windowsIcons/svg/Charmap.svg';
+import cleanDisk from 'assets/windowsIcons/svg/Disk Cleanup.svg';
+import wordPad from 'assets/windowsIcons/svg/Wordpad.svg';
+import winExplorer from 'assets/windowsIcons/svg/Explorer.svg';
+import MSN from 'assets/windowsIcons/svg/MSN.svg';
+import sync from 'assets/windowsIcons/svg/Sync.svg';
+import security from 'assets/windowsIcons/svg/Security Center.svg';
+import access from 'assets/windowsIcons/svg/Default Programs (SP1 Version).svg';
+import wireless from 'assets/windowsIcons/svg/Wireless Network Setup.svg';
+import accessibility from 'assets/windowsIcons/svg/Accessibility Wizard.svg';
+import connection from 'assets/windowsIcons/svg/Network Connections.svg';
+import update from 'assets/windowsIcons/svg/Windows Update.svg';
+import notepad from 'assets/windowsIcons/svg/Notepad.svg';
+import networkAssistance from 'assets/windowsIcons/svg/Remote Assistance.svg';
+import menu from 'assets/windowsIcons/svg/Start Menu Programs.svg';
+import transfer from 'assets/windowsIcons/svg/File and Settings Transfer Wizard.svg';
+import defragmenter from 'assets/windowsIcons/svg/Disk Defragmenter.svg';
+import catalog from 'assets/windowsIcons/svg/Windows Catalog.svg';
+import networkConnection from 'assets/windowsIcons/svg/Network Connection.svg';
+import info from 'assets/windowsIcons/svg/System Information.svg';
+import address from 'assets/windowsIcons/svg/Address Book.svg';
+import connectionWizard from 'assets/windowsIcons/svg/New Internet Connection.svg';
+import networkSetup from 'assets/windowsIcons/svg/Network Setup.svg';
+import hyperCmd from 'assets/windowsIcons/svg/Hyper Terminal.svg';
+import painter from 'assets/windowsIcons/svg/Paint.svg';
+import sound from 'assets/windowsIcons/svg/Record.svg';
+import recent from 'assets/windowsIcons/svg/Scheduled Tasks.svg';
+import compatibility from 'assets/windowsIcons/svg/Wizard.svg';
+import magnifier from 'assets/windowsIcons/svg/Magnifier.svg';
+import mediaPlayer from 'assets/windowsIcons/svg/Windows Media Player 10.svg';
+import tour from 'assets/windowsIcons/svg/Tour XP.svg';
+import outlook from 'assets/windowsIcons/svg/Outlook Express.svg';
+import spade from 'assets/windowsIcons/svg/Internet Spades.svg';
+import reversi from 'assets/windowsIcons/svg/Internet Reversi.svg';
+import onlineHeart from 'assets/windowsIcons/svg/Internet Hearts.svg';
+import checker from 'assets/windowsIcons/svg/Internet Checkers.svg';
+import backgammon from 'assets/windowsIcons/svg/Internet Backgammon.svg';
+import movieMaker from 'assets/windowsIcons/svg/Windows Movie Maker.svg';
+import ie from 'assets/windowsIcons/svg/Internet Explorer 6.svg';
+import messenger from 'assets/windowsIcons/svg/Windows Messenger.svg';
+import spider from 'assets/windowsIcons/svg/Spider Solitaire.svg';
+import freecell from 'assets/windowsIcons/svg/Freecell.svg';
+import heart from 'assets/windowsIcons/svg/Hearts.svg';
+import rdp from 'assets/windowsIcons/svg/Remote Desktop.svg';
+import solitaire from 'assets/windowsIcons/svg/Solitaire.svg';
+import narrator from 'assets/windowsIcons/svg/Narrator.svg';
+import pinball from 'assets/windowsIcons/svg/Pinball.svg';
+import restore from 'assets/windowsIcons/svg/System Restore.svg';
+import mine from 'assets/windowsIcons/svg/Minesweeper.svg';
 
 export const MyRecentDocuments = [
   {
@@ -335,7 +335,7 @@ export const AllPrograms = [
       {
         type: 'item',
         icon: spade,
-        text: 'Internet 纸牌',
+        text: 'Internet 拱猪',
       },
       {
         type: 'item',

@@ -5,6 +5,7 @@
   right: 0;
   bottom: 0;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   z-index: 999;
@@ -13,149 +14,176 @@
 .scene_overlay .actionbox {
   width: 312px;
   height: 198px;
-  border: 1px solid black;
   background: radial-gradient(#99b4f7, #5c7ee0);
+  border: 1px solid #000;
   display: flex;
   flex-direction: column;
 }
 
-.scene_overlay .act_heading {
+.scene_overlay .actionbox .act_heading {
   height: 43px;
   background-color: #039;
-  border-bottom-width: 2px;
-  border-bottom-style: solid;
+  border-bottom: 2px solid;
   border-image-slice: 1;
-  border-image-source: linear-gradient(
-    to right,
-    #2f5eba,
-    #cfe6ff,
-    #2f5eba
-  );
+  border-image-source: linear-gradient(to right, #2f5eba, #cfe6ff, #2f5eba);
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-family: sans-serif;
-  font-size: 21px;
-  font-weight: 600;
+  padding-left: 12px;
   flex-shrink: 0;
 }
 
-.scene_overlay .act_content {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
+.scene_overlay .actionbox .act_heading span {
+  font-family: sans-serif;
+  font-weight: 700;
+  color: #fff;
+  font-size: 13px;
 }
 
-.scene_overlay .act_button {
+.scene_overlay .actionbox .act_content {
+  flex: 1;
   display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 30px);
+  margin: 0 15px;
+}
+
+.scene_overlay .actionbox .act_button {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
 }
 
-.scene_overlay .act_button.disabled {
+.scene_overlay .actionbox .act_button.disabled {
   cursor: default;
+  pointer-events: none;
   opacity: 0.5;
 }
 
-.scene_overlay .act_button.disabled .softbutton {
-  cursor: default;
-}
-
-.scene_overlay .act_button.disabled .softbutton:hover {
-  background: radial-gradient(at 10% 10%, #faac9f 0, #faac9f00 35%);
-  background-color: #d09d22;
-}
-
-.scene_overlay .act_button.disabled .softbutton:hover::before {
-  box-shadow: inset -1.5px -1.5px 4.5px #00000088, inset 1px 1px 1px #00000029;
-  background: radial-gradient(at 100% 100%, #00000022 0, #00000000 40%);
-}
-
-.scene_overlay .act_button_label {
+.scene_overlay .actionbox .act_button_label {
+  display: inline-block;
   color: #fff;
   font-family: Tahoma, sans-serif;
-  font-size: 11px;
-  font-weight: bold;
-  margin-top: 6px;
   text-align: center;
+  width: 100%;
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 8px;
 }
 
-.scene_overlay .act_button.disabled .act_button_label {
-  color: #999;
+.scene_overlay .actionbox .footing {
+  height: 43px;
+  background-color: #039;
+  border-top: 2px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to right, #2f5eba, #cfe6ff, #2f5eba);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.scene_overlay .actionbox .winbutton {
+  display: inline-block;
+  border-radius: 3px;
+  border: 1px solid #003c74;
+  background: linear-gradient(
+    to bottom,
+    #fff 0%,
+    #fdfdfd 10%,
+    #c6c5d7 90%,
+    #c6c5d7 100%
+  );
+  padding: 0;
+  margin-right: 10px;
+  height: 19px;
+  min-width: 71px;
+  box-shadow: 0 -1px 0 0 #00000022, 0 1px 0 0 #ffffff77, inset 1px 0 0 #fff,
+    inset -1px 0 0 #fff;
+  cursor: pointer;
+  font-family: Tahoma, sans-serif;
+  font-size: 11px;
+  text-align: center;
+  color: #000;
+  line-height: 17px;
+}
+
+.scene_overlay .actionbox .winbutton:hover {
+  background: linear-gradient(
+    to bottom,
+    #fff0cf 0%,
+    #fcd279 10%,
+    #f8b230 95%,
+    #e59700 100%
+  );
+  box-shadow: 0 -1px 0 0 #00000022, 0 1px 0 0 #ffffff77;
+}
+
+.scene_overlay .actionbox .winbutton:active {
+  background: linear-gradient(to bottom, #acabbd, #fff);
+  box-shadow: 0 -1px 0 0 #00000022, 0 1px 0 0 #ffffff77, inset 1px 0 0 #fff,
+    inset -1px 0 0 #fff, inset 0 1px 0 #fff;
 }
 
 .scene_overlay .softbutton {
-  height: 46px;
-  width: 46px;
-  border-radius: 50%;
   display: block;
-  box-shadow: 3px 3px 0 #0d2086;
+  width: 31px;
+  height: 31px;
+  margin: 0 auto;
+  border-radius: 4px;
   position: relative;
+  background: radial-gradient(
+      at 10% 10%,
+      #ffffff66 0,
+      #ffffff4a 10%,
+      #ffffff00 60%
+    ),
+    radial-gradient(at 85% 85%, #ffffff33 0, #ffffff19 30%, #ffffff00 50%);
+  box-shadow: 2px 2px 0 #0d2086;
   cursor: pointer;
-  background: radial-gradient(at 10% 10%, #faac9f 0, #faac9f00 35%);
-  background-color: #e2512c;
 }
 
 .scene_overlay .softbutton img {
-  height: 46px;
-  width: 46px;
+  height: 31px;
+  width: 31px;
   display: block;
   position: absolute;
-  top: 0;
+  top: 1px;
   left: 0;
   pointer-events: none;
-  z-index: 1;
-}
-
-.scene_overlay .softbutton:active img {
-  opacity: 0.6;
 }
 
 .scene_overlay .softbutton::before {
-  content: " ";
-  display: block;
+  content: '';
   height: inherit;
   width: inherit;
-  border-radius: 50%;
+  display: block;
+  border-radius: 5px;
   box-shadow: inset -1.5px -1.5px 4.5px #00000088, inset 1px 1px 1px #00000029;
   background: radial-gradient(at 100% 100%, #00000022 0, #00000000 40%);
   border: 1px solid #fff;
   box-sizing: border-box;
 }
 
-.scene_overlay .softbutton:hover {
-  background: radial-gradient(at 10% 10%, #f1c8b3 0, #f1c8b300 35%);
-  background-color: #f9523d;
-}
-
-.scene_overlay .softbutton:hover::before {
-  box-shadow: inset -1px -1px 0 #c23c2a, inset -1.5px -1.5px 3px #c23c2a,
-    inset 1px 1px 1px #fc5f4c;
-  background: radial-gradient(at 70% 70%, #fe8664 0, #fe866400 40%);
-}
-
-.scene_overlay .softbutton:active {
-  background: radial-gradient(at 70% 70%, #cd4823 0, #882b14 150%);
-  background-color: #a43418;
-}
-
-.scene_overlay .softbutton:active::before {
-  box-shadow: inset 1px 1px 0 #5d270a, inset 1.5px 1.5px 3px #5d270a,
-    inset 0 -1px 0 #d16f54, inset -1px -1px 1px #c3411e;
-  background: radial-gradient(at 70% 70%, #cd4823 0, #cd482300 30%);
+.scene_overlay .softbutton:active img {
+  opacity: 0.6;
 }
 
 .scene_overlay .softbutton.red {
-  background: radial-gradient(at 10% 10%, #faac9f 0, #faac9f00 35%);
   background-color: #e2512c;
 }
 
+.scene_overlay .softbutton.red::before {
+  box-shadow: inset -1px -1px 0 #9d2607, inset -1.5px -1.5px 3px #9d2607,
+    inset 1px 1px 1px #e2512c;
+  background: radial-gradient(at 100% 100%, #db3909 0, #db390900 40%);
+}
+
 .scene_overlay .softbutton.red:hover {
-  background: radial-gradient(at 10% 10%, #f1c8b3 0, #f1c8b300 35%);
   background-color: #f9523d;
 }
 
@@ -166,7 +194,6 @@
 }
 
 .scene_overlay .softbutton.red:active {
-  background: radial-gradient(at 70% 70%, #cd4823 0, #882b14 150%);
   background-color: #a43418;
 }
 
@@ -177,114 +204,61 @@
 }
 
 .scene_overlay .softbutton.green {
-  background: radial-gradient(at 10% 10%, #b0e89f 0, #b0e89f00 35%);
-  background-color: #51ad41;
+  background-color: #339833;
 }
 
 .scene_overlay .softbutton.green::before {
-  box-shadow: inset -1.5px -1.5px 4.5px #00000088, inset 1px 1px 1px #00000029;
-  background: radial-gradient(at 100% 100%, #00000022 0, #00000000 40%);
+  box-shadow: inset -1px -1px 0 #026202, inset -1.5px -1.5px 3px #026202,
+    inset 1px 1px 1px #339833;
+  background: radial-gradient(at 75% 75%, #0fb30f 0, #0fb30f00 60%);
 }
 
 .scene_overlay .softbutton.green:hover {
-  background: radial-gradient(at 10% 10%, #c8f1b3 0, #c8f1b300 35%);
-  background-color: #63c952;
+  background-color: #2abc2a;
 }
 
 .scene_overlay .softbutton.green:hover::before {
-  box-shadow: inset -1px -1px 0 #3a8a2a, inset -1.5px -1.5px 3px #3a8a2a,
-    inset 1px 1px 1px #5fc64c;
-  background: radial-gradient(at 70% 70%, #64d850 0, #64d85000 40%);
+  box-shadow: inset -1px -1px 0 #0d740d, inset -1.5px -1.5px 3px #0d740d,
+    inset 1px 1px 1px #2abc2a;
+  background: radial-gradient(at 70% 70%, #1bdb1b 0, #1bdb1b00 40%);
 }
 
 .scene_overlay .softbutton.green:active {
-  background: radial-gradient(at 70% 70%, #3e8a30 0, #1f5a14 150%);
-  background-color: #2d7a1e;
+  background-color: #027c02;
 }
 
 .scene_overlay .softbutton.green:active::before {
-  box-shadow: inset 1px 1px 0 #0a5d0a, inset 1.5px 1.5px 3px #0a5d0a,
-    inset 0 -1px 0 #54d154, inset -1px -1px 1px #1ec31e;
-  background: radial-gradient(at 70% 70%, #3e8a30 0, #3e8a3000 30%);
+  box-shadow: inset 1px 1px 0 #024702, inset 1.5px 1.5px 3px #026202,
+    inset 0 -1px 0 #3fa03f, inset -1px -1px 1px #028402;
+  background: radial-gradient(at 70% 70%, #029d02 0, #029d0200 30%);
 }
 
 .scene_overlay .softbutton.yellow {
-  background: radial-gradient(at 10% 10%, #f5e09f 0, #f5e09f00 35%);
-  background-color: #d09d22;
+  background-color: #d7942d;
 }
 
 .scene_overlay .softbutton.yellow::before {
-  box-shadow: inset -1.5px -1.5px 4.5px #00000088, inset 1px 1px 1px #00000029;
-  background: radial-gradient(at 100% 100%, #00000022 0, #00000000 40%);
+  box-shadow: inset -1px -1px 0 #9c5d02, inset -1.5px -1.5px 3px #9c5d02,
+    inset 1px 1px 1px #d68f24;
+  background: radial-gradient(at 75% 75%, #e6b119 0, #e6b11900 60%);
 }
 
 .scene_overlay .softbutton.yellow:hover {
-  background: radial-gradient(at 10% 10%, #f5eab3 0, #f5eab300 35%);
-  background-color: #e8b432;
+  background-color: #fdaf31;
 }
 
 .scene_overlay .softbutton.yellow:hover::before {
-  box-shadow: inset -1px -1px 0 #a67a1a, inset -1.5px -1.5px 3px #a67a1a,
-    inset 1px 1px 1px #e8b432;
-  background: radial-gradient(at 70% 70%, #f0c850 0, #f0c85000 40%);
+  box-shadow: inset -1px -1px 0 #b97a08, inset -1.5px -1.5px 3px #b97a08,
+    inset 1px 1px 1px #fda926;
+  background: radial-gradient(at 70% 70%, #fedb1b 0, #fedb1b00 40%);
 }
 
 .scene_overlay .softbutton.yellow:active {
-  background: radial-gradient(at 70% 70%, #b08018 0, #7a5a0e 150%);
-  background-color: #9a7014;
+  background-color: #ca7502;
 }
 
 .scene_overlay .softbutton.yellow:active::before {
-  box-shadow: inset 1px 1px 0 #5d4a0a, inset 1.5px 1.5px 3px #5d4a0a,
-    inset 0 -1px 0 #d1b054, inset -1px -1px 1px #c3a01e;
-  background: radial-gradient(at 70% 70%, #b08018 0, #b0801800 30%);
-}
-
-.scene_overlay .footing {
-  height: 43px;
-  background-color: #039;
-  border-top-width: 2px;
-  border-top-style: solid;
-  border-image-slice: 1;
-  border-image-source: linear-gradient(
-    to right,
-    #2f5eba,
-    #cfe6ff,
-    #2f5eba
-  );
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex-shrink: 0;
-}
-
-.scene_overlay .winbutton {
-  min-width: 72px;
-  height: 22px;
-  font-size: 11px;
-  font-family: Tahoma, sans-serif;
-  background: linear-gradient(to bottom, #fff 0%, #e3e3db 45%, #d2d2c8 50%, #e8e8df 100%);
-  border: 1px solid #003c74;
-  border-radius: 2px;
-  margin-right: 10px;
-  cursor: pointer;
-  outline: none;
-  padding: 0 8px;
-  color: #000;
-}
-
-.scene_overlay .winbutton:hover {
-  border-color: #f90;
-  box-shadow: inset 0 0 0 1px #fce29a;
-}
-
-.scene_overlay .winbutton:active {
-  background: linear-gradient(to bottom, #d2d2c8 0%, #c8c8bf 45%, #bfbfb7 50%, #d5d5cc 100%);
-  border-color: #003c74;
-  box-shadow: none;
-}
-
-.scene_overlay .winbutton:focus {
-  border-color: #003c74;
-  box-shadow: inset 0 0 0 1px #7fa7ce;
+  box-shadow: inset 1px 1px 0 #5d270a, inset 1.5px 1.5px 3px #724402,
+    inset 0 -1px 0 #dc9d3f, inset -1px -1px 1px #cd7b02;
+  background: radial-gradient(at 70% 70%, #d89603 0, #d8960300 30%);
 }

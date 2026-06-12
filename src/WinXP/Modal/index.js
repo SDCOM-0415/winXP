@@ -4,7 +4,6 @@ import { POWER_STATE } from 'WinXP/constants';
 import standbyIcon from 'assets/windowsIcons/symbols-standby.png';
 import shutdownIcon from 'assets/windowsIcons/symbols-shutdown.png';
 import restartIcon from 'assets/windowsIcons/symbols-restart.png';
-import switchUserIcon from 'assets/windowsIcons/symbols-restart.png';
 import logoffIcon from 'assets/windowsIcons/symbols-logoff.png';
 import './index.css';
 
@@ -30,7 +29,9 @@ function Modal({ mode, onClose, onClickButton }) {
       onMouseUp={noop}
     >
       <div className="actionbox">
-        <div className="act_heading">{heading}</div>
+        <div className="act_heading">
+          <span>{heading}</span>
+        </div>
         <div className="act_content">
           {isTurnOff ? (
             <>
@@ -42,9 +43,9 @@ function Modal({ mode, onClose, onClickButton }) {
               </div>
               <div className="act_button" onClick={() => handleClick('关机')}>
                 <div className="softbutton red">
-                  <img src={shutdownIcon} alt="关机" />
+                  <img src={shutdownIcon} alt="关闭" />
                 </div>
-                <span className="act_button_label">关机</span>
+                <span className="act_button_label">关闭</span>
               </div>
               <div
                 className="act_button"
@@ -63,7 +64,7 @@ function Modal({ mode, onClose, onClickButton }) {
                 onClick={() => handleClick('切换用户')}
               >
                 <div className="softbutton green">
-                  <img src={switchUserIcon} alt="切换用户" />
+                  <img src={restartIcon} alt="切换用户" />
                 </div>
                 <span className="act_button_label">切换用户</span>
               </div>

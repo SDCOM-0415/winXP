@@ -192,7 +192,6 @@ const Container = styled.footer`
   .footer__start__menu {
     position: absolute;
     left: 0;
-    box-shadow: 2px 4px 2px rgba(0, 0, 0, 0.5);
     bottom: 100%;
   }
   .footer__window {
