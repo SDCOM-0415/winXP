@@ -180,7 +180,7 @@
 
 .scene_logon .logonmid .right:hover :hover {
   opacity: 1;
-  cursor: pointer;
+  cursor: url(../../assets/cursors/link.cur), pointer;
 }
 
 .scene_logon .logonmid .right:hover .user:hover .usericon img {
@@ -286,13 +286,13 @@
 
 .scene_logon .logonbtm .softbutton:hover span {
   text-decoration: underline;
-  cursor: pointer;
+  cursor: url(../../assets/cursors/link.cur), pointer;
 }
 
 .scene_logon .logonbtm .softbutton:hover {
   background: radial-gradient(at 10% 10%, #f1c8b3 0, #f1c8b300 35%);
   background-color: #f9523d;
-  cursor: pointer;
+  cursor: url(../../assets/cursors/link.cur), pointer;
 }
 
 .scene_logon .logonbtm .softbutton:hover::before {
@@ -346,7 +346,7 @@
 }
 
 .scene_logon .logonbtm .btncontain {
-  cursor: pointer;
+  cursor: url(../../assets/cursors/link.cur), pointer;
   display: inline-flex;
   align-items: center;
   position: absolute;

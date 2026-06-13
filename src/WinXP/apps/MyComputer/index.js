@@ -1,3 +1,4 @@
+import cursorLink from 'assets/cursors/link.cur';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -101,7 +102,7 @@ function MyComputer({ onClose }) {
   const [collapsed, setCollapsed] = useState({
     tasks: false,
     places: false,
-    details: true,
+    details: false,
   });
   const [viewMode, setViewMode] = useState('tileview');
   const [viewPickerOpen, setViewPickerOpen] = useState(false);
@@ -903,6 +904,11 @@ const Div = styled.div`
     overflow-y: auto;
     overflow-x: hidden;
     padding: 12px 12px 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
   .com__sidebar__group {
     width: 100%;
@@ -953,7 +959,7 @@ const Div = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+    cursor: url(${cursorLink}), pointer;
   }
   .com__sidebar__collapser span {
     padding: 0;
@@ -988,11 +994,11 @@ const Div = styled.div`
   }
   .com__sidebar__group:not(.details) ul li.link:hover {
     text-decoration: underline;
-    cursor: pointer;
+    cursor: url(${cursorLink}), pointer;
   }
   .com__sidebar__group ul li.disabled {
     opacity: 0.5;
-    cursor: default;
+    cursor: inherit;
   }
   .com__sidebar__group.details ul li.name {
     font-weight: 600;
@@ -1008,6 +1014,11 @@ const Div = styled.div`
     overflow-y: auto;
     overflow-x: hidden;
     padding: 0 0 20px 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
   .com__content__browse__empty {
     padding: 12px;
@@ -1057,7 +1068,7 @@ const Div = styled.div`
     line-height: 18px;
     padding: 0 0 0 10px;
     font-size: 11px;
-    cursor: default;
+    cursor: inherit;
     white-space: nowrap;
     & > span {
       display: inline-block;
@@ -1084,7 +1095,7 @@ const Div = styled.div`
     font-family: inherit;
     font-size: 11px;
     text-decoration: none;
-    cursor: default;
+    cursor: inherit;
     outline: none;
   }
   .com__content__browse__img {

@@ -1,3 +1,4 @@
+import cursorLink from 'assets/cursors/link.cur';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -314,7 +315,7 @@ export default styled(FooterMenu)`
     height: 32px;
     padding: 2px;
     margin: 2px 0;
-    cursor: pointer;
+    cursor: url(${cursorLink}), pointer;
   }
   .sm-applinks .menu__item:hover {
     background-color: #316ac5;
@@ -418,7 +419,7 @@ export default styled(FooterMenu)`
     line-height: 24px;
     padding: 1px 3px;
     margin: 1px 0;
-    cursor: pointer;
+    cursor: url(${cursorLink}), pointer;
     position: relative;
   }
   .sm-syslinks .menu__item:hover {
@@ -503,7 +504,7 @@ export default styled(FooterMenu)`
   .sm-poweropt__btn {
     display: flex;
     align-items: center;
-    cursor: pointer;
+    cursor: url(${cursorLink}), pointer;
     padding: 2px 4px;
   }
   .sm-poweropt__btn span {

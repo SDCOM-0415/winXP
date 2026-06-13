@@ -1,3 +1,4 @@
+import cursorLink from 'assets/cursors/link.cur';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import smile from './smile.svg';
@@ -90,7 +91,7 @@ export default styled(Main)`
     color: rgb(80, 80, 80);
     * {
       padding-right: 15px;
-      cursor: pointer;
+      cursor: url(${cursorLink}), pointer;
     }
     .text:hover {
       text-decoration: underline;
@@ -138,7 +139,7 @@ export default styled(Main)`
         width: 40px;
         padding: 0 8px;
         height: 44px;
-        cursor: pointer;
+        cursor: url(${cursorLink}), pointer;
         display: flex;
         align-items: center;
         img {
@@ -197,7 +198,7 @@ export default styled(Main)`
       font-size: 13px;
       width: 100%;
       .item {
-        cursor: pointer;
+        cursor: url(${cursorLink}), pointer;
       }
       .item:hover {
         text-decoration: underline;

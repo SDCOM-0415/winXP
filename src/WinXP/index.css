@@ -7,6 +7,26 @@
   position: relative;
   background: url(https://blog.sdcom.top/upload/Zk6TR5k.jpg) no-repeat center center fixed;
   background-size: cover;
+  cursor: url(../assets/cursors/default.cur), default;
+}
+
+.winxp-container * {
+  cursor: inherit;
+}
+
+.winxp-container a,
+.winxp-container a * {
+  cursor: url(../assets/cursors/link.cur), pointer;
+}
+
+.winxp-container input[type='text'],
+.winxp-container input[type='password'],
+.winxp-container input[type='number'],
+.winxp-container input[type='search'],
+.winxp-container input[type='email'],
+.winxp-container textarea,
+.winxp-container [contenteditable='true'] {
+  cursor: url(../assets/cursors/beam.cur), text !important;
 }
 
 .winxp-container *:not(input):not(textarea) {

@@ -1,3 +1,4 @@
+import cursorLink from 'assets/cursors/link.cur';
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
@@ -121,7 +122,7 @@ export default styled(ContextMenu)`
     align-items: center;
     height: 22px;
     padding: 0 24px 0 28px;
-    cursor: default;
+    cursor: inherit;
     white-space: nowrap;
     position: relative;
     color: #000;

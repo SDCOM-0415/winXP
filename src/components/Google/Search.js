@@ -1,3 +1,4 @@
+import cursorLink from 'assets/cursors/link.cur';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -139,7 +140,7 @@ export default styled(Search)`
     width: 150px;
     height: 34px;
     padding: 4px 28px 0 30px;
-    cursor: pointer;
+    cursor: url(${cursorLink}), pointer;
   }
   .search-bar {
     display: flex;
@@ -164,7 +165,7 @@ export default styled(Search)`
       width: 40px;
     }
     .icon:nth-of-type(1) {
-      cursor: pointer;
+      cursor: url(${cursorLink}), pointer;
     }
     .icon:nth-of-type(2) {
       fill: rgb(66, 133, 244);
@@ -179,7 +180,7 @@ export default styled(Search)`
     img {
       margin: 8px;
       width: 24px;
-      cursor: pointer;
+      cursor: url(${cursorLink}), pointer;
       height: 24px;
     }
   }
@@ -197,7 +198,7 @@ export default styled(Search)`
   }
   .tag {
     height: 100%;
-    cursor: pointer;
+    cursor: url(${cursorLink}), pointer;
     padding: 28px 16px 0;
     &:hover:not(.active) {
       color: rgb(34, 34, 34);
@@ -237,7 +238,7 @@ export default styled(Search)`
       font-size: 13px;
       width: 100%;
       .item {
-        cursor: pointer;
+        cursor: url(${cursorLink}), pointer;
       }
       .item:hover {
         text-decoration: underline;

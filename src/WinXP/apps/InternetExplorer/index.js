@@ -1,3 +1,4 @@
+import cursorLink from 'assets/cursors/link.cur';
 import React, {
   useState,
   useRef,
@@ -679,7 +680,7 @@ const Div = styled.div`
     align-items: center;
     border: 1px solid rgba(0, 0, 0, 0);
     border-radius: 3px;
-    cursor: pointer;
+    cursor: url(${cursorLink}), pointer;
     &:hover {
       border: 1px solid rgba(0, 0, 0, 0.1);
       box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0.1);
@@ -701,7 +702,7 @@ const Div = styled.div`
     height: 100%;
     align-items: center;
     border: 1px solid rgba(0, 0, 0, 0);
-    cursor: default;
+    cursor: inherit;
     pointer-events: none;
   }
   .ie__function_bar__text {
@@ -806,7 +807,7 @@ const Div = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
+      cursor: url(${cursorLink}), pointer;
     }
     &__dropdown:hover img {
       filter: brightness(1.1);
@@ -845,7 +846,7 @@ const Div = styled.div`
     font-size: 11px;
     line-height: 18px;
     font-family: inherit;
-    cursor: pointer;
+    cursor: url(${cursorLink}), pointer;
   }
   .ie__address_bar__history__item:hover {
     background: #316ac5;
@@ -857,7 +858,7 @@ const Div = styled.div`
     padding: 0 18px 0 5px;
     height: 100%;
     position: relative;
-    cursor: pointer;
+    cursor: url(${cursorLink}), pointer;
     &__img {
       height: 95%;
       border: 1px solid rgba(255, 255, 255, 0.2);

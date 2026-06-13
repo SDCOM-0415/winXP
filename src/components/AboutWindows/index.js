@@ -1,3 +1,4 @@
+import cursorLink from 'assets/cursors/link.cur';
 import React from 'react';
 import styled from 'styled-components';
 import windowsLogo from 'assets/windowsIcons/WinXPlogo.svg';
@@ -183,7 +184,7 @@ const OkButton = styled.button`
   border: 1px solid #003c74;
   border-radius: 3px;
   font-size: 12px;
-  cursor: pointer;
+  cursor: url(${cursorLink}), pointer;
   box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #aca899;
   &:hover {
     background: linear-gradient(to bottom, #f5f2e8, #e4e0d4);

@@ -1,4 +1,9 @@
 import { useEffect, useState } from 'react';
+import cursorDefault from 'assets/cursors/default.cur';
+import cursorNs from 'assets/cursors/resize_ns.cur';
+import cursorWe from 'assets/cursors/resize_we.cur';
+import cursorNwse from 'assets/cursors/resize_nwse.cur';
+import cursorNesw from 'assets/cursors/resize_nesw.cur';
 
 function useElementResize(ref, options) {
   const {
@@ -22,6 +27,7 @@ function useElementResize(ref, options) {
     cover.style.left = 0;
     cover.style.right = 0;
     cover.style.bottom = 0;
+    cover.style.cursor = `url(${cursorDefault}), default`;
     const previousOffset = { ...offset };
     const previousSize = { ...size };
     let _boundary;
@@ -392,23 +398,19 @@ function getComputedPagePosition(e, boundary) {
 function getCursorStyle(pos) {
   switch (pos) {
     case 'top':
-      return 'n-resize';
-    case 'topRight':
-      return 'ne-resize';
-    case 'right':
-      return 'e-resize';
-    case 'bottomRight':
-      return 'se-resize';
     case 'bottom':
-      return 's-resize';
-    case 'bottomLeft':
-      return 'sw-resize';
+      return `url(${cursorNs}), ns-resize`;
     case 'left':
-      return 'w-resize';
+    case 'right':
+      return `url(${cursorWe}), ew-resize`;
     case 'topLeft':
-      return 'nw-resize';
+    case 'bottomRight':
+      return `url(${cursorNwse}), nwse-resize`;
+    case 'topRight':
+    case 'bottomLeft':
+      return `url(${cursorNesw}), nesw-resize`;
     default:
-      return 'auto';
+      return '';
   }
 }
 export default useElementResize;
