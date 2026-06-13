@@ -11,19 +11,20 @@ import computer from 'assets/windowsIcons/svg/My Computer.svg';
 import back from 'assets/windowsIcons/back.png';
 import forward from 'assets/windowsIcons/forward.png';
 import up from 'assets/windowsIcons/svg/Up.svg';
-import viewInfo from 'assets/windowsIcons/svg/Help and Support.svg';
-import remove from 'assets/windowsIcons/svg/Delete.svg';
-import control from 'assets/windowsIcons/svg/Control Panel.svg';
-import network from 'assets/windowsIcons/svg/My Network Places.svg';
+import newFolder from 'assets/windowsIcons/svg/New Folder.svg';
+import renameIcon from 'assets/windowsIcons/svg/Rename.svg';
+import deleteIcon from 'assets/windowsIcons/svg/Delete.svg';
+import desktopIcon from 'assets/windowsIcons/svg/Desktop.svg';
 import document from 'assets/windowsIcons/svg/My Documents.svg';
-import folderSmall from 'assets/windowsIcons/svg/Folder Closed.svg';
-import menu from 'assets/windowsIcons/svg/Explorer.svg';
+import thumbViewIcon from 'assets/windowsIcons/svg/Thumbnail View.svg';
+import tileViewIcon from 'assets/windowsIcons/svg/Tile View.svg';
+import iconViewIcon from 'assets/windowsIcons/svg/Icon View.svg';
+import detailViewIcon from 'assets/windowsIcons/svg/Detail View.svg';
 import folder from 'assets/windowsIcons/svg/Folder Closed.svg';
 import folderOpen from 'assets/windowsIcons/svg/Folder Opened.svg';
 import disk from 'assets/windowsIcons/svg/Local Disk.svg';
 import cd from 'assets/windowsIcons/svg/DVD alt.svg';
 import dropdown from 'assets/windowsIcons/dropdown.png';
-import pullup from 'assets/windowsIcons/pullup.png';
 import windows from 'assets/windowsIcons/windows.png';
 
 const EMPTY_AREA_MENU = [
@@ -99,6 +100,12 @@ function MyComputer({ onClose }) {
   const [location, setLocation] = useState(null);
   const [history, setHistory] = useState([]);
   const [future, setFuture] = useState([]);
+  const [collapsed, setCollapsed] = useState({
+    tasks: false,
+    places: false,
+    details: true,
+  });
+  const [viewMode, setViewMode] = useState('tileview');
   const [contextMenu, setContextMenu] = useState({
     visible: false,
     x: 0,
@@ -249,14 +256,27 @@ function MyComputer({ onClose }) {
           <span className="com__function_bar__text">文件夹</span>
         </div>
         <div className="com__function_bar__separate" />
-        <div className="com__function_bar__button">
-          <img
-            className="com__function_bar__icon--margin12"
-            src={menu}
-            alt=""
-          />
-          <div className="com__function_bar__arrow" />
-        </div>
+        {[
+          { mode: 'thumbview', icon: thumbViewIcon, label: '缩略图' },
+          { mode: 'tileview', icon: tileViewIcon, label: '平铺' },
+          { mode: 'iconview', icon: iconViewIcon, label: '图标' },
+          { mode: 'listview', icon: detailViewIcon, label: '列表' },
+        ].map(({ mode, icon, label }) => (
+          <div
+            key={mode}
+            title={label}
+            className={`com__function_bar__button${
+              viewMode === mode ? ' active' : ''
+            }`}
+            onClick={() => setViewMode(mode)}
+          >
+            <img
+              className="com__function_bar__icon--normalize"
+              src={icon}
+              alt={label}
+            />
+          </div>
+        ))}
       </section>
       <section className="com__address_bar">
         <div className="com__address_bar__title">地址</div>
@@ -285,184 +305,126 @@ function MyComputer({ onClose }) {
       <div className="com__content">
         <div className="com__content__inner">
           <div className="com__content__left">
-            <div className="com__content__left__card">
-              <div className="com__content__left__card__header">
-                <div className="com__content__left__card__header__text">
-                  系统任务
-                </div>
-                <img
-                  src={pullup}
-                  alt=""
-                  className="com__content__left__card__header__img"
-                />
-              </div>
-              <div className="com__content__left__card__content">
-                <div className="com__content__left__card__row">
-                  <img
-                    className="com__content__left__card__img"
-                    src={viewInfo}
-                    alt="view"
-                  />
-                  <div className="com__content__left__card__text link">
-                    查看系统信息
-                  </div>
-                </div>
-                <div className="com__content__left__card__row">
-                  <img
-                    className="com__content__left__card__img"
-                    src={remove}
-                    alt="remove"
-                  />
-                  <div className="com__content__left__card__text link">
-                    添加或删除程序
-                  </div>
-                </div>
-                <div className="com__content__left__card__row">
-                  <img
-                    className="com__content__left__card__img"
-                    src={control}
-                    alt="control"
-                  />
-                  <div className="com__content__left__card__text link">
-                    更改设置
-                  </div>
+            <div
+              className={`com__sidebar__group${
+                collapsed.tasks ? ' collapsed' : ''
+              }`}
+            >
+              <div className="com__sidebar__group__header">
+                <span>文件和文件夹任务</span>
+                <div
+                  className="com__sidebar__collapser"
+                  onClick={() => setCollapsed(c => ({ ...c, tasks: !c.tasks }))}
+                >
+                  <span>»</span>
                 </div>
               </div>
+              <ul>
+                <li className="link">
+                  <img src={newFolder} alt="" />
+                  创建一个新文件夹
+                </li>
+                <li className={`link${selectedItem ? '' : ' disabled'}`}>
+                  <img src={renameIcon} alt="" />
+                  重命名所选项目
+                </li>
+                <li className={`link${selectedItem ? '' : ' disabled'}`}>
+                  <img src={deleteIcon} alt="" />
+                  删除所选项目
+                </li>
+              </ul>
             </div>
-            <div className="com__content__left__card">
-              <div className="com__content__left__card__header">
-                <div className="com__content__left__card__header__text">
-                  其它位置
-                </div>
-                <img
-                  src={pullup}
-                  alt=""
-                  className="com__content__left__card__header__img"
-                />
-              </div>
-              <div className="com__content__left__card__content">
-                <div className="com__content__left__card__row">
-                  <img
-                    className="com__content__left__card__img"
-                    src={network}
-                    alt="network"
-                  />
-                  <div className="com__content__left__card__text link">
-                    网上邻居
-                  </div>
-                </div>
-                <div className="com__content__left__card__row">
-                  <img
-                    className="com__content__left__card__img"
-                    src={document}
-                    alt="document"
-                  />
-                  <div className="com__content__left__card__text link">
-                    我的文档
-                  </div>
-                </div>
-                <div className="com__content__left__card__row">
-                  <img
-                    className="com__content__left__card__img"
-                    src={folderSmall}
-                    alt="folder"
-                  />
-                  <div className="com__content__left__card__text link">
-                    共享文档
-                  </div>
-                </div>
-                <div className="com__content__left__card__row">
-                  <img
-                    className="com__content__left__card__img"
-                    src={control}
-                    alt="control"
-                  />
-                  <div className="com__content__left__card__text link">
-                    控制面板
-                  </div>
+            <div
+              className={`com__sidebar__group${
+                collapsed.places ? ' collapsed' : ''
+              }`}
+            >
+              <div className="com__sidebar__group__header">
+                <span>其它位置</span>
+                <div
+                  className="com__sidebar__collapser"
+                  onClick={() =>
+                    setCollapsed(c => ({ ...c, places: !c.places }))
+                  }
+                >
+                  <span>»</span>
                 </div>
               </div>
+              <ul>
+                <li className="link" onClick={() => navigateTo(null)}>
+                  <img src={desktopIcon} alt="" />
+                  桌面
+                </li>
+                <li className="link" onClick={() => openDrive('C:')}>
+                  <img src={document} alt="" />
+                  我的文档
+                </li>
+                <li className="link" onClick={() => navigateTo(null)}>
+                  <img src={computer} alt="" />
+                  我的电脑
+                </li>
+              </ul>
             </div>
-            <div className="com__content__left__card">
-              <div className="com__content__left__card__header">
-                <div className="com__content__left__card__header__text">
-                  详细信息
+            <div
+              className={`com__sidebar__group details${
+                collapsed.details ? ' collapsed' : ''
+              }`}
+            >
+              <div className="com__sidebar__group__header">
+                <span>详细信息</span>
+                <div
+                  className="com__sidebar__collapser"
+                  onClick={() =>
+                    setCollapsed(c => ({ ...c, details: !c.details }))
+                  }
+                >
+                  <span>»</span>
                 </div>
-                <img
-                  src={pullup}
-                  alt=""
-                  className="com__content__left__card__header__img"
-                />
               </div>
-              <div className="com__content__left__card__content">
-                {!selectedItem && (
-                  <div className="com__content__left__card__detail">
-                    <strong>我的电脑</strong>
-                    <br />
-                    系统文件夹
-                  </div>
-                )}
-                {selectedItem === 'shared-documents' && (
-                  <div className="com__content__left__card__detail">
-                    <strong>共享文档</strong>
-                    <br />
-                    文件夹
-                    <br />
-                    修改日期: {buildDate}
-                  </div>
-                )}
-                {selectedItem === 'user-documents' && (
-                  <div className="com__content__left__card__detail">
-                    <strong>用户文档</strong>
-                    <br />
-                    文件夹
-                    <br />
-                    修改日期: {buildDate}
-                  </div>
+              <ul>
+                <li className="name">
+                  {selectedItem === 'shared-documents'
+                    ? '共享文档'
+                    : selectedItem === 'user-documents'
+                    ? '用户文档'
+                    : selectedItem === 'local-disk-c'
+                    ? '本地磁盘 (C:)'
+                    : selectedItem === 'cd-drive-d'
+                    ? 'CD 驱动器 (D:)'
+                    : selectedItem === 'about-github'
+                    ? 'CNB'
+                    : selectedItem === 'about-website'
+                    ? '我的网站'
+                    : '我的电脑'}
+                </li>
+                <li className="type">
+                  {selectedItem === 'shared-documents' ||
+                  selectedItem === 'user-documents'
+                    ? '文件夹'
+                    : selectedItem === 'local-disk-c'
+                    ? '本地磁盘'
+                    : selectedItem === 'cd-drive-d'
+                    ? 'CD 驱动器'
+                    : selectedItem === 'about-github' ||
+                      selectedItem === 'about-website'
+                    ? '快捷方式'
+                    : '系统文件夹'}
+                </li>
+                {selectedItem && (
+                  <li className="modified">修改日期: {buildDate}</li>
                 )}
                 {selectedItem === 'local-disk-c' && (
-                  <div className="com__content__left__card__detail">
-                    <strong>本地磁盘 (C:)</strong>
-                    <br />
-                    本地磁盘
-                    <br />
-                    文件系统: NTFS
-                    <br />
-                    可用空间: 10.5 GB
-                    <br />
-                    总大小: 40.0 GB
-                  </div>
+                  <>
+                    <li>文件系统: NTFS</li>
+                    <li>可用空间: 10.5 GB</li>
+                    <li>总大小: 40.0 GB</li>
+                  </>
                 )}
-                {selectedItem === 'cd-drive-d' && (
-                  <div className="com__content__left__card__detail">
-                    <strong>CD 驱动器 (D:)</strong>
-                    <br />
-                    CD 驱动器
-                  </div>
-                )}
-                {selectedItem === 'about-github' && (
-                  <div className="com__content__left__card__detail">
-                    <strong>CNB</strong>
-                    <br />
-                    快捷方式
-                    <br />
-                    修改日期: {buildDate}
-                  </div>
-                )}
-                {selectedItem === 'about-website' && (
-                  <div className="com__content__left__card__detail">
-                    <strong>我的网站</strong>
-                    <br />
-                    快捷方式
-                    <br />
-                    修改日期: {buildDate}
-                  </div>
-                )}
-              </div>
+              </ul>
             </div>
           </div>
           <div
-            className="com__content__right"
+            className={`com__content__right ${viewMode}`}
             onMouseDown={() => selectItem(null)}
             onContextMenu={e => openContextMenu(e, EMPTY_AREA_MENU)}
           >
@@ -500,15 +462,15 @@ function MyComputer({ onClose }) {
                 ))}
               </div>
             ) : (
-              <>
-                <div className="com__content__right__card">
-                  <div className="com__content__right__card__header">
+              <div className="com__content__browse">
+                <div className="com__content__browse__card">
+                  <div className="com__content__browse__card__header">
                     在这台计算机上存储的文件
                   </div>
-                  <div className="com__content__right__card__content">
+                  <div className="com__content__browse__card__content">
                     <button
                       type="button"
-                      className={`com__content__right__card__item${
+                      className={`com__content__browse__item${
                         selectedItem === 'shared-documents' ? ' selected' : ''
                       }`}
                       onMouseDown={e => {
@@ -522,15 +484,15 @@ function MyComputer({ onClose }) {
                       <img
                         src={folder}
                         alt=""
-                        className="com__content__right__card__img"
+                        className="com__content__browse__img"
                       />
-                      <span className="com__content__right__card__text">
+                      <span className="com__content__browse__text">
                         共享文档
                       </span>
                     </button>
                     <button
                       type="button"
-                      className={`com__content__right__card__item${
+                      className={`com__content__browse__item${
                         selectedItem === 'user-documents' ? ' selected' : ''
                       }`}
                       onMouseDown={e => {
@@ -544,22 +506,22 @@ function MyComputer({ onClose }) {
                       <img
                         src={folder}
                         alt=""
-                        className="com__content__right__card__img"
+                        className="com__content__browse__img"
                       />
-                      <span className="com__content__right__card__text">
+                      <span className="com__content__browse__text">
                         用户文档
                       </span>
                     </button>
                   </div>
                 </div>
-                <div className="com__content__right__card">
-                  <div className="com__content__right__card__header">
+                <div className="com__content__browse__card">
+                  <div className="com__content__browse__card__header">
                     硬盘驱动器
                   </div>
-                  <div className="com__content__right__card__content">
+                  <div className="com__content__browse__card__content">
                     <button
                       type="button"
-                      className={`com__content__right__card__item${
+                      className={`com__content__browse__item${
                         selectedItem === 'local-disk-c' ? ' selected' : ''
                       }`}
                       onMouseDown={e => {
@@ -574,22 +536,22 @@ function MyComputer({ onClose }) {
                       <img
                         src={disk}
                         alt=""
-                        className="com__content__right__card__img"
+                        className="com__content__browse__img"
                       />
-                      <span className="com__content__right__card__text">
+                      <span className="com__content__browse__text">
                         本地磁盘 (C:)
                       </span>
                     </button>
                   </div>
                 </div>
-                <div className="com__content__right__card">
-                  <div className="com__content__right__card__header">
+                <div className="com__content__browse__card">
+                  <div className="com__content__browse__card__header">
                     可移动存储设备
                   </div>
-                  <div className="com__content__right__card__content">
+                  <div className="com__content__browse__card__content">
                     <button
                       type="button"
-                      className={`com__content__right__card__item${
+                      className={`com__content__browse__item${
                         selectedItem === 'cd-drive-d' ? ' selected' : ''
                       }`}
                       onMouseDown={e => {
@@ -603,21 +565,22 @@ function MyComputer({ onClose }) {
                       <img
                         src={cd}
                         alt=""
-                        className="com__content__right__card__img"
+                        className="com__content__browse__img"
                       />
-                      <span className="com__content__right__card__text">
+                      <span className="com__content__browse__text">
                         CD 驱动器 (D:)
                       </span>
                     </button>
                   </div>
                 </div>
-                <div className="com__content__right__card com__content__right__card--me">
-                  <div className="com__content__right__card__header">
+                <div className="com__content__browse__card com__content__browse__card--me">
+                  <div className="com__content__browse__card__header">
                     关于我
                   </div>
-                  <div className="com__content__right__card__content">
-                    <div
-                      className={`com__content__right__card__item${
+                  <div className="com__content__browse__card__content">
+                    <button
+                      type="button"
+                      className={`com__content__browse__item${
                         selectedItem === 'about-github' ? ' selected' : ''
                       }`}
                       onMouseDown={e => {
@@ -636,16 +599,15 @@ function MyComputer({ onClose }) {
                       }
                     >
                       <img
-                        className="com__content__right__card__img"
+                        className="com__content__browse__img"
                         src="https://blog.sdcom.top/upload/cnb-favicon.svg"
                         alt=""
                       />
-                      <span className="com__content__right__card__text">
-                        CNB
-                      </span>
-                    </div>
-                    <div
-                      className={`com__content__right__card__item${
+                      <span className="com__content__browse__text">CNB</span>
+                    </button>
+                    <button
+                      type="button"
+                      className={`com__content__browse__item${
                         selectedItem === 'about-website' ? ' selected' : ''
                       }`}
                       onMouseDown={e => {
@@ -664,17 +626,17 @@ function MyComputer({ onClose }) {
                       }
                     >
                       <img
-                        className="com__content__right__card__img"
+                        className="com__content__browse__img"
                         src="https://blog.sdcom.top/upload/tubiao.jpeg"
                         alt=""
                       />
-                      <span className="com__content__right__card__text">
+                      <span className="com__content__browse__text">
                         我的网站
                       </span>
-                    </div>
+                    </button>
                   </div>
                 </div>
-              </>
+              </div>
             )}
           </div>
         </div>
@@ -906,93 +868,106 @@ const Div = styled.div`
     overflow: hidden;
   }
   .com__content__left {
-    width: 180px;
+    width: 210px;
     height: 100%;
-    background: linear-gradient(to bottom, #748aff 0%, #4057d3 100%);
-    overflow: hidden;
-    padding: 10px;
+    color: #fff;
+    background: linear-gradient(to bottom, #7ba2e7, #6375d6);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 12px 12px 0;
   }
-
-  .com__content__left__card {
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
+  .com__sidebar__group {
     width: 100%;
+    display: block;
+    background: linear-gradient(to right, #fff, #c6d3f7);
+    color: #215dc6;
+    border-radius: 3px 3px 0 0;
+    margin-bottom: 15px;
+    max-height: 300px;
     overflow: hidden;
+    transition: max-height 0.5s ease-out;
   }
-  .com__content__left__card:not(:last-child) {
-    margin-bottom: 12px;
+  .com__sidebar__group.collapsed {
+    max-height: 25px;
+    overflow: hidden;
+    z-index: 1;
+    transition: max-height 0.5s ease-out;
   }
-  .com__content__left__card__header {
+  .com__sidebar__group.collapsed ul {
+    opacity: 0;
+    transform: translateY(-100%);
+    overflow: hidden;
+    padding: 0;
+    border: none;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .com__sidebar__group__header {
     display: flex;
     align-items: center;
-    height: 23px;
-    padding-left: 11px;
-    padding-right: 2px;
-    cursor: pointer;
-    background: linear-gradient(
-      to right,
-      rgb(240, 240, 255) 0,
-      rgb(240, 240, 255) 30%,
-      rgb(168, 188, 255) 100%
-    );
+    padding: 5px 0 4px 13px;
+    font-weight: 600;
   }
-  .com__content__left__card__header:hover {
-    & .com__content__left__card__header__text {
-      color: #1c68ff;
-    }
-  }
-  .com__content__left__card__header__text {
-    font-weight: 700;
-    color: #0c327d;
+  .com__sidebar__group__header span:first-child {
     flex: 1;
   }
-  .com__content__left__card__header__img {
-    width: 18px;
-    height: 18px;
-    filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));
-  }
-  .com__content__left__card__content {
-    padding: 5px 10px;
-    background: linear-gradient(
-      to right,
-      rgb(180, 200, 251) 0%,
-      rgb(164, 185, 251) 50%,
-      rgb(180, 200, 251) 100%
-    );
-    background-color: rgba(198, 211, 255, 0.87);
-  }
-  .com__content__left__card__row {
+  .com__sidebar__collapser {
+    float: right;
+    margin-top: 3px;
+    margin-right: 6px;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background-color: #fcffff;
+    border: 1px solid #b3b8cf;
+    box-shadow: 2px 2px 2px #b5c1e6;
+    text-shadow: 0 0 2px #e3ffff;
     display: flex;
-    margin-bottom: 2px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
   }
-  .com__content__left__card__detail {
-    padding: 4px 8px;
+  .com__sidebar__collapser span {
+    padding: 0;
+    font-weight: 700;
+    transform: rotate(-90deg) scaleX(0.5) translate(-2px, -1px);
+    display: block;
+    letter-spacing: -3px;
+    font-family: Tahoma, sans-serif;
     font-size: 11px;
-    line-height: 16px;
-    color: #000;
+    color: #215dc6;
   }
-
-  .com__content__left__card__img {
-    width: 14px;
-    height: 14px;
-    margin-right: 5px;
+  .com__sidebar__group ul {
+    display: block;
+    background-color: #d6dff7;
+    padding: 9px 15px;
+    margin: 0;
+    border-width: 0 1px 1px 1px;
+    border-style: solid;
+    border-color: #fff;
+    transition: opacity 0.3s, transform 0.3s;
+    list-style-type: none;
   }
-  .com__content__left__card__text {
-    font-size: 10px;
-    line-height: 14px;
-    color: #0c327d;
-    &.black {
-      color: #000;
-    }
-    &.bold {
-      font-weight: bold;
-    }
-
-    &.link:hover {
-      cursor: pointer;
-      color: #2b72ff;
-      text-decoration: underline;
-    }
+  .com__sidebar__group ul li {
+    padding: 2px 0;
+    font-size: 11px;
+  }
+  .com__sidebar__group ul li img {
+    vertical-align: middle;
+    margin-right: 7px;
+    width: 16px;
+    height: 16px;
+  }
+  .com__sidebar__group:not(.details) ul li.link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .com__sidebar__group ul li.disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+  .com__sidebar__group.details ul li.name {
+    font-weight: 600;
   }
   .com__content__right {
     height: 100%;
@@ -1002,59 +977,19 @@ const Div = styled.div`
   }
   .com__content__browse {
     height: 100%;
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    padding: 8px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 0 20px 0;
   }
   .com__content__browse__empty {
     padding: 12px;
     font-size: 11px;
     color: #333;
   }
-  .com__content__browse__item {
-    appearance: none;
-    border: none;
-    background: transparent;
-    color: #000;
-    display: inline-flex;
-    align-items: center;
-    width: 180px;
+  .com__content__browse__card {
     margin: 0;
-    padding: 3px 4px;
-    height: 40px;
-    font-family: inherit;
-    font-size: 11px;
-    text-align: left;
-    text-decoration: none;
-    cursor: default;
-    outline: none;
   }
-  .com__content__browse__img {
-    width: 30px;
-    height: 30px;
-    margin-right: 6px;
-    object-fit: contain;
-    flex-shrink: 0;
-  }
-  .com__content__browse__text {
-    padding: 1px 2px;
-    line-height: 1.3;
-    word-break: break-word;
-  }
-  .com__content__browse__item.selected .com__content__browse__img {
-    opacity: 0.5;
-    filter: drop-shadow(0 0 0 blue);
-  }
-  .com__content__browse__item.selected .com__content__browse__text {
-    background-color: #316ac5;
-    color: #ffffff;
-    outline: 1px dotted #000000;
-  }
-  .com__content__right__card__header {
-    width: 300px;
+  .com__content__browse__card__header {
     font-weight: 700;
     padding: 2px 0 3px 12px;
     position: relative;
@@ -1069,53 +1004,193 @@ const Div = styled.div`
       width: 100%;
     }
   }
-  .com__content__right__card__content {
+  .com__content__browse__card__content {
     display: flex;
-    align-items: center;
-    padding-right: 0;
     flex-wrap: wrap;
-    padding: 15px 15px 0;
+    padding: 8px;
   }
-  .com__content__right__card__item {
+  .com__function_bar__button.active {
+    border: 1px solid rgb(185, 185, 185);
+    background-color: #dedede;
+    box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.7);
+  }
+
+  .com__content__browse__item {
     appearance: none;
     border: none;
     background: transparent;
     color: #000;
-    display: inline-flex;
-    align-items: center;
-    width: 200px;
-    margin: 0 0 15px;
-    padding: 2px 4px;
-    height: 50px;
     font-family: inherit;
     font-size: 11px;
-    text-align: left;
     text-decoration: none;
     cursor: default;
     outline: none;
   }
-  .com__content__right__card__item.selected .com__content__right__card__img {
-    opacity: 0.5;
-    filter: drop-shadow(0 0 0 blue);
+  .com__content__browse__img {
+    object-fit: contain;
+    flex-shrink: 0;
+    image-rendering: -webkit-optimize-contrast;
   }
-  .com__content__right__card__item.selected .com__content__right__card__text {
+  .com__content__browse__text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .com__content__browse__item.selected .com__content__browse__img {
+    opacity: 0.5;
+  }
+  .com__content__browse__item.selected .com__content__browse__text {
     background-color: #316ac5;
     color: #ffffff;
     outline: 1px dotted #000000;
-    outline-offset: -1px;
   }
-  .com__content__right__card__img {
-    width: 45px;
-    height: 45px;
-    margin-right: 5px;
-    flex-shrink: 0;
+
+  .tileview .com__content__browse__item {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 48px auto;
+    width: 204px;
+    height: 48px;
+    margin: 4px;
+    text-align: left;
   }
-  .com__content__right__card__text {
-    white-space: nowrap;
-    line-height: 16px;
+  .tileview .com__content__browse__img {
+    width: 48px;
+    height: 48px;
+    margin: 0;
+    grid-row: 1;
+    grid-column: 1;
+  }
+  .tileview .com__content__browse__text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-height: 12pt;
+    margin-left: 4px;
+    width: fit-content;
+    height: fit-content;
+    align-self: center;
+    grid-row: 1;
+    grid-column: 2;
     padding: 1px 3px;
+    word-break: break-word;
   }
-  .com__content__right__card--me {
+  .tileview .com__content__browse__card__content {
+    flex-wrap: wrap;
+  }
+
+  .thumbview .com__content__browse__item {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    width: 96px;
+    height: 115px;
+    margin: 5px 15px 19px 15px;
+    text-align: center;
+    line-height: 12px;
+    vertical-align: top;
+  }
+  .thumbview .com__content__browse__img {
+    width: 48px;
+    height: 48px;
+    margin: 23px auto;
+    display: block;
+  }
+  .thumbview .com__content__browse__item::before {
+    content: '';
+    display: block;
+    width: 94px;
+    height: 94px;
+    border: 1px solid #e0dfe3;
+    margin: 0 auto;
+    order: -1;
+    background: transparent;
+  }
+  .thumbview .com__content__browse__text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    padding: 2px 2px 4px;
+    margin: 4px auto 0;
+    max-width: 100%;
+    max-height: 22px;
+    line-height: 12px;
+    word-break: break-word;
+  }
+  .thumbview .com__content__browse__item.selected::before {
+    outline: 2px solid #316ac5;
+    border: 1px solid #316ac5;
+  }
+  .thumbview .com__content__browse__card__content {
+    flex-wrap: wrap;
+  }
+
+  .iconview .com__content__browse__item {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    width: 74px;
+    height: 60px;
+    margin: 4px 1px 2px 1px;
+    padding: 5px 0 1px 0;
+    text-align: center;
+    line-height: 13px;
+    vertical-align: top;
+  }
+  .iconview .com__content__browse__img {
+    width: 32px;
+    height: 32px;
+    margin: 0 auto;
+    display: block;
+  }
+  .iconview .com__content__browse__text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    padding: 2px 4px 4px;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 22px;
+    word-break: break-word;
+  }
+  .iconview .com__content__browse__card__content {
+    flex-wrap: wrap;
+  }
+
+  .listview .com__content__browse {
+    padding: 0 0 4px 4px;
+  }
+  .listview .com__content__browse__card__content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    max-height: 200px;
+  }
+  .listview .com__content__browse__item {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    width: 210px;
+    height: 16px;
+    margin: 1px 0 0;
+    text-align: left;
+  }
+  .listview .com__content__browse__img {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    vertical-align: middle;
+  }
+  .listview .com__content__browse__text {
+    padding: 2px 4px;
+    display: inline-block;
+    max-width: 186px;
+    line-height: 16px;
+    height: 16px;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+  .com__content__browse__card--me {
   }
 `;
 

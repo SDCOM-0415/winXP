@@ -11,12 +11,12 @@
     },
     "src/WinXP/apps/MyComputer/index.js": {
       "ipo_ts": 1780914161999,
-      "edit_count": 19,
-      "last_lines": 1122,
-      "last_ts": 1781317511591,
+      "edit_count": 34,
+      "last_lines": 1197,
+      "last_ts": 1781322151498,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "1b2b4b7c"
+      "last_content_hash": "f110e5dd"
     },
     "src/WinXP/Icons/index.js": {
       "ipo_ts": 1780985272181,
