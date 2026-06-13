@@ -11,12 +11,12 @@
     },
     "src/WinXP/apps/MyComputer/index.js": {
       "ipo_ts": 1780914161999,
-      "edit_count": 34,
-      "last_lines": 1197,
-      "last_ts": 1781322151498,
+      "edit_count": 37,
+      "last_lines": 1065,
+      "last_ts": 1781327238674,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "f110e5dd"
+      "last_content_hash": "52a3edd7"
     },
     "src/WinXP/Icons/index.js": {
       "ipo_ts": 1780985272181,
@@ -344,12 +344,12 @@
     },
     "package.json": {
       "ipo_ts": 1781270562600,
-      "edit_count": 2,
+      "edit_count": 3,
       "last_lines": 47,
-      "last_ts": 1781270611405,
+      "last_ts": 1781327397735,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "9f1baeb0"
+      "last_content_hash": "f5a32289"
     },
     "config-overrides.js": {
       "ipo_ts": 1781270595754,

@@ -15,11 +15,7 @@ import newFolder from 'assets/windowsIcons/svg/New Folder.svg';
 import renameIcon from 'assets/windowsIcons/svg/Rename.svg';
 import deleteIcon from 'assets/windowsIcons/svg/Delete.svg';
 import desktopIcon from 'assets/windowsIcons/svg/Desktop.svg';
-import document from 'assets/windowsIcons/svg/My Documents.svg';
-import thumbViewIcon from 'assets/windowsIcons/svg/Thumbnail View.svg';
-import tileViewIcon from 'assets/windowsIcons/svg/Tile View.svg';
-import iconViewIcon from 'assets/windowsIcons/svg/Icon View.svg';
-import detailViewIcon from 'assets/windowsIcons/svg/Detail View.svg';
+import myDocs from 'assets/windowsIcons/svg/My Documents.svg';
 import folder from 'assets/windowsIcons/svg/Folder Closed.svg';
 import folderOpen from 'assets/windowsIcons/svg/Folder Opened.svg';
 import disk from 'assets/windowsIcons/svg/Local Disk.svg';
@@ -95,6 +91,13 @@ const buildDate =
     .toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })
     .replace(/\//g, '/');
 
+const VIEW_MODES = [
+  { id: 'thumbview', label: 'Thumbnails' },
+  { id: 'tileview', label: 'Tiles' },
+  { id: 'iconview', label: 'Icons' },
+  { id: 'listview', label: 'List' },
+];
+
 function MyComputer({ onClose }) {
   const [selectedItem, setSelectedItem] = useState(null);
   const [location, setLocation] = useState(null);
@@ -106,6 +109,7 @@ function MyComputer({ onClose }) {
     details: true,
   });
   const [viewMode, setViewMode] = useState('tileview');
+  const [viewPickerOpen, setViewPickerOpen] = useState(false);
   const [contextMenu, setContextMenu] = useState({
     visible: false,
     x: 0,
@@ -188,8 +192,6 @@ function MyComputer({ onClose }) {
     setSelectedItem(item);
   }
 
-  function onClickContextMenuItem() {}
-
   function onClickOptionItem(item) {
     switch (item) {
       case '关闭':
@@ -201,9 +203,44 @@ function MyComputer({ onClose }) {
       default:
     }
   }
+
+  const addressText = location
+    ? [location.driveId, ...location.segments].join('\\')
+    : 'My Computer';
+
+  const selectedName =
+    selectedItem === 'shared-documents'
+      ? '共享文档'
+      : selectedItem === 'user-documents'
+      ? '用户文档'
+      : selectedItem === 'local-disk-c'
+      ? '本地磁盘 (C:)'
+      : selectedItem === 'cd-drive-d'
+      ? 'CD 驱动器 (D:)'
+      : selectedItem === 'about-github'
+      ? 'CNB'
+      : selectedItem === 'about-website'
+      ? '我的网站'
+      : location
+      ? selectedItem || ''
+      : '我的电脑';
+
+  const selectedType =
+    selectedItem === 'shared-documents' || selectedItem === 'user-documents'
+      ? '文件夹'
+      : selectedItem === 'local-disk-c'
+      ? '本地磁盘'
+      : selectedItem === 'cd-drive-d'
+      ? 'CD 驱动器'
+      : selectedItem === 'about-github' || selectedItem === 'about-website'
+      ? '快捷方式'
+      : selectedItem
+      ? '系统文件夹'
+      : '';
+
   return (
     <Div>
-      <section className="com__toolbar">
+      <div className="com__toolbar">
         <div className="com__options">
           <WindowDropDowns
             items={dropDownData}
@@ -211,441 +248,359 @@ function MyComputer({ onClose }) {
           />
         </div>
         <img className="com__windows-logo" src={windows} alt="windows" />
-      </section>
-      <section className="com__function_bar">
+      </div>
+
+      <div className="com__navbuttons">
         <div
-          className={`com__function_bar__button${
-            history.length ? '' : '--disable'
-          }`}
+          className={`navbtn${history.length ? '' : ' disabled'}`}
           onClick={goBack}
         >
-          <img className="com__function_bar__icon" src={back} alt="" />
-          <span className="com__function_bar__text">后退</span>
-          <div className="com__function_bar__arrow" />
+          <img src={back} alt="" />
+          <span>Back</span>
+          <span className="arrow">▼</span>
         </div>
         <div
-          className={`com__function_bar__button${
-            future.length ? '' : '--disable'
-          }`}
+          className={`navbtn${future.length ? '' : ' disabled'}`}
           onClick={goForward}
         >
-          <img className="com__function_bar__icon" src={forward} alt="" />
-          <div className="com__function_bar__arrow" />
+          <img src={forward} alt="" />
+          <span className="arrow">▼</span>
         </div>
+        <div className={`navbtn${location ? '' : ' disabled'}`} onClick={goUp}>
+          <img src={up} alt="" className="icon-svg" />
+        </div>
+        <div className="navbtn-sep" />
+        <div className="navbtn disabled">
+          <img src={search} alt="" className="icon-svg" />
+          <span>Search</span>
+        </div>
+        <div className="navbtn disabled">
+          <img src={folderOpen} alt="" className="icon-svg" />
+          <span>Folders</span>
+        </div>
+        <div className="navbtn-sep" />
         <div
-          className={`com__function_bar__button${location ? '' : '--disable'}`}
-          onClick={goUp}
+          className="navbtn viewsmenu"
+          onClick={e => {
+            e.stopPropagation();
+            setViewPickerOpen(v => !v);
+          }}
         >
-          <img className="com__function_bar__icon--normalize" src={up} alt="" />
+          <img src={folderOpen} alt="" className="icon-svg" />
+          <span className="arrow">▼</span>
+          {viewPickerOpen && (
+            <div className="viewpicker">
+              <ul>
+                {VIEW_MODES.map(({ id, label }) => (
+                  <li
+                    key={id}
+                    className={viewMode === id ? 'activeView' : ''}
+                    onClick={e => {
+                      e.stopPropagation();
+                      setViewMode(id);
+                      setViewPickerOpen(false);
+                    }}
+                  >
+                    <span>•</span>
+                    {label}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
-        <div className="com__function_bar__separate" />
-        <div className="com__function_bar__button">
-          <img
-            className="com__function_bar__icon--normalize "
-            src={search}
-            alt=""
-          />
-          <span className="com__function_bar__text">搜索</span>
+      </div>
+
+      <div className="com__addressbar">
+        <span className="addr-label">Address</span>
+        <div className="addr-combo">
+          <img src={computer} alt="" />
+          <span>{addressText}</span>
+          <img src={dropdown} alt="" className="addr-dropdown" />
         </div>
-        <div className="com__function_bar__button">
-          <img
-            className="com__function_bar__icon--normalize"
-            src={folderOpen}
-            alt=""
-          />
-          <span className="com__function_bar__text">文件夹</span>
+        <div className="addr-go">
+          <img src={go} alt="" />
+          <span>Go</span>
         </div>
-        <div className="com__function_bar__separate" />
-        {[
-          { mode: 'thumbview', icon: thumbViewIcon, label: '缩略图' },
-          { mode: 'tileview', icon: tileViewIcon, label: '平铺' },
-          { mode: 'iconview', icon: iconViewIcon, label: '图标' },
-          { mode: 'listview', icon: detailViewIcon, label: '列表' },
-        ].map(({ mode, icon, label }) => (
+      </div>
+
+      <div className="com__body">
+        <div className="sidebar">
+          <div className={`sidebargroup${collapsed.tasks ? ' collapsed' : ''}`}>
+            <div className="groupheader">
+              <span>File and Folder Tasks</span>
+              <div
+                className="collapser"
+                onClick={() => setCollapsed(c => ({ ...c, tasks: !c.tasks }))}
+              >
+                <span>»</span>
+              </div>
+            </div>
+            <ul>
+              <li>
+                <img src={newFolder} alt="" />
+                Make a new folder
+              </li>
+              <li className={selectedItem ? '' : 'disabled'}>
+                <img src={renameIcon} alt="" />
+                Rename this selection
+              </li>
+              <li className={selectedItem ? '' : 'disabled'}>
+                <img src={deleteIcon} alt="" />
+                Delete this selection
+              </li>
+            </ul>
+          </div>
+
           <div
-            key={mode}
-            title={label}
-            className={`com__function_bar__button${
-              viewMode === mode ? ' active' : ''
+            className={`sidebargroup${collapsed.places ? ' collapsed' : ''}`}
+          >
+            <div className="groupheader">
+              <span>Other Places</span>
+              <div
+                className="collapser"
+                onClick={() => setCollapsed(c => ({ ...c, places: !c.places }))}
+              >
+                <span>»</span>
+              </div>
+            </div>
+            <ul>
+              <li className="link" onClick={() => navigateTo(null)}>
+                <img src={desktopIcon} alt="" />
+                Desktop
+              </li>
+              <li className="link" onClick={() => openDrive('C:')}>
+                <img src={myDocs} alt="" />
+                My Documents
+              </li>
+              <li className="link" onClick={() => navigateTo(null)}>
+                <img src={computer} alt="" />
+                My Computer
+              </li>
+              {location && (
+                <li className="link" onClick={goUp}>
+                  <img src={folder} alt="" />
+                  <span className="parent-path">
+                    {location.segments.length > 0
+                      ? location.segments[location.segments.length - 2] ||
+                        location.driveId
+                      : location.driveId}
+                  </span>
+                </li>
+              )}
+            </ul>
+          </div>
+
+          <div
+            className={`sidebargroup details${
+              collapsed.details ? ' collapsed' : ''
             }`}
-            onClick={() => setViewMode(mode)}
           >
-            <img
-              className="com__function_bar__icon--normalize"
-              src={icon}
-              alt={label}
-            />
+            <div className="groupheader">
+              <span>Details</span>
+              <div
+                className="collapser"
+                onClick={() =>
+                  setCollapsed(c => ({ ...c, details: !c.details }))
+                }
+              >
+                <span>»</span>
+              </div>
+            </div>
+            <ul>
+              <li className="name">{selectedName}</li>
+              <li className="type">{selectedType}</li>
+              {selectedItem && (
+                <li className="modified">Modified: {buildDate}</li>
+              )}
+              {selectedItem === 'local-disk-c' && (
+                <>
+                  <li>File system: NTFS</li>
+                  <li>Free space: 10.5 GB</li>
+                  <li>Total size: 40.0 GB</li>
+                </>
+              )}
+            </ul>
           </div>
-        ))}
-      </section>
-      <section className="com__address_bar">
-        <div className="com__address_bar__title">地址</div>
-        <div className="com__address_bar__content">
-          <img
-            src={computer}
-            alt="ie"
-            className="com__address_bar__content__img"
-          />
-          <div className="com__address_bar__content__text">
-            {location
-              ? [location.driveId, ...location.segments].join('\\')
-              : '我的电脑'}
-          </div>
-          <img
-            src={dropdown}
-            alt="dropdown"
-            className="com__address_bar__content__img"
-          />
         </div>
-        <div className="com__address_bar__go">
-          <img className="com__address_bar__go__img" src={go} alt="go" />
-          <span className="com__address_bar__go__text">转到</span>
-        </div>
-      </section>
-      <div className="com__content">
-        <div className="com__content__inner">
-          <div className="com__content__left">
-            <div
-              className={`com__sidebar__group${
-                collapsed.tasks ? ' collapsed' : ''
-              }`}
-            >
-              <div className="com__sidebar__group__header">
-                <span>文件和文件夹任务</span>
+
+        <div
+          className={`fscontents ${viewMode}`}
+          onMouseDown={() => selectItem(null)}
+          onContextMenu={e => openContextMenu(e, EMPTY_AREA_MENU)}
+        >
+          {location ? (
+            <div className="items">
+              {listChildren(getNodeByPath(location.driveId, location.segments))
+                .length === 0 && (
+                <div className="empty-msg">This folder is empty.</div>
+              )}
+              {listChildren(
+                getNodeByPath(location.driveId, location.segments),
+              ).map(({ name, node }) => (
                 <div
-                  className="com__sidebar__collapser"
-                  onClick={() => setCollapsed(c => ({ ...c, tasks: !c.tasks }))}
+                  key={name}
+                  className={`fsicon${
+                    selectedItem === name ? ' selected' : ''
+                  }`}
+                  onMouseDown={e => {
+                    e.stopPropagation();
+                    selectItem(name);
+                  }}
+                  onDoubleClick={() => openEntry(name, node)}
                 >
-                  <span>»</span>
+                  <img src={resolveIcon(node.icon, node.type)} alt="" />
+                  <span>{name}</span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="items">
+              <div className="card">
+                <div className="card-header">Files Stored on This Computer</div>
+                <div className="card-content">
+                  {[
+                    {
+                      id: 'shared-documents',
+                      label: 'Shared Documents',
+                      icon: folder,
+                      menu: FOLDER_MENU,
+                    },
+                    {
+                      id: 'user-documents',
+                      label: "User's Documents",
+                      icon: folder,
+                      menu: FOLDER_MENU,
+                    },
+                  ].map(({ id, label, icon, menu }) => (
+                    <div
+                      key={id}
+                      className={`fsicon${
+                        selectedItem === id ? ' selected' : ''
+                      }`}
+                      onMouseDown={e => {
+                        e.stopPropagation();
+                        selectItem(id);
+                      }}
+                      onContextMenu={e => openContextMenu(e, menu, id)}
+                    >
+                      <img src={icon} alt="" />
+                      <span>{label}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
-              <ul>
-                <li className="link">
-                  <img src={newFolder} alt="" />
-                  创建一个新文件夹
-                </li>
-                <li className={`link${selectedItem ? '' : ' disabled'}`}>
-                  <img src={renameIcon} alt="" />
-                  重命名所选项目
-                </li>
-                <li className={`link${selectedItem ? '' : ' disabled'}`}>
-                  <img src={deleteIcon} alt="" />
-                  删除所选项目
-                </li>
-              </ul>
-            </div>
-            <div
-              className={`com__sidebar__group${
-                collapsed.places ? ' collapsed' : ''
-              }`}
-            >
-              <div className="com__sidebar__group__header">
-                <span>其它位置</span>
-                <div
-                  className="com__sidebar__collapser"
-                  onClick={() =>
-                    setCollapsed(c => ({ ...c, places: !c.places }))
-                  }
-                >
-                  <span>»</span>
-                </div>
-              </div>
-              <ul>
-                <li className="link" onClick={() => navigateTo(null)}>
-                  <img src={desktopIcon} alt="" />
-                  桌面
-                </li>
-                <li className="link" onClick={() => openDrive('C:')}>
-                  <img src={document} alt="" />
-                  我的文档
-                </li>
-                <li className="link" onClick={() => navigateTo(null)}>
-                  <img src={computer} alt="" />
-                  我的电脑
-                </li>
-              </ul>
-            </div>
-            <div
-              className={`com__sidebar__group details${
-                collapsed.details ? ' collapsed' : ''
-              }`}
-            >
-              <div className="com__sidebar__group__header">
-                <span>详细信息</span>
-                <div
-                  className="com__sidebar__collapser"
-                  onClick={() =>
-                    setCollapsed(c => ({ ...c, details: !c.details }))
-                  }
-                >
-                  <span>»</span>
-                </div>
-              </div>
-              <ul>
-                <li className="name">
-                  {selectedItem === 'shared-documents'
-                    ? '共享文档'
-                    : selectedItem === 'user-documents'
-                    ? '用户文档'
-                    : selectedItem === 'local-disk-c'
-                    ? '本地磁盘 (C:)'
-                    : selectedItem === 'cd-drive-d'
-                    ? 'CD 驱动器 (D:)'
-                    : selectedItem === 'about-github'
-                    ? 'CNB'
-                    : selectedItem === 'about-website'
-                    ? '我的网站'
-                    : '我的电脑'}
-                </li>
-                <li className="type">
-                  {selectedItem === 'shared-documents' ||
-                  selectedItem === 'user-documents'
-                    ? '文件夹'
-                    : selectedItem === 'local-disk-c'
-                    ? '本地磁盘'
-                    : selectedItem === 'cd-drive-d'
-                    ? 'CD 驱动器'
-                    : selectedItem === 'about-github' ||
-                      selectedItem === 'about-website'
-                    ? '快捷方式'
-                    : '系统文件夹'}
-                </li>
-                {selectedItem && (
-                  <li className="modified">修改日期: {buildDate}</li>
-                )}
-                {selectedItem === 'local-disk-c' && (
-                  <>
-                    <li>文件系统: NTFS</li>
-                    <li>可用空间: 10.5 GB</li>
-                    <li>总大小: 40.0 GB</li>
-                  </>
-                )}
-              </ul>
-            </div>
-          </div>
-          <div
-            className={`com__content__right ${viewMode}`}
-            onMouseDown={() => selectItem(null)}
-            onContextMenu={e => openContextMenu(e, EMPTY_AREA_MENU)}
-          >
-            {location ? (
-              <div className="com__content__browse">
-                {listChildren(
-                  getNodeByPath(location.driveId, location.segments),
-                ).length === 0 && (
-                  <div className="com__content__browse__empty">
-                    这个文件夹是空的。
-                  </div>
-                )}
-                {listChildren(
-                  getNodeByPath(location.driveId, location.segments),
-                ).map(({ name, node }) => (
-                  <button
-                    type="button"
-                    key={name}
-                    className={`com__content__browse__item${
-                      selectedItem === name ? ' selected' : ''
+
+              <div className="card">
+                <div className="card-header">Hard Disk Drives</div>
+                <div className="card-content">
+                  <div
+                    className={`fsicon${
+                      selectedItem === 'local-disk-c' ? ' selected' : ''
                     }`}
                     onMouseDown={e => {
                       e.stopPropagation();
-                      selectItem(name);
+                      selectItem('local-disk-c');
                     }}
-                    onDoubleClick={() => openEntry(name, node)}
+                    onDoubleClick={() => openDrive('C:')}
+                    onContextMenu={e =>
+                      openContextMenu(e, DRIVE_MENU, 'local-disk-c')
+                    }
+                  >
+                    <img src={disk} alt="" />
+                    <span>Local Disk (C:)</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="card">
+                <div className="card-header">
+                  Devices with Removable Storage
+                </div>
+                <div className="card-content">
+                  <div
+                    className={`fsicon${
+                      selectedItem === 'cd-drive-d' ? ' selected' : ''
+                    }`}
+                    onMouseDown={e => {
+                      e.stopPropagation();
+                      selectItem('cd-drive-d');
+                    }}
+                    onContextMenu={e =>
+                      openContextMenu(e, CD_MENU, 'cd-drive-d')
+                    }
+                  >
+                    <img src={cd} alt="" />
+                    <span>CD Drive (D:)</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="card">
+                <div className="card-header">About Me</div>
+                <div className="card-content">
+                  <div
+                    className={`fsicon${
+                      selectedItem === 'about-github' ? ' selected' : ''
+                    }`}
+                    onMouseDown={e => {
+                      e.stopPropagation();
+                      selectItem('about-github');
+                    }}
+                    onDoubleClick={() =>
+                      window.open(
+                        'https://cnb.cool/SDCOM/winXP',
+                        '_blank',
+                        'noreferrer',
+                      )
+                    }
+                    onContextMenu={e =>
+                      openContextMenu(e, ABOUT_MENU, 'about-github')
+                    }
                   >
                     <img
-                      src={resolveIcon(node.icon, node.type)}
+                      src="https://blog.sdcom.top/upload/cnb-favicon.svg"
                       alt=""
-                      className="com__content__browse__img"
                     />
-                    <span className="com__content__browse__text">{name}</span>
-                  </button>
-                ))}
-              </div>
-            ) : (
-              <div className="com__content__browse">
-                <div className="com__content__browse__card">
-                  <div className="com__content__browse__card__header">
-                    在这台计算机上存储的文件
+                    <span>CNB</span>
                   </div>
-                  <div className="com__content__browse__card__content">
-                    <button
-                      type="button"
-                      className={`com__content__browse__item${
-                        selectedItem === 'shared-documents' ? ' selected' : ''
-                      }`}
-                      onMouseDown={e => {
-                        e.stopPropagation();
-                        selectItem('shared-documents');
-                      }}
-                      onContextMenu={e =>
-                        openContextMenu(e, FOLDER_MENU, 'shared-documents')
-                      }
-                    >
-                      <img
-                        src={folder}
-                        alt=""
-                        className="com__content__browse__img"
-                      />
-                      <span className="com__content__browse__text">
-                        共享文档
-                      </span>
-                    </button>
-                    <button
-                      type="button"
-                      className={`com__content__browse__item${
-                        selectedItem === 'user-documents' ? ' selected' : ''
-                      }`}
-                      onMouseDown={e => {
-                        e.stopPropagation();
-                        selectItem('user-documents');
-                      }}
-                      onContextMenu={e =>
-                        openContextMenu(e, FOLDER_MENU, 'user-documents')
-                      }
-                    >
-                      <img
-                        src={folder}
-                        alt=""
-                        className="com__content__browse__img"
-                      />
-                      <span className="com__content__browse__text">
-                        用户文档
-                      </span>
-                    </button>
-                  </div>
-                </div>
-                <div className="com__content__browse__card">
-                  <div className="com__content__browse__card__header">
-                    硬盘驱动器
-                  </div>
-                  <div className="com__content__browse__card__content">
-                    <button
-                      type="button"
-                      className={`com__content__browse__item${
-                        selectedItem === 'local-disk-c' ? ' selected' : ''
-                      }`}
-                      onMouseDown={e => {
-                        e.stopPropagation();
-                        selectItem('local-disk-c');
-                      }}
-                      onDoubleClick={() => openDrive('C:')}
-                      onContextMenu={e =>
-                        openContextMenu(e, DRIVE_MENU, 'local-disk-c')
-                      }
-                    >
-                      <img
-                        src={disk}
-                        alt=""
-                        className="com__content__browse__img"
-                      />
-                      <span className="com__content__browse__text">
-                        本地磁盘 (C:)
-                      </span>
-                    </button>
-                  </div>
-                </div>
-                <div className="com__content__browse__card">
-                  <div className="com__content__browse__card__header">
-                    可移动存储设备
-                  </div>
-                  <div className="com__content__browse__card__content">
-                    <button
-                      type="button"
-                      className={`com__content__browse__item${
-                        selectedItem === 'cd-drive-d' ? ' selected' : ''
-                      }`}
-                      onMouseDown={e => {
-                        e.stopPropagation();
-                        selectItem('cd-drive-d');
-                      }}
-                      onContextMenu={e =>
-                        openContextMenu(e, CD_MENU, 'cd-drive-d')
-                      }
-                    >
-                      <img
-                        src={cd}
-                        alt=""
-                        className="com__content__browse__img"
-                      />
-                      <span className="com__content__browse__text">
-                        CD 驱动器 (D:)
-                      </span>
-                    </button>
-                  </div>
-                </div>
-                <div className="com__content__browse__card com__content__browse__card--me">
-                  <div className="com__content__browse__card__header">
-                    关于我
-                  </div>
-                  <div className="com__content__browse__card__content">
-                    <button
-                      type="button"
-                      className={`com__content__browse__item${
-                        selectedItem === 'about-github' ? ' selected' : ''
-                      }`}
-                      onMouseDown={e => {
-                        e.stopPropagation();
-                        selectItem('about-github');
-                      }}
-                      onDoubleClick={() =>
-                        window.open(
-                          'https://cnb.cool/SDCOM/winXP',
-                          '_blank',
-                          'noreferrer',
-                        )
-                      }
-                      onContextMenu={e =>
-                        openContextMenu(e, ABOUT_MENU, 'about-github')
-                      }
-                    >
-                      <img
-                        className="com__content__browse__img"
-                        src="https://blog.sdcom.top/upload/cnb-favicon.svg"
-                        alt=""
-                      />
-                      <span className="com__content__browse__text">CNB</span>
-                    </button>
-                    <button
-                      type="button"
-                      className={`com__content__browse__item${
-                        selectedItem === 'about-website' ? ' selected' : ''
-                      }`}
-                      onMouseDown={e => {
-                        e.stopPropagation();
-                        selectItem('about-website');
-                      }}
-                      onDoubleClick={() =>
-                        window.open(
-                          'https://www.sdcom.top',
-                          '_blank',
-                          'noreferrer',
-                        )
-                      }
-                      onContextMenu={e =>
-                        openContextMenu(e, ABOUT_MENU, 'about-website')
-                      }
-                    >
-                      <img
-                        className="com__content__browse__img"
-                        src="https://blog.sdcom.top/upload/tubiao.jpeg"
-                        alt=""
-                      />
-                      <span className="com__content__browse__text">
-                        我的网站
-                      </span>
-                    </button>
+                  <div
+                    className={`fsicon${
+                      selectedItem === 'about-website' ? ' selected' : ''
+                    }`}
+                    onMouseDown={e => {
+                      e.stopPropagation();
+                      selectItem('about-website');
+                    }}
+                    onDoubleClick={() =>
+                      window.open(
+                        'https://www.sdcom.top',
+                        '_blank',
+                        'noreferrer',
+                      )
+                    }
+                    onContextMenu={e =>
+                      openContextMenu(e, ABOUT_MENU, 'about-website')
+                    }
+                  >
+                    <img
+                      src="https://blog.sdcom.top/upload/tubiao.jpeg"
+                      alt=""
+                    />
+                    <span>我的网站</span>
                   </div>
                 </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
+
       <ContextMenu
         items={contextMenu.items}
         position={{ x: contextMenu.x, y: contextMenu.y }}
         onClose={closeContextMenu}
-        onClickItem={onClickContextMenuItem}
+        onClickItem={() => {}}
         visible={contextMenu.visible}
       />
     </Div>
@@ -657,14 +612,16 @@ const Div = styled.div`
   width: 100%;
   position: absolute;
   display: flex;
-  overflow: hidden;
   flex-direction: column;
+  overflow: hidden;
   background: linear-gradient(to right, #edede5 0%, #ede8cd 100%);
+  font-size: 11px;
+  font-family: Tahoma, sans-serif;
+
   .com__toolbar {
     position: relative;
     display: flex;
     align-items: center;
-    line-height: 100%;
     height: 24px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.7);
     flex-shrink: 0;
@@ -674,7 +631,6 @@ const Div = styled.div`
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     border-right: 1px solid rgba(0, 0, 0, 0.1);
     padding: 1px 0 1px 2px;
-    border-left: 0;
     flex: 1;
   }
   .com__windows-logo {
@@ -682,316 +638,275 @@ const Div = styled.div`
     border-left: 1px solid white;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
-  .com__function_bar {
-    height: 36px;
+
+  .com__navbuttons {
     display: flex;
     align-items: center;
-    font-size: 11px;
+    height: 36px;
     padding: 1px 3px 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     flex-shrink: 0;
+    gap: 1px;
   }
-  .com__function_bar__button {
+  .navbtn {
     display: flex;
-    height: 100%;
     align-items: center;
-    border: 1px solid rgba(0, 0, 0, 0);
+    height: 100%;
+    padding: 0 2px;
+    border: 1px solid transparent;
     border-radius: 3px;
-    &:hover {
-      border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: default;
+    position: relative;
+    gap: 2px;
+    &:hover:not(.disabled) {
+      border-color: rgba(0, 0, 0, 0.1);
       box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0.1);
     }
-    &:hover:active {
-      border: 1px solid rgb(185, 185, 185);
+    &:active:not(.disabled) {
+      border-color: rgb(185, 185, 185);
       background-color: #dedede;
       box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.7);
-      color: rgba(255, 255, 255, 0.7);
-      & > * {
-        transform: translate(1px, 1px);
+    }
+    &.disabled {
+      filter: grayscale(1);
+      opacity: 0.6;
+    }
+    img {
+      height: 22px;
+      width: 22px;
+      object-fit: contain;
+      &.icon-svg {
+        height: 20px;
+        width: 20px;
+        margin: 0 2px;
+      }
+    }
+    span:not(.arrow) {
+      margin-right: 2px;
+    }
+    .arrow {
+      font-size: 7px;
+      margin: 0 2px;
+    }
+  }
+  .navbtn-sep {
+    height: 90%;
+    width: 1px;
+    background: rgba(0, 0, 0, 0.2);
+    margin: 0 2px;
+  }
+  .viewsmenu {
+    cursor: default;
+  }
+  .viewpicker {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #fff;
+    border: 1px solid #000;
+    z-index: 9999;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 2px 0;
+    }
+    li {
+      padding: 3px 24px 3px 6px;
+      white-space: nowrap;
+      cursor: default;
+      &:hover {
+        background: #316ac5;
+        color: #fff;
+      }
+      &.activeView > span {
+        font-weight: bold;
+      }
+      span {
+        margin-right: 4px;
       }
     }
   }
-  .com__function_bar__button--disable {
-    filter: grayscale(1);
-    opacity: 0.7;
-    display: flex;
-    height: 100%;
-    align-items: center;
-    border: 1px solid rgba(0, 0, 0, 0);
-  }
-  .com__function_bar__text {
-    margin-right: 4px;
-  }
-  .com__function_bar__icon {
-    height: 30px;
-    width: 30px;
-    &--normalize {
-      height: 22px;
-      width: 22px;
-      margin: 0 4px 0 1px;
-    }
-    &--margin12 {
-      height: 22px;
-      width: 22px;
-      margin: 0 1px 0 2px;
-    }
-    &--margin-1 {
-      margin: 0 -1px;
-      height: 30px;
-      width: 30px;
-    }
-  }
-  .com__function_bar__separate {
-    height: 90%;
-    width: 1px;
-    background-color: rgba(0, 0, 0, 0.2);
-    margin: 0 2px;
-  }
-  .com__function_bar__arrow {
-    height: 100%;
+
+  .com__addressbar {
     display: flex;
     align-items: center;
-    margin: 0 4px;
-    &:before {
-      content: '';
-      display: block;
-      border-width: 3px 3px 0;
-      border-color: #000 transparent;
-      border-style: solid;
-    }
-  }
-  .com__function_bar__arrow--margin-11 {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    margin: 0 1px 0 -1px;
-    &:before {
-      content: '';
-      display: block;
-      border-width: 3px 3px 0;
-      border-color: #000 transparent;
-      border-style: solid;
-    }
-  }
-  .com__address_bar {
-    flex-shrink: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.7);
-    height: 20px;
-    font-size: 11px;
-    display: flex;
-    align-items: center;
+    height: 22px;
     padding: 0 2px;
+    border-top: 1px solid rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: inset 0 -2px 3px -1px #b0b0b0;
-  }
-  .com__address_bar__title {
-    line-height: 100%;
-    color: rgba(0, 0, 0, 0.5);
-    padding: 5px;
-  }
-  .com__address_bar__content {
-    border: rgba(122, 122, 255, 0.6) 1px solid;
-    height: 100%;
-    display: flex;
-    flex: 1;
-    align-items: center;
-    background-color: white;
-    position: relative;
-    &__img {
-      width: 14px;
-      height: 14px;
+    flex-shrink: 0;
+    .addr-label {
+      color: rgba(0, 0, 0, 0.5);
+      padding: 0 5px;
     }
-    &__img:last-child {
-      width: 15px;
-      height: 15px;
-      right: 1px;
-      position: absolute;
+    .addr-combo {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      border: 1px solid rgba(122, 122, 255, 0.6);
+      background: white;
+      position: relative;
+      overflow: hidden;
+      img:first-child {
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
+      }
+      span {
+        flex: 1;
+        padding: 0 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .addr-dropdown {
+        width: 15px;
+        height: 15px;
+        flex-shrink: 0;
+      }
     }
-    &__img:last-child:hover {
-      filter: brightness(1.1);
-    }
-    &__text {
-      white-space: nowrap;
-      position: absolute;
-      white-space: nowrap;
-      left: 16px;
-      right: 17px;
+    .addr-go {
+      display: flex;
+      align-items: center;
+      padding: 0 6px;
+      height: 100%;
+      gap: 3px;
+      img {
+        height: 16px;
+        width: 16px;
+      }
     }
   }
 
-  .com__address_bar__go {
-    display: flex;
-    align-items: center;
-    padding: 0 18px 0 5px;
-    height: 100%;
-    position: relative;
-    &__img {
-      height: 95%;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      margin-right: 3px;
-    }
-  }
-  .com__address_bar__links {
-    display: flex;
-    align-items: center;
-    padding: 0 18px 0 5px;
-    height: 100%;
-    position: relative;
-    &__img {
-      position: absolute;
-      right: 2px;
-      top: 3px;
-      height: 5px;
-      width: 8px;
-    }
-    &__text {
-      color: rgba(0, 0, 0, 0.5);
-    }
-  }
-  .com__address_bar__separate {
-    height: 100%;
-    width: 1px;
-    background-color: rgba(0, 0, 0, 0.1);
-    box-shadow: 1px 0 rgba(255, 255, 255, 0.7);
-  }
-  .com__content {
+  .com__body {
     flex: 1;
-    border: 1px solid rgba(0, 0, 0, 0.4);
-    border-top-width: 0;
-    background-color: #f1f1f1;
-    overflow: hidden;
-    font-size: 11px;
-    position: relative;
-  }
-  .com__content__inner {
     display: flex;
-    height: 100%;
     overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-top: none;
+    background: #f1f1f1;
   }
-  .com__content__left {
-    width: 210px;
-    height: 100%;
-    color: #fff;
+
+  .sidebar {
+    width: 200px;
+    flex-shrink: 0;
     background: linear-gradient(to bottom, #7ba2e7, #6375d6);
+    color: #fff;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 12px 12px 0;
+    padding: 10px 10px 0;
   }
-  .com__sidebar__group {
-    width: 100%;
-    display: block;
+  .sidebargroup {
     background: linear-gradient(to right, #fff, #c6d3f7);
     color: #215dc6;
     border-radius: 3px 3px 0 0;
-    margin-bottom: 15px;
+    margin-bottom: 14px;
+    overflow: hidden;
     max-height: 300px;
-    overflow: hidden;
-    transition: max-height 0.5s ease-out;
+    transition: max-height 0.4s ease-out;
+    &.collapsed {
+      max-height: 26px;
+      ul {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
   }
-  .com__sidebar__group.collapsed {
-    max-height: 25px;
-    overflow: hidden;
-    z-index: 1;
-    transition: max-height 0.5s ease-out;
-  }
-  .com__sidebar__group.collapsed ul {
-    opacity: 0;
-    transform: translateY(-100%);
-    overflow: hidden;
-    padding: 0;
-    border: none;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .com__sidebar__group__header {
+  .groupheader {
     display: flex;
     align-items: center;
-    padding: 5px 0 4px 13px;
-    font-weight: 600;
+    padding: 5px 0 4px 12px;
+    font-weight: 700;
+    font-size: 11px;
+    > span:first-child {
+      flex: 1;
+    }
   }
-  .com__sidebar__group__header span:first-child {
-    flex: 1;
-  }
-  .com__sidebar__collapser {
-    float: right;
-    margin-top: 3px;
-    margin-right: 6px;
-    width: 15px;
-    height: 15px;
-    border-radius: 100%;
-    background-color: #fcffff;
+  .collapser {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fcffff;
     border: 1px solid #b3b8cf;
-    box-shadow: 2px 2px 2px #b5c1e6;
-    text-shadow: 0 0 2px #e3ffff;
+    box-shadow: 1px 1px 2px #b5c1e6;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: 6px;
     cursor: pointer;
+    span {
+      transform: rotate(-90deg) scaleX(0.5) translate(-2px, -1px);
+      display: block;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: -3px;
+      color: #215dc6;
+    }
   }
-  .com__sidebar__collapser span {
-    padding: 0;
-    font-weight: 700;
-    transform: rotate(-90deg) scaleX(0.5) translate(-2px, -1px);
-    display: block;
-    letter-spacing: -3px;
-    font-family: Tahoma, sans-serif;
-    font-size: 11px;
-    color: #215dc6;
-  }
-  .com__sidebar__group ul {
-    display: block;
-    background-color: #d6dff7;
-    padding: 9px 15px;
+  .sidebargroup ul {
+    list-style: none;
     margin: 0;
-    border-width: 0 1px 1px 1px;
-    border-style: solid;
-    border-color: #fff;
-    transition: opacity 0.3s, transform 0.3s;
-    list-style-type: none;
+    padding: 8px 14px;
+    background: #d6dff7;
+    border: 1px solid #fff;
+    border-top: none;
+    transition: opacity 0.3s;
+    li {
+      padding: 2px 0;
+      display: flex;
+      align-items: center;
+      img {
+        width: 16px;
+        height: 16px;
+        margin-right: 7px;
+        object-fit: contain;
+      }
+      &.link:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      &.disabled {
+        opacity: 0.5;
+      }
+      &.name {
+        font-weight: 700;
+      }
+    }
   }
-  .com__sidebar__group ul li {
-    padding: 2px 0;
-    font-size: 11px;
-  }
-  .com__sidebar__group ul li img {
-    vertical-align: middle;
-    margin-right: 7px;
-    width: 16px;
-    height: 16px;
-  }
-  .com__sidebar__group:not(.details) ul li.link:hover {
-    text-decoration: underline;
-    cursor: pointer;
-  }
-  .com__sidebar__group ul li.disabled {
-    opacity: 0.5;
-    cursor: default;
-  }
-  .com__sidebar__group.details ul li.name {
+  .sidebargroup.details ul li.name {
     font-weight: 600;
   }
-  .com__content__right {
-    height: 100%;
+  .parent-path {
+    max-width: 130px;
     overflow: hidden;
-    background-color: #fff;
-    flex: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
-  .com__content__browse {
-    height: 100%;
+
+  .fscontents {
+    flex: 1;
+    background: #fff;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 0 0 20px 0;
   }
-  .com__content__browse__empty {
+  .items {
+    padding: 0 0 20px;
+    min-height: 100%;
+  }
+  .empty-msg {
     padding: 12px;
-    font-size: 11px;
     color: #333;
   }
-  .com__content__browse__card {
+
+  .card {
     margin: 0;
   }
-  .com__content__browse__card__header {
+  .card-header {
     font-weight: 700;
-    padding: 2px 0 3px 12px;
+    padding: 4px 0 3px 12px;
     position: relative;
     &:after {
       content: '';
@@ -999,198 +914,151 @@ const Div = styled.div`
       background: linear-gradient(to right, #70bfff 0, #fff 100%);
       position: absolute;
       bottom: 0;
-      left: -12px;
+      left: 0;
       height: 1px;
       width: 100%;
     }
   }
-  .com__content__browse__card__content {
+  .card-content {
     display: flex;
     flex-wrap: wrap;
     padding: 8px;
   }
-  .com__function_bar__button.active {
-    border: 1px solid rgb(185, 185, 185);
-    background-color: #dedede;
-    box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.7);
-  }
 
-  .com__content__browse__item {
-    appearance: none;
-    border: none;
-    background: transparent;
-    color: #000;
-    font-family: inherit;
-    font-size: 11px;
-    text-decoration: none;
+  .fsicon {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
     cursor: default;
-    outline: none;
-  }
-  .com__content__browse__img {
-    object-fit: contain;
-    flex-shrink: 0;
-    image-rendering: -webkit-optimize-contrast;
-  }
-  .com__content__browse__text {
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .com__content__browse__item.selected .com__content__browse__img {
-    opacity: 0.5;
-  }
-  .com__content__browse__item.selected .com__content__browse__text {
-    background-color: #316ac5;
-    color: #ffffff;
-    outline: 1px dotted #000000;
+    img {
+      object-fit: contain;
+      flex-shrink: 0;
+      image-rendering: -webkit-optimize-contrast;
+    }
+    span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    &.selected img {
+      opacity: 0.5;
+    }
+    &.selected span {
+      background: #316ac5;
+      color: #fff;
+      outline: 1px dotted #000;
+    }
   }
 
-  .tileview .com__content__browse__item {
+  .tileview .fsicon {
     display: grid;
-    grid-template-rows: auto;
-    grid-template-columns: 48px auto;
+    grid-template-columns: 48px 1fr;
+    align-items: center;
     width: 204px;
     height: 48px;
     margin: 4px;
     text-align: left;
-  }
-  .tileview .com__content__browse__img {
-    width: 48px;
-    height: 48px;
-    margin: 0;
-    grid-row: 1;
-    grid-column: 1;
-  }
-  .tileview .com__content__browse__text {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    line-height: 12pt;
-    margin-left: 4px;
-    width: fit-content;
-    height: fit-content;
-    align-self: center;
-    grid-row: 1;
-    grid-column: 2;
-    padding: 1px 3px;
-    word-break: break-word;
-  }
-  .tileview .com__content__browse__card__content {
-    flex-wrap: wrap;
+    img {
+      width: 48px;
+      height: 48px;
+    }
+    span {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      line-height: 14px;
+      padding: 1px 3px;
+      word-break: break-word;
+      align-self: center;
+    }
   }
 
-  .thumbview .com__content__browse__item {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
+  .thumbview .fsicon {
     width: 96px;
     height: 115px;
-    margin: 5px 15px 19px 15px;
+    margin: 5px 15px 19px;
     text-align: center;
     line-height: 12px;
-    vertical-align: top;
-  }
-  .thumbview .com__content__browse__img {
-    width: 48px;
-    height: 48px;
-    margin: 23px auto;
-    display: block;
-  }
-  .thumbview .com__content__browse__item::before {
-    content: '';
-    display: block;
-    width: 94px;
-    height: 94px;
-    border: 1px solid #e0dfe3;
-    margin: 0 auto;
-    order: -1;
-    background: transparent;
-  }
-  .thumbview .com__content__browse__text {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    padding: 2px 2px 4px;
-    margin: 4px auto 0;
-    max-width: 100%;
-    max-height: 22px;
-    line-height: 12px;
-    word-break: break-word;
-  }
-  .thumbview .com__content__browse__item.selected::before {
-    outline: 2px solid #316ac5;
-    border: 1px solid #316ac5;
-  }
-  .thumbview .com__content__browse__card__content {
-    flex-wrap: wrap;
+    position: relative;
+    &:before {
+      content: '';
+      display: block;
+      width: 94px;
+      height: 94px;
+      border: 1px solid #e0dfe3;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    &.selected:before {
+      outline: 2px solid #316ac5;
+      border-color: #316ac5;
+    }
+    img {
+      width: 48px;
+      height: 48px;
+      margin: 23px auto 0;
+      display: block;
+    }
+    span {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      padding: 2px;
+      margin-top: 4px;
+      word-break: break-word;
+      max-width: 100%;
+    }
   }
 
-  .iconview .com__content__browse__item {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
+  .iconview .fsicon {
     width: 74px;
     height: 60px;
-    margin: 4px 1px 2px 1px;
-    padding: 5px 0 1px 0;
+    margin: 4px 1px;
+    padding: 5px 0 1px;
     text-align: center;
     line-height: 13px;
-    vertical-align: top;
-  }
-  .iconview .com__content__browse__img {
-    width: 32px;
-    height: 32px;
-    margin: 0 auto;
-    display: block;
-  }
-  .iconview .com__content__browse__text {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    padding: 2px 4px 4px;
-    margin: 0 auto;
-    max-width: 100%;
-    max-height: 22px;
-    word-break: break-word;
-  }
-  .iconview .com__content__browse__card__content {
-    flex-wrap: wrap;
+    img {
+      width: 32px;
+      height: 32px;
+      margin: 0 auto;
+      display: block;
+    }
+    span {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      padding: 2px 4px;
+      max-width: 100%;
+      word-break: break-word;
+    }
   }
 
-  .listview .com__content__browse {
-    padding: 0 0 4px 4px;
+  .listview .items {
+    padding: 4px 0 4px 4px;
   }
-  .listview .com__content__browse__card__content {
-    display: flex;
+  .listview .card-content {
     flex-direction: column;
     flex-wrap: wrap;
     align-content: flex-start;
     max-height: 200px;
   }
-  .listview .com__content__browse__item {
-    display: inline-flex;
+  .listview .fsicon {
     flex-direction: row;
-    align-items: center;
     width: 210px;
-    height: 16px;
+    height: 18px;
     margin: 1px 0 0;
-    text-align: left;
-  }
-  .listview .com__content__browse__img {
-    width: 16px;
-    height: 16px;
-    margin: 0;
-    vertical-align: middle;
-  }
-  .listview .com__content__browse__text {
-    padding: 2px 4px;
-    display: inline-block;
-    max-width: 186px;
-    line-height: 16px;
-    height: 16px;
-    white-space: nowrap;
-    vertical-align: middle;
-  }
-  .com__content__browse__card--me {
+    align-items: center;
+    img {
+      width: 16px;
+      height: 16px;
+      margin-right: 4px;
+    }
+    span {
+      padding: 1px 2px;
+      max-width: 186px;
+      white-space: nowrap;
+      line-height: 16px;
+    }
   }
 `;
 
