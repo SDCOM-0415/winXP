@@ -5,6 +5,7 @@ import MyComputer from './MyComputer';
 import Notepad from './Notepad';
 import Winamp from './Winamp';
 import Paint from './Paint';
+import Changelog from './Changelog';
 import iePaper from 'assets/windowsIcons/svg/Internet Explorer 6.svg';
 import ie from 'assets/windowsIcons/svg/Internet Explorer 6.svg';
 import mine from 'assets/minesweeper/mine-icon.png';
@@ -18,6 +19,7 @@ import paintLarge from 'assets/windowsIcons/svg/Paint.svg';
 import paint from 'assets/windowsIcons/svg/Paint.svg';
 import AboutWindows from 'components/AboutWindows';
 import windowsLogo from 'assets/windowsIcons/WinXPlogo.svg';
+import changelogIcon from 'assets/windowsIcons/svg/Tip of the day.svg';
 
 // const gen = () => {
 //   let id = -1;
@@ -71,6 +73,13 @@ export const defaultIconState = [
     icon: winamp,
     title: 'Winamp',
     component: Winamp,
+    isFocus: false,
+  },
+  {
+    id: 6,
+    icon: changelogIcon,
+    title: '更新日志',
+    component: Changelog,
     isFocus: false,
   },
 ];
@@ -234,6 +243,25 @@ export const appSettings = {
     maximized: false,
     multiInstance: false,
   },
+  Changelog: {
+    header: {
+      icon: changelogIcon,
+      title: '更新日志',
+    },
+    component: Changelog,
+    defaultSize: {
+      width: 700,
+      height: 520,
+    },
+    defaultOffset: {
+      x: 200,
+      y: 40,
+    },
+    resizable: true,
+    minimized: false,
+    maximized: window.innerWidth < 800,
+    multiInstance: false,
+  },
 };
 
 export {
@@ -244,4 +272,5 @@ export {
   Notepad,
   Winamp,
   AboutWindows,
+  Changelog,
 };

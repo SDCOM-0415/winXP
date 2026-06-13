@@ -29,12 +29,12 @@
     },
     "src/WinXP/apps/index.js": {
       "ipo_ts": 1780995071947,
-      "edit_count": 3,
-      "last_lines": 247,
-      "last_ts": 1781134860397,
+      "edit_count": 7,
+      "last_lines": 276,
+      "last_ts": 1781369311205,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "1186685f"
+      "last_content_hash": "d46f8f39"
     },
     "src/WinXP/index.js": {
       "ipo_ts": 1780996788492,
@@ -146,21 +146,21 @@
     },
     "src/assets/.DS_Store": {
       "ipo_ts": 1781088128042,
-      "edit_count": 16,
+      "edit_count": 17,
       "last_lines": 6,
-      "last_ts": 1781360847992,
+      "last_ts": 1781369653921,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "c757697c"
+      "last_content_hash": "fcff6882"
     },
     "src/assets/windowsIcons/.DS_Store": {
       "ipo_ts": 1781088147171,
-      "edit_count": 5,
-      "last_lines": 4,
-      "last_ts": 1781135781299,
+      "edit_count": 6,
+      "last_lines": 15,
+      "last_ts": 1781369653926,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "e232af8"
+      "last_content_hash": "af4b2741"
     },
     "src/assets/windowsIcons/xp-shutdown.png": {
       "ipo_ts": 1781098217939,
@@ -344,21 +344,21 @@
     },
     "package.json": {
       "ipo_ts": 1781270562600,
-      "edit_count": 3,
-      "last_lines": 47,
-      "last_ts": 1781327397735,
+      "edit_count": 5,
+      "last_lines": 49,
+      "last_ts": 1781369161071,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "f5a32289"
+      "last_content_hash": "b9e2ef0f"
     },
     "config-overrides.js": {
       "ipo_ts": 1781270595754,
-      "edit_count": 2,
-      "last_lines": 51,
-      "last_ts": 1781270782486,
+      "edit_count": 3,
+      "last_lines": 56,
+      "last_ts": 1781369184231,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "e6013433"
+      "last_content_hash": "4179e8c8"
     },
     "src/WinXP/apps/MyComputer/vfs/drive_c_system.json": {
       "ipo_ts": 1781273193155,
@@ -1736,6 +1736,60 @@
       "delisted": false,
       "last_source": "onEdit",
       "last_content_hash": "b16c9cd3"
+    },
+    "CHANGELOG.md": {
+      "ipo_ts": 1781368641897,
+      "edit_count": 1,
+      "last_lines": 275,
+      "last_ts": 1781368641897,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "99208f6a"
+    },
+    "package-lock.json": {
+      "ipo_ts": 1781369162002,
+      "edit_count": 1,
+      "last_lines": 17003,
+      "last_ts": 1781369162002,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "9b16ce3"
+    },
+    "yarn.lock": {
+      "ipo_ts": 1781369162894,
+      "edit_count": 1,
+      "last_lines": 9685,
+      "last_ts": 1781369162894,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "58c6fecf"
+    },
+    "src/WinXP/apps/Changelog/index.js": {
+      "ipo_ts": 1781369245456,
+      "edit_count": 4,
+      "last_lines": 108,
+      "last_ts": 1781369420059,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "fd376491"
+    },
+    "src/WinXP/apps/Changelog/dropDownData.js": {
+      "ipo_ts": 1781369254471,
+      "edit_count": 1,
+      "last_lines": 62,
+      "last_ts": 1781369254471,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "8cafa9c5"
+    },
+    "src/CHANGELOG.md": {
+      "ipo_ts": 1781369345019,
+      "edit_count": 1,
+      "last_lines": 275,
+      "last_ts": 1781369345019,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "99208f6a"
     }
   }
 }

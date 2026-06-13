@@ -45,6 +45,11 @@ module.exports = function override(config, env) {
 
   if (config.module && Array.isArray(config.module.rules)) {
     walkRules(config.module.rules);
+
+    config.module.rules.push({
+      test: /\.md$/,
+      use: 'raw-loader',
+    });
   }
 
   return config;
