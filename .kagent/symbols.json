@@ -20,12 +20,12 @@
     },
     "src/WinXP/Icons/index.js": {
       "ipo_ts": 1780985272181,
-      "edit_count": 4,
+      "edit_count": 7,
       "last_lines": 214,
-      "last_ts": 1780997443541,
+      "last_ts": 1781356746828,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "75970d41"
+      "last_content_hash": "1f6e62f8"
     },
     "src/WinXP/apps/index.js": {
       "ipo_ts": 1780995071947,
@@ -128,30 +128,30 @@
     },
     "src/.DS_Store": {
       "ipo_ts": 1781088117831,
-      "edit_count": 3,
+      "edit_count": 6,
       "last_lines": 4,
-      "last_ts": 1781346253029,
+      "last_ts": 1781358387616,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "ae85d456"
+      "last_content_hash": "a25bd615"
     },
     "src/WinXP/.DS_Store": {
       "ipo_ts": 1781088122707,
-      "edit_count": 1,
+      "edit_count": 5,
       "last_lines": 1,
-      "last_ts": 1781088122707,
+      "last_ts": 1781358435954,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "96cca51a"
+      "last_content_hash": "a1a0e694"
     },
     "src/assets/.DS_Store": {
       "ipo_ts": 1781088128042,
-      "edit_count": 13,
+      "edit_count": 15,
       "last_lines": 6,
-      "last_ts": 1781354072440,
+      "last_ts": 1781358374327,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "ef29a3a7"
+      "last_content_hash": "badbcb64"
     },
     "src/assets/windowsIcons/.DS_Store": {
       "ipo_ts": 1781088147171,
@@ -1070,6 +1070,636 @@
       "delisted": false,
       "last_source": "onEdit",
       "last_content_hash": "a067d0d3"
+    },
+    "public/paint/ew-resize.html": {
+      "ipo_ts": 1781357095396,
+      "edit_count": 1,
+      "last_lines": 583,
+      "last_ts": 1781357095396,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "8ec5d347"
+    },
+    "public/paint/index.html": {
+      "ipo_ts": 1781357095398,
+      "edit_count": 6,
+      "last_lines": 116,
+      "last_ts": 1781358492356,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b0bc1de8"
+    },
+    "public/paint/nwse-resize.html": {
+      "ipo_ts": 1781357095401,
+      "edit_count": 1,
+      "last_lines": 583,
+      "last_ts": 1781357095401,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "8ec5d347"
+    },
+    "public/paint/lib/CUsersIsaiah!!Projectspalette.jssrcBinaryReader.coffee": {
+      "ipo_ts": 1781357095630,
+      "edit_count": 1,
+      "last_lines": 142,
+      "last_ts": 1781357095630,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "927a7f3b"
+    },
+    "public/paint/lib/CUsersIsaiah!!Projectspalette.jssrcColor.coffee": {
+      "ipo_ts": 1781357095632,
+      "edit_count": 1,
+      "last_lines": 104,
+      "last_ts": 1781357095632,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5b3038c6"
+    },
+    "public/paint/lib/CUsersIsaiah!!Projectspalette.jssrcPalette.coffee": {
+      "ipo_ts": 1781357095633,
+      "edit_count": 1,
+      "last_lines": 45,
+      "last_ts": 1781357095633,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "8ca1aebc"
+    },
+    "public/paint/lib/CUsersIsaiah!!Projectspalette.jssrcloadersColorSchemer.coffee": {
+      "ipo_ts": 1781357095634,
+      "edit_count": 1,
+      "last_lines": 24,
+      "last_ts": 1781357095634,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "77a16755"
+    },
+    "public/paint/lib/CUsersIsaiah!!Projectspalette.jssrcloadersGIMP.coffee": {
+      "ipo_ts": 1781357095635,
+      "edit_count": 1,
+      "last_lines": 38,
+      "last_ts": 1781357095635,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2f752304"
+    },
+    "public/paint/lib/CUsersIsaiah!!Projectspalette.jssrcloadersGeneric.coffee": {
+      "ipo_ts": 1781357095636,
+      "edit_count": 1,
+      "last_lines": 110,
+      "last_ts": 1781357095636,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "15f04b21"
+    },
+    "public/paint/lib/CUsersIsaiah!!Projectspalette.jssrcloadersHPL.coffee": {
+      "ipo_ts": 1781357095638,
+      "edit_count": 1,
+      "last_lines": 24,
+      "last_ts": 1781357095638,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b0a81a8e"
+    },
+    "public/paint/lib/CUsersIsaiah!!Projectspalette.jssrcloadersPaint.NET.coffee": {
+      "ipo_ts": 1781357095640,
+      "edit_count": 1,
+      "last_lines": 21,
+      "last_ts": 1781357095640,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ce61dda1"
+    },
+    "public/paint/lib/CUsersIsaiah!!Projectspalette.jssrcloadersPaintShopPro.coffee": {
+      "ipo_ts": 1781357095641,
+      "edit_count": 1,
+      "last_lines": 27,
+      "last_ts": 1781357095641,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "6f96e67"
+    },
+    "public/paint/lib/CUsersIsaiah!!Projectspalette.jssrcloadersRIFF.coffee": {
+      "ipo_ts": 1781357095642,
+      "edit_count": 1,
+      "last_lines": 51,
+      "last_ts": 1781357095642,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "97cffdc2"
+    },
+    "public/paint/lib/CUsersIsaiah!!Projectspalette.jssrcloadersStarCraft.coffee": {
+      "ipo_ts": 1781357095643,
+      "edit_count": 1,
+      "last_lines": 20,
+      "last_ts": 1781357095643,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "271b9b9e"
+    },
+    "public/paint/lib/CUsersIsaiah!!Projectspalette.jssrcloadersStarCraftPadded.coffee": {
+      "ipo_ts": 1781357095645,
+      "edit_count": 1,
+      "last_lines": 20,
+      "last_ts": 1781357095645,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c7d54b58"
+    },
+    "public/paint/lib/CUsersIsaiah!!Projectspalette.jssrcmain.coffee": {
+      "ipo_ts": 1781357095646,
+      "edit_count": 1,
+      "last_lines": 224,
+      "last_ts": 1781357095646,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3748027d"
+    },
+    "public/paint/lib/FileSaver.js": {
+      "ipo_ts": 1781357095648,
+      "edit_count": 1,
+      "last_lines": 306,
+      "last_ts": 1781357095648,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "831e3fdf"
+    },
+    "public/paint/lib/canvas.toBlob.js": {
+      "ipo_ts": 1781357095650,
+      "edit_count": 1,
+      "last_lines": 120,
+      "last_ts": 1781357095650,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "801c750d"
+    },
+    "public/paint/lib/font-detective.js": {
+      "ipo_ts": 1781357095652,
+      "edit_count": 1,
+      "last_lines": 265,
+      "last_ts": 1781357095652,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4e3fab0b"
+    },
+    "public/paint/lib/gif.js/gif.js": {
+      "ipo_ts": 1781357095655,
+      "edit_count": 1,
+      "last_lines": 677,
+      "last_ts": 1781357095655,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d81362b0"
+    },
+    "public/paint/lib/imagetracer_v1.2.5.js": {
+      "ipo_ts": 1781357095661,
+      "edit_count": 1,
+      "last_lines": 1822,
+      "last_ts": 1781357095661,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "906684de"
+    },
+    "public/paint/lib/jquery-3.4.1.min.js": {
+      "ipo_ts": 1781357095677,
+      "edit_count": 1,
+      "last_lines": 5512,
+      "last_ts": 1781357095677,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "28550b01"
+    },
+    "public/paint/lib/libtess.min.js": {
+      "ipo_ts": 1781357095681,
+      "edit_count": 1,
+      "last_lines": 1198,
+      "last_ts": 1781357095681,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3fe7973a"
+    },
+    "public/paint/lib/node_modulesbrowserifynode_modulesbrowser-pack_prelude.js": {
+      "ipo_ts": 1781357095682,
+      "edit_count": 1,
+      "last_lines": 31,
+      "last_ts": 1781357095682,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e88b0785"
+    },
+    "public/paint/lib/os-gui/$MenuBar.js": {
+      "ipo_ts": 1781357095685,
+      "edit_count": 1,
+      "last_lines": 382,
+      "last_ts": 1781357095685,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e11c366d"
+    },
+    "public/paint/lib/os-gui/$Window.js": {
+      "ipo_ts": 1781357095687,
+      "edit_count": 1,
+      "last_lines": 465,
+      "last_ts": 1781357095687,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ac7115e"
+    },
+    "public/paint/lib/os-gui/layout.css": {
+      "ipo_ts": 1781357095693,
+      "edit_count": 1,
+      "last_lines": 83,
+      "last_ts": 1781357095693,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "6c61ebd7"
+    },
+    "public/paint/lib/os-gui/parse-theme.js": {
+      "ipo_ts": 1781357095696,
+      "edit_count": 1,
+      "last_lines": 291,
+      "last_ts": 1781357095696,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3d663f7b"
+    },
+    "public/paint/lib/palette.js": {
+      "ipo_ts": 1781357095746,
+      "edit_count": 1,
+      "last_lines": 1298,
+      "last_ts": 1781357095746,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2d7afae0"
+    },
+    "public/paint/lib/pep.js": {
+      "ipo_ts": 1781357095750,
+      "edit_count": 1,
+      "last_lines": 1347,
+      "last_ts": 1781357095750,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "200b8ee5"
+    },
+    "public/paint/lib/xp.js": {
+      "ipo_ts": 1781357095757,
+      "edit_count": 1,
+      "last_lines": 36,
+      "last_ts": 1781357095757,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "29d2ba56"
+    },
+    "public/paint/ns-resize.html": {
+      "ipo_ts": 1781357095759,
+      "edit_count": 1,
+      "last_lines": 583,
+      "last_ts": 1781357095759,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "8ec5d347"
+    },
+    "public/paint/src/$ColorBox.js": {
+      "ipo_ts": 1781357095762,
+      "edit_count": 1,
+      "last_lines": 213,
+      "last_ts": 1781357095762,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "11cc5ce9"
+    },
+    "public/paint/src/$Component.js": {
+      "ipo_ts": 1781357095764,
+      "edit_count": 1,
+      "last_lines": 328,
+      "last_ts": 1781357095764,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "afc772f1"
+    },
+    "public/paint/src/$FontBox.js": {
+      "ipo_ts": 1781357095769,
+      "edit_count": 1,
+      "last_lines": 77,
+      "last_ts": 1781357095769,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "aec2d328"
+    },
+    "public/paint/src/$Handles.js": {
+      "ipo_ts": 1781357095776,
+      "edit_count": 1,
+      "last_lines": 173,
+      "last_ts": 1781357095776,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "535c5dea"
+    },
+    "public/paint/src/$ToolBox.js": {
+      "ipo_ts": 1781357095779,
+      "edit_count": 3,
+      "last_lines": 143,
+      "last_ts": 1781357770257,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "aadb578f"
+    },
+    "public/paint/src/$ToolWindow.js": {
+      "ipo_ts": 1781357095782,
+      "edit_count": 1,
+      "last_lines": 247,
+      "last_ts": 1781357095782,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "13e03dca"
+    },
+    "public/paint/src/OnCanvasHelperLayer.js": {
+      "ipo_ts": 1781357095784,
+      "edit_count": 1,
+      "last_lines": 16,
+      "last_ts": 1781357095784,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "59a6ae9"
+    },
+    "public/paint/src/OnCanvasObject.js": {
+      "ipo_ts": 1781357095790,
+      "edit_count": 1,
+      "last_lines": 41,
+      "last_ts": 1781357095790,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c595dcbd"
+    },
+    "public/paint/src/OnCanvasSelection.js": {
+      "ipo_ts": 1781357095793,
+      "edit_count": 1,
+      "last_lines": 347,
+      "last_ts": 1781357095793,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "425b3ec2"
+    },
+    "public/paint/src/OnCanvasTextBox.js": {
+      "ipo_ts": 1781357095796,
+      "edit_count": 1,
+      "last_lines": 223,
+      "last_ts": 1781357095796,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5ab336f8"
+    },
+    "public/paint/src/about-consts.js": {
+      "ipo_ts": 1781357095798,
+      "edit_count": 1,
+      "last_lines": 2,
+      "last_ts": 1781357095798,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "664993ff"
+    },
+    "public/paint/src/app.js": {
+      "ipo_ts": 1781357095801,
+      "edit_count": 1,
+      "last_lines": 1651,
+      "last_ts": 1781357095801,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "24ffc9ae"
+    },
+    "public/paint/src/chm-icons-consts.js": {
+      "ipo_ts": 1781357095811,
+      "edit_count": 1,
+      "last_lines": 10,
+      "last_ts": 1781357095811,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b4491b3d"
+    },
+    "public/paint/src/cursor-consts.js": {
+      "ipo_ts": 1781357095818,
+      "edit_count": 1,
+      "last_lines": 28,
+      "last_ts": 1781357095818,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "20c40d8"
+    },
+    "public/paint/src/font-box-consts.js": {
+      "ipo_ts": 1781357095827,
+      "edit_count": 1,
+      "last_lines": 2,
+      "last_ts": 1781357095827,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "fc41471c"
+    },
+    "public/paint/src/functions.js": {
+      "ipo_ts": 1781357095840,
+      "edit_count": 1,
+      "last_lines": 2565,
+      "last_ts": 1781357095840,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "835fc54f"
+    },
+    "public/paint/src/gif-worker-consts.js": {
+      "ipo_ts": 1781357095843,
+      "edit_count": 1,
+      "last_lines": 2,
+      "last_ts": 1781357095843,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "ab8719f4"
+    },
+    "public/paint/src/help-icons-consts.js": {
+      "ipo_ts": 1781357095846,
+      "edit_count": 1,
+      "last_lines": 116,
+      "last_ts": 1781357095846,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "c853b030"
+    },
+    "public/paint/src/helpers.js": {
+      "ipo_ts": 1781357095849,
+      "edit_count": 1,
+      "last_lines": 225,
+      "last_ts": 1781357095849,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3a94ef65"
+    },
+    "public/paint/src/image-manipulation.js": {
+      "ipo_ts": 1781357095857,
+      "edit_count": 1,
+      "last_lines": 1705,
+      "last_ts": 1781357095857,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "5a38059f"
+    },
+    "public/paint/src/menus.js": {
+      "ipo_ts": 1781357095860,
+      "edit_count": 2,
+      "last_lines": 557,
+      "last_ts": 1781357552015,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "2932fd89"
+    },
+    "public/paint/src/storage.js": {
+      "ipo_ts": 1781357095863,
+      "edit_count": 1,
+      "last_lines": 74,
+      "last_ts": 1781357095863,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "64eff1c"
+    },
+    "public/paint/src/strech-and-skew-consts.js": {
+      "ipo_ts": 1781357095872,
+      "edit_count": 1,
+      "last_lines": 8,
+      "last_ts": 1781357095872,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4064dc12"
+    },
+    "public/paint/src/theme-consts.js": {
+      "ipo_ts": 1781357095882,
+      "edit_count": 1,
+      "last_lines": 2,
+      "last_ts": 1781357095882,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1711de8d"
+    },
+    "public/paint/src/theme.js": {
+      "ipo_ts": 1781357095884,
+      "edit_count": 1,
+      "last_lines": 54,
+      "last_ts": 1781357095884,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "6d23baf5"
+    },
+    "public/paint/src/tool-options.js": {
+      "ipo_ts": 1781357095890,
+      "edit_count": 1,
+      "last_lines": 383,
+      "last_ts": 1781357095890,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e67b0dce"
+    },
+    "public/paint/src/toolbox-consts.js": {
+      "ipo_ts": 1781357095897,
+      "edit_count": 1,
+      "last_lines": 8,
+      "last_ts": 1781357095897,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "e33ff2b4"
+    },
+    "public/paint/src/tools.js": {
+      "ipo_ts": 1781357095903,
+      "edit_count": 3,
+      "last_lines": 1587,
+      "last_ts": 1781357732855,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "aba2e12b"
+    },
+    "public/paint/styles/layout.css": {
+      "ipo_ts": 1781357095907,
+      "edit_count": 1,
+      "last_lines": 720,
+      "last_ts": 1781357095907,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "fbd7e4b8"
+    },
+    "public/paint/styles/normalize.css": {
+      "ipo_ts": 1781357095912,
+      "edit_count": 1,
+      "last_lines": 16,
+      "last_ts": 1781357095912,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "593efcdc"
+    },
+    "public/paint/styles/print.css": {
+      "ipo_ts": 1781357095914,
+      "edit_count": 1,
+      "last_lines": 37,
+      "last_ts": 1781357095914,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "b5992537"
+    },
+    "public/paint/styles/themes/classic.css": {
+      "ipo_ts": 1781357095919,
+      "edit_count": 1,
+      "last_lines": 1306,
+      "last_ts": 1781357095919,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "6b02615"
+    },
+    "public/paint/styles/xp.css": {
+      "ipo_ts": 1781357095926,
+      "edit_count": 1,
+      "last_lines": 1433,
+      "last_ts": 1781357095926,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4c7c27d6"
+    },
+    "src/WinXP/apps/Paint/index.js": {
+      "ipo_ts": 1781357128968,
+      "edit_count": 5,
+      "last_lines": 65,
+      "last_ts": 1781357284962,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "6d01baf9"
+    },
+    "public/cursors/beam.cur": {
+      "ipo_ts": 1781358182436,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1781358182436,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4428788"
+    },
+    "public/cursors/default.cur": {
+      "ipo_ts": 1781358182445,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1781358182445,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f31505bf"
+    },
+    ".DS_Store": {
+      "ipo_ts": 1781358374322,
+      "edit_count": 3,
+      "last_lines": 1,
+      "last_ts": 1781358416818,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "3569ac75"
+    },
+    "src/WinXP/apps/.DS_Store": {
+      "ipo_ts": 1781358441688,
+      "edit_count": 1,
+      "last_lines": 2,
+      "last_ts": 1781358441688,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "f81717af"
     }
   }
 }

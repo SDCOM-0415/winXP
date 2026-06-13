@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Reborn XP - The Real Windows XP Simulator</title>
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover"
+    />
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Experience the nostalgia of Windows XP in your browser! Reborn XP is a fully functional, web-based simulator with working applications, themes, file system, and more."
+    />
+    <meta
+      property="og:title"
+      content="Reborn XP - The Real Windows XP Simulator"
+    />
+    <meta
+      property="og:description"
+      content="A fully functional, web-based simulation of Windows XP with working applications, themes, and file system."
+    />
+    <meta property="og:image" content="https://xp.quenq.com/og.jpg" />
+    <meta property="og:url" content="https://xp.quenq.com/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="apple-mobile-web-app-title" content="Reborn XP" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <script>
+      (function () {
+        var ua = navigator.userAgent;
+        var IS_ELECTRON = /Electron/i.test(ua);
+        var IS_NATIVE = /wv/i.test(ua);
+
+        if (window === window.top && !IS_ELECTRON && !IS_NATIVE) {
+          var host = window.location.hostname;
+          if (host !== "localhost" && host !== "127.0.0.1") {
+            window.location.replace(
+              "https://quenq.com/apps/reborn-xp" + window.location.search
+            );
+            return;
+          }
+        }
+
+        if (IS_ELECTRON || IS_NATIVE) {
+          window.location.replace("sunset.html");
+          return;
+        }
+      })();
+    </script>
+    <link rel="icon" href="favicon.png?v=3.2.2" type="image/x-icon" />
+    <link rel="canonical" href="https://xp.quenq.com/" />
+    <link rel="stylesheet" href="css/index.css?v=3.2.2" />
+    <link rel="stylesheet" href="css/colors.css?v=3.2.2" />
+    <link class="scenes" rel="stylesheet" href="css/scenes.css?v=3.2.2" />
+    <link rel="stylesheet" href="css/applayouts.css?v=3.2.2" />
+    <link rel="stylesheet" href="css/icons.css?v=3.2.2" />
+    <link
+      class="theme"
+      rel="stylesheet"
+      href="css/classic/controls.css?v=3.2.2"
+    />
+    <link
+      class="theme"
+      rel="stylesheet"
+      href="css/classic/modules.css?v=3.2.2"
+    />
+    <link
+      class="theme"
+      rel="stylesheet"
+      href="css/classic/lunaFallback.css?v=3.2.2"
+    />
+    <link
+      class="theme truetype"
+      rel="stylesheet"
+      href="css/pixeltype.css?v=3.2.2"
+    />
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-WMRHFEDTW5"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      window.gtag = gtag;
+      gtag("js", new Date());
+      gtag("config", "G-WMRHFEDTW5");
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Reborn XP",
+        "alternateName": "Windows XP Online Simulator",
+        "description": "An interactive, complete web-based simulation of the Windows XP operating system, featuring functional applications, themes, and a persistent virtual file system.",
+        "applicationCategory": "GameApplication",
+        "applicationSubCategory": "Operating System Simulation",
+        "operatingSystem": "Browser",
+        "browserRequirements": "Requires a modern web browser with JavaScript enabled.",
+        "url": "https://xp.quenq.com/",
+        "screenshot": "https://xp.quenq.com/og.jpg",
+        "creator": {
+          "@type": "Organization",
+          "name": "Quenq",
+          "url": "https://quenq.com"
+        }
+      }
+    </script>
+    <script type="module">
+      import { DiskManager } from "./js/DiskManager.js";
+      window.dm = new DiskManager();
+    </script>
+    <script type="module">
+      import { Shell } from "./js/shell.js";
+      window.shell = new Shell();
+    </script>
+    <script id="gdi" src="js/wm.js?v=3.2.2" defer="defer"></script>
+    <script
+      id="uxtheme"
+      src="js/themehandler.js?v=3.2.2"
+      defer="defer"
+    ></script>
+    <script
+      id="dialogsrv"
+      src="js/dialoghandler.js?v=3.2.2"
+      defer="defer"
+    ></script>
+    <script type="module">
+      import { Explorer } from "./js/explorer.js";
+      window.explorer = new Explorer();
+    </script>
+    <script
+      id="rundll32"
+      src="js/apps.js?v=3.2.2"
+      type="module"
+      defer="defer"
+    ></script>
+    <script
+      id="scrsave"
+      src="js/screensave.js?v=3.2.2"
+      type="module"
+      defer="defer"
+    ></script>
+    <script src="res/js/jsmediatags.min.js?v=3.2.2"></script>
+    <script src="res/js/jszip.min.js?v=3.2.2"></script>
+    <script src="res/js/ruffle/ruffle.js?v=3.2.2" defer="defer"></script>
+    <style>
+      body {
+        background-color: #000;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+    </style>
+  </head>
+  <body class="classic lunaFallback">
+    <div id="crteffect" style="display: none">
+      <div class="outer-scratch">
+        <div class="inner-scratch"><div class="grain"></div></div>
+      </div>
+    </div>
+    <div id="seo-content" class="visually-hidden">
+      <h1>Reborn XP - The Windows XP Simulator</h1>
+      <p>
+        Step back in time and experience the nostalgia of the classic Windows XP
+        operating system, fully recreated in high DPI within your web browser.
+        This is an interactive and functional OS simulation, not just a prank or
+        a mockup.
+      </p>
+      <ul>
+        <li>
+          Explore a working desktop with a functional Start Menu, taskbar, and
+          icons.
+        </li>
+        <li>
+          Customize your experience with the complete suite of authentic themes,
+          including Luna, Royale, Zune, and Classic.
+        </li>
+        <li>
+          Use all the original classic applications, listen to music in Windows
+          Media Player, and play iconic games.
+        </li>
+        <li>
+          Create and save files to a persistent virtual file system that
+          remembers your work between sessions.
+        </li>
+      </ul>
+      <p>
+        Reborn XP is loading now. Get ready to relive the definitive computing
+        experience of the 2000s.
+      </p>
+    </div>
+    <div id="portrait-overlay">
+      <div id="portrait-overlay-content">
+        <img src="res/symbols/rotate.svg" alt="Rotate Device" />
+        <p>
+          Please rotate your device to landscape mode for the best experience.
+        </p>
+      </div>
+    </div>
+    <div
+      id="post-screen"
+      class="boot-screen"
+      style="display: none; background-color: #000"
+    >
+      <header>
+        <pre><span class="epa-logo"></span>
+Award Modular BIOS v4.51PG, An Energy Star Ally
+Copyright (C) 1984-2026, Project Quenq.
+
+Quenq Sys BIOS v.<span id="current-app-version"></span>
+            </pre>
+      </header>
+      <main><pre id="post-text"></pre></main>
+      <footer>
+        <pre>Press &lt;DEL&gt; to enter SETUP, &lt;F12&gt; to Boot Menu</pre>
+      </footer>
+    </div>
+    <div id="bootloader" class="boot-screen">
+      <p>Use the ↑ and ↓ keys to move the selection.</p>
+      <p>Press ENTER to boot the selected OS, or ESC to restart.</p>
+      <p class="title">Please select an option:</p>
+      <ul id="boot-options-list">
+        <li data-action="start-xp">Start Windows XP</li>
+        <li data-action="install-xp">Reinstall Windows XP</li>
+      </ul>
+      <p id="countdown-text" class="title">
+        Booting in <span id="timer-seconds">10</span>...
+      </p>
+    </div>
+    <div id="reinstall-confirm" class="boot-screen" style="display: none">
+      <p>
+        Setup is about to erase all contents of your virtual hard drives (C: and
+        E:) and all saved user settings. This action cannot be undone.
+      </p>
+      <p>Are you sure you want to continue?</p>
+      <p class="title">Select an option:</p>
+      <ul id="confirm-options-list">
+        <li data-action="confirm-wipe">Yes, continue Setup</li>
+        <li data-action="cancel-wipe">No, return to main menu</li>
+      </ul>
+    </div>
+    <svg>
+      <filter
+        id="15bitcol"
+        filterUnits="objectBoundingBox"
+        primitiveUnits="userSpaceOnUse"
+        color-interpolation-filters="sRGB"
+      >
+        <feComponentTransfer>
+          <feFuncR
+            type="discrete"
+            tableValues="0 0.032 0.065 0.097 0.129 0.161 0.194 0.226 0.258 0.290 0.323 0.355 0.387 0.419 0.452 0.484 0.516 0.548 0.581 0.613 0.645 0.677 0.710 0.741 0.774 0.806 0.839 0.871 0.903 0.935 0.968 1"
+          />
+          <feFuncG
+            type="discrete"
+            tableValues="0 0.032 0.065 0.097 0.129 0.161 0.194 0.226 0.258 0.290 0.323 0.355 0.387 0.419 0.452 0.484 0.516 0.548 0.581 0.613 0.645 0.677 0.710 0.741 0.774 0.806 0.839 0.871 0.903 0.935 0.968 1"
+          />
+          <feFuncB
+            type="discrete"
+            tableValues="0 0.032 0.065 0.097 0.129 0.161 0.194 0.226 0.258 0.290 0.323 0.355 0.387 0.419 0.452 0.484 0.516 0.548 0.581 0.613 0.645 0.677 0.710 0.741 0.774 0.806 0.839 0.871 0.903 0.935 0.968 1"
+          />
+          <feFuncA type="identity" />
+        </feComponentTransfer>
+      </filter>
+      <filter
+        id="256+col"
+        x="-20%"
+        y="-20%"
+        width="140%"
+        height="140%"
+        filterUnits="objectBoundingBox"
+        primitiveUnits="userSpaceOnUse"
+        color-interpolation-filters="sRGB"
+      >
+        <feComponentTransfer>
+          <feFuncR
+            type="discrete"
+            tableValues="0 0.143 0.286 0.429 0.571 0.714 0.857 1"
+          />
+          <feFuncG
+            type="discrete"
+            tableValues="0 0.143 0.286 0.429 0.571 0.714 0.857 1"
+          />
+          <feFuncB type="discrete" tableValues="0 0.33 0.67 1" />
+          <feFuncA type="identity" />
+        </feComponentTransfer>
+      </filter>
+      <filter
+        id="256col"
+        x="-20%"
+        y="-20%"
+        width="140%"
+        height="140%"
+        filterUnits="objectBoundingBox"
+        primitiveUnits="userSpaceOnUse"
+        color-interpolation-filters="sRGB"
+      >
+        <feComponentTransfer>
+          <feFuncR
+            type="discrete"
+            tableValues="0 0.143 0.286 0.429 0.571 0.714 0.857 1"
+          />
+          <feFuncG
+            type="discrete"
+            tableValues="0 0.143 0.286 0.429 0.571 0.714 0.857 1"
+          />
+          <feFuncB type="discrete" tableValues="0 0.33 0.67 1" />
+          <feFuncA type="identity" />
+        </feComponentTransfer>
+      </filter>
+      <filter
+        id="16col"
+        filterUnits="objectBoundingBox"
+        primitiveUnits="userSpaceOnUse"
+        color-interpolation-filters="linearRGB"
+      >
+        <feColorMatrix
+          type="luminanceToAlpha"
+          in="SourceGraphic"
+          result="alphaValues"
+        />
+        <feComponentTransfer in="alphaValues" result="darkMask">
+          <feFuncA type="discrete" tableValues="1 1 0 0 0" />
+        </feComponentTransfer>
+        <feComponentTransfer in="alphaValues" result="lightMask">
+          <feFuncA type="discrete" tableValues="0 0 0 1 1" />
+        </feComponentTransfer>
+        <feComponentTransfer in="alphaValues" result="grayMask">
+          <feFuncA type="discrete" tableValues="0 0 1 0 0" />
+        </feComponentTransfer>
+        <feComponentTransfer in="SourceGraphic" result="darkColors">
+          <feFuncR type="discrete" tableValues="0 0.5 0.5 0.5 0.5" />
+          <feFuncG type="discrete" tableValues="0 0.5 0.5 0.5 0.5" />
+          <feFuncB type="discrete" tableValues="0 0.5 0.5 0.5 0.5" />
+        </feComponentTransfer>
+        <feComponentTransfer in="SourceGraphic" result="lightColors">
+          <feFuncR type="discrete" tableValues="0 0 1 1 1" />
+          <feFuncG type="discrete" tableValues="0 0 1 1 1" />
+          <feFuncB type="discrete" tableValues="0 0 1 1 1" />
+        </feComponentTransfer>
+        <feFlood flood-color="#c0c0c0" flood-opacity="1" result="grayColor" />
+        <feComposite
+          in="darkColors"
+          in2="darkMask"
+          operator="in"
+          result="darkComposite"
+        />
+        <feComposite
+          in="lightColors"
+          in2="lightMask"
+          operator="in"
+          result="lightComposite"
+        />
+        <feComposite
+          in="grayColor"
+          in2="grayMask"
+          operator="in"
+          result="grayComposite"
+        />
+        <feMerge result="rawColor">
+          <feMergeNode in="darkComposite" />
+          <feMergeNode in="lightComposite" />
+        </feMerge>
+        <feMerge result="finalColor">
+          <feMergeNode in="rawColor" />
+          <feMergeNode in="grayComposite" />
+        </feMerge>
+      </filter>
+      <filter
+        id="8col"
+        x="-20%"
+        y="-20%"
+        width="140%"
+        height="140%"
+        filterUnits="objectBoundingBox"
+        primitiveUnits="userSpaceOnUse"
+        color-interpolation-filters="sRGB"
+      >
+        <feComponentTransfer>
+          <feFuncR type="discrete" tableValues="0 1" />
+          <feFuncG type="discrete" tableValues="0 1" />
+          <feFuncB type="discrete" tableValues="0 1" />
+          <feFuncA type="identity" />
+        </feComponentTransfer>
+      </filter>
+      <filter
+        id="2col"
+        x="-20%"
+        y="-20%"
+        width="140%"
+        height="140%"
+        filterUnits="objectBoundingBox"
+        primitiveUnits="userSpaceOnUse"
+        color-interpolation-filters="sRGB"
+      >
+        <feColorMatrix type="saturate" values="0" />
+        <feComponentTransfer>
+          <feFuncR type="discrete" tableValues="0 1" />
+          <feFuncG type="discrete" tableValues="0 1" />
+          <feFuncB type="discrete" tableValues="0 1" />
+          <feFuncA type="identity" />
+        </feComponentTransfer>
+      </filter></svg
+    ><audio
+      id="sound_system"
+      src="res/sounds/startup.wav"
+      friendlyname="System"
+      preload="auto"
+    ></audio
+    ><scene_holder screenmode="0"
+      ><div id="ditherpixels" style="display: none"></div>
+      <scene_desktop
+        data-env="system"
+        style="background: 0 0; z-index: 2; pointer-events: none"
+        ><scene_windowspace></scene_windowspace
+        ><scene_shell style="display: none"
+          ><taskbar><taskarea></taskarea></taskbar></scene_shell></scene_desktop
+      ><scene_bootscreen
+        id="main-boot-screen"
+        class="bootSequence"
+        style="display: none"
+      ></scene_bootscreen
+      ><scene_logon
+        ><logontop></logontop
+        ><logonmid
+          ><left
+            ><leftcontain
+              ><img src="res/ui/logonlogo.png" /><br /><br /><br /><br /><span
+                id="tip"
+                >To begin, click your user name</span
+              >
+              <span id="welcome">welcome</span></leftcontain
+            ></left
+          ><right><rightcontain></rightcontain></right></logonmid
+        ><logonbtm
+          ><p>
+            After you log on, you can add and change accounts.<br />Just go to
+            Control Panel and click User Accounts.
+          </p>
+          <btncontain
+            onclick="window.wm.openOverlay(),window.wm.openPowerOptions(!0)"
+            ><softbutton class="red shutdown"
+              ><span>Turn off computer</span></softbutton
+            ></btncontain
+          ></logonbtm
+        ></scene_logon
+      ><scene_overlay class="inactive"
+        ><actionbox id="shutdown"
+          ><act_heading><span>Turn off computer</span></act_heading>
+          <div id="btncontain">
+            <powerbtn onclick="shell.enterStandby()"
+              ><softbutton class="yellow"
+                ><img
+                  src="res/symbols/standby.png"
+                  alt="Stand By" /></softbutton
+              ><span>Stand By</span></powerbtn
+            ><powerbtn
+              ><softbutton class="red" onclick="window.shell.reboot()"
+                ><img
+                  src="res/symbols/shutdown.png"
+                  alt="Turn Off" /></softbutton
+              ><span>Turn Off</span></powerbtn
+            ><powerbtn
+              ><softbutton class="green" onclick="window.shell.reboot()"
+                ><img src="res/symbols/restart.png" alt="Restart" /></softbutton
+              ><span>Restart</span></powerbtn
+            >
+          </div>
+          <footing
+            ><winbutton onclick="window.wm.closeOverlay()"
+              ><btnopt>Cancel</btnopt></winbutton
+            ></footing
+          ></actionbox
+        ><actionbox id="logoff"
+          ><act_heading><span>Log Off Windows XP</span></act_heading>
+          <div id="btncontain">
+            <powerbtn
+              ><softbutton class="green" onclick="shell.switchLogon()"
+                ><img
+                  src="res/symbols/restart.png"
+                  alt="Switch User" /></softbutton
+              ><span>Switch User</span></powerbtn
+            ><powerbtn
+              ><softbutton
+                class="yellow"
+                onclick="window.wm.closeOverlay(),shell.logoffUser(shell._currentUser)"
+                ><img src="res/symbols/logoff.png" alt="Log Off" /></softbutton
+              ><span>Log Off</span></powerbtn
+            >
+          </div>
+          <footing
+            ><winbutton onclick="window.wm.closeOverlay()"
+              ><btnopt>Cancel</btnopt></winbutton
+            ></footing
+          ></actionbox
+        ></scene_overlay
+      ><scene_screensaver
+        ><img
+          src="res/ui/screensave.png"
+          alt="Screensaver" /></scene_screensaver
+      ><scene_bsod>
+        <pre>
+A problem has been detected and Windows XP has been shut down to prevent damage
+to your computer.
+The problem seems to be caused by the following file: UXTHEME.DLL
+ILLEGAL_UXSTYLE_INPUT_VALUE
+If this is the first time you've seen this Stop error screen,
+refresh your browser tab. If this screen appears again, follow
+these steps:
+Check to make sure any new hardware or software is properly installed.
+If this is a new installation, ask Quenq or your browser vendor
+for any Windows XP modifications you might need.
+If problems continue, disable or remove any newly installed hardware
+or software. Disable BIOS memory options such as chaching or shadowing.
+If you need to use Safe Mode to remove or disable components, refresh
+your browser tab, press F8 to select Advanced Startup Options, and then
+select Safe Mode.
+Technical information:
+*** STOP: 0x00000069 (0xFD3094C2,0x00000001,0xFBFE7617,0x00000000)
+*** UXTHEME.DLL - Address FDF23422 base at FDF24000, DateStamp 3d6dd67c
+            </pre
+        ></scene_bsod
+      ><scene_standby></scene_standby
+      ><scene_updatescreen_xp
+        ><div class="updatetop"></div>
+        <div class="updatemid">
+          <div
+            class="update-content"
+            style="display: flex; flex-direction: column; align-items: end"
+          >
+            <img
+              src="res/ui/logonlogo.png"
+              alt="Windows XP Logo"
+              style="margin-bottom: 25px"
+            />
+            <h1 id="update-xp-text" style="margin-bottom: 10px">
+              Installing Windows Updates... 0%
+            </h1>
+            <p>Do not turn off or unplug your computer.</p>
+          </div>
+        </div>
+        <div class="updatebtm"></div
+      ></scene_updatescreen_xp>
+      <div id="selection-rectangle" style="display: none"></div
+    ></scene_holder>
+    <div class="assistive-touch" id="assistive-touch">
+      <div class="point" id="point">
+        <img
+          src="res/symbols/menu.png"
+          width="48"
+          height="48"
+          draggable="false"
+        />
+      </div>
+      <div class="drawer" id="drawer">
+        <div data-action="fullscreen">
+          <img src="res/symbols/fullscreen.svg" alt="Fullscreen" /><span
+            >Fullscreen</span
+          >
+        </div>
+        <div data-action="crt">
+          <img src="res/symbols/crt.svg" alt="CRT Filter" /><span
+            >CRT Filter</span
+          >
+        </div>
+        <div data-action="upload">
+          <img src="res/symbols/upload.svg" alt="Upload Files" /><span
+            >Upload Files</span
+          >
+        </div>
+        <div data-action="hide">
+          <img src="res/symbols/hide.svg" alt="Hide" /><span>Hide</span>
+        </div>
+      </div>
+    </div>
+    <script src="js/index.js?v=3.2.2" type="module" defer="defer"></script>
+  </body>
+</html>

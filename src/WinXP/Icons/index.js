@@ -14,7 +14,7 @@ function Icons({
   const [iconPositions, setIconPositions] = useState(() => {
     const positions = {};
     icons.forEach((icon, index) => {
-      positions[icon.id] = { x: 0, y: index * 100 };
+      positions[icon.id] = { x: 0, y: index * 75 };
     });
     return positions;
   });
@@ -45,8 +45,8 @@ function Icons({
     if (draggingId === null) return;
 
     function handleMouseMove(e) {
-      const newX = e.clientX - dragOffset.x - 40; // 40 is IconsContainer margin-left
-      const newY = e.clientY - dragOffset.y - 40; // 40 is IconsContainer margin-top
+      const newX = e.clientX - dragOffset.x - 10; // 10 is IconsContainer margin-left
+      const newY = e.clientY - dragOffset.y - 10; // 10 is IconsContainer margin-top
 
       setIconPositions(prev => ({
         ...prev,
@@ -158,8 +158,8 @@ function Icon({
 
 const IconsContainer = styled.div`
   position: absolute;
-  margin-top: 40px;
-  margin-left: 40px;
+  margin-top: 10px;
+  margin-left: 10px;
 `;
 
 const StyledIcon = styled(Icon)`

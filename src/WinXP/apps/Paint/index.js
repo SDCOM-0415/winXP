@@ -1,25 +1,50 @@
-import React from 'react';
-
-// add child div to capture mouse event when not focused
+import React, { useRef, useEffect } from 'react';
 
 function Paint({ onClose, isFocus }) {
+  const iframeRef = useRef(null);
+  const origin = window.location.origin;
+
+  useEffect(() => {
+    function handleMessage(e) {
+      if (e.origin !== origin) return;
+      if (!iframeRef.current || e.source !== iframeRef.current.contentWindow)
+        return;
+      const { xpPaintAction } = e.data || {};
+      if (
+        xpPaintAction === 'requestExitFromPaint' ||
+        xpPaintAction === 'forceExitNoSave'
+      ) {
+        onClose && onClose();
+      }
+    }
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, [onClose, origin]);
+
+  function handleLoad() {
+    iframeRef.current.contentWindow.postMessage(
+      { xpPaintAction: 'init', parentOrigin: origin },
+      origin,
+    );
+    iframeRef.current.contentWindow.postMessage(
+      { xpPaintAction: 'newImage' },
+      origin,
+    );
+  }
+
   return (
-    <div
-      style={{
-        width: '100%',
-        height: '100%',
-        position: 'relative',
-      }}
-    >
+    <div style={{ width: '100%', height: '100%', position: 'relative' }}>
       <iframe
-        src="https://jspaint.app"
+        ref={iframeRef}
+        src="/paint/index.html"
         frameBorder="0"
         title="paint"
+        onLoad={handleLoad}
         style={{
           display: 'block',
           width: '100%',
           height: '100%',
-          backgroundColor: 'rgb(192,192,192)',
+          backgroundColor: '#808080',
         }}
       />
       {!isFocus && (
