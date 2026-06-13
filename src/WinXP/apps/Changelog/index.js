@@ -9,7 +9,7 @@ export default function Changelog({ onClose }) {
   const [html, setHtml] = useState('');
 
   useEffect(() => {
-    fetch(changelogUrl)
+    fetch(`${changelogUrl}?v=${Date.now()}`)
       .then(res => res.text())
       .then(text => {
         setHtml(marked.parse(text));
