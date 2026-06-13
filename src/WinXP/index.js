@@ -307,6 +307,7 @@ function WinXP() {
 
   useEffect(() => {
     if (state.powerState !== POWER_STATE.BOOT) return undefined;
+    startupSoundPlayed.current = false;
     const fadeTimer = window.setTimeout(() => {
       setBootFading(true);
     }, BOOT_MS);
@@ -320,9 +321,23 @@ function WinXP() {
     };
   }, [state.powerState]);
 
+  const startupSoundPlayed = useRef(false);
+
   useEffect(() => {
     if (state.powerState !== POWER_STATE.START) return undefined;
-    playSystemSound(startupSound);
+    if (!startupSoundPlayed.current) {
+      playSystemSound(startupSound);
+      startupSoundPlayed.current = true;
+    }
+  }, [state.powerState]);
+
+  useEffect(() => {
+    if (
+      state.powerState === POWER_STATE.BOOT ||
+      state.powerState === POWER_STATE.LOGON
+    ) {
+      startupSoundPlayed.current = false;
+    }
   }, [state.powerState]);
 
   useEffect(() => {

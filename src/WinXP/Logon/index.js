@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './index.css';
 import logonLogo from 'assets/windowsIcons/microsoft-windows-xp-seeklogo.png';
 import userIcon from 'assets/windowsIcons/user.png';
@@ -21,6 +21,12 @@ function preloadImages(urls) {
 
 function Logon({ onLogin, onShutdown, visible }) {
   const [isLoggingOn, setIsLoggingOn] = useState(false);
+
+  useEffect(() => {
+    if (visible) {
+      setIsLoggingOn(false);
+    }
+  }, [visible]);
 
   function handleLogin() {
     if (isLoggingOn) return;

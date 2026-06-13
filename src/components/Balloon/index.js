@@ -1,3 +1,4 @@
+import cursorLink from 'assets/cursors/link.cur';
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 
@@ -121,6 +122,7 @@ const Div = styled.div`
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 3px;
     background-color: transparent;
+    cursor: url(${cursorLink}), pointer;
     &:before {
       content: '';
       position: absolute;

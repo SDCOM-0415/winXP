@@ -9,6 +9,11 @@
   align-items: center;
   justify-content: center;
   z-index: 999;
+  cursor: url(../../assets/cursors/default.cur), default;
+}
+
+.scene_overlay * {
+  cursor: inherit;
 }
 
 .scene_overlay .actionbox {
@@ -59,7 +64,7 @@
 }
 
 .scene_overlay .actionbox .act_button.disabled {
-  cursor: inherit;
+  cursor: url(../../assets/cursors/default.cur), default;
   pointer-events: none;
   opacity: 0.5;
 }
@@ -73,6 +78,7 @@
   font-size: 11px;
   font-weight: 600;
   margin-top: 8px;
+  cursor: inherit;
 }
 
 .scene_overlay .actionbox .footing {
@@ -144,7 +150,7 @@
     ),
     radial-gradient(at 85% 85%, #ffffff33 0, #ffffff19 30%, #ffffff00 50%);
   box-shadow: 2px 2px 0 #0d2086;
-  cursor: url(../../assets/cursors/link.cur), pointer;
+  cursor: inherit;
 }
 
 .scene_overlay .softbutton img {
