@@ -324,13 +324,38 @@
   pointer-events: none;
 }
 
-.scene_logon .logonbtm .shutdown-link span {
+.scene_logon .logonbtm .btncontain {
+  display: inline-flex;
+  align-items: center;
+  cursor: url(../../assets/cursors/link.cur), pointer;
+}
+
+.scene_logon .logonbtm .btncontain .softbutton {
+  margin: 0 0 0 25px;
+}
+
+.scene_logon .logonbtm .btncontain span {
   width: auto;
-  margin-left: 10px;
-  line-height: normal;
-  transform: none;
-  vertical-align: middle;
-  display: inline-block;
+  margin-left: 8px;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  position: absolute;
+  left: 100%;
+  top: 50%;
+}
+
+.scene_logon .logonbtm .softbutton.shutdown::after {
+  content: ' ';
+  display: block;
+  height: inherit;
+  width: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background: url(../../assets/windowsIcons/symbols-shutdown.png) no-repeat;
+  background-size: 16px 16px;
+  background-position: calc(50% - 1px) center;
   pointer-events: none;
 }
 
@@ -341,8 +366,10 @@
   font-size: 12px;
   display: inline-block;
   position: absolute;
-  right: 0;
-  padding: 8px 31px 0 0;
+  right: 31px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
 }
 
 .scene_logon .logonbtm .btncontain {

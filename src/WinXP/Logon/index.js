@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './index.css';
 import logonLogo from 'assets/windowsIcons/microsoft-windows-xp-seeklogo.png';
-import turnOffIcon from 'assets/windowsIcons/310(32x32).png';
 import userIcon from 'assets/windowsIcons/user.png';
 
 const DESKTOP_BG_URL = 'https://blog.sdcom.top/upload/Zk6TR5k.jpg';
@@ -20,7 +19,7 @@ function preloadImages(urls) {
   );
 }
 
-function Logon({ onLogin, visible }) {
+function Logon({ onLogin, onShutdown, visible }) {
   const [isLoggingOn, setIsLoggingOn] = useState(false);
 
   function handleLogin() {
@@ -70,9 +69,10 @@ function Logon({ onLogin, visible }) {
           <br />
           请前往“控制面板”并点击“用户帐户”。
         </p>
-        <div className="btncontain shutdown-link">
-          <img src={turnOffIcon} alt="" className="shutdown-icon" />
-          <span>关闭计算机</span>
+        <div className="btncontain" onClick={onShutdown}>
+          <div className="softbutton red shutdown">
+            <span>关闭计算机</span>
+          </div>
         </div>
       </div>
     </div>

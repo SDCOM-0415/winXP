@@ -130,6 +130,17 @@
   text-shadow: 1px 1px #3451bb;
 }
 
+.scene_shutdownscreen.safe {
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scene_shutdownscreen.safe .shutdown-text {
+  text-shadow: none;
+}
+
 .scene_bsod {
   background: #000082;
   display: block;

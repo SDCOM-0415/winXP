@@ -38,12 +38,12 @@
     },
     "src/WinXP/index.js": {
       "ipo_ts": 1780996788492,
-      "edit_count": 87,
-      "last_lines": 673,
-      "last_ts": 1781347514215,
+      "edit_count": 90,
+      "last_lines": 674,
+      "last_ts": 1781361612691,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "12dd2be6"
+      "last_content_hash": "1e835adc"
     },
     "src/WinXP/constants/index.js": {
       "ipo_ts": 1780999226329,
@@ -74,21 +74,21 @@
     },
     "src/WinXP/Logon/index.css": {
       "ipo_ts": 1781066629852,
-      "edit_count": 27,
-      "last_lines": 379,
-      "last_ts": 1781355109440,
+      "edit_count": 41,
+      "last_lines": 406,
+      "last_ts": 1781365722550,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "d7115cd6"
+      "last_content_hash": "e259fc43"
     },
     "src/WinXP/Logon/index.js": {
       "ipo_ts": 1781066629961,
-      "edit_count": 41,
+      "edit_count": 53,
       "last_lines": 82,
-      "last_ts": 1781347559122,
+      "last_ts": 1781364267387,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "c21fcd5e"
+      "last_content_hash": "5480c8c6"
     },
     "src/WinXP/Modal/index.css": {
       "ipo_ts": 1781070075001,
@@ -110,12 +110,12 @@
     },
     "src/WinXP/index.css": {
       "ipo_ts": 1781070479915,
-      "edit_count": 12,
-      "last_lines": 225,
-      "last_ts": 1781359319308,
+      "edit_count": 15,
+      "last_lines": 236,
+      "last_ts": 1781361417103,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "dd71604c"
+      "last_content_hash": "9fd4f3c3"
     },
     "src/assets/windowsIcons/microsoft-windows-xp-seeklogo.png": {
       "ipo_ts": 1781087274876,
@@ -146,12 +146,12 @@
     },
     "src/assets/.DS_Store": {
       "ipo_ts": 1781088128042,
-      "edit_count": 15,
+      "edit_count": 16,
       "last_lines": 6,
-      "last_ts": 1781358374327,
+      "last_ts": 1781360847992,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "badbcb64"
+      "last_content_hash": "c757697c"
     },
     "src/assets/windowsIcons/.DS_Store": {
       "ipo_ts": 1781088147171,
@@ -1694,12 +1694,12 @@
     },
     "src/WinXP/apps/.DS_Store": {
       "ipo_ts": 1781358441688,
-      "edit_count": 1,
-      "last_lines": 2,
-      "last_ts": 1781358441688,
+      "edit_count": 2,
+      "last_lines": 6,
+      "last_ts": 1781360847987,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "f81717af"
+      "last_content_hash": "aeb2ce6"
     },
     "src/assets/cursors/beam.cur": {
       "ipo_ts": 1781359138628,
@@ -1709,6 +1709,24 @@
       "delisted": false,
       "last_source": "onEdit",
       "last_content_hash": "4428788"
+    },
+    "src/assets/windowsIcons/shutdown.png": {
+      "ipo_ts": 1781363915559,
+      "edit_count": 1,
+      "last_lines": 9,
+      "last_ts": 1781363915559,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "65668bff"
+    },
+    "src/WinXP/Windows/HeaderButtons.js": {
+      "ipo_ts": 1781365991027,
+      "edit_count": 2,
+      "last_lines": 189,
+      "last_ts": 1781366006638,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "bc2077a3"
     }
   }
 }

@@ -33,7 +33,7 @@ import Footer from './Footer';
 import Windows from './Windows';
 import Icons from './Icons';
 import { DashedBox } from 'components';
-import windowsLogo from 'assets/windowsIcons/WinXPlogo.svg';
+import windowsLogo from 'assets/windowsIcons/microsoft-windows-xp-seeklogo.png';
 import bootGif from 'assets/windowsIcons/boot.gif';
 import startupSound from 'assets/sounds/startup.wav';
 import startSound from 'assets/sounds/start.wav';
@@ -544,6 +544,9 @@ function WinXP() {
       )}
       <Logon
         onLogin={onLogon}
+        onShutdown={() =>
+          dispatch({ type: POWER_OFF, payload: POWER_STATE.SHUTTING_DOWN })
+        }
         visible={state.powerState === POWER_STATE.LOGON}
       />
       {state.powerState === POWER_STATE.START && (
@@ -623,12 +626,10 @@ function WinXP() {
         </div>
       )}
       {state.powerState === POWER_STATE.SAFE_SHUTDOWN && (
-        <div className="scene_shutdownscreen">
-          <div className="scene_shutdownscreen__top" />
+        <div className="scene_shutdownscreen safe">
           <div className="scene_shutdownscreen__mid">
             <div className="shutdown-text">你现在可以安全的关闭电源了...</div>
           </div>
-          <div className="scene_shutdownscreen__btm" />
         </div>
       )}
       {state.powerState === POWER_STATE.BSOD && (
