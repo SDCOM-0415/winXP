@@ -1,10 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-function ContextMenu({ className, items, position, onClose, onClickItem }) {
+function ContextMenu({
+  className,
+  items,
+  position,
+  onClose,
+  onClickItem,
+  visible,
+}) {
   const ref = useRef();
   const [hoverIndex, setHoverIndex] = useState(-1);
   useEffect(() => {
+    if (!visible) return;
     function handleClickOutside(e) {
       if (ref.current && !ref.current.contains(e.target)) {
         onClose();
@@ -12,13 +20,17 @@ function ContextMenu({ className, items, position, onClose, onClickItem }) {
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [onClose]);
+  }, [onClose, visible]);
   if (!items || items.length === 0) return null;
   return (
     <div
       ref={ref}
       className={className}
-      style={{ top: position.y, left: position.x }}
+      style={{
+        top: position.y,
+        left: position.x,
+        display: visible ? '' : 'none',
+      }}
     >
       {items.map((item, index) => {
         if (item.type === 'separator') {
@@ -37,33 +49,36 @@ function ContextMenu({ className, items, position, onClose, onClickItem }) {
               <div className="ctx-icon" />
               <div className="ctx-text">{item.text}</div>
               <div className="ctx-arrow" />
-              {hoverIndex === index && (
-                <div className="ctx-submenu">
-                  {item.items.map((sub, si) => {
-                    if (sub.type === 'separator') {
-                      return <div key={si} className="ctx-separator" />;
-                    }
-                    return (
-                      <div
-                        key={si}
-                        className={`ctx-item${
-                          sub.disabled ? ' ctx-disabled' : ''
-                        }`}
-                        onClick={e => {
-                          e.stopPropagation();
-                          if (!sub.disabled) {
-                            onClickItem(sub.text);
-                            onClose();
-                          }
-                        }}
-                      >
-                        <div className="ctx-icon" />
-                        <div className="ctx-text">{sub.text}</div>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
+              <div
+                className="ctx-submenu"
+                style={{
+                  display: hoverIndex === index ? '' : 'none',
+                }}
+              >
+                {item.items.map((sub, si) => {
+                  if (sub.type === 'separator') {
+                    return <div key={si} className="ctx-separator" />;
+                  }
+                  return (
+                    <div
+                      key={si}
+                      className={`ctx-item${
+                        sub.disabled ? ' ctx-disabled' : ''
+                      }`}
+                      onClick={e => {
+                        e.stopPropagation();
+                        if (!sub.disabled) {
+                          onClickItem(sub.text);
+                          onClose();
+                        }
+                      }}
+                    >
+                      <div className="ctx-icon" />
+                      <div className="ctx-text">{sub.text}</div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           );
         }

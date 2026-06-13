@@ -68,7 +68,7 @@ function Footer({
     <Container onMouseDown={_onMouseDown}>
       <div className="footer__items left">
         <div ref={menu} className="footer__start__menu">
-          {menuOn && <FooterMenu onClick={_onClickMenuItem} />}
+          <FooterMenu onClick={_onClickMenuItem} visible={menuOn} />
         </div>
         <img
           src={startButton}

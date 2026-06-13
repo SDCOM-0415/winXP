@@ -48,10 +48,24 @@ const BOOT_FADE_MS = 500;
 const LOGGING_OFF_MS = 3000;
 const SHUTTING_DOWN_MS = 3000;
 
+const soundCache = {};
+
+function preloadSound(src) {
+  if (!src || soundCache[src]) return soundCache[src];
+  const audio = new Audio(src);
+  audio.preload = 'auto';
+  audio.load();
+  soundCache[src] = audio;
+  return audio;
+}
+
+[startupSound, startSound, logoffSound, shutdownSound].forEach(preloadSound);
+
 function playSystemSound(src) {
   if (!src) return;
   try {
-    const audio = new Audio(src);
+    const audio = preloadSound(src);
+    audio.currentTime = 0;
     audio.play().catch(() => {});
   } catch (e) {}
 }
@@ -516,7 +530,10 @@ function WinXP() {
           <img src={bootGif} alt="" />
         </div>
       )}
-      {state.powerState === POWER_STATE.LOGON && <Logon onLogin={onLogon} />}
+      <Logon
+        onLogin={onLogon}
+        visible={state.powerState === POWER_STATE.LOGON}
+      />
       {state.powerState === POWER_STATE.START && (
         <>
           <Icons
@@ -545,24 +562,24 @@ function WinXP() {
             onMouseDown={onMouseDownFooter}
             onClickMenuItem={onClickMenuItem}
           />
-          {contextMenu.visible && (
-            <ContextMenu
-              items={desktopMenuItems}
-              position={{ x: contextMenu.x, y: contextMenu.y }}
-              onClose={onCloseContextMenu}
-              onClickItem={onClickContextMenuItem}
-            />
-          )}
+          <ContextMenu
+            items={desktopMenuItems}
+            position={{ x: contextMenu.x, y: contextMenu.y }}
+            onClose={onCloseContextMenu}
+            onClickItem={onClickContextMenuItem}
+            visible={contextMenu.visible}
+          />
         </>
       )}
-      {(state.powerState === POWER_STATE.TURN_OFF ||
-        state.powerState === POWER_STATE.LOG_OFF) && (
-        <Modal
-          onClose={onModalClose}
-          onClickButton={onClickModalButton}
-          mode={state.powerState}
-        />
-      )}
+      <Modal
+        onClose={onModalClose}
+        onClickButton={onClickModalButton}
+        mode={state.powerState}
+        visible={
+          state.powerState === POWER_STATE.TURN_OFF ||
+          state.powerState === POWER_STATE.LOG_OFF
+        }
+      />
       {state.powerState === POWER_STATE.LOGGING_OFF && (
         <div className="scene_logoff">
           <div className="scene_logoff__top" />

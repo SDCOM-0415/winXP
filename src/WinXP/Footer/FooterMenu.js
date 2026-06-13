@@ -29,7 +29,7 @@ import notepad from 'assets/windowsIcons/svg/Notepad.svg';
 
 import { AllPrograms, ConnectTo, MyRecentDocuments } from './FooterMenuData';
 
-function FooterMenu({ className, onClick }) {
+function FooterMenu({ className, onClick, visible }) {
   const [hovering, setHovering] = useState('');
   function onMouseOver(e) {
     const item = e.target.closest('.menu__item');
@@ -38,7 +38,7 @@ function FooterMenu({ className, onClick }) {
     if (textEl) setHovering(textEl.textContent);
   }
   return (
-    <div className={className}>
+    <div className={className} style={{ display: visible ? '' : 'none' }}>
       <div className="sm-userbar">
         <img className="sm-userbar__img" src={userAvatar} alt="" />
         <span className="sm-userbar__name">Administrator</span>
@@ -102,13 +102,12 @@ function FooterMenu({ className, onClick }) {
             >
               <span className="menu__item__text">所有程序</span>
               <span className="sm-allapps-arrow" />
-              {hovering === '所有程序' && (
-                <SubMenu
-                  style={{ bottom: '36px', left: '145px' }}
-                  data={AllPrograms}
-                  onClick={onClick}
-                />
-              )}
+              <SubMenu
+                style={{ bottom: '36px', left: '145px' }}
+                data={AllPrograms}
+                onClick={onClick}
+                visible={hovering === '所有程序'}
+              />
             </li>
           </ul>
         </div>
@@ -126,9 +125,11 @@ function FooterMenu({ className, onClick }) {
             >
               <img src={recentDocuments} alt="" />
               <span className="menu__item__text">我最近的文档</span>
-              {hovering === '我最近的文档' && (
-                <SubMenu data={MyRecentDocuments} onClick={onClick} />
-              )}
+              <SubMenu
+                data={MyRecentDocuments}
+                onClick={onClick}
+                visible={hovering === '我最近的文档'}
+              />
             </li>
             <li className="menu__item" onClick={() => onClick('图片收藏')}>
               <img src={pictures} alt="" />
@@ -163,9 +164,11 @@ function FooterMenu({ className, onClick }) {
             >
               <img src={connect} alt="" />
               <span className="menu__item__text">连接到</span>
-              {hovering === '连接到' && (
-                <SubMenu data={ConnectTo} onClick={onClick} />
-              )}
+              <SubMenu
+                data={ConnectTo}
+                onClick={onClick}
+                visible={hovering === '连接到'}
+              />
             </li>
             <li className="menu__item" onClick={() => onClick('打印机和传真')}>
               <img src={printer} alt="" />

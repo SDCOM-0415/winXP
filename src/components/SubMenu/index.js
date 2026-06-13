@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-function SubMenu({ className, data, style, onClick }) {
+function SubMenu({ className, data, style, onClick, visible }) {
   const [hoverIndex, setHoverIndex] = useState(-1);
   return (
-    <div style={{ ...style }} className={className}>
+    <div
+      style={{ ...style, display: visible === false ? 'none' : '' }}
+      className={className}
+    >
       {data.map((item, index) => (
         <SubMenuItem
           onClick={onClick}
@@ -50,13 +53,12 @@ const SubMenuItem = ({ index, item, className, hover, onHover, onClick }) => {
           <img className={`${className}-img`} src={item.icon} alt="" />
           <div className={`${className}-text`}>{item.text}</div>
           <div className={`${className}-arrow`}>
-            {hover && (
-              <StyledSubMenu
-                data={item.items}
-                bottom={item.bottom}
-                onClick={onClick}
-              />
-            )}
+            <StyledSubMenu
+              data={item.items}
+              bottom={item.bottom}
+              onClick={onClick}
+              visible={hover}
+            />
           </div>
         </div>
       );

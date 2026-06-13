@@ -42,13 +42,12 @@ export function WindowDropDowns({
           >
             {name}
           </div>
-          {openOption === name && (
-            <WindowDropDown
-              onClick={_onClickItem}
-              items={items[name]}
-              position={{ top: `${height}px`, left: '0' }}
-            />
-          )}
+          <WindowDropDown
+            onClick={_onClickItem}
+            items={items[name]}
+            position={{ top: `${height}px`, left: '0' }}
+            visible={openOption === name}
+          />
         </div>
       ))}
     </div>

@@ -5,7 +5,7 @@ import turnOffIcon from 'assets/windowsIcons/310(32x32).png';
 import userIcon from 'assets/windowsIcons/user.png';
 import logonSound from 'assets/sounds/startup.wav';
 
-function Logon({ onLogin }) {
+function Logon({ onLogin, visible }) {
   const [isLoggingOn, setIsLoggingOn] = useState(false);
 
   function handleLogin() {
@@ -21,7 +21,10 @@ function Logon({ onLogin }) {
   }
 
   return (
-    <div className={`scene_logon${isLoggingOn ? ' isLoggingOn' : ''}`}>
+    <div
+      className={`scene_logon${isLoggingOn ? ' isLoggingOn' : ''}`}
+      style={{ display: visible ? '' : 'none' }}
+    >
       <div className="logontop" />
       <div className="logonmid">
         <div className="left">

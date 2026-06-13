@@ -6,10 +6,10 @@ import ieBook from 'assets/windowsIcons/ie-book.png';
 import check from 'assets/windowsIcons/checked.png';
 import folder from 'assets/windowsIcons/svg/Folder Closed.svg';
 
-export function WindowDropDown({ items, position = {}, onClick }) {
+export function WindowDropDown({ items, position = {}, onClick, visible }) {
   const [option, setOption] = useState('');
   return (
-    <Div {...position}>
+    <Div {...position} visible={visible}>
       <div className="drop-down__menu">
         {items.map((item, index) => {
           switch (item.type) {
@@ -49,13 +49,12 @@ export function WindowDropDown({ items, position = {}, onClick }) {
                   </span>
                   <div className="drop-down__arrow" />
                   <div style={{ position: 'relative' }}>
-                    {option === item.text && (
-                      <WindowDropDown
-                        position={item.position}
-                        items={item.items}
-                        onClick={onClick}
-                      />
-                    )}
+                    <WindowDropDown
+                      position={item.position}
+                      items={item.items}
+                      onClick={onClick}
+                      visible={option === item.text}
+                    />
                   </div>
                 </div>
               );
@@ -102,7 +101,7 @@ const Div = styled.div`
   right: ${({ right }) => (right ? right : 'initial')};
   bottom: ${({ bottom }) => (bottom ? bottom : 'initial')};
   position: absolute;
-  display: flex;
+  display: ${({ visible }) => (visible === false ? 'none' : 'flex')};
   font-size: 11px;
   border-bottom: 1px solid transparent;
   .drop-down__row {

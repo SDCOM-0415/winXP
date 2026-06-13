@@ -7,7 +7,7 @@ import restartIcon from 'assets/windowsIcons/symbols-restart.png';
 import logoffIcon from 'assets/windowsIcons/symbols-logoff.png';
 import './index.css';
 
-function Modal({ mode, onClose, onClickButton }) {
+function Modal({ mode, onClose, onClickButton, visible }) {
   function noop(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -27,6 +27,7 @@ function Modal({ mode, onClose, onClickButton }) {
       onClick={noop}
       onMouseDown={noop}
       onMouseUp={noop}
+      style={{ display: visible ? '' : 'none' }}
     >
       <div className="actionbox">
         <div className="act_heading">

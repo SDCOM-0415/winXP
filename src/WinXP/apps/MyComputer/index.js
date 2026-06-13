@@ -679,14 +679,13 @@ function MyComputer({ onClose }) {
           </div>
         </div>
       </div>
-      {contextMenu.visible && (
-        <ContextMenu
-          items={contextMenu.items}
-          position={{ x: contextMenu.x, y: contextMenu.y }}
-          onClose={closeContextMenu}
-          onClickItem={onClickContextMenuItem}
-        />
-      )}
+      <ContextMenu
+        items={contextMenu.items}
+        position={{ x: contextMenu.x, y: contextMenu.y }}
+        onClose={closeContextMenu}
+        onClickItem={onClickContextMenuItem}
+        visible={contextMenu.visible}
+      />
     </Div>
   );
 }
