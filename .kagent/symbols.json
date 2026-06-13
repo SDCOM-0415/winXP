@@ -110,12 +110,12 @@
     },
     "src/WinXP/index.css": {
       "ipo_ts": 1781070479915,
-      "edit_count": 11,
-      "last_lines": 229,
-      "last_ts": 1781355086309,
+      "edit_count": 12,
+      "last_lines": 225,
+      "last_ts": 1781359319308,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "ed88fb70"
+      "last_content_hash": "dd71604c"
     },
     "src/assets/windowsIcons/microsoft-windows-xp-seeklogo.png": {
       "ipo_ts": 1781087274876,
@@ -1700,6 +1700,15 @@
       "delisted": false,
       "last_source": "onEdit",
       "last_content_hash": "f81717af"
+    },
+    "src/assets/cursors/beam.cur": {
+      "ipo_ts": 1781359138628,
+      "edit_count": 1,
+      "last_lines": 1,
+      "last_ts": 1781359138628,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "4428788"
     }
   }
 }

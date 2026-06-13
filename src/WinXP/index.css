@@ -10,10 +10,6 @@
   cursor: url(../assets/cursors/default.cur), default;
 }
 
-.winxp-container * {
-  cursor: inherit;
-}
-
 .winxp-container a,
 .winxp-container a * {
   cursor: url(../assets/cursors/link.cur), pointer;
