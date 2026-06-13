@@ -19,7 +19,7 @@ import paintLarge from 'assets/windowsIcons/svg/Paint.svg';
 import paint from 'assets/windowsIcons/svg/Paint.svg';
 import AboutWindows from 'components/AboutWindows';
 import windowsLogo from 'assets/windowsIcons/WinXPlogo.svg';
-import changelogIcon from 'assets/windowsIcons/svg/Tip of the day.svg';
+import changelogIcon from 'assets/windowsIcons/svg/Generic Text Document.svg';
 
 // const gen = () => {
 //   let id = -1;
@@ -78,7 +78,7 @@ export const defaultIconState = [
   {
     id: 6,
     icon: changelogIcon,
-    title: '更新日志',
+    title: '更新日志.md',
     component: Changelog,
     isFocus: false,
   },
@@ -246,7 +246,7 @@ export const appSettings = {
   Changelog: {
     header: {
       icon: changelogIcon,
-      title: '更新日志',
+      title: '更新日志.md - 记事本',
     },
     component: Changelog,
     defaultSize: {

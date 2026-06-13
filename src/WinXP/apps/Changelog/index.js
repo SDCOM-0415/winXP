@@ -1,12 +1,23 @@
-import React, { useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { marked } from 'marked';
 import { WindowDropDowns } from 'components';
 import dropDownData from './dropDownData';
-import changelogContent from '../../../CHANGELOG.md';
+import changelogUrl from '../../../CHANGELOG.md';
 
 export default function Changelog({ onClose }) {
-  const html = useMemo(() => marked.parse(changelogContent), []);
+  const [html, setHtml] = useState('');
+
+  useEffect(() => {
+    fetch(changelogUrl)
+      .then(res => res.text())
+      .then(text => {
+        setHtml(marked.parse(text));
+      })
+      .catch(err => {
+        setHtml('<p>加载更新日志失败...</p>');
+      });
+  }, []);
 
   function onClickOptionItem(item) {
     switch (item) {
