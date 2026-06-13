@@ -69,26 +69,49 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: #000;
+  background: radial-gradient(circle at 10% 10%, #94b4efff 0, #94b4ef00 25%, #94b4ef00 100%),
+    #5a7edc;
   z-index: 999999;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-rows: 90px 1fr 96px;
   color: #fff;
   cursor: none;
 }
 
+.scene_shutdownscreen__top {
+  background-color: #00309c;
+  border-bottom: 2px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to right, #5076d4 0%, #c7ddff 20%, #c7ddff 50%, #5076d4 100%);
+}
+
+.scene_shutdownscreen__mid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.scene_shutdownscreen__btm {
+  background: linear-gradient(to right, #3934ad, #00309c);
+  border-top: 2px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to right, #003399 0%, #f49439 20%, #f49439 50%, #003399 100%);
+}
+
 .scene_shutdownscreen .shutdown-logo {
-  width: 220px;
-  margin-bottom: 20px;
+  width: 200px;
   opacity: 0.95;
 }
 
 .scene_shutdownscreen .shutdown-text {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: bold;
-  letter-spacing: 0.3px;
+  font-style: italic;
+  letter-spacing: 0.5px;
+  color: #fff;
+  text-shadow: 1px 1px #3451bb;
 }
 
 .scene_bsod {

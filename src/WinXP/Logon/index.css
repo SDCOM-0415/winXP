@@ -136,6 +136,7 @@
   font-size: 13px;
   font-weight: 600;
   display: none;
+  white-space: nowrap;
 }
 
 .scene_logon .logonmid .right .user:active .usericon img {

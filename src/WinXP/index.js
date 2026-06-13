@@ -34,7 +34,6 @@ import Windows from './Windows';
 import Icons from './Icons';
 import { DashedBox } from 'components';
 import windowsLogo from 'assets/windowsIcons/WinXPlogo.svg';
-import windowsOffLogo from 'assets/windowsIcons/windows-off.png';
 import bootGif from 'assets/windowsIcons/boot.gif';
 import startupSound from 'assets/sounds/startup.wav';
 import startSound from 'assets/sounds/start.wav';
@@ -308,7 +307,6 @@ function WinXP() {
 
   useEffect(() => {
     if (state.powerState !== POWER_STATE.BOOT) return undefined;
-    playSystemSound(startupSound);
     const fadeTimer = window.setTimeout(() => {
       setBootFading(true);
     }, BOOT_MS);
@@ -320,6 +318,11 @@ function WinXP() {
       window.clearTimeout(fadeTimer);
       window.clearTimeout(transitionTimer);
     };
+  }, [state.powerState]);
+
+  useEffect(() => {
+    if (state.powerState !== POWER_STATE.START) return undefined;
+    playSystemSound(startupSound);
   }, [state.powerState]);
 
   useEffect(() => {
@@ -335,7 +338,16 @@ function WinXP() {
     if (state.powerState !== POWER_STATE.SHUTTING_DOWN) return undefined;
     playSystemSound(shutdownSound);
     const timer = window.setTimeout(() => {
-      dispatch({ type: RESET_SYSTEM });
+      dispatch({ type: POWER_OFF, payload: POWER_STATE.SAFE_SHUTDOWN });
+    }, SHUTTING_DOWN_MS);
+    return () => window.clearTimeout(timer);
+  }, [state.powerState]);
+
+  useEffect(() => {
+    if (state.powerState !== POWER_STATE.RESTARTING) return undefined;
+    playSystemSound(shutdownSound);
+    const timer = window.setTimeout(() => {
+      window.location.reload();
     }, SHUTTING_DOWN_MS);
     return () => window.clearTimeout(timer);
   }, [state.powerState]);
@@ -491,7 +503,7 @@ function WinXP() {
       return;
     }
     if (text === '重新启动') {
-      dispatch({ type: RESET_SYSTEM });
+      dispatch({ type: POWER_OFF, payload: POWER_STATE.RESTARTING });
       return;
     }
     if (text === '关机') {
@@ -592,8 +604,31 @@ function WinXP() {
       )}
       {state.powerState === POWER_STATE.SHUTTING_DOWN && (
         <div className="scene_shutdownscreen">
-          <img src={windowsOffLogo} alt="" className="shutdown-logo" />
-          <div className="shutdown-text">Windows is shutting down...</div>
+          <div className="scene_shutdownscreen__top" />
+          <div className="scene_shutdownscreen__mid">
+            <img src={windowsLogo} alt="" className="shutdown-logo" />
+            <div className="shutdown-text">正在关闭计算机...</div>
+          </div>
+          <div className="scene_shutdownscreen__btm" />
+        </div>
+      )}
+      {state.powerState === POWER_STATE.RESTARTING && (
+        <div className="scene_shutdownscreen">
+          <div className="scene_shutdownscreen__top" />
+          <div className="scene_shutdownscreen__mid">
+            <img src={windowsLogo} alt="" className="shutdown-logo" />
+            <div className="shutdown-text">正在重启计算机...</div>
+          </div>
+          <div className="scene_shutdownscreen__btm" />
+        </div>
+      )}
+      {state.powerState === POWER_STATE.SAFE_SHUTDOWN && (
+        <div className="scene_shutdownscreen">
+          <div className="scene_shutdownscreen__top" />
+          <div className="scene_shutdownscreen__mid">
+            <div className="shutdown-text">你现在可以安全的关闭电源了...</div>
+          </div>
+          <div className="scene_shutdownscreen__btm" />
         </div>
       )}
       {state.powerState === POWER_STATE.BSOD && (

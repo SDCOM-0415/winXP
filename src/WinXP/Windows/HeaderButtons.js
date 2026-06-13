@@ -53,18 +53,19 @@ function HeaderButtons({
 
 export default styled(HeaderButtons)`
   opacity: ${({ isFocus }) => (isFocus ? 1 : 0.6)};
-  height: 22px;
+  height: 21px;
   display: flex;
   align-items: center;
-  margin-top: -1px;
-  margin-right: 1px;
+  margin-top: 0;
+  margin-right: 2px;
+  gap: 2px;
   .header__button {
-    margin-right: 1px;
     position: relative;
-    width: 22px;
-    height: 22px;
+    width: 21px;
+    height: 21px;
     border: 1px solid #fff;
     border-radius: 3px;
+    flex-shrink: 0;
     &:hover {
       filter: brightness(120%);
     }

@@ -3,7 +3,22 @@ import './index.css';
 import logonLogo from 'assets/windowsIcons/microsoft-windows-xp-seeklogo.png';
 import turnOffIcon from 'assets/windowsIcons/310(32x32).png';
 import userIcon from 'assets/windowsIcons/user.png';
-import logonSound from 'assets/sounds/startup.wav';
+
+const DESKTOP_BG_URL = 'https://blog.sdcom.top/upload/Zk6TR5k.jpg';
+
+function preloadImages(urls) {
+  return Promise.all(
+    urls.map(
+      src =>
+        new Promise(resolve => {
+          const img = new Image();
+          img.onload = resolve;
+          img.onerror = resolve;
+          img.src = src;
+        }),
+    ),
+  );
+}
 
 function Logon({ onLogin, visible }) {
   const [isLoggingOn, setIsLoggingOn] = useState(false);
@@ -11,13 +26,9 @@ function Logon({ onLogin, visible }) {
   function handleLogin() {
     if (isLoggingOn) return;
     setIsLoggingOn(true);
-    try {
-      const audio = new Audio(logonSound);
-      audio.play().catch(() => {});
-    } catch (e) {}
-    setTimeout(() => {
+    preloadImages([DESKTOP_BG_URL]).then(() => {
       onLogin();
-    }, 4000);
+    });
   }
 
   return (
