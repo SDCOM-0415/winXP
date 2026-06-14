@@ -1836,16 +1836,23 @@
       "last_source": "onEdit",
       "last_content_hash": "28126bd0"
     },
-    "src/CHANGELOG.md": {
-      "ipo_ts": 1781419146419,
-      "edit_count": 2,
-      "last_lines": 490,
-      "last_ts": 1781419312413,
-      "delisted": true,
+    "README.md": {
+      "ipo_ts": 1781419979243,
+      "edit_count": 32,
+      "last_lines": 63,
+      "last_ts": 1781420463750,
+      "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "77ac8b7e",
-      "delisted_at": 1781419435923,
-      "delist_rounds": 0
+      "last_content_hash": "90f1dc20"
+    },
+    "src/CHANGELOG.md": {
+      "ipo_ts": 1781419990449,
+      "edit_count": 1,
+      "last_lines": 490,
+      "last_ts": 1781419990449,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "77ac8b7e"
     }
   }
 }
