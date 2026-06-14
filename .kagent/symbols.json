@@ -38,12 +38,12 @@
     },
     "src/WinXP/index.js": {
       "ipo_ts": 1780996788492,
-      "edit_count": 108,
-      "last_lines": 701,
-      "last_ts": 1781403738203,
+      "edit_count": 126,
+      "last_lines": 730,
+      "last_ts": 1781407540374,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "15464ad4"
+      "last_content_hash": "c0ca2148"
     },
     "src/WinXP/constants/index.js": {
       "ipo_ts": 1780999226329,
@@ -110,9 +110,9 @@
     },
     "src/WinXP/index.css": {
       "ipo_ts": 1781070479915,
-      "edit_count": 19,
+      "edit_count": 24,
       "last_lines": 307,
-      "last_ts": 1781403515678,
+      "last_ts": 1781405890092,
       "delisted": false,
       "last_source": "onEdit",
       "last_content_hash": "84ec93f6"
@@ -254,12 +254,12 @@
     },
     "src/WinXP/Footer/index.js": {
       "ipo_ts": 1781264802839,
-      "edit_count": 6,
-      "last_lines": 312,
-      "last_ts": 1781403157729,
+      "edit_count": 19,
+      "last_lines": 369,
+      "last_ts": 1781408059456,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "88b99723"
+      "last_content_hash": "846a68b0"
     },
     "src/WinXP/Footer/FooterMenuData.js": {
       "ipo_ts": 1781265737126,
@@ -1835,6 +1835,15 @@
       "delisted": false,
       "last_source": "onEdit",
       "last_content_hash": "7e2ed12"
+    },
+    ".trae/documents/fix_contextmenu_and_refresh.md": {
+      "ipo_ts": 1781406395984,
+      "edit_count": 1,
+      "last_lines": 189,
+      "last_ts": 1781406395984,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "28126bd0"
     }
   }
 }

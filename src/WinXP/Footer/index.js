@@ -66,7 +66,29 @@ function Footer({
 
   return (
     <Container onMouseDown={_onMouseDown}>
-      <div className="footer__items left">
+      <div className="footer__items left" data-contextmenu>
+        <contextmenu>
+          <ul>
+            <li className="submenuholder disabled">
+              工具栏
+              <ul>
+                <li className="disabled">链接</li>
+                <li className="disabled">桌面</li>
+                <li className="disabled">快速启动</li>
+              </ul>
+            </li>
+            <li className="divider" />
+            <li className="disabled">层叠窗口</li>
+            <li className="disabled">横向平铺窗口</li>
+            <li className="disabled">纵向平铺窗口</li>
+            <li data-action="show-desktop">显示桌面</li>
+            <li className="divider" />
+            <li className="disabled">任务管理器</li>
+            <li className="divider" />
+            <li className="disabled">锁定任务栏</li>
+            <li className="disabled">属性</li>
+          </ul>
+        </contextmenu>
         <div ref={menu} className="footer__start__menu">
           <FooterMenu onClick={_onClickMenuItem} visible={menuOn} />
         </div>
@@ -78,6 +100,9 @@ function Footer({
               <li className="disabled">搜索...</li>
               <li className="divider" />
               <li className="disabled">属性</li>
+              <li className="divider" />
+              <li className="disabled">打开所有用户</li>
+              <li className="disabled">资源管理器（所有用户）</li>
             </ul>
           </contextmenu>
           <img
@@ -97,6 +122,8 @@ function Footer({
                 title={app.header.title}
                 onMouseDown={onMouseDownApp}
                 isFocus={focusedAppId === app.id}
+                minimized={app.minimized}
+                maximized={app.maximized}
               />
             ),
         )}
@@ -137,21 +164,50 @@ function Footer({
   );
 }
 
-function FooterWindowWithMenu({ id, icon, title, onMouseDown, isFocus }) {
+function FooterWindowWithMenu({
+  id,
+  icon,
+  title,
+  onMouseDown,
+  isFocus,
+  minimized,
+  maximized,
+}) {
   function _onMouseDown() {
     onMouseDown(id);
   }
+  const restored = !minimized && !maximized;
   return (
-    <div data-contextmenu>
+    <div data-contextmenu data-win-id={id}>
       <contextmenu>
         <ul>
-          <li className="disabled">还原</li>
+          <li
+            className={restored ? 'disabled' : ''}
+            data-action="restore"
+            data-win-id={id}
+          >
+            还原
+          </li>
           <li className="disabled">移动</li>
           <li className="disabled">大小</li>
-          <li className="disabled">最小化</li>
-          <li className="disabled">最大化</li>
+          <li
+            className={minimized ? 'disabled' : ''}
+            data-action="minimize"
+            data-win-id={id}
+          >
+            最小化
+          </li>
+          <li
+            className={maximized ? 'disabled' : ''}
+            data-action="maximize"
+            data-win-id={id}
+          >
+            最大化
+          </li>
           <li className="divider" />
-          <li className="disabled">关闭</li>
+          <li data-action="close" data-win-id={id}>
+            关闭
+          </li>
         </ul>
       </contextmenu>
       <div
@@ -241,8 +297,8 @@ const Container = styled.footer`
     bottom: 100%;
   }
   .footer__window {
-    flex: 1;
-    max-width: 150px;
+    width: 146px;
+    flex-shrink: 0;
     color: #fff;
     border-radius: 2px;
     margin-top: 2px;
@@ -259,11 +315,12 @@ const Container = styled.footer`
   .footer__icon {
     height: 15px;
     width: 15px;
+    flex-shrink: 0;
+    margin-right: 4px;
   }
   .footer__text {
-    position: absolute;
-    left: 27px;
-    right: 8px;
+    flex: 1;
+    min-width: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

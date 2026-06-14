@@ -231,6 +231,8 @@ const reducer = (state, action = { type: '' }) => {
 function WinXP() {
   const [state, dispatch] = useReducer(reducer, initState);
   const ref = useRef(null);
+  const stateRef = useRef(state);
+  stateRef.current = state;
   const mouse = useMouse(ref);
   const [bootFading, setBootFading] = useState(false);
   const focusedAppId = getFocusedAppId();
@@ -420,6 +422,32 @@ function WinXP() {
       menu.style.left = `${x}px`;
       menu.style.top = `${y}px`;
       ref.current.appendChild(menu);
+      menu.querySelectorAll('[data-action]').forEach(li => {
+        if (li.classList.contains('disabled')) return;
+        li.addEventListener('click', () => {
+          const action = li.dataset.action;
+          const winId = li.dataset.winId ? Number(li.dataset.winId) : null;
+          menu.remove();
+          if (action === 'show-desktop') {
+            stateRef.current.apps.forEach(app => {
+              if (!app.minimized) {
+                dispatch({ type: FOCUS_APP, payload: app.id });
+                dispatch({ type: MINIMIZE_APP, payload: app.id });
+              }
+            });
+          } else if (winId != null) {
+            const app = stateRef.current.apps.find(a => a.id === winId);
+            dispatch({ type: FOCUS_APP, payload: winId });
+            if (action === 'close') dispatch({ type: DEL_APP, payload: winId });
+            else if (action === 'minimize')
+              dispatch({ type: MINIMIZE_APP, payload: winId });
+            else if (action === 'maximize')
+              dispatch({ type: TOGGLE_MAXIMIZE_APP, payload: winId });
+            else if (action === 'restore' && app?.maximized)
+              dispatch({ type: TOGGLE_MAXIMIZE_APP, payload: winId });
+          }
+        });
+      });
       const dismiss = ev => {
         if (!menu.contains(ev.target)) {
           menu.remove();
@@ -589,7 +617,8 @@ function WinXP() {
                 </ul>
               </li>
               <li className="divider" />
-              <li className="disabled">粘贴</li>
+              <li onClick={() => dispatch({ type: FOCUS_DESKTOP })}>刷新</li>
+              <li className="divider" />
               <li className="disabled">粘贴快捷方式</li>
               <li className="divider" />
               <li className="submenuholder">
