@@ -8,8 +8,6 @@ import React, {
 import styled from 'styled-components';
 import useMouse from 'react-use/lib/useMouse';
 
-import ContextMenu from 'components/ContextMenu';
-
 import {
   ADD_APP,
   DEL_APP,
@@ -234,11 +232,6 @@ function WinXP() {
   const [state, dispatch] = useReducer(reducer, initState);
   const ref = useRef(null);
   const mouse = useMouse(ref);
-  const [contextMenu, setContextMenu] = useState({
-    visible: false,
-    x: 0,
-    y: 0,
-  });
   const [bootFading, setBootFading] = useState(false);
   const focusedAppId = getFocusedAppId();
 
@@ -405,60 +398,42 @@ function WinXP() {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, []);
 
-  const desktopMenuItems = [
-    {
-      type: 'submenu',
-      text: '排列图标',
-      items: [
-        { type: 'item', text: '名称' },
-        { type: 'item', text: '大小' },
-        { type: 'item', text: '类型' },
-        { type: 'item', text: '修改时间' },
-        { type: 'separator' },
-        { type: 'item', text: '自动排列' },
-        { type: 'item', text: '按组排列' },
-        { type: 'item', text: '对齐到网格' },
-      ],
-    },
-    { type: 'item', text: '对齐到网格' },
-    { type: 'separator' },
-    { type: 'item', text: '粘贴', disabled: true },
-    { type: 'item', text: '粘贴快捷方式', disabled: true },
-    { type: 'separator' },
-    {
-      type: 'submenu',
-      text: '新建',
-      items: [
-        { type: 'item', text: '文件夹' },
-        { type: 'item', text: '快捷方式' },
-        { type: 'separator' },
-        { type: 'item', text: '文本文档' },
-      ],
-    },
-    { type: 'separator' },
-    { type: 'item', text: '属性' },
-  ];
-
-  function onContextMenuDesktop(e) {
-    if (state.powerState !== POWER_STATE.START) return;
-    e.preventDefault();
-    e.stopPropagation();
-    dispatch({ type: FOCUS_DESKTOP });
-    const x = Math.min(e.clientX, window.innerWidth - 200);
-    const y = Math.min(e.clientY, window.innerHeight - 300);
-    setContextMenu({ visible: true, x, y });
-  }
-
-  function onCloseContextMenu() {
-    setContextMenu({ visible: false, x: 0, y: 0 });
-  }
-
-  function onClickContextMenuItem(text) {
-    if (text === '属性') {
-      playSystemSound(startSound);
-      dispatch({ type: ADD_APP, payload: appSettings.Error });
+  useEffect(() => {
+    function handler(e) {
+      document.querySelector('contextmenu.visible')?.remove();
+      const ctxEl = e.target.closest('[data-contextmenu]');
+      const template = ctxEl
+        ? ctxEl.querySelector('contextmenu')
+        : e.target.closest('[data-desktop-menu]')
+        ? ref.current?.querySelector('[data-desktop-menu]')
+        : null;
+      if (!template) return;
+      e.preventDefault();
+      e.stopPropagation();
+      const menu = template.cloneNode(true);
+      menu.classList.add('visible');
+      const x = Math.min(e.clientX, window.innerWidth - 180);
+      const y = Math.min(
+        e.clientY,
+        window.innerHeight - menu.offsetHeight - 10,
+      );
+      menu.style.left = `${x}px`;
+      menu.style.top = `${y}px`;
+      ref.current.appendChild(menu);
+      const dismiss = ev => {
+        if (!menu.contains(ev.target)) {
+          menu.remove();
+          document.removeEventListener('mousedown', dismiss, true);
+        }
+      };
+      setTimeout(
+        () => document.addEventListener('mousedown', dismiss, true),
+        0,
+      );
     }
-  }
+    document.addEventListener('contextmenu', handler, true);
+    return () => document.removeEventListener('contextmenu', handler, true);
+  }, []);
 
   function onClickMenuItem(o) {
     playSystemSound(startSound);
@@ -490,7 +465,7 @@ function WinXP() {
   }
 
   function onMouseDownDesktop(e) {
-    onCloseContextMenu();
+    document.querySelector('contextmenu.visible')?.remove();
     if (state.powerState !== POWER_STATE.START) return;
     if (e.target === e.currentTarget) {
       dispatch({
@@ -549,8 +524,14 @@ function WinXP() {
       ref={ref}
       onMouseUp={onMouseUpDesktop}
       onMouseDown={onMouseDownDesktop}
-      onContextMenu={onContextMenuDesktop}
+      onContextMenu={e => {
+        if (state.powerState !== POWER_STATE.START) {
+          e.preventDefault();
+          return;
+        }
+      }}
       className={`winxp-container${isFadeToGray ? ' fadetogray' : ''}`}
+      data-desktop-menu
     >
       {state.powerState === POWER_STATE.BOOT && (
         <div className={`scene_bootscreen${bootFading ? ' fading' : ''}`}>
@@ -592,13 +573,44 @@ function WinXP() {
             onMouseDown={onMouseDownFooter}
             onClickMenuItem={onClickMenuItem}
           />
-          <ContextMenu
-            items={desktopMenuItems}
-            position={{ x: contextMenu.x, y: contextMenu.y }}
-            onClose={onCloseContextMenu}
-            onClickItem={onClickContextMenuItem}
-            visible={contextMenu.visible}
-          />
+          <contextmenu data-desktop-menu>
+            <ul>
+              <li className="submenuholder disabled">
+                排列图标
+                <ul>
+                  <li className="disabled">名称</li>
+                  <li className="disabled">大小</li>
+                  <li className="disabled">类型</li>
+                  <li className="disabled">修改时间</li>
+                  <li className="divider" />
+                  <li className="disabled">自动排列</li>
+                  <li className="disabled">按组排列</li>
+                  <li className="disabled">对齐到网格</li>
+                </ul>
+              </li>
+              <li className="divider" />
+              <li className="disabled">粘贴</li>
+              <li className="disabled">粘贴快捷方式</li>
+              <li className="divider" />
+              <li className="submenuholder">
+                新建
+                <ul>
+                  <li className="disabled">文件夹</li>
+                  <li className="disabled">快捷方式</li>
+                  <li className="divider" />
+                  <li className="disabled">文本文档</li>
+                </ul>
+              </li>
+              <li className="divider" />
+              <li
+                onClick={() => {
+                  dispatch({ type: ADD_APP, payload: appSettings.Error });
+                }}
+              >
+                属性
+              </li>
+            </ul>
+          </contextmenu>
         </>
       )}
       <Modal

@@ -48,13 +48,54 @@ export default function Notepad({ onClose }) {
       <section className="np__toolbar">
         <WindowDropDowns items={dropDownData} onClickItem={onClickOptionItem} />
       </section>
-      <StyledTextarea
-        wordWrap={wordWrap}
-        value={docText}
-        onChange={e => setDocText(e.target.value)}
-        onKeyDown={onTextAreaKeyDown}
-        spellCheck={false}
-      />
+      <div
+        data-contextmenu
+        style={{ flex: 'auto', display: 'flex', flexDirection: 'column' }}
+      >
+        <contextmenu>
+          <ul>
+            <li className="disabled">撤销</li>
+            <li className="divider" />
+            <li onClick={() => document.execCommand('cut')}>剪切</li>
+            <li onClick={() => document.execCommand('copy')}>复制</li>
+            <li onClick={() => document.execCommand('paste')}>粘贴</li>
+            <li onClick={() => document.execCommand('delete')}>删除</li>
+            <li className="divider" />
+            <li
+              onClick={() => {
+                const ta = document.activeElement;
+                if (ta) {
+                  ta.select && ta.select();
+                }
+              }}
+            >
+              全选
+            </li>
+            <li className="divider" />
+            <li
+              onClick={() => {
+                const date = new Date();
+                setDocText(
+                  t =>
+                    t +
+                    date.toLocaleTimeString() +
+                    ' ' +
+                    date.toLocaleDateString(),
+                );
+              }}
+            >
+              时间/日期
+            </li>
+          </ul>
+        </contextmenu>
+        <StyledTextarea
+          wordWrap={wordWrap}
+          value={docText}
+          onChange={e => setDocText(e.target.value)}
+          onKeyDown={onTextAreaKeyDown}
+          spellCheck={false}
+        />
+      </div>
     </Div>
   );
 }

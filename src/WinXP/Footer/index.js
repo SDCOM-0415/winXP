@@ -70,16 +70,27 @@ function Footer({
         <div ref={menu} className="footer__start__menu">
           <FooterMenu onClick={_onClickMenuItem} visible={menuOn} />
         </div>
-        <img
-          src={startButton}
-          alt="start"
-          className="footer__start"
-          onMouseDown={toggleMenu}
-        />
+        <div data-contextmenu style={{ display: 'inline-flex' }}>
+          <contextmenu>
+            <ul>
+              <li className="disabled">打开</li>
+              <li className="disabled">资源管理器</li>
+              <li className="disabled">搜索...</li>
+              <li className="divider" />
+              <li className="disabled">属性</li>
+            </ul>
+          </contextmenu>
+          <img
+            src={startButton}
+            alt="start"
+            className="footer__start"
+            onMouseDown={toggleMenu}
+          />
+        </div>
         {[...apps].map(
           app =>
             !app.header.noFooterWindow && (
-              <FooterWindow
+              <FooterWindowWithMenu
                 key={app.id}
                 id={app.id}
                 icon={app.header.icon}
@@ -91,7 +102,29 @@ function Footer({
         )}
       </div>
 
-      <div className="footer__items right">
+      <div className="footer__items right" data-contextmenu>
+        <contextmenu>
+          <ul>
+            <li className="submenuholder disabled">
+              工具栏
+              <ul>
+                <li className="disabled">链接</li>
+                <li className="disabled">桌面</li>
+                <li className="disabled">快速启动</li>
+              </ul>
+            </li>
+            <li className="divider" />
+            <li className="disabled">层叠窗口</li>
+            <li className="disabled">横向平铺窗口</li>
+            <li className="disabled">纵向平铺窗口</li>
+            <li className="disabled">显示桌面</li>
+            <li className="divider" />
+            <li className="disabled">任务管理器</li>
+            <li className="divider" />
+            <li className="disabled">锁定任务栏</li>
+            <li className="disabled">属性</li>
+          </ul>
+        </contextmenu>
         <img className="footer__icon" src={sound} alt="" />
         <img className="footer__icon" src={usb} alt="" />
         <img className="footer__icon" src={risk} alt="" />
@@ -104,17 +137,30 @@ function Footer({
   );
 }
 
-function FooterWindow({ id, icon, title, onMouseDown, isFocus }) {
+function FooterWindowWithMenu({ id, icon, title, onMouseDown, isFocus }) {
   function _onMouseDown() {
     onMouseDown(id);
   }
   return (
-    <div
-      onMouseDown={_onMouseDown}
-      className={`footer__window ${isFocus ? 'focus' : 'cover'}`}
-    >
-      <img className="footer__icon" src={icon} alt={title} />
-      <div className="footer__text">{title}</div>
+    <div data-contextmenu>
+      <contextmenu>
+        <ul>
+          <li className="disabled">还原</li>
+          <li className="disabled">移动</li>
+          <li className="disabled">大小</li>
+          <li className="disabled">最小化</li>
+          <li className="disabled">最大化</li>
+          <li className="divider" />
+          <li className="disabled">关闭</li>
+        </ul>
+      </contextmenu>
+      <div
+        onMouseDown={_onMouseDown}
+        className={`footer__window ${isFocus ? 'focus' : 'cover'}`}
+      >
+        <img className="footer__icon" src={icon} alt={title} />
+        <div className="footer__text">{title}</div>
+      </div>
     </div>
   );
 }

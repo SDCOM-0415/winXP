@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { WindowDropDowns } from 'components';
-import ContextMenu from 'components/ContextMenu';
 import dropDownData from './dropDownData';
 import { getNodeByPath, listChildren, resolveIcon } from './vfs';
 import startupSound from 'assets/sounds/start.wav';
@@ -26,68 +25,6 @@ import cd from 'assets/windowsIcons/svg/DVD alt.svg';
 import dropdown from 'assets/windowsIcons/dropdown.png';
 import windows from 'assets/windowsIcons/windows.png';
 
-const EMPTY_AREA_MENU = [
-  { type: 'item', text: '查看' },
-  { type: 'item', text: '排列图标' },
-  { type: 'item', text: '刷新' },
-  { type: 'separator' },
-  { type: 'item', text: '粘贴', disabled: true },
-  { type: 'item', text: '粘贴快捷方式', disabled: true },
-  { type: 'separator' },
-  { type: 'item', text: '属性' },
-];
-
-const FOLDER_MENU = [
-  { type: 'item', text: '打开' },
-  { type: 'item', text: '资源管理器' },
-  { type: 'item', text: '搜索...' },
-  { type: 'separator' },
-  { type: 'item', text: '剪切' },
-  { type: 'item', text: '复制' },
-  { type: 'separator' },
-  { type: 'item', text: '创建快捷方式' },
-  { type: 'item', text: '删除' },
-  { type: 'item', text: '重命名' },
-  { type: 'separator' },
-  { type: 'item', text: '属性' },
-];
-
-const DRIVE_MENU = [
-  { type: 'item', text: '打开' },
-  { type: 'item', text: '资源管理器' },
-  { type: 'item', text: '搜索...' },
-  { type: 'separator' },
-  { type: 'item', text: '共享和安全...' },
-  { type: 'separator' },
-  { type: 'item', text: '格式化...', disabled: true },
-  { type: 'item', text: '复制' },
-  { type: 'item', text: '创建快捷方式' },
-  { type: 'separator' },
-  { type: 'item', text: '重命名' },
-  { type: 'separator' },
-  { type: 'item', text: '属性' },
-];
-
-const CD_MENU = [
-  { type: 'item', text: '打开' },
-  { type: 'item', text: '资源管理器' },
-  { type: 'separator' },
-  { type: 'item', text: '自动播放' },
-  { type: 'item', text: '弹出' },
-  { type: 'separator' },
-  { type: 'item', text: '创建快捷方式' },
-  { type: 'item', text: '属性' },
-];
-
-const ABOUT_MENU = [
-  { type: 'item', text: '打开' },
-  { type: 'item', text: '在新窗口中打开' },
-  { type: 'separator' },
-  { type: 'item', text: '复制快捷方式' },
-  { type: 'separator' },
-  { type: 'item', text: '属性' },
-];
-
 const buildDate =
   process.env.REACT_APP_BUILD_DATE ||
   new Date()
@@ -106,12 +43,6 @@ function MyComputer({ onClose }) {
   });
   const [viewMode, setViewMode] = useState('tileview');
   const [viewPickerOpen, setViewPickerOpen] = useState(false);
-  const [contextMenu, setContextMenu] = useState({
-    visible: false,
-    x: 0,
-    y: 0,
-    items: [],
-  });
 
   function playNav() {
     try {
@@ -173,33 +104,10 @@ function MyComputer({ onClose }) {
     }
   }
 
-  function closeContextMenu() {
-    setContextMenu({ visible: false, x: 0, y: 0, items: [] });
-    setViewPickerOpen(false);
-  }
-
-  function openContextMenu(e, items, item) {
-    e.preventDefault();
-    e.stopPropagation();
-    if (item) {
-      setSelectedItem(item);
-    } else {
-      setSelectedItem(null);
-    }
-    setContextMenu({
-      visible: true,
-      x: Math.min(e.clientX, window.innerWidth - 220),
-      y: Math.min(e.clientY, window.innerHeight - 280),
-      items,
-    });
-  }
-
   function selectItem(item) {
-    closeContextMenu();
+    setViewPickerOpen(false);
     setSelectedItem(item);
   }
-
-  function onClickContextMenuItem() {}
 
   function onClickOptionItem(item) {
     switch (item) {
@@ -454,9 +362,21 @@ function MyComputer({ onClose }) {
           </div>
           <div
             className={`com__content__right ${viewMode}`}
+            data-contextmenu
             onMouseDown={() => selectItem(null)}
-            onContextMenu={e => openContextMenu(e, EMPTY_AREA_MENU)}
           >
+            <contextmenu>
+              <ul>
+                <li className="disabled">查看</li>
+                <li className="disabled">排列图标</li>
+                <li className="disabled">刷新</li>
+                <li className="divider" />
+                <li className="disabled">粘贴</li>
+                <li className="disabled">粘贴快捷方式</li>
+                <li className="divider" />
+                <li className="disabled">属性</li>
+              </ul>
+            </contextmenu>
             {location ? (
               <div className="com__content__browse">
                 {listChildren(
@@ -497,50 +417,80 @@ function MyComputer({ onClose }) {
                     在这台计算机上存储的文件
                   </div>
                   <div className="com__content__browse__card__content">
-                    <button
-                      type="button"
-                      className={`com__content__browse__item${
-                        selectedItem === 'shared-documents' ? ' selected' : ''
-                      }`}
-                      onMouseDown={e => {
-                        e.stopPropagation();
-                        selectItem('shared-documents');
-                      }}
-                      onContextMenu={e =>
-                        openContextMenu(e, FOLDER_MENU, 'shared-documents')
-                      }
-                    >
-                      <img
-                        src={folder}
-                        alt=""
-                        className="com__content__browse__img"
-                      />
-                      <span className="com__content__browse__text">
-                        共享文档
-                      </span>
-                    </button>
-                    <button
-                      type="button"
-                      className={`com__content__browse__item${
-                        selectedItem === 'user-documents' ? ' selected' : ''
-                      }`}
-                      onMouseDown={e => {
-                        e.stopPropagation();
-                        selectItem('user-documents');
-                      }}
-                      onContextMenu={e =>
-                        openContextMenu(e, FOLDER_MENU, 'user-documents')
-                      }
-                    >
-                      <img
-                        src={folder}
-                        alt=""
-                        className="com__content__browse__img"
-                      />
-                      <span className="com__content__browse__text">
-                        用户文档
-                      </span>
-                    </button>
+                    <div data-contextmenu>
+                      <contextmenu>
+                        <ul>
+                          <li className="disabled">打开</li>
+                          <li className="disabled">资源管理器</li>
+                          <li className="disabled">搜索...</li>
+                          <li className="divider" />
+                          <li className="disabled">剪切</li>
+                          <li className="disabled">复制</li>
+                          <li className="divider" />
+                          <li className="disabled">创建快捷方式</li>
+                          <li className="disabled">删除</li>
+                          <li className="disabled">重命名</li>
+                          <li className="divider" />
+                          <li className="disabled">属性</li>
+                        </ul>
+                      </contextmenu>
+                      <button
+                        type="button"
+                        className={`com__content__browse__item${
+                          selectedItem === 'shared-documents' ? ' selected' : ''
+                        }`}
+                        onMouseDown={e => {
+                          e.stopPropagation();
+                          selectItem('shared-documents');
+                        }}
+                      >
+                        <img
+                          src={folder}
+                          alt=""
+                          className="com__content__browse__img"
+                        />
+                        <span className="com__content__browse__text">
+                          共享文档
+                        </span>
+                      </button>
+                    </div>
+                    <div data-contextmenu>
+                      <contextmenu>
+                        <ul>
+                          <li className="disabled">打开</li>
+                          <li className="disabled">资源管理器</li>
+                          <li className="disabled">搜索...</li>
+                          <li className="divider" />
+                          <li className="disabled">剪切</li>
+                          <li className="disabled">复制</li>
+                          <li className="divider" />
+                          <li className="disabled">创建快捷方式</li>
+                          <li className="disabled">删除</li>
+                          <li className="disabled">重命名</li>
+                          <li className="divider" />
+                          <li className="disabled">属性</li>
+                        </ul>
+                      </contextmenu>
+                      <button
+                        type="button"
+                        className={`com__content__browse__item${
+                          selectedItem === 'user-documents' ? ' selected' : ''
+                        }`}
+                        onMouseDown={e => {
+                          e.stopPropagation();
+                          selectItem('user-documents');
+                        }}
+                      >
+                        <img
+                          src={folder}
+                          alt=""
+                          className="com__content__browse__img"
+                        />
+                        <span className="com__content__browse__text">
+                          用户文档
+                        </span>
+                      </button>
+                    </div>
                   </div>
                 </div>
                 <div className="com__content__browse__card">
@@ -548,29 +498,45 @@ function MyComputer({ onClose }) {
                     硬盘驱动器
                   </div>
                   <div className="com__content__browse__card__content">
-                    <button
-                      type="button"
-                      className={`com__content__browse__item${
-                        selectedItem === 'local-disk-c' ? ' selected' : ''
-                      }`}
-                      onMouseDown={e => {
-                        e.stopPropagation();
-                        selectItem('local-disk-c');
-                      }}
-                      onDoubleClick={() => openDrive('C:')}
-                      onContextMenu={e =>
-                        openContextMenu(e, DRIVE_MENU, 'local-disk-c')
-                      }
-                    >
-                      <img
-                        src={disk}
-                        alt=""
-                        className="com__content__browse__img"
-                      />
-                      <span className="com__content__browse__text">
-                        本地磁盘 (C:)
-                      </span>
-                    </button>
+                    <div data-contextmenu>
+                      <contextmenu>
+                        <ul>
+                          <li className="disabled">打开</li>
+                          <li className="disabled">资源管理器</li>
+                          <li className="disabled">搜索...</li>
+                          <li className="divider" />
+                          <li className="disabled">共享和安全...</li>
+                          <li className="divider" />
+                          <li className="disabled">格式化...</li>
+                          <li className="disabled">复制</li>
+                          <li className="disabled">创建快捷方式</li>
+                          <li className="divider" />
+                          <li className="disabled">重命名</li>
+                          <li className="divider" />
+                          <li className="disabled">属性</li>
+                        </ul>
+                      </contextmenu>
+                      <button
+                        type="button"
+                        className={`com__content__browse__item${
+                          selectedItem === 'local-disk-c' ? ' selected' : ''
+                        }`}
+                        onMouseDown={e => {
+                          e.stopPropagation();
+                          selectItem('local-disk-c');
+                        }}
+                        onDoubleClick={() => openDrive('C:')}
+                      >
+                        <img
+                          src={disk}
+                          alt=""
+                          className="com__content__browse__img"
+                        />
+                        <span className="com__content__browse__text">
+                          本地磁盘 (C:)
+                        </span>
+                      </button>
+                    </div>
                   </div>
                 </div>
                 <div className="com__content__browse__card">
@@ -578,28 +544,39 @@ function MyComputer({ onClose }) {
                     可移动存储设备
                   </div>
                   <div className="com__content__browse__card__content">
-                    <button
-                      type="button"
-                      className={`com__content__browse__item${
-                        selectedItem === 'cd-drive-d' ? ' selected' : ''
-                      }`}
-                      onMouseDown={e => {
-                        e.stopPropagation();
-                        selectItem('cd-drive-d');
-                      }}
-                      onContextMenu={e =>
-                        openContextMenu(e, CD_MENU, 'cd-drive-d')
-                      }
-                    >
-                      <img
-                        src={cd}
-                        alt=""
-                        className="com__content__browse__img"
-                      />
-                      <span className="com__content__browse__text">
-                        CD 驱动器 (D:)
-                      </span>
-                    </button>
+                    <div data-contextmenu>
+                      <contextmenu>
+                        <ul>
+                          <li className="disabled">打开</li>
+                          <li className="disabled">资源管理器</li>
+                          <li className="divider" />
+                          <li className="disabled">自动播放</li>
+                          <li className="disabled">弹出</li>
+                          <li className="divider" />
+                          <li className="disabled">创建快捷方式</li>
+                          <li className="disabled">属性</li>
+                        </ul>
+                      </contextmenu>
+                      <button
+                        type="button"
+                        className={`com__content__browse__item${
+                          selectedItem === 'cd-drive-d' ? ' selected' : ''
+                        }`}
+                        onMouseDown={e => {
+                          e.stopPropagation();
+                          selectItem('cd-drive-d');
+                        }}
+                      >
+                        <img
+                          src={cd}
+                          alt=""
+                          className="com__content__browse__img"
+                        />
+                        <span className="com__content__browse__text">
+                          CD 驱动器 (D:)
+                        </span>
+                      </button>
+                    </div>
                   </div>
                 </div>
                 <div className="com__content__browse__card com__content__browse__card--me">
@@ -607,62 +584,100 @@ function MyComputer({ onClose }) {
                     关于我
                   </div>
                   <div className="com__content__browse__card__content">
-                    <button
-                      type="button"
-                      className={`com__content__browse__item${
-                        selectedItem === 'about-github' ? ' selected' : ''
-                      }`}
-                      onMouseDown={e => {
-                        e.stopPropagation();
-                        selectItem('about-github');
-                      }}
-                      onDoubleClick={() =>
-                        window.open(
-                          'https://cnb.cool/SDCOM/winXP',
-                          '_blank',
-                          'noreferrer',
-                        )
-                      }
-                      onContextMenu={e =>
-                        openContextMenu(e, ABOUT_MENU, 'about-github')
-                      }
-                    >
-                      <img
-                        className="com__content__browse__img"
-                        src="https://blog.sdcom.top/upload/cnb-favicon.svg"
-                        alt=""
-                      />
-                      <span className="com__content__browse__text">CNB</span>
-                    </button>
-                    <button
-                      type="button"
-                      className={`com__content__browse__item${
-                        selectedItem === 'about-website' ? ' selected' : ''
-                      }`}
-                      onMouseDown={e => {
-                        e.stopPropagation();
-                        selectItem('about-website');
-                      }}
-                      onDoubleClick={() =>
-                        window.open(
-                          'https://www.sdcom.top',
-                          '_blank',
-                          'noreferrer',
-                        )
-                      }
-                      onContextMenu={e =>
-                        openContextMenu(e, ABOUT_MENU, 'about-website')
-                      }
-                    >
-                      <img
-                        className="com__content__browse__img"
-                        src="https://blog.sdcom.top/upload/tubiao.jpeg"
-                        alt=""
-                      />
-                      <span className="com__content__browse__text">
-                        我的网站
-                      </span>
-                    </button>
+                    <div data-contextmenu>
+                      <contextmenu>
+                        <ul>
+                          <li
+                            onClick={() =>
+                              window.open(
+                                'https://cnb.cool/SDCOM/winXP',
+                                '_blank',
+                                'noreferrer',
+                              )
+                            }
+                          >
+                            打开
+                          </li>
+                          <li className="disabled">在新窗口中打开</li>
+                          <li className="divider" />
+                          <li className="disabled">复制快捷方式</li>
+                          <li className="divider" />
+                          <li className="disabled">属性</li>
+                        </ul>
+                      </contextmenu>
+                      <button
+                        type="button"
+                        className={`com__content__browse__item${
+                          selectedItem === 'about-github' ? ' selected' : ''
+                        }`}
+                        onMouseDown={e => {
+                          e.stopPropagation();
+                          selectItem('about-github');
+                        }}
+                        onDoubleClick={() =>
+                          window.open(
+                            'https://cnb.cool/SDCOM/winXP',
+                            '_blank',
+                            'noreferrer',
+                          )
+                        }
+                      >
+                        <img
+                          className="com__content__browse__img"
+                          src="https://blog.sdcom.top/upload/cnb-favicon.svg"
+                          alt=""
+                        />
+                        <span className="com__content__browse__text">CNB</span>
+                      </button>
+                    </div>
+                    <div data-contextmenu>
+                      <contextmenu>
+                        <ul>
+                          <li
+                            onClick={() =>
+                              window.open(
+                                'https://www.sdcom.top',
+                                '_blank',
+                                'noreferrer',
+                              )
+                            }
+                          >
+                            打开
+                          </li>
+                          <li className="disabled">在新窗口中打开</li>
+                          <li className="divider" />
+                          <li className="disabled">复制快捷方式</li>
+                          <li className="divider" />
+                          <li className="disabled">属性</li>
+                        </ul>
+                      </contextmenu>
+                      <button
+                        type="button"
+                        className={`com__content__browse__item${
+                          selectedItem === 'about-website' ? ' selected' : ''
+                        }`}
+                        onMouseDown={e => {
+                          e.stopPropagation();
+                          selectItem('about-website');
+                        }}
+                        onDoubleClick={() =>
+                          window.open(
+                            'https://www.sdcom.top',
+                            '_blank',
+                            'noreferrer',
+                          )
+                        }
+                      >
+                        <img
+                          className="com__content__browse__img"
+                          src="https://blog.sdcom.top/upload/tubiao.jpeg"
+                          alt=""
+                        />
+                        <span className="com__content__browse__text">
+                          我的网站
+                        </span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -670,13 +685,6 @@ function MyComputer({ onClose }) {
           </div>
         </div>
       </div>
-      <ContextMenu
-        items={contextMenu.items}
-        position={{ x: contextMenu.x, y: contextMenu.y }}
-        onClose={closeContextMenu}
-        onClickItem={onClickContextMenuItem}
-        visible={contextMenu.visible}
-      />
     </Div>
   );
 }

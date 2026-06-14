@@ -110,7 +110,26 @@ const Window = memo(function ({
         className="app__header"
         ref={dragRef}
         onDoubleClick={onDoubleClickHeader}
+        data-contextmenu
       >
+        <contextmenu>
+          <ul>
+            <li className="disabled">还原</li>
+            <li className="disabled">移动</li>
+            <li className="disabled">大小</li>
+            <li className="disabled" onClick={_onMouseUpMinimize}>
+              最小化
+            </li>
+            <li
+              className={maximized ? 'disabled' : ''}
+              onClick={_onMouseUpMaximize}
+            >
+              最大化
+            </li>
+            <li className="divider" />
+            <li onClick={_onMouseUpClose}>关闭</li>
+          </ul>
+        </contextmenu>
         {!header.noIcon && (
           <img
             onDoubleClick={_onMouseUpClose}

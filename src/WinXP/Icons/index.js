@@ -145,7 +145,22 @@ function Icon({
       onDoubleClick={_onDoubleClick}
       ref={ref}
       style={style}
+      data-contextmenu
     >
+      <contextmenu>
+        <ul>
+          <li onClick={() => onDoubleClick(component)}>打开</li>
+          <li className="divider" />
+          <li className="disabled">剪切</li>
+          <li className="disabled">复制</li>
+          <li className="divider" />
+          <li className="disabled">创建快捷方式</li>
+          <li className="disabled">删除</li>
+          <li className="disabled">重命名</li>
+          <li className="divider" />
+          <li className="disabled">属性</li>
+        </ul>
+      </contextmenu>
       <div className={`${className}__img__container`}>
         <img src={icon} alt={title} className={`${className}__img`} />
       </div>

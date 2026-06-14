@@ -234,3 +234,74 @@
   );
   background: linear-gradient(to right, #3934ad, #00309c);
 }
+
+contextmenu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-family: Tahoma, 'Noto Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  z-index: 999999;
+  animation: linear 0.1s menuFade forwards;
+}
+contextmenu.visible {
+  display: block;
+}
+contextmenu ul {
+  list-style: none;
+  margin: 0;
+  padding: 2px;
+  border: 1px solid #7f9db9;
+  background-color: #fff;
+  box-shadow: 2px 2px 3px rgba(0,0,0,0.35);
+  min-width: 160px;
+}
+contextmenu ul li {
+  position: relative;
+  height: 20px;
+  line-height: 20px;
+  margin: 0;
+  padding: 0 24px 0 24px;
+  white-space: nowrap;
+  color: #000;
+  cursor: url(../assets/cursors/default.cur), default;
+}
+contextmenu ul li.disabled {
+  color: #808080;
+  pointer-events: none;
+}
+contextmenu ul li.divider {
+  height: 1px;
+  margin: 3px 2px;
+  background: #d6d2c2;
+  padding: 0;
+  pointer-events: none;
+}
+contextmenu ul li:not(.disabled):not(.divider):hover {
+  background: #2f71cd;
+  color: #fff;
+}
+contextmenu > ul ul {
+  top: -3px;
+  left: 100%;
+  position: absolute;
+}
+contextmenu > ul li.submenuholder > ul {
+  display: none;
+}
+contextmenu > ul li.submenuholder:hover > ul {
+  display: block;
+}
+contextmenu ul li.submenuholder::after {
+  content: '▶';
+  position: absolute;
+  right: 6px;
+  font-size: 8px;
+  line-height: 20px;
+}
+@keyframes menuFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
