@@ -414,14 +414,16 @@ function WinXP() {
       e.stopPropagation();
       const menu = template.cloneNode(true);
       menu.classList.add('visible');
-      const x = Math.min(e.clientX, window.innerWidth - 180);
-      const y = Math.min(
-        e.clientY,
-        window.innerHeight - menu.offsetHeight - 10,
-      );
+      menu.style.left = `${e.clientX}px`;
+      menu.style.top = `${e.clientY}px`;
+      ref.current.appendChild(menu);
+      const mw = menu.offsetWidth;
+      const mh = menu.offsetHeight;
+      const x = Math.min(e.clientX, window.innerWidth - mw - 2);
+      const y =
+        e.clientY + mh > window.innerHeight ? e.clientY - mh : e.clientY;
       menu.style.left = `${x}px`;
       menu.style.top = `${y}px`;
-      ref.current.appendChild(menu);
       menu.querySelectorAll('[data-action]').forEach(li => {
         if (li.classList.contains('disabled')) return;
         li.addEventListener('click', () => {
