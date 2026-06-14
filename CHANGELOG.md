@@ -10,7 +10,7 @@
 - bugfix: 修复右键菜单功能与控制台报错
   1. 修复控制台拖拽图标时报 `getBoundingClientRect` of undefined 的错误，加上了空引用安全防护
   2. 修复桌面图标右键菜单“打开”点击无响应的问题，完善了基于 `data-icon-id` 查找关联组件并触发打开的逻辑
-  3. 修复桌面右键“刷新”点击没有图标闪烁效果的问题，改为直接获取 `[data-contextmenu] img` 图标容器下的原生 `img`，并通过 JS 重置 `animation` 与重流（reflow）触发 CSS 关键帧动画闪烁
+  3. 修复并完善桌面右键“刷新”行为：除触发图标闪烁动画外，利用 `forwardRef` 和 `useImperativeHandle` 新增图标位置重置（重排）机制，与参考网站的重排列行为完全对齐
 - perf: 性能优化与包体积优化
   1. 将大包 Webamp 依赖从静态 import 改为动态懒加载 `import('webamp')`，首包构建体积减小约 850KB，使其被单独打包为 chunk，仅在打开 Winamp 时加载
   2. 优化生产构建流程，在 HTML 中引入 JS 与 CSS 时动态追加构建时间戳查询参数 `?v=timestamp`，解决 CDN 缓存无法自动失效的问题

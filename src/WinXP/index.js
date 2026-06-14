@@ -234,6 +234,7 @@ function WinXP() {
   const stateRef = useRef(state);
   stateRef.current = state;
   const onDoubleClickIconRef = useRef(null);
+  const iconsRef = useRef(null);
   const mouse = useMouse(ref);
   const [bootFading, setBootFading] = useState(false);
   const focusedAppId = getFocusedAppId();
@@ -446,6 +447,7 @@ function WinXP() {
             if (icon) onDoubleClickIconRef.current(icon.component);
           } else if (action === 'refresh') {
             dispatch({ type: FOCUS_DESKTOP });
+            iconsRef.current?.resetPositions();
             ref.current
               .querySelectorAll('[data-contextmenu] img')
               .forEach(img => {
@@ -595,6 +597,7 @@ function WinXP() {
       {state.powerState === POWER_STATE.START && (
         <>
           <Icons
+            ref={iconsRef}
             icons={state.icons}
             onMouseDown={onMouseDownIcon}
             onDoubleClick={onDoubleClickIcon}

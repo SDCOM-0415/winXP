@@ -1,25 +1,42 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  useImperativeHandle,
+  forwardRef,
+} from 'react';
 import styled from 'styled-components';
 
-function Icons({
-  icons,
-  onMouseDown,
-  onDoubleClick,
-  displayFocus,
-  mouse,
-  selecting,
-  setSelectedIcons,
-}) {
-  const [iconsRect, setIconsRect] = useState([]);
-  const [iconPositions, setIconPositions] = useState(() => {
-    const positions = {};
-    icons.forEach((icon, index) => {
-      positions[icon.id] = { x: 0, y: index * 75 };
-    });
-    return positions;
+function getInitialPositions(icons) {
+  const positions = {};
+  icons.forEach((icon, index) => {
+    positions[icon.id] = { x: 0, y: index * 75 };
   });
+  return positions;
+}
+
+const Icons = forwardRef(function Icons(
+  {
+    icons,
+    onMouseDown,
+    onDoubleClick,
+    displayFocus,
+    mouse,
+    selecting,
+    setSelectedIcons,
+  },
+  ref,
+) {
+  const [iconsRect, setIconsRect] = useState([]);
+  const [iconPositions, setIconPositions] = useState(() =>
+    getInitialPositions(icons),
+  );
   const [draggingId, setDraggingId] = useState(null);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+
+  useImperativeHandle(ref, () => ({
+    resetPositions: () => setIconPositions(getInitialPositions(icons)),
+  }));
 
   function measure(rect) {
     if (iconsRect.find(r => r.id === rect.id)) return;
@@ -112,7 +129,7 @@ function Icons({
       ))}
     </IconsContainer>
   );
-}
+});
 
 function Icon({
   title,

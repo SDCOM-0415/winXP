@@ -16,8 +16,8 @@
     "webamp": "^1.3.2-beta.2"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "REACT_APP_BUILD_DATE=$(TZ=Asia/Shanghai date '+%Y/%m/%d %H:%M:%S') GENERATE_SOURCEMAP=false react-app-rewired build && node -e \"const fs=require('fs'),f='build/index.html',t=Date.now(),h=fs.readFileSync(f,'utf8').replace(/(\\.js|\\.css)(?=[\\\"'])/g,'\\$1?v='+t);fs.writeFileSync(f,h)\"",
+    "start": "cp CHANGELOG.md src/ && react-app-rewired start",
+    "build": "cp CHANGELOG.md src/ && REACT_APP_BUILD_DATE=$(TZ=Asia/Shanghai date '+%Y/%m/%d %H:%M:%S') GENERATE_SOURCEMAP=false react-app-rewired build && node -e \"const fs=require('fs'),f='build/index.html',t=Date.now(),h=fs.readFileSync(f,'utf8').replace(/(\\.js|\\.css)(?=[\\\"'])/g,'\\$1?v='+t);fs.writeFileSync(f,h)\"",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "now-build": "react-app-rewired build",
