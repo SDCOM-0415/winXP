@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import Webamp from 'webamp';
 import { initialTracks } from './config';
 
 function Winamp({ onClose, onMinimize }) {
@@ -8,17 +7,12 @@ function Winamp({ onClose, onMinimize }) {
 
   useEffect(() => {
     const target = ref.current;
-    if (!target) {
-      return;
-    }
-
-    const instance = new Webamp({
-      initialTracks,
+    if (!target) return;
+    import('webamp').then(({ default: Webamp }) => {
+      const instance = new Webamp({ initialTracks });
+      webamp.current = instance;
+      instance.renderWhenReady(target);
     });
-    webamp.current = instance;
-
-    instance.renderWhenReady(target);
-
     return () => {
       if (webamp.current) {
         webamp.current.dispose();

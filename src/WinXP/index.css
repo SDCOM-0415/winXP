@@ -305,3 +305,10 @@ contextmenu ul li.submenuholder::after {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+@keyframes iconRefresh {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+.icon-refresh {
+  animation: iconRefresh 0.5s ease;
+}

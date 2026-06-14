@@ -233,6 +233,7 @@ function WinXP() {
   const ref = useRef(null);
   const stateRef = useRef(state);
   stateRef.current = state;
+  const onDoubleClickIconRef = useRef(null);
   const mouse = useMouse(ref);
   const [bootFading, setBootFading] = useState(false);
   const focusedAppId = getFocusedAppId();
@@ -281,12 +282,14 @@ function WinXP() {
   }
 
   function onDoubleClickIcon(component) {
-    playSystemSound(startSound);
     const appSetting = Object.values(appSettings).find(
       setting => setting.component === component,
     );
+    if (!appSetting) return;
+    playSystemSound(startSound);
     dispatch({ type: ADD_APP, payload: appSetting });
   }
+  onDoubleClickIconRef.current = onDoubleClickIcon;
 
   function getFocusedAppId() {
     if (state.focusing !== FOCUSING.WINDOW) return -1;
@@ -437,6 +440,20 @@ function WinXP() {
                 dispatch({ type: MINIMIZE_APP, payload: app.id });
               }
             });
+          } else if (action === 'open') {
+            const iconId = Number(li.dataset.iconId);
+            const icon = stateRef.current.icons.find(ic => ic.id === iconId);
+            if (icon) onDoubleClickIconRef.current(icon.component);
+          } else if (action === 'refresh') {
+            dispatch({ type: FOCUS_DESKTOP });
+            ref.current
+              .querySelectorAll('[data-contextmenu] img')
+              .forEach(img => {
+                img.style.animation = 'none';
+                void img.offsetHeight;
+                img.style.animation = 'iconRefresh 0.5s ease';
+                setTimeout(() => (img.style.animation = ''), 500);
+              });
           } else if (winId != null) {
             const app = stateRef.current.apps.find(a => a.id === winId);
             dispatch({ type: FOCUS_APP, payload: winId });
@@ -619,7 +636,7 @@ function WinXP() {
                 </ul>
               </li>
               <li className="divider" />
-              <li onClick={() => dispatch({ type: FOCUS_DESKTOP })}>刷新</li>
+              <li data-action="refresh">刷新</li>
               <li className="divider" />
               <li className="disabled">粘贴快捷方式</li>
               <li className="divider" />

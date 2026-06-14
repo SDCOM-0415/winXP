@@ -15,6 +15,13 @@ module.exports = function override(config, env) {
         plugin.options.filename = 'static/css/[name].css';
         plugin.options.chunkFilename = 'static/css/[name].chunk.css';
       }
+      if (
+        plugin.constructor &&
+        plugin.constructor.name === 'HtmlWebpackPlugin' &&
+        plugin.options
+      ) {
+        plugin.options.hash = true;
+      }
     });
   }
 

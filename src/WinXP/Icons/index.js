@@ -82,9 +82,11 @@ function Icons({
   }, [draggingId, dragOffset]);
 
   function handleIconMouseDown(e, id) {
+    const el = e.currentTarget;
+    if (!el) return;
     onMouseDown(id);
     setDraggingId(id);
-    const rect = e.currentTarget.getBoundingClientRect();
+    const rect = el.getBoundingClientRect();
     setDragOffset({
       x: e.clientX - rect.left,
       y: e.clientY - rect.top,
@@ -149,7 +151,9 @@ function Icon({
     >
       <contextmenu>
         <ul>
-          <li onClick={() => onDoubleClick(component)}>打开</li>
+          <li data-action="open" data-icon-id={id}>
+            打开
+          </li>
           <li className="divider" />
           <li className="disabled">剪切</li>
           <li className="disabled">复制</li>
