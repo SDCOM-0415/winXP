@@ -6,6 +6,22 @@
 
 ## 2026-06-14
 
+### 功能优化与 Bug 修复
+- bugfix: 修复右键菜单功能与控制台报错
+  1. 修复控制台拖拽图标时报 `getBoundingClientRect` of undefined 的错误，加上了空引用安全防护
+  2. 修复桌面图标右键菜单“打开”点击无响应的问题，完善了基于 `data-icon-id` 查找关联组件并触发打开的逻辑
+  3. 修复桌面右键“刷新”点击没有图标闪烁效果的问题，改为直接获取 `[data-contextmenu] img` 图标容器下的原生 `img`，并通过 JS 重置 `animation` 与重流（reflow）触发 CSS 关键帧动画闪烁
+- perf: 性能优化与包体积优化
+  1. 将大包 Webamp 依赖从静态 import 改为动态懒加载 `import('webamp')`，首包构建体积减小约 850KB，使其被单独打包为 chunk，仅在打开 Winamp 时加载
+  2. 优化生产构建流程，在 HTML 中引入 JS 与 CSS 时动态追加构建时间戳查询参数 `?v=timestamp`，解决 CDN 缓存无法自动失效的问题
+- feat: 任务栏右键菜单功能化与显示桌面逻辑完善
+  1. 修复任务栏窗口按钮（FooterWindowWithMenu）右键菜单无法点击的问题（改用 data-action + 原生 DOM 点击事件绑定，解决 cloneNode 丢失 React 绑定事件的问题）
+  2. 修复任务栏空白区域右键菜单“显示桌面”无法点击的问题
+  3. 完善了“还原、最小化、最大化、关闭”以及“显示桌面”的底层触发与窗口聚焦联动逻辑
+- style: 对齐任务栏窗口按钮尺寸与布局样式
+  1. 将任务栏程序按钮（footer__window）从 flex: 1 撑满修改为固定的 146px 宽度，与原版 Windows XP 及参考网站保持一致
+  2. 重构图标与文字为正常的 flex 流式排列，修复之前因绝对定位覆盖导致文字无法正常显示/被裁剪的问题
+
 ### 功能新增
 - `3cd81c3` — feat: 实现原生右键菜单系统，替换原有 ContextMenu 组件
   1. 移除外部 ContextMenu 组件依赖，改用原生 `<contextmenu>` 标签实现右键菜单
