@@ -7,6 +7,9 @@
 ## 2026-06-14
 
 ### 功能优化与 Bug 修复
+- bugfix: 解决更新日志应用外链外部文件时发生的编译报错
+  1. 修复由于 Create React App (CRA) 默认禁止在 `src/` 目录外部 import 文件所导致的 `falls outside of project src/ directory` 编译失败问题
+  2. 修改 `package.json` 的 `start` 与 `build` 脚本，在编译运行前通过 `cp CHANGELOG.md src/` 将根目录的最新的更新日志同步复制至 `src/`，并修改 `Changelog` 组件的导入路径，既解决编译限制，又实现了更新日志在应用内的同步更新展示
 - bugfix: 修复右键菜单功能与控制台报错
   1. 修复控制台拖拽图标时报 `getBoundingClientRect` of undefined 的错误，加上了空引用安全防护
   2. 修复桌面图标右键菜单“打开”点击无响应的问题，完善了基于 `data-icon-id` 查找关联组件并触发打开的逻辑
