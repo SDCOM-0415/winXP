@@ -4,6 +4,15 @@
 
 ---
 
+## 2026-06-27
+
+### 功能优化与 Bug 修复
+- bugfix: 修复桌面图标点击选中效果消失的问题
+  1. 根因：`_onMouseDown` 错误地将 `id`（数字）作为事件对象传入 `handleIconMouseDown`，导致 `e.currentTarget` 为 undefined，命中了之前加入的安全防护 `if (!el) return`，致使 `FOCUS_ICON` 未被 dispatch，选中高亮效果失效
+  2. 修复方式：将 `_onMouseDown` 改为正确传递原始事件对象 `e`
+
+---
+
 ## 2026-06-14
 
 ### 功能优化与 Bug 修复

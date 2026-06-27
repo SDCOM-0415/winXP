@@ -141,10 +141,12 @@ function Icon({
   component,
   measure,
   style,
+  isFocus,
+  displayFocus,
 }) {
   const ref = useRef(null);
   function _onMouseDown(e) {
-    onMouseDown(id);
+    onMouseDown(e);
   }
   function _onDoubleClick() {
     onDoubleClick(component);
