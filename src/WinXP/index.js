@@ -34,7 +34,6 @@ import {
   SET_PREFS,
   SCREENSAVER_START,
   SCREENSAVER_STOP,
-  SET_SCREENSAVER_CONFIG,
 } from './constants/actions';
 import {
   FOCUSING,

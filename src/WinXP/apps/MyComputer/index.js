@@ -42,7 +42,7 @@ import dropdown from 'assets/windowsIcons/dropdown.png';
 import windows from 'assets/windowsIcons/windows.png';
 
 function MyComputer({ onClose }) {
-  const { vfs, driveRoot, dispatch } = useVfs();
+  const { driveRoot, dispatch } = useVfs();
   const [selectedItem, setSelectedItem] = useState(null);
   const [location, setLocation] = useState(null);
   const [history, setHistory] = useState([]);
@@ -218,11 +218,6 @@ function MyComputer({ onClose }) {
         size: nodeSize(selectedNode),
       }
     : DRIVE_LIST_LABELS[selectedItem] || null;
-
-  function openSelection() {
-    if (!location || !selectedNode) return;
-    openEntry(selectedItem, selectedNode);
-  }
 
   function onClickOptionItem(item) {
     switch (item) {
