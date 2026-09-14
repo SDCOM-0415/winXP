@@ -165,10 +165,13 @@ const Window = memo(function ({
 const StyledWindow = styled(Window)`
   display: ${({ show }) => (show ? 'flex' : 'none')};
   position: absolute;
+  box-sizing: border-box;
   padding: 3px;
   padding: ${({ header }) => (header.invisible ? 0 : 3)}px;
   background-color: ${({ isFocus }) =>
     isFocus ? 'var(--window-frame)' : 'var(--window-frame-inactive)'};
+  border: var(--window-border-width) var(--window-border-style);
+  border-color: var(--window-border-color);
   flex-direction: column;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
@@ -179,41 +182,21 @@ const StyledWindow = styled(Window)`
     left: 0;
     top: 0;
     right: 0;
-    height: 28px;
+    height: var(--titlebar-bg-height);
     pointer-events: none;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
     overflow: hidden;
-  }
-  .header__bg:before {
-    content: '';
-    display: block;
-    position: absolute;
-    left: 0;
-    opacity: ${({ isFocus }) => (isFocus ? 1 : 0.3)};
-    background: var(--titlebar-glow-left);
-    top: 0;
-    bottom: 0;
-    width: 15px;
-  }
-  .header__bg:after {
-    content: '';
-    opacity: ${({ isFocus }) => (isFocus ? 1 : 0.4)};
-    display: block;
-    position: absolute;
-    right: 0;
-    background: var(--titlebar-glow-right);
-    top: 0;
-    bottom: 0;
-    width: 15px;
   }
   .app__header {
     display: ${({ header }) => (header.invisible ? 'none' : 'flex')};
-    height: 25px;
-    line-height: 25px;
-    font-weight: 700;
-    font-size: 12px;
-    font-family: 'Noto Sans';
+    height: var(--titlebar-height);
+    line-height: var(--titlebar-height);
+    padding: var(--titlebar-padding);
+    font-family: var(--titlebar-font);
+    font-weight: var(--titlebar-font-weight);
+    font-size: var(--titlebar-font-size);
+    letter-spacing: var(--titlebar-letter-spacing);
     text-shadow: var(--titlebar-text-shadow);
     color: var(--titlebar-text);
     position: absolute;

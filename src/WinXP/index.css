@@ -8,30 +8,58 @@
 .winxp-container {
   --titlebar-text: #fff;
   --titlebar-text-shadow: 1px 1px #000;
+  /* 窗口框架：基准有 1px 边框，且四边异色 */
+  --window-border-width: 1px;
+  --window-border-style: solid;
+  /* 标题栏几何：基准 appheader 为高 21px、内边距 5px 4px 2px 5px、字号 14px */
+  --titlebar-height: 21px;
+  --titlebar-font: 'Trebuchet MS', Tahoma, 'Noto Sans', sans-serif;
+  --titlebar-font-size: 14px;
+  --titlebar-font-weight: 600;
+  --titlebar-letter-spacing: 0.1px;
+  --titlebar-padding: 5px 4px 2px 5px;
+  /* 标题栏底色块高度：内容高 21px + 上下内边距 5+2px */
+  --titlebar-bg-height: 28px;
+  /* 窗口按钮：基准 captionbutton 为 19x19、圆角 3px */
+  --winbtn-size: 19px;
 }
 
 /* ---- Luna：Windows XP 默认蓝色 ---- */
 .winxp-container.theme-luna {
-  --window-frame: #0831d9;
+  --window-frame: #0021a9;
   --window-frame-inactive: #6582f5;
-  --titlebar-bg: linear-gradient(
-    to bottom,
-    #0058ee 0%,
-    #3593ff 4%,
-    #288eff 6%,
-    #127dff 8%,
-    #036ffc 10%,
-    #0262ee 14%,
-    #0057e5 20%,
-    #0054e3 24%,
-    #0055eb 56%,
-    #005bf5 66%,
-    #026afe 76%,
-    #0062ef 86%,
-    #0052d6 92%,
-    #0040ab 94%,
-    #003092 100%
-  );
+  /* 窗口边框四边异色：上 #0059e8 / 右 #00138c / 下 #00138c / 左 #0019cf */
+  --window-border-color: #0059e8 #00138c #00138c #0019cf;
+  /* 标题栏：基准为「两个角落径向高光 + 11 色标线性渐变」三层叠加，
+     角落高光本身就承担了边缘提亮，因此不再需要单独的侧边高光条 */
+  --titlebar-bg: radial-gradient(
+      circle at 0 20%,
+      #0032c1 0,
+      rgba(0, 50, 193, 0.53) 1%,
+      rgba(0, 50, 193, 0) 2%,
+      rgba(0, 50, 193, 0) 100%
+    ),
+    radial-gradient(
+      circle at 100% 20%,
+      #0032c1 0,
+      rgba(0, 50, 193, 0.53) 1%,
+      rgba(0, 50, 193, 0) 2%,
+      rgba(0, 50, 193, 0) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      #3d95ff 0,
+      #2b90ff 7%,
+      #0372ff 9%,
+      #0054e3 18%,
+      #0054e3 19%,
+      #0058ee 50%,
+      #026afe 80%,
+      #026afe 90%,
+      #0065fd 93%,
+      #71aaff 96%,
+      #c4d6ff 100%
+    );
   --titlebar-bg-inactive: linear-gradient(
     to bottom,
     #7697e7 0%,
@@ -48,8 +76,7 @@
     #7a93df 97%,
     #abbae3 100%
   );
-  --titlebar-glow-left: linear-gradient(to right, #1638e6 0%, transparent 100%);
-  --titlebar-glow-right: linear-gradient(to left, #1638e6 0%, transparent 100%);
+  --titlebar-text-shadow: 1px 1px #0a1883;
   /* 任务栏：对齐基准的 6 色标写法，顶部更亮、整体更通透 */
   --taskbar-bg: linear-gradient(
     to bottom,
@@ -95,24 +122,66 @@
   --taskbar-text: #fff;
   --winbtn-border: 1px solid #fff;
   --winbtn-radius: 3px;
-  --winbtn-shadow: inset 0 -1px 2px 1px #4646ff;
-  --winbtn-close-shadow: inset 0 -1px 2px 1px #da4600;
+  /* 基准 captionbutton：径向高光叠加实色底，配 inset 阴影做出玻璃感 */
+  --winbtn-shadow: inset 2px 2px 3px #7099f8, inset -1px -1px 2px #196df4;
+  --winbtn-shadow-hover: inset 2px 2px 3px #81aaff, inset -1px -1px 2px #3578ff;
+  --winbtn-close-shadow: inset 2px 2px 3px #ec937c, inset 1px 1px 2px #e34d22;
+  --winbtn-close-shadow-hover: inset 2px 2px 3px #ffa59b,
+    inset 1px 1px 2px #ff6857;
   --winbtn-bg: radial-gradient(
-    circle at 90% 90%,
-    #0054e9 0%,
-    #2263d5 55%,
-    #4479e4 70%,
-    #a3bbec 90%,
-    white 100%
-  );
+      at 10% 10%,
+      #9ab7fa 0,
+      rgba(154, 183, 250, 0.27) 30%,
+      rgba(154, 183, 250, 0) 60%
+    ),
+    radial-gradient(
+      at 85% 40%,
+      #2766f5 0,
+      rgba(39, 102, 245, 0.33) 40%,
+      rgba(39, 102, 245, 0) 50%
+    ),
+    #4778f6;
+  --winbtn-bg-hover: radial-gradient(
+      at 10% 10%,
+      #a4c2ff 0,
+      rgba(164, 194, 255, 0.27) 30%,
+      rgba(164, 194, 255, 0) 60%
+    ),
+    radial-gradient(
+      at 70% 70%,
+      #3eb4ff 0,
+      rgba(62, 180, 255, 0.33) 40%,
+      rgba(62, 180, 255, 0) 50%
+    ),
+    #317aff;
   --winbtn-close-bg: radial-gradient(
-    circle at 90% 90%,
-    #cc4600 0%,
-    #dc6527 55%,
-    #cd7546 70%,
-    #ffccb2 90%,
-    white 100%
-  );
+      at 10% 10%,
+      #f1ac9a 0,
+      rgba(241, 172, 154, 0.27) 30%,
+      rgba(241, 172, 154, 0) 60%
+    ),
+    radial-gradient(
+      at 85% 40%,
+      #e34d22 0,
+      rgba(227, 77, 34, 0.13) 40%,
+      rgba(227, 77, 34, 0) 50%
+    ),
+    #e66a4d;
+  --winbtn-close-bg-hover: radial-gradient(
+      at 10% 10%,
+      #ffb8b0 0,
+      rgba(255, 184, 176, 0.27) 30%,
+      rgba(255, 184, 176, 0) 60%
+    ),
+    radial-gradient(
+      at 70% 70%,
+      #ffa27d 0,
+      rgba(255, 162, 125, 0.13) 40%,
+      rgba(255, 162, 125, 0) 50%
+    ),
+    #ff6452;
+  /* 按钮底色（渐进色之上的实色层），供 CSS 绘制的还原图标取色 */
+  --winbtn-base-color: #4778f6;
   --winbtn-glyph: #fff;
 }
 
@@ -122,16 +191,17 @@
   --window-frame-inactive: #808080;
   --titlebar-bg: linear-gradient(to bottom, #0a246a 0%, #3a6ea5 100%);
   --titlebar-bg-inactive: linear-gradient(to bottom, #808080 0%, #b5b5b5 100%);
-  --titlebar-glow-left: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0) 0%,
-    transparent 100%
-  );
-  --titlebar-glow-right: linear-gradient(
-    to left,
-    rgba(0, 0, 0, 0) 0%,
-    transparent 100%
-  );
+  /* 经典主题没有四边异色边框，用统一深灰 */
+  --window-border-color: #808080;
+  /* 经典标题栏比 Luna 更矮更紧凑、字号更小且为粗体 */
+  --titlebar-height: 18px;
+  --titlebar-font: Tahoma, 'Noto Sans', sans-serif;
+  --titlebar-font-size: 11px;
+  --titlebar-font-weight: 700;
+  --titlebar-letter-spacing: 0;
+  --titlebar-padding: 2px 4px 1px 5px;
+  --titlebar-bg-height: 21px;
+  --winbtn-size: 16px;
   --taskbar-bg: #d4d0c8;
   --tray-bg: #d4d0c8;
   --tray-border-left: 1px solid #808080;
@@ -157,9 +227,14 @@
   --winbtn-border: 1px solid #d4d0c8;
   --winbtn-radius: 0;
   --winbtn-shadow: inset -1px -1px 0 #404040, inset 1px 1px 0 #fff;
+  --winbtn-shadow-hover: inset -1px -1px 0 #808080, inset 1px 1px 0 #fff;
   --winbtn-close-shadow: inset -1px -1px 0 #404040, inset 1px 1px 0 #fff;
+  --winbtn-close-shadow-hover: inset -1px -1px 0 #808080, inset 1px 1px 0 #fff;
   --winbtn-bg: #d4d0c8;
+  --winbtn-bg-hover: #e4e2db;
   --winbtn-close-bg: #d4d0c8;
+  --winbtn-close-bg-hover: #e4e2db;
+  --winbtn-base-color: #d4d0c8;
   --winbtn-glyph: #000;
 }
 

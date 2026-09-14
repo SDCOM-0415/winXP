@@ -69,6 +69,12 @@ import Icons from './Icons';
 import { DashedBox } from 'components';
 import windowsLogo from 'assets/windowsIcons/microsoft-windows-xp-seeklogo.png';
 import bootGif from 'assets/windowsIcons/boot.gif';
+import lunaClose from 'assets/ui/luna/close.png';
+import lunaMaximize from 'assets/ui/luna/maximize.png';
+import lunaMinimize from 'assets/ui/luna/minimize.png';
+import classicClose from 'assets/ui/classic/close_classic.png';
+import classicMaximize from 'assets/ui/classic/maximize_classic.png';
+import classicMinimize from 'assets/ui/classic/minimize_classic.png';
 import startupSound from 'assets/sounds/startup.wav';
 import startSound from 'assets/sounds/start.wav';
 import logoffSound from 'assets/sounds/logoff.wav';
@@ -680,6 +686,20 @@ function WinXP() {
     [state.vfs, state.prefs],
   );
 
+  // 窗口按钮的图标位图随主题切换。资源 URL 由打包器生成，只能从 JS 注入到 CSS 变量
+  const themeImageVars = useMemo(() => {
+    const isClassic = state.prefs.theme === 'classic';
+    return {
+      '--winbtn-close-image': `url(${isClassic ? classicClose : lunaClose})`,
+      '--winbtn-max-image': `url(${
+        isClassic ? classicMaximize : lunaMaximize
+      })`,
+      '--winbtn-min-image': `url(${
+        isClassic ? classicMinimize : lunaMinimize
+      })`,
+    };
+  }, [state.prefs.theme]);
+
   useEffect(() => {
     function handler(e) {
       document.querySelector('contextmenu.visible')?.remove();
@@ -937,6 +957,7 @@ function WinXP() {
         className={`winxp-container theme-${state.prefs.theme}${
           isFadeToGray ? ' fadetogray' : ''
         }`}
+        style={themeImageVars}
         data-desktop-menu
       >
         {state.powerState === POWER_STATE.BOOT && (
