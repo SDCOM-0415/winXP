@@ -100,9 +100,7 @@ export default function DisplayProperties({ onClose }) {
               <span>主题 (T):</span>
               <select
                 value={draft.theme}
-                onChange={e =>
-                  setDraft(d => ({ ...d, theme: e.target.value }))
-                }
+                onChange={e => setDraft(d => ({ ...d, theme: e.target.value }))}
               >
                 {THEMES.map(t => (
                   <option key={t.id} value={t.id}>
@@ -122,7 +120,8 @@ export default function DisplayProperties({ onClose }) {
           <div className="dp__panel">
             <p className="dp__hint">
               背景图片可在"我的电脑"中查看。要替换当前壁纸，请把图片放到{' '}
-              <code>src/assets/wallpapers/</code> 并覆盖 <code>wallpaper.jpg</code>。
+              <code>src/assets/wallpapers/</code> 并覆盖{' '}
+              <code>wallpaper.jpg</code>。
             </p>
             <div className="dp__note">
               <img src={wallpaper} alt="" className="dp__thumb" />

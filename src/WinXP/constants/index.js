@@ -72,12 +72,8 @@ export function loadPreferences() {
 export function savePreferences(prefs) {
   if (typeof window === 'undefined' || !window.localStorage) return;
   try {
-    window.localStorage.setItem(
-      PREFERENCES_STORAGE_KEY,
-      JSON.stringify(prefs),
-    );
+    window.localStorage.setItem(PREFERENCES_STORAGE_KEY, JSON.stringify(prefs));
   } catch (e) {
     /* 配额溢出等异常静默失败 */
   }
 }
-

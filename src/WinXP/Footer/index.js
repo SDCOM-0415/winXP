@@ -23,10 +23,18 @@ const getTime = () => {
 /** 悬停时显示的完整日期时间 */
 const getFullTime = () => {
   const d = new Date();
-  const week = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'][
-    d.getDay()
-  ];
-  return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日 ${week} ${getTime()}`;
+  const week = [
+    '星期日',
+    '星期一',
+    '星期二',
+    '星期三',
+    '星期四',
+    '星期五',
+    '星期六',
+  ][d.getDay()];
+  return `${d.getFullYear()}年${
+    d.getMonth() + 1
+  }月${d.getDate()}日 ${week} ${getTime()}`;
 };
 
 function Footer({

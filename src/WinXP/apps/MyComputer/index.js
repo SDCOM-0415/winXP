@@ -411,18 +411,14 @@ function MyComputer({ onClose }) {
                   创建一个新的文本文档
                 </li>
                 <li
-                  className={`link${
-                    canOperateOnSelection ? '' : ' disabled'
-                  }`}
+                  className={`link${canOperateOnSelection ? '' : ' disabled'}`}
                   onClick={() => canOperateOnSelection && renameSelected()}
                 >
                   <img src={renameIcon} alt="" />
                   重命名所选项目
                 </li>
                 <li
-                  className={`link${
-                    canOperateOnSelection ? '' : ' disabled'
-                  }`}
+                  className={`link${canOperateOnSelection ? '' : ' disabled'}`}
                   onClick={() => canOperateOnSelection && deleteSelected()}
                 >
                   <img src={deleteIcon} alt="" />

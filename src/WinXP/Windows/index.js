@@ -170,10 +170,8 @@ const StyledWindow = styled(Window)`
   background-color: ${({ isFocus }) =>
     isFocus ? 'var(--window-frame)' : 'var(--window-frame-inactive)'};
   flex-direction: column;
-  border-top-left-radius: ${({ header }) =>
-    header.invisible ? 0 : '8px'};
-  border-top-right-radius: ${({ header }) =>
-    header.invisible ? 0 : '8px'};
+  border-top-left-radius: ${({ header }) => (header.invisible ? 0 : '8px')};
+  border-top-right-radius: ${({ header }) => (header.invisible ? 0 : '8px')};
   .header__bg {
     background: ${({ isFocus }) =>
       isFocus ? 'var(--titlebar-bg)' : 'var(--titlebar-bg-inactive)'};

@@ -21,7 +21,7 @@ import paint from 'assets/windowsIcons/svg/Paint.svg';
 import AboutWindows from 'components/AboutWindows';
 import windowsLogo from 'assets/windowsIcons/WinXPlogo.svg';
 import changelogIcon from 'assets/windowsIcons/svg/Generic Text Document.svg';
-import displayIcon from 'assets/windowsIcons/svg/Display Properties.svg';
+import displayIcon from 'assets/fileIcons/displayprops.png';
 
 // const gen = () => {
 //   let id = -1;

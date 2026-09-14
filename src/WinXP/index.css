@@ -125,7 +125,11 @@
   --window-frame-inactive: #808080;
   --titlebar-bg: linear-gradient(to bottom, #0a246a 0%, #3a6ea5 100%);
   --titlebar-bg-inactive: linear-gradient(to bottom, #808080 0%, #b5b5b5 100%);
-  --titlebar-glow: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, transparent 100%);
+  --titlebar-glow: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 0%,
+    transparent 100%
+  );
   --taskbar-bg: #d4d0c8;
   --tray-bg: #d4d0c8;
   --tray-border-left: 1px solid #808080;
@@ -136,8 +140,7 @@
   --taskbar-btn-bg-focus: #c0bdb4;
   --taskbar-btn-bg-focus-hover: #cfccc4;
   --taskbar-btn-shadow: inset -1px -1px 0 #404040, inset 1px 1px 0 #fff;
-  --taskbar-btn-shadow-active: inset 1px 1px 0 #404040,
-    inset -1px -1px 0 #fff;
+  --taskbar-btn-shadow-active: inset 1px 1px 0 #404040, inset -1px -1px 0 #fff;
   --taskbar-text: #000;
   --titlebar-text: #fff;
   --titlebar-text-shadow: none;
@@ -155,11 +158,11 @@
   height: 100%;
   overflow: hidden;
   position: relative;
-  background: url(../assets/wallpapers/wallpaper.jpg) no-repeat center center fixed;
+  background: url(../assets/wallpapers/wallpaper.jpg) no-repeat center center
+    fixed;
   background-size: cover;
   cursor: url(../assets/cursors/default.cur), default;
 }
-
 
 .winxp-container a,
 .winxp-container a * {
@@ -236,7 +239,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 10% 10%, #94b4efff 0, #94b4ef00 25%, #94b4ef00 100%),
+  background: radial-gradient(
+      circle at 10% 10%,
+      #94b4efff 0,
+      #94b4ef00 25%,
+      #94b4ef00 100%
+    ),
     #5a7edc;
   z-index: 999999;
   display: grid;
@@ -249,7 +257,13 @@
   background-color: #00309c;
   border-bottom: 2px solid;
   border-image-slice: 1;
-  border-image-source: linear-gradient(to right, #5076d4 0%, #c7ddff 20%, #c7ddff 50%, #5076d4 100%);
+  border-image-source: linear-gradient(
+    to right,
+    #5076d4 0%,
+    #c7ddff 20%,
+    #c7ddff 50%,
+    #5076d4 100%
+  );
 }
 
 .scene_shutdownscreen__mid {
@@ -264,7 +278,13 @@
   background: linear-gradient(to right, #3934ad, #00309c);
   border-top: 2px solid;
   border-image-slice: 1;
-  border-image-source: linear-gradient(to right, #003399 0%, #f49439 20%, #f49439 50%, #003399 100%);
+  border-image-source: linear-gradient(
+    to right,
+    #003399 0%,
+    #f49439 20%,
+    #f49439 50%,
+    #003399 100%
+  );
 }
 
 .scene_shutdownscreen .shutdown-logo {
@@ -406,7 +426,7 @@ contextmenu ul {
   padding: 2px;
   border: 1px solid #7f9db9;
   background-color: #fff;
-  box-shadow: 2px 2px 3px rgba(0,0,0,0.35);
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.35);
   min-width: 160px;
 }
 contextmenu ul li {
@@ -453,12 +473,21 @@ contextmenu ul li.submenuholder::after {
   line-height: 20px;
 }
 @keyframes menuFade {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 @keyframes iconRefresh {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.2; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
 }
 .icon-refresh {
   animation: iconRefresh 0.5s ease;

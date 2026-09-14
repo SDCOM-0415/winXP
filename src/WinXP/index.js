@@ -335,7 +335,9 @@ const reducer = (state, action = { type: '' }) => {
       if (!state.prefs.screensaver || state.prefs.screensaver === 'none') {
         return state;
       }
-      return state.screensaverActive ? state : { ...state, screensaverActive: true };
+      return state.screensaverActive
+        ? state
+        : { ...state, screensaverActive: true };
     case SCREENSAVER_STOP:
       return state.screensaverActive
         ? { ...state, screensaverActive: false }
@@ -710,7 +712,8 @@ function WinXP() {
             } else if (winId != null) {
               const app = stateRef.current.apps.find(a => a.id === winId);
               dispatch({ type: FOCUS_APP, payload: winId });
-              if (action === 'close') dispatch({ type: DEL_APP, payload: winId });
+              if (action === 'close')
+                dispatch({ type: DEL_APP, payload: winId });
               else if (action === 'minimize')
                 dispatch({ type: MINIMIZE_APP, payload: winId });
               else if (action === 'maximize')
@@ -821,155 +824,155 @@ function WinXP() {
 
   return (
     <VfsProvider value={vfsValue}>
-    <Container
-      ref={ref}
-      onMouseUp={onMouseUpDesktop}
-      onMouseDown={onMouseDownDesktop}
-      onContextMenu={e => {
-        if (state.powerState !== POWER_STATE.START) {
-          e.preventDefault();
-          return;
-        }
-      }}
-      className={`winxp-container theme-${state.prefs.theme}${
-        isFadeToGray ? ' fadetogray' : ''
-      }`}
-      data-desktop-menu
-    >
-      {state.powerState === POWER_STATE.BOOT && (
-        <div className={`scene_bootscreen${bootFading ? ' fading' : ''}`}>
-          <img src={bootGif} alt="" />
-        </div>
-      )}
-      <Logon
-        onLogin={onLogon}
-        onShutdown={() =>
-          dispatch({ type: POWER_OFF, payload: POWER_STATE.SHUTTING_DOWN })
-        }
-        visible={state.powerState === POWER_STATE.LOGON}
-      />
-      {state.powerState === POWER_STATE.START && (
-        <>
-          <Icons
-            ref={iconsRef}
-            icons={state.icons}
-            onMouseDown={onMouseDownIcon}
-            onDoubleClick={onDoubleClickIcon}
-            displayFocus={state.focusing === FOCUSING.ICON}
-            appSettings={appSettings}
-            mouse={mouse}
-            selecting={state.selecting}
-            setSelectedIcons={onIconsSelected}
-          />
-          <DashedBox startPos={state.selecting} mouse={mouse} />
-          <Windows
-            apps={state.apps}
-            onMouseDown={onFocusApp}
-            onClose={onCloseApp}
-            onMinimize={onMinimizeWindow}
-            onMaximize={onMaximizeWindow}
-            focusedAppId={focusedAppId}
-          />
-          <Footer
-            apps={state.apps}
-            onMouseDownApp={onMouseDownFooterApp}
-            focusedAppId={focusedAppId}
-            onMouseDown={onMouseDownFooter}
-            onClickMenuItem={onClickMenuItem}
-          />
-          <contextmenu data-desktop-menu>
-            <ul>
-              <li className="submenuholder disabled">
-                排列图标
-                <ul>
-                  <li className="disabled">名称</li>
-                  <li className="disabled">大小</li>
-                  <li className="disabled">类型</li>
-                  <li className="disabled">修改时间</li>
-                  <li className="divider" />
-                  <li className="disabled">自动排列</li>
-                  <li className="disabled">按组排列</li>
-                  <li className="disabled">对齐到网格</li>
-                </ul>
-              </li>
-              <li className="divider" />
-              <li data-action="refresh">刷新</li>
-              <li className="divider" />
-              <li className="disabled">粘贴快捷方式</li>
-              <li className="divider" />
-              <li className="submenuholder">
-                新建
-                <ul>
-                  <li className="disabled">文件夹</li>
-                  <li className="disabled">快捷方式</li>
-                  <li className="divider" />
-                  <li className="disabled">文本文档</li>
-                </ul>
-              </li>
-              <li className="divider" />
-              <li
-                onClick={() => {
-                  dispatch({
-                    type: ADD_APP,
-                    payload: appSettings.DisplayProperties,
-                  });
-                }}
-              >
-                属性
-              </li>
-            </ul>
-          </contextmenu>
-        </>
-      )}
-      <Modal
-        onClose={onModalClose}
-        onClickButton={onClickModalButton}
-        mode={state.powerState}
-        visible={
-          state.powerState === POWER_STATE.TURN_OFF ||
-          state.powerState === POWER_STATE.LOG_OFF
-        }
-      />
-      {state.powerState === POWER_STATE.LOGGING_OFF && (
-        <div className="scene_logoff">
-          <div className="scene_logoff__top" />
-          <div className="scene_logoff__mid">
-            <img src={windowsLogo} alt="" className="scene_logoff__logo" />
-            <div className="scene_logoff__status">正在注销...</div>
+      <Container
+        ref={ref}
+        onMouseUp={onMouseUpDesktop}
+        onMouseDown={onMouseDownDesktop}
+        onContextMenu={e => {
+          if (state.powerState !== POWER_STATE.START) {
+            e.preventDefault();
+            return;
+          }
+        }}
+        className={`winxp-container theme-${state.prefs.theme}${
+          isFadeToGray ? ' fadetogray' : ''
+        }`}
+        data-desktop-menu
+      >
+        {state.powerState === POWER_STATE.BOOT && (
+          <div className={`scene_bootscreen${bootFading ? ' fading' : ''}`}>
+            <img src={bootGif} alt="" />
           </div>
-          <div className="scene_logoff__btm" />
-        </div>
-      )}
-      {state.powerState === POWER_STATE.SHUTTING_DOWN && (
-        <div className="scene_shutdownscreen">
-          <div className="scene_shutdownscreen__top" />
-          <div className="scene_shutdownscreen__mid">
-            <img src={windowsLogo} alt="" className="shutdown-logo" />
-            <div className="shutdown-text">正在关闭计算机...</div>
+        )}
+        <Logon
+          onLogin={onLogon}
+          onShutdown={() =>
+            dispatch({ type: POWER_OFF, payload: POWER_STATE.SHUTTING_DOWN })
+          }
+          visible={state.powerState === POWER_STATE.LOGON}
+        />
+        {state.powerState === POWER_STATE.START && (
+          <>
+            <Icons
+              ref={iconsRef}
+              icons={state.icons}
+              onMouseDown={onMouseDownIcon}
+              onDoubleClick={onDoubleClickIcon}
+              displayFocus={state.focusing === FOCUSING.ICON}
+              appSettings={appSettings}
+              mouse={mouse}
+              selecting={state.selecting}
+              setSelectedIcons={onIconsSelected}
+            />
+            <DashedBox startPos={state.selecting} mouse={mouse} />
+            <Windows
+              apps={state.apps}
+              onMouseDown={onFocusApp}
+              onClose={onCloseApp}
+              onMinimize={onMinimizeWindow}
+              onMaximize={onMaximizeWindow}
+              focusedAppId={focusedAppId}
+            />
+            <Footer
+              apps={state.apps}
+              onMouseDownApp={onMouseDownFooterApp}
+              focusedAppId={focusedAppId}
+              onMouseDown={onMouseDownFooter}
+              onClickMenuItem={onClickMenuItem}
+            />
+            <contextmenu data-desktop-menu>
+              <ul>
+                <li className="submenuholder disabled">
+                  排列图标
+                  <ul>
+                    <li className="disabled">名称</li>
+                    <li className="disabled">大小</li>
+                    <li className="disabled">类型</li>
+                    <li className="disabled">修改时间</li>
+                    <li className="divider" />
+                    <li className="disabled">自动排列</li>
+                    <li className="disabled">按组排列</li>
+                    <li className="disabled">对齐到网格</li>
+                  </ul>
+                </li>
+                <li className="divider" />
+                <li data-action="refresh">刷新</li>
+                <li className="divider" />
+                <li className="disabled">粘贴快捷方式</li>
+                <li className="divider" />
+                <li className="submenuholder">
+                  新建
+                  <ul>
+                    <li className="disabled">文件夹</li>
+                    <li className="disabled">快捷方式</li>
+                    <li className="divider" />
+                    <li className="disabled">文本文档</li>
+                  </ul>
+                </li>
+                <li className="divider" />
+                <li
+                  onClick={() => {
+                    dispatch({
+                      type: ADD_APP,
+                      payload: appSettings.DisplayProperties,
+                    });
+                  }}
+                >
+                  属性
+                </li>
+              </ul>
+            </contextmenu>
+          </>
+        )}
+        <Modal
+          onClose={onModalClose}
+          onClickButton={onClickModalButton}
+          mode={state.powerState}
+          visible={
+            state.powerState === POWER_STATE.TURN_OFF ||
+            state.powerState === POWER_STATE.LOG_OFF
+          }
+        />
+        {state.powerState === POWER_STATE.LOGGING_OFF && (
+          <div className="scene_logoff">
+            <div className="scene_logoff__top" />
+            <div className="scene_logoff__mid">
+              <img src={windowsLogo} alt="" className="scene_logoff__logo" />
+              <div className="scene_logoff__status">正在注销...</div>
+            </div>
+            <div className="scene_logoff__btm" />
           </div>
-          <div className="scene_shutdownscreen__btm" />
-        </div>
-      )}
-      {state.powerState === POWER_STATE.RESTARTING && (
-        <div className="scene_shutdownscreen">
-          <div className="scene_shutdownscreen__top" />
-          <div className="scene_shutdownscreen__mid">
-            <img src={windowsLogo} alt="" className="shutdown-logo" />
-            <div className="shutdown-text">正在重启计算机...</div>
+        )}
+        {state.powerState === POWER_STATE.SHUTTING_DOWN && (
+          <div className="scene_shutdownscreen">
+            <div className="scene_shutdownscreen__top" />
+            <div className="scene_shutdownscreen__mid">
+              <img src={windowsLogo} alt="" className="shutdown-logo" />
+              <div className="shutdown-text">正在关闭计算机...</div>
+            </div>
+            <div className="scene_shutdownscreen__btm" />
           </div>
-          <div className="scene_shutdownscreen__btm" />
-        </div>
-      )}
-      {state.powerState === POWER_STATE.SAFE_SHUTDOWN && (
-        <div className="scene_shutdownscreen safe">
-          <div className="scene_shutdownscreen__mid">
-            <div className="shutdown-text">你现在可以安全的关闭电源了...</div>
+        )}
+        {state.powerState === POWER_STATE.RESTARTING && (
+          <div className="scene_shutdownscreen">
+            <div className="scene_shutdownscreen__top" />
+            <div className="scene_shutdownscreen__mid">
+              <img src={windowsLogo} alt="" className="shutdown-logo" />
+              <div className="shutdown-text">正在重启计算机...</div>
+            </div>
+            <div className="scene_shutdownscreen__btm" />
           </div>
-        </div>
-      )}
-      {state.powerState === POWER_STATE.BSOD && (
-        <div className="scene_bsod" onDoubleClick={onRestartFromBsod}>
-          <pre>{`A problem has been detected and Windows has been shut down to prevent damage
+        )}
+        {state.powerState === POWER_STATE.SAFE_SHUTDOWN && (
+          <div className="scene_shutdownscreen safe">
+            <div className="scene_shutdownscreen__mid">
+              <div className="shutdown-text">你现在可以安全的关闭电源了...</div>
+            </div>
+          </div>
+        )}
+        {state.powerState === POWER_STATE.BSOD && (
+          <div className="scene_bsod" onDoubleClick={onRestartFromBsod}>
+            <pre>{`A problem has been detected and Windows has been shut down to prevent damage
 to your computer.
 
 The problem seems to be caused by the following file: UXTHEME.DLL
@@ -994,15 +997,15 @@ Technical information:
 *** UXTHEME.DLL - Address FDF23422 base at FDF24000, DateStamp 3d6dd67c
 
 Double-click this screen to restart.`}</pre>
-        </div>
-      )}
-      {state.screensaverActive && (
-        <Screensaver
-          type={state.prefs.screensaver}
-          onDismiss={() => dispatch({ type: SCREENSAVER_STOP })}
-        />
-      )}
-    </Container>
+          </div>
+        )}
+        {state.screensaverActive && (
+          <Screensaver
+            type={state.prefs.screensaver}
+            onDismiss={() => dispatch({ type: SCREENSAVER_STOP })}
+          />
+        )}
+      </Container>
     </VfsProvider>
   );
 }
