@@ -387,13 +387,15 @@ const Container = styled.footer`
     width: 146px;
     flex-shrink: 0;
     color: var(--taskbar-text);
-    border-radius: 2px;
-    margin-top: 2px;
-    padding: 0 8px;
-    height: 22px;
+    border-radius: 4px;
+    margin-top: 3px;
+    padding: 0 5px;
+    height: 23px;
     font-size: 11px;
-    background-color: var(--taskbar-btn-bg);
+    background: var(--taskbar-btn-bg);
     box-shadow: var(--taskbar-btn-shadow);
+    border: 1px solid;
+    border-color: var(--taskbar-btn-border-color);
     position: relative;
     display: flex;
     align-items: center;
@@ -413,8 +415,9 @@ const Container = styled.footer`
     text-overflow: ellipsis;
   }
   .footer__window.cover:hover {
-    background-color: var(--taskbar-btn-bg-hover);
-    box-shadow: var(--taskbar-btn-shadow);
+    background: var(--taskbar-btn-bg-hover);
+    box-shadow: var(--taskbar-btn-shadow-hover);
+    border-color: var(--taskbar-btn-border-color-hover);
   }
   .footer__window.cover:before {
     display: block;
@@ -428,18 +431,28 @@ const Container = styled.footer`
     box-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5);
   }
   .footer__window.cover:hover:active {
-    background-color: var(--taskbar-btn-bg-active);
+    background: var(--taskbar-btn-bg-active);
     box-shadow: var(--taskbar-btn-shadow-active);
+    border-color: var(--taskbar-btn-border-color-active);
   }
   .footer__window.focus:hover {
-    background-color: var(--taskbar-btn-bg-focus-hover);
+    background: var(--taskbar-btn-bg-focus-hover);
+    box-shadow: var(--taskbar-btn-shadow-focus-hover);
+    border-color: var(--taskbar-btn-border-color-focus-hover);
   }
   .footer__window.focus:hover:active {
-    background-color: var(--taskbar-btn-bg-active);
-  }
-  .footer__window.focus {
-    background-color: var(--taskbar-btn-bg-focus);
+    background: var(--taskbar-btn-bg-active);
     box-shadow: var(--taskbar-btn-shadow-active);
+    border-color: var(--taskbar-btn-border-color-active);
+  }
+  /* 激活态：基准为高 22px、上边距 4px，左边框用更深的蓝做出压入感 */
+  .footer__window.focus {
+    background: var(--taskbar-btn-bg-focus);
+    box-shadow: var(--taskbar-btn-shadow-active);
+    border-color: var(--taskbar-btn-border-color-active);
+    border-left-color: var(--taskbar-btn-border-left-active);
+    height: 22px;
+    margin-top: 4px;
   }
   .footer__time {
     margin: 0 5px;

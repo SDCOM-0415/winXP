@@ -7,6 +7,7 @@ import Winamp from './Winamp';
 import Paint from './Paint';
 import Changelog from './Changelog';
 import DisplayProperties from './DisplayProperties';
+import CommandPrompt from './CommandPrompt';
 import iePaper from 'assets/windowsIcons/svg/Internet Explorer 6.svg';
 import ie from 'assets/windowsIcons/svg/Internet Explorer 6.svg';
 import mine from 'assets/minesweeper/mine-icon.png';
@@ -22,6 +23,7 @@ import AboutWindows from 'components/AboutWindows';
 import windowsLogo from 'assets/windowsIcons/WinXPlogo.svg';
 import changelogIcon from 'assets/windowsIcons/svg/Generic Text Document.svg';
 import displayIcon from 'assets/fileIcons/displayprops.png';
+import cmdIcon from 'assets/fileIcons/cmd.png';
 
 // const gen = () => {
 //   let id = -1;
@@ -284,6 +286,25 @@ export const appSettings = {
     maximized: false,
     multiInstance: false,
   },
+  CommandPrompt: {
+    header: {
+      icon: cmdIcon,
+      title: '命令提示符',
+    },
+    component: CommandPrompt,
+    defaultSize: {
+      width: 660,
+      height: 400,
+    },
+    defaultOffset: {
+      x: 150,
+      y: 120,
+    },
+    resizable: true,
+    minimized: false,
+    maximized: false,
+    multiInstance: true,
+  },
 };
 
 export {
@@ -296,4 +317,5 @@ export {
   AboutWindows,
   Changelog,
   DisplayProperties,
+  CommandPrompt,
 };

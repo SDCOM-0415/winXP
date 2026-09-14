@@ -8,7 +8,6 @@
 .winxp-container {
   --titlebar-text: #fff;
   --titlebar-text-shadow: 1px 1px #000;
-  --window-padding: 3px;
 }
 
 /* ---- Luna：Windows XP 默认蓝色 ---- */
@@ -51,51 +50,48 @@
   );
   --titlebar-glow-left: linear-gradient(to right, #1638e6 0%, transparent 100%);
   --titlebar-glow-right: linear-gradient(to left, #1638e6 0%, transparent 100%);
+  /* 任务栏：对齐基准的 6 色标写法，顶部更亮、整体更通透 */
   --taskbar-bg: linear-gradient(
     to bottom,
-    #1f2f86 0,
-    #3165c4 3%,
-    #3682e5 6%,
-    #4490e6 10%,
-    #3883e5 12%,
-    #2b71e0 15%,
-    #2663da 18%,
-    #235bd6 20%,
-    #2258d5 23%,
-    #2157d6 38%,
-    #245ddb 54%,
-    #2562df 86%,
-    #245fdc 89%,
-    #2158d4 92%,
-    #1d4ec0 95%,
+    #3168d5 2%,
+    #4993e6 8%,
+    #245dd7 17%,
+    #2257d5 30%,
+    #2663e0 89%,
     #1941a5 98%
   );
+  /* 托盘：基准为双层渐变，第二层自右向左淡出，形成托盘区左缘的过渡 */
   --tray-bg: linear-gradient(
-    to bottom,
-    #0c59b9 1%,
-    #139ee9 6%,
-    #18b5f2 10%,
-    #139beb 14%,
-    #1290e8 19%,
-    #0d8dea 63%,
-    #0d9ff1 81%,
-    #0f9eed 88%,
-    #119be9 91%,
-    #1392e2 94%,
-    #137ed7 97%,
-    #095bc9 100%
-  );
-  --tray-border-left: 1px solid #1042af;
-  --tray-shadow: inset 1px 0 1px #18bbff;
-  --taskbar-btn-bg: #3c81f3;
-  --taskbar-btn-bg-hover: #53a3ff;
-  --taskbar-btn-bg-active: #1e52b7;
-  --taskbar-btn-bg-focus: #1e52b7;
-  --taskbar-btn-bg-focus-hover: #3576f3;
-  --taskbar-btn-shadow: inset -1px 0 rgba(0, 0, 0, 0.3),
-    inset 1px 1px 1px rgba(255, 255, 255, 0.2);
-  --taskbar-btn-shadow-active: inset 0 0 1px 1px rgba(0, 0, 0, 0.3),
-    inset 1px 0 1px rgba(0, 0, 0, 0.7);
+      to bottom,
+      #095bc9 2%,
+      #19b8f3 8%,
+      #1290e8 17%,
+      #1290e9 30%,
+      #0f9eef 89%,
+      #095bc9 98%
+    ),
+    linear-gradient(to left, #0f83e0 0, rgba(15, 131, 224, 0) 15%);
+  --tray-border-left: none;
+  --tray-shadow: inset 2px 0 0 rgba(0, 197, 255, 0.53), -1px 0 0 #0b3051;
+  /* 任务栏按钮：基准用渐变 + 多层 inset 阴影 + 四边异色边框做出立体浮起感 */
+  --taskbar-btn-bg: linear-gradient(to bottom, #3a80f3, #3980f4);
+  --taskbar-btn-bg-hover: linear-gradient(to bottom, #59a4ff, #55a0ff);
+  --taskbar-btn-bg-active: linear-gradient(to bottom, #1951b9, #1a50b8);
+  --taskbar-btn-bg-focus: linear-gradient(to bottom, #1951b9, #1a50b8);
+  --taskbar-btn-bg-focus-hover: linear-gradient(to bottom, #326fea, #326ee9);
+  --taskbar-btn-shadow: inset 1px 1px 2px #68a7f7, inset 0 -2px 2px #316fe8,
+    inset 1px 0 0 #6da4f6;
+  --taskbar-btn-shadow-hover: inset 1px 1px 3px #8bc0ff, inset 1px 0 0 #9fccff,
+    inset -1px -1px 3px #2a81ff;
+  --taskbar-btn-shadow-active: inset 1px 1px 0 #1848a6, inset 0 -2px 2px #2156b7,
+    0 -1px 0 #2266d5;
+  --taskbar-btn-shadow-focus-hover: inset 1px 1px 1px #1b5bd3,
+    inset 2px 2px 2px #3f7ae8, 0 -1px 0 #2266d5;
+  --taskbar-btn-border-color: #3172da #2653b8 #2653b8 #3172da;
+  --taskbar-btn-border-color-hover: #2e60b3 #1f408c #1f408c #2e60b3;
+  --taskbar-btn-border-color-active: #123d94;
+  --taskbar-btn-border-left-active: #082970;
+  --taskbar-btn-border-color-focus-hover: #1c51c2 #0c3cae #0c3cae #1c51c2;
   --taskbar-text: #fff;
   --winbtn-border: 1px solid #fff;
   --winbtn-radius: 3px;
@@ -146,7 +142,15 @@
   --taskbar-btn-bg-focus: #c0bdb4;
   --taskbar-btn-bg-focus-hover: #cfccc4;
   --taskbar-btn-shadow: inset -1px -1px 0 #404040, inset 1px 1px 0 #fff;
+  --taskbar-btn-shadow-hover: inset -1px -1px 0 #808080, inset 1px 1px 0 #fff;
   --taskbar-btn-shadow-active: inset 1px 1px 0 #404040, inset -1px -1px 0 #fff;
+  --taskbar-btn-shadow-focus-hover: inset 1px 1px 0 #808080,
+    inset -1px -1px 0 #fff;
+  --taskbar-btn-border-color: #d4d0c8;
+  --taskbar-btn-border-color-hover: #d4d0c8;
+  --taskbar-btn-border-color-active: #d4d0c8;
+  --taskbar-btn-border-left-active: #d4d0c8;
+  --taskbar-btn-border-color-focus-hover: #d4d0c8;
   --taskbar-text: #000;
   --titlebar-text: #fff;
   --titlebar-text-shadow: none;

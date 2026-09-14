@@ -751,6 +751,8 @@ function WinXP() {
       dispatch({ type: ADD_APP, payload: appSettings.Winamp });
     } else if (o === '画图') {
       dispatch({ type: ADD_APP, payload: appSettings.Paint });
+    } else if (o === '命令提示符') {
+      dispatch({ type: ADD_APP, payload: appSettings.CommandPrompt });
     } else if (o === '注销') {
       dispatch({ type: POWER_OFF, payload: POWER_STATE.LOG_OFF });
     } else if (o === '关闭计算机') {
