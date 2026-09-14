@@ -59,6 +59,51 @@
 - `WindowDropDown` 回传的是 `item.text` 原文，带省略号的必须连省略号匹配（`打开...`）。
 - 右键菜单项由全局处理器 `cloneNode` 生成，**React onClick 会丢**，必须用 `data-*` + 原生监听。
 
+## 对照基准（Reborn XP）做视觉对齐的方法
+
+**基准站的结构**（爬取副本在 `~/Downloads/xp.quenq.com`，19MB）：
+- `xp.quenq.com` **顶层打开会跳走**（index.html 内联脚本，仅 localhost / iframe 内放行），
+  且**爬取副本跑不起来**（`window.shell` 未初始化，`js/shell.js` 等 ESM 模块没加载）。
+  真实模拟器只活在 `quenq.com/apps/reborn-xp` 的**跨域 iframe** 里，脚本注入不进去，
+  还会停在它自己的 OOBE 引导页 → **不要指望用界面自动化做比对**
+- 正确做法：**把它的 CSS/HTML 当规格书读**，提取精确色值/尺寸再在自研代码里实现
+
+**它的 CSS 是分层写的，对齐时必须两边都看**：
+| 文件 | 作用 |
+|---|---|
+| `css/{luna,classic}/modules.css` | 布局与几何（尺寸、边距、圆角、字体） |
+| `css/{luna,classic}/blue.css` 等主题文件 | 该主题的**配色覆盖** |
+| `css/applayouts.css`（55KB） | 各应用的内部布局 |
+| `css/{luna,classic}/controls.css` | 控件（滚动条、按钮、对话框、气泡） |
+| `css/scenes.css` | 开机/关机/登录等场景 |
+| `css/colors.css` | 调色板变量 |
+
+选择器是**自定义元素名**（`taskbar` / `taskbar startbtn` / `taskbar taskarea task` /
+`taskbar trayarea` / `startmenu`），**没有点号前缀**。
+注意 `modules.css` 的默认主题其实是 **metallic 银灰**，蓝色是 `blue.css` 覆盖上去的。
+
+已对齐：任务栏背景、托盘区、任务栏按钮（含几何）。
+待对齐：窗口标题栏/边框、开始菜单、我的电脑/资源管理器、控件、各应用布局。
+
+## 新增校验：CSS 变量引用 ↔ 定义一致性
+
+改过 `index.css` 的变量或组件里的 `var(--x)` 之后，**务必跑一次集合比对**：
+提取 `index.css` 中所有 `--var:` 定义，与各组件里所有 `var(--var)` 引用做差集。
+"引用了未定义变量"会让整片样式静默失效，是肉眼最难发现、也最容易被当成
+"还原度不够"的一类问题（已踩过：标题栏高光变量）。
+
+## 新增一个应用的模板（6 步，已实践）
+
+以命令提示符为例：
+1. 建 `src/WinXP/apps/<Name>/index.js`，组件收 `{ onClose, injectProps }`
+2. 需要菜单栏就加 `dropDownData.js`；XP 里没有菜单栏的应用（如 cmd）就不加
+3. `apps/index.js` 里 import 组件 + 图标 → 加 `appSettings` 条目 → 加进末尾 export
+4. `WinXP/index.js` 的 `onClickMenuItem` 加 `else if` 分支，
+   **判断字符串必须与 `FooterMenuData.js` 里的 `text` 完全一致**
+5. 窗口图标一律用 `assets/fileIcons/*.png`，**别用 `windowsIcons/svg/` 的巨型 SVG**
+6. 要读写虚拟磁盘就 `const { driveRoot, dispatch } = useVfs()`，
+   写操作 dispatch `VFS_*` action，数据会自动持久化
+
 ## npm 审计与依赖漏洞
 
 - **本机 `npm audit` 不可用**：`~/.npmrc` 指向 `registry.npmmirror.com`，
