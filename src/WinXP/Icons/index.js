@@ -36,6 +36,32 @@ const Icons = forwardRef(function Icons(
 
   useImperativeHandle(ref, () => ({
     resetPositions: () => setIconPositions(getInitialPositions(icons)),
+    /** 按名称排序并重新排布 */
+    arrangeByName: () => {
+      const sorted = [...icons].sort((a, b) =>
+        String(a.title).localeCompare(String(b.title), 'zh-Hans-CN'),
+      );
+      const next = {};
+      sorted.forEach((icon, index) => {
+        next[icon.id] = { x: 0, y: index * 75 };
+      });
+      setIconPositions(next);
+    },
+    /** 保持当前相对位置，对齐到网格 */
+    autoArrange: () => {
+      setIconPositions(prev => {
+        const ordered = [...icons].sort((a, b) => {
+          const pa = prev[a.id] || { x: 0, y: 0 };
+          const pb = prev[b.id] || { x: 0, y: 0 };
+          return pa.x - pb.x || pa.y - pb.y;
+        });
+        const next = {};
+        ordered.forEach((icon, index) => {
+          next[icon.id] = { x: 0, y: index * 75 };
+        });
+        return next;
+      });
+    },
   }));
 
   function measure(rect) {
@@ -98,6 +124,24 @@ const Icons = forwardRef(function Icons(
     };
   }, [draggingId, dragOffset]);
 
+  // 新出现的图标（例如桌面右键新建出来的）还没有坐标，追加到首列末尾
+  useEffect(() => {
+    setIconPositions(prev => {
+      const missing = icons.filter(icon => prev[icon.id] === undefined);
+      if (!missing.length) return prev;
+      const next = { ...prev };
+      let maxY = Object.values(prev).reduce(
+        (m, pos) => Math.max(m, pos.y),
+        -75,
+      );
+      missing.forEach(icon => {
+        maxY += 75;
+        next[icon.id] = { x: 0, y: maxY };
+      });
+      return next;
+    });
+  }, [icons]);
+
   function handleIconMouseDown(e, id) {
     const el = e.currentTarget;
     if (!el) return;
@@ -118,7 +162,7 @@ const Icons = forwardRef(function Icons(
           {...icon}
           displayFocus={displayFocus}
           onMouseDown={e => handleIconMouseDown(e, icon.id)}
-          onDoubleClick={onDoubleClick}
+          onDoubleClick={() => onDoubleClick(icon)}
           measure={measure}
           style={{
             position: 'absolute',
@@ -138,18 +182,18 @@ function Icon({
   icon,
   className,
   id,
-  component,
   measure,
   style,
   isFocus,
   displayFocus,
+  vfsPath,
 }) {
   const ref = useRef(null);
   function _onMouseDown(e) {
     onMouseDown(e);
   }
   function _onDoubleClick() {
-    onDoubleClick(component);
+    onDoubleClick();
   }
   useEffect(() => {
     const target = ref.current;
@@ -178,8 +222,24 @@ function Icon({
           <li className="disabled">复制</li>
           <li className="divider" />
           <li className="disabled">创建快捷方式</li>
-          <li className="disabled">删除</li>
-          <li className="disabled">重命名</li>
+          <li
+            className={vfsPath ? '' : 'disabled'}
+            data-vfs="delete"
+            data-drive={vfsPath ? vfsPath.driveId : ''}
+            data-path={JSON.stringify(vfsPath ? vfsPath.segments : [])}
+            data-name={vfsPath ? vfsPath.name : ''}
+          >
+            删除
+          </li>
+          <li
+            className={vfsPath ? '' : 'disabled'}
+            data-vfs="rename"
+            data-drive={vfsPath ? vfsPath.driveId : ''}
+            data-path={JSON.stringify(vfsPath ? vfsPath.segments : [])}
+            data-name={vfsPath ? vfsPath.name : ''}
+          >
+            重命名
+          </li>
           <li className="divider" />
           <li className="disabled">属性</li>
         </ul>

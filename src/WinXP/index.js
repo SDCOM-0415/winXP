@@ -30,6 +30,7 @@ import {
   VFS_DELETE,
   VFS_RENAME,
   VFS_RESET,
+  SYNC_DESKTOP_ICONS,
   SET_THEME,
   SET_PREFS,
   SCREENSAVER_START,
@@ -55,6 +56,9 @@ import {
   uniqueName,
   nameExists,
   isEditableText,
+  listChildren,
+  resolveIcon,
+  iconForFileName,
 } from './vfs';
 import Screensaver from './Screensaver';
 import { defaultIconState, defaultAppState, appSettings } from './apps';
@@ -97,6 +101,17 @@ function playSystemSound(src) {
     audio.currentTime = 0;
     audio.play().catch(() => {});
   } catch (e) {}
+}
+
+/** 桌面在虚拟磁盘中的位置：C:\Documents and Settings\Default User\Desktop */
+const DESKTOP_PATH = {
+  driveId: 'C:',
+  segments: ['Documents and Settings', 'Default User', 'Desktop'],
+};
+
+/** 桌面目录里的快捷方式已由 state.icons 里的应用图标代表，不重复显示 */
+function isShortcut(name) {
+  return /\.lnk$/i.test(name);
 }
 
 /** 对指定磁盘的树做不可变更新，返回新的 vfs 对象 */
@@ -323,6 +338,24 @@ const reducer = (state, action = { type: '' }) => {
     }
     case VFS_RESET:
       return { ...state, vfs: createInitialVfs() };
+    // 桌面图标 = 内置应用图标 + 桌面目录里的真实条目
+    case SYNC_DESKTOP_ICONS: {
+      const focusedIds = new Set(
+        state.icons.filter(icon => icon.isFocus).map(icon => icon.id),
+      );
+      const appIcons = defaultIconState.map(icon => ({
+        ...icon,
+        isFocus: focusedIds.has(icon.id),
+      }));
+      const fileIcons = action.payload.map(({ name, node }) => ({
+        id: `vfs:${name}`,
+        icon: resolveIcon(node.icon || iconForFileName(name), node.type),
+        title: name,
+        vfsPath: { ...DESKTOP_PATH, name },
+        isFocus: focusedIds.has(`vfs:${name}`),
+      }));
+      return { ...state, icons: [...appIcons, ...fileIcons] };
+    }
     // ---- 主题与偏好 ----
     case SET_THEME:
       return { ...state, prefs: { ...state.prefs, theme: action.payload } };
@@ -353,6 +386,7 @@ function WinXP() {
   stateRef.current = state;
   const onDoubleClickIconRef = useRef(null);
   const iconsRef = useRef(null);
+  const flashIconsRef = useRef(null);
   const mouse = useMouse(ref);
   const [bootFading, setBootFading] = useState(false);
   const focusedAppId = getFocusedAppId();
@@ -400,15 +434,57 @@ function WinXP() {
     dispatch({ type: FOCUS_ICON, payload: id });
   }
 
-  function onDoubleClickIcon(component) {
+  function onDoubleClickIcon(icon) {
+    if (!icon) return;
+    playSystemSound(startSound);
+
+    // 桌面目录里的真实条目：文件夹用"我的电脑"打开，文本文件用记事本打开
+    if (icon.vfsPath) {
+      const { driveId, segments, name } = icon.vfsPath;
+      const node = getNode(stateRef.current.vfs.drives[driveId], [
+        ...segments,
+        name,
+      ]);
+      if (!node) return;
+      if (node.type === 'directory') {
+        dispatch({
+          type: ADD_APP,
+          payload: {
+            ...appSettings['My Computer'],
+            injectProps: {
+              startPath: { driveId, segments: [...segments, name] },
+            },
+          },
+        });
+      } else if (isEditableText(node)) {
+        dispatch({
+          type: ADD_APP,
+          payload: {
+            ...appSettings.Notepad,
+            injectProps: { filePath: { driveId, segments, name } },
+          },
+        });
+      }
+      return;
+    }
+
     const appSetting = Object.values(appSettings).find(
-      setting => setting.component === component,
+      setting => setting.component === icon.component,
     );
     if (!appSetting) return;
-    playSystemSound(startSound);
     dispatch({ type: ADD_APP, payload: appSetting });
   }
   onDoubleClickIconRef.current = onDoubleClickIcon;
+
+  // 排列/刷新后让图标闪一下。右键菜单是克隆出来的节点，只能通过 ref 复用这段动画
+  flashIconsRef.current = () => {
+    ref.current?.querySelectorAll('[data-contextmenu] img').forEach(img => {
+      img.style.animation = 'none';
+      void img.offsetHeight;
+      img.style.animation = 'iconRefresh 0.5s ease';
+      setTimeout(() => (img.style.animation = ''), 500);
+    });
+  };
 
   function getFocusedAppId() {
     if (state.focusing !== FOCUSING.WINDOW) return -1;
@@ -534,6 +610,28 @@ function WinXP() {
   useEffect(() => {
     saveVfs(state.vfs);
   }, [state.vfs]);
+
+  // 桌面目录的内容签名：只有它变了才需要重建图标，避免无谓重渲染
+  const desktopSignature = useMemo(() => {
+    const node = getNode(state.vfs.drives['C:'], DESKTOP_PATH.segments);
+    return listChildren(node)
+      .filter(({ name }) => !isShortcut(name))
+      .map(
+        ({ name, node: child }) =>
+          `${name}|${child.type}|${child.icon || ''}|${child.modified || ''}`,
+      )
+      .join('\n');
+  }, [state.vfs]);
+
+  // 把桌面目录里的条目同步成桌面图标，"新建文件夹/文本文档"后立刻能看到
+  useEffect(() => {
+    const node = getNode(
+      stateRef.current.vfs.drives['C:'],
+      DESKTOP_PATH.segments,
+    );
+    const entries = listChildren(node).filter(({ name }) => !isShortcut(name));
+    dispatch({ type: SYNC_DESKTOP_ICONS, payload: entries });
+  }, [desktopSignature]);
 
   // 主题、屏保、音量等偏好落盘
   useEffect(() => {
@@ -694,20 +792,21 @@ function WinXP() {
                 }
               });
             } else if (action === 'open') {
-              const iconId = Number(li.dataset.iconId);
-              const icon = stateRef.current.icons.find(ic => ic.id === iconId);
-              if (icon) onDoubleClickIconRef.current(icon.component);
+              // 图标 id 可能是数字（内置应用）或字符串（桌面上的 vfs:xxx），统一按字符串比对
+              const iconId = li.dataset.iconId;
+              const icon = stateRef.current.icons.find(
+                ic => String(ic.id) === String(iconId),
+              );
+              if (icon) onDoubleClickIconRef.current(icon);
             } else if (action === 'refresh') {
               dispatch({ type: FOCUS_DESKTOP });
               iconsRef.current?.resetPositions();
-              ref.current
-                .querySelectorAll('[data-contextmenu] img')
-                .forEach(img => {
-                  img.style.animation = 'none';
-                  void img.offsetHeight;
-                  img.style.animation = 'iconRefresh 0.5s ease';
-                  setTimeout(() => (img.style.animation = ''), 500);
-                });
+              flashIconsRef.current();
+            } else if (action === 'arrange-name' || action === 'auto-arrange') {
+              dispatch({ type: FOCUS_DESKTOP });
+              if (action === 'arrange-name') iconsRef.current?.arrangeByName();
+              else iconsRef.current?.autoArrange();
+              flashIconsRef.current();
             } else if (winId != null) {
               const app = stateRef.current.apps.find(a => a.id === winId);
               dispatch({ type: FOCUS_APP, payload: winId });
@@ -883,17 +982,17 @@ function WinXP() {
             />
             <contextmenu data-desktop-menu>
               <ul>
-                <li className="submenuholder disabled">
+                <li className="submenuholder">
                   排列图标
                   <ul>
-                    <li className="disabled">名称</li>
+                    <li data-action="arrange-name">名称</li>
                     <li className="disabled">大小</li>
                     <li className="disabled">类型</li>
                     <li className="disabled">修改时间</li>
                     <li className="divider" />
-                    <li className="disabled">自动排列</li>
+                    <li data-action="auto-arrange">自动排列</li>
                     <li className="disabled">按组排列</li>
-                    <li className="disabled">对齐到网格</li>
+                    <li data-action="auto-arrange">对齐到网格</li>
                   </ul>
                 </li>
                 <li className="divider" />
@@ -904,10 +1003,22 @@ function WinXP() {
                 <li className="submenuholder">
                   新建
                   <ul>
-                    <li className="disabled">文件夹</li>
+                    <li
+                      data-vfs="new-folder"
+                      data-drive={DESKTOP_PATH.driveId}
+                      data-path={JSON.stringify(DESKTOP_PATH.segments)}
+                    >
+                      文件夹
+                    </li>
                     <li className="disabled">快捷方式</li>
                     <li className="divider" />
-                    <li className="disabled">文本文档</li>
+                    <li
+                      data-vfs="new-file"
+                      data-drive={DESKTOP_PATH.driveId}
+                      data-path={JSON.stringify(DESKTOP_PATH.segments)}
+                    >
+                      文本文档
+                    </li>
                   </ul>
                 </li>
                 <li className="divider" />

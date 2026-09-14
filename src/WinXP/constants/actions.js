@@ -21,6 +21,9 @@ export const VFS_DELETE = 'VFS_DELETE';
 export const VFS_RENAME = 'VFS_RENAME';
 export const VFS_RESET = 'VFS_RESET';
 
+// ---- 桌面图标（应用图标 + 虚拟磁盘桌面目录里的条目） ----
+export const SYNC_DESKTOP_ICONS = 'SYNC_DESKTOP_ICONS';
+
 // ---- 主题与偏好 ----
 export const SET_THEME = 'SET_THEME';
 export const SET_PREFS = 'SET_PREFS';

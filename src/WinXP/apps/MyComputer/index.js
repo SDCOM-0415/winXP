@@ -41,10 +41,13 @@ import cd from 'assets/windowsIcons/svg/DVD alt.svg';
 import dropdown from 'assets/windowsIcons/dropdown.png';
 import windows from 'assets/windowsIcons/windows.png';
 
-function MyComputer({ onClose }) {
+function MyComputer({ onClose, injectProps }) {
   const { driveRoot, dispatch } = useVfs();
+  // 从桌面上双击文件夹进来时，直接定位到该目录
+  const startPath =
+    injectProps && injectProps.startPath ? injectProps.startPath : null;
   const [selectedItem, setSelectedItem] = useState(null);
-  const [location, setLocation] = useState(null);
+  const [location, setLocation] = useState(startPath);
   const [history, setHistory] = useState([]);
   const [future, setFuture] = useState([]);
   const [collapsed, setCollapsed] = useState({
