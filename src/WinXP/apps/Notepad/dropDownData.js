@@ -1,22 +1,18 @@
 const File = [
   {
     type: 'item',
-    disable: true,
     text: '新建',
   },
   {
     type: 'item',
-    disable: true,
     text: '打开...',
   },
   {
     type: 'item',
-    disable: true,
     text: '保存',
   },
   {
     type: 'item',
-    disable: true,
     text: '另存为...',
   },
   {

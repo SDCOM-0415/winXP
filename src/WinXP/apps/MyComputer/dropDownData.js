@@ -7,12 +7,10 @@ export const File = [
   {
     type: 'item',
     text: '删除',
-    disable: true,
   },
   {
     type: 'item',
     text: '重命名',
-    disable: true,
   },
   {
     type: 'item',

@@ -64,8 +64,8 @@ export default styled(HeaderButtons)`
     position: relative;
     width: 21px;
     height: 21px;
-    border: 1px solid #fff;
-    border-radius: 3px;
+    border: var(--winbtn-border);
+    border-radius: var(--winbtn-radius);
     flex-shrink: 0;
     cursor: url(${cursorLink}), pointer;
     &:hover {
@@ -76,15 +76,8 @@ export default styled(HeaderButtons)`
     }
   }
   .header__button--minimize {
-    box-shadow: inset 0 -1px 2px 1px #4646ff;
-    background-image: radial-gradient(
-      circle at 90% 90%,
-      #0054e9 0%,
-      #2263d5 55%,
-      #4479e4 70%,
-      #a3bbec 90%,
-      white 100%
-    );
+    box-shadow: var(--winbtn-shadow);
+    background-image: var(--winbtn-bg);
     &:before {
       content: '';
       position: absolute;
@@ -92,47 +85,35 @@ export default styled(HeaderButtons)`
       top: 13px;
       height: 3px;
       width: 8px;
-      background-color: white;
+      background-color: var(--winbtn-glyph);
     }
   }
   .header__button--maximize {
-    box-shadow: inset 0 -1px 2px 1px #4646ff;
-    background-image: radial-gradient(
-      circle at 90% 90%,
-      #0054e9 0%,
-      #2263d5 55%,
-      #4479e4 70%,
-      #a3bbec 90%,
-      white 100%
-    );
+    box-shadow: var(--winbtn-shadow);
+    background-image: var(--winbtn-bg);
     &:before {
       content: '';
       position: absolute;
       display: block;
       left: 4px;
       top: 4px;
-      box-shadow: inset 0 3px white, inset 0 0 0 1px white;
+      box-shadow: inset 0 3px var(--winbtn-glyph),
+        inset 0 0 0 1px var(--winbtn-glyph);
       height: 12px;
       width: 12px;
     }
   }
   .header__button--maximized {
-    box-shadow: inset 0 -1px 2px 1px #4646ff;
-    background-image: radial-gradient(
-      circle at 90% 90%,
-      #0054e9 0%,
-      #2263d5 55%,
-      #4479e4 70%,
-      #a3bbec 90%,
-      white 100%
-    );
+    box-shadow: var(--winbtn-shadow);
+    background-image: var(--winbtn-bg);
     &:before {
       content: '';
       position: absolute;
       display: block;
       left: 7px;
       top: 4px;
-      box-shadow: inset 0 2px white, inset 0 0 0 1px white;
+      box-shadow: inset 0 2px var(--winbtn-glyph),
+        inset 0 0 0 1px var(--winbtn-glyph);
       height: 8px;
       width: 8px;
     }
@@ -142,22 +123,16 @@ export default styled(HeaderButtons)`
       display: block;
       left: 4px;
       top: 7px;
-      box-shadow: inset 0 2px white, inset 0 0 0 1px white, 1px -1px #136dff;
+      box-shadow: inset 0 2px var(--winbtn-glyph),
+        inset 0 0 0 1px var(--winbtn-glyph), 1px -1px var(--winbtn-bg);
       height: 8px;
       width: 8px;
-      background-color: #136dff;
+      background-color: var(--winbtn-bg);
     }
   }
   .header__button--close {
-    box-shadow: inset 0 -1px 2px 1px #da4600;
-    background-image: radial-gradient(
-      circle at 90% 90%,
-      #cc4600 0%,
-      #dc6527 55%,
-      #cd7546 70%,
-      #ffccb2 90%,
-      white 100%
-    );
+    box-shadow: var(--winbtn-close-shadow);
+    background-image: var(--winbtn-close-bg);
     &:before {
       content: '';
       position: absolute;
@@ -166,7 +141,7 @@ export default styled(HeaderButtons)`
       transform: rotate(45deg);
       height: 16px;
       width: 2px;
-      background-color: white;
+      background-color: var(--winbtn-glyph);
     }
     &:after {
       content: '';
@@ -176,7 +151,7 @@ export default styled(HeaderButtons)`
       transform: rotate(-45deg);
       height: 16px;
       width: 2px;
-      background-color: white;
+      background-color: var(--winbtn-glyph);
     }
   }
   .header__button--disable {

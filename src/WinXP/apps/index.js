@@ -6,6 +6,7 @@ import Notepad from './Notepad';
 import Winamp from './Winamp';
 import Paint from './Paint';
 import Changelog from './Changelog';
+import DisplayProperties from './DisplayProperties';
 import iePaper from 'assets/windowsIcons/svg/Internet Explorer 6.svg';
 import ie from 'assets/windowsIcons/svg/Internet Explorer 6.svg';
 import mine from 'assets/minesweeper/mine-icon.png';
@@ -20,6 +21,7 @@ import paint from 'assets/windowsIcons/svg/Paint.svg';
 import AboutWindows from 'components/AboutWindows';
 import windowsLogo from 'assets/windowsIcons/WinXPlogo.svg';
 import changelogIcon from 'assets/windowsIcons/svg/Generic Text Document.svg';
+import displayIcon from 'assets/windowsIcons/svg/Display Properties.svg';
 
 // const gen = () => {
 //   let id = -1;
@@ -262,6 +264,26 @@ export const appSettings = {
     maximized: window.innerWidth < 800,
     multiInstance: false,
   },
+  DisplayProperties: {
+    header: {
+      icon: displayIcon,
+      title: '显示 属性',
+      buttons: ['close'],
+    },
+    component: DisplayProperties,
+    defaultSize: {
+      width: 420,
+      height: 0,
+    },
+    defaultOffset: {
+      x: window.innerWidth / 2 - 210,
+      y: 60,
+    },
+    resizable: false,
+    minimized: false,
+    maximized: false,
+    multiInstance: false,
+  },
 };
 
 export {
@@ -273,4 +295,5 @@ export {
   Winamp,
   AboutWindows,
   Changelog,
+  DisplayProperties,
 };

@@ -1,10 +1,26 @@
 import cursorLink from 'assets/cursors/link.cur';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 import { WindowDropDowns } from 'components';
 import dropDownData from './dropDownData';
-import { getNodeByPath, listChildren, resolveIcon } from './vfs';
+import {
+  useVfs,
+  getNode,
+  listChildren,
+  resolveIcon,
+  nameExists,
+  isEditableText,
+  nodeSize,
+  formatDate,
+  iconForFileName,
+} from '../../vfs';
+import {
+  VFS_CREATE_FOLDER,
+  VFS_CREATE_FILE,
+  VFS_DELETE,
+  VFS_RENAME,
+} from '../../constants/actions';
 import startupSound from 'assets/sounds/start.wav';
 import go from 'assets/windowsIcons/svg/Go.svg';
 import search from 'assets/windowsIcons/svg/Search.svg';
@@ -25,13 +41,8 @@ import cd from 'assets/windowsIcons/svg/DVD alt.svg';
 import dropdown from 'assets/windowsIcons/dropdown.png';
 import windows from 'assets/windowsIcons/windows.png';
 
-const buildDate =
-  process.env.REACT_APP_BUILD_DATE ||
-  new Date()
-    .toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })
-    .replace(/\//g, '/');
-
 function MyComputer({ onClose }) {
+  const { vfs, driveRoot, dispatch } = useVfs();
   const [selectedItem, setSelectedItem] = useState(null);
   const [location, setLocation] = useState(null);
   const [history, setHistory] = useState([]);
@@ -43,6 +54,17 @@ function MyComputer({ onClose }) {
   });
   const [viewMode, setViewMode] = useState('tileview');
   const [viewPickerOpen, setViewPickerOpen] = useState(false);
+
+  // 当前目录节点与子项，直接从全局 VFS 派生 —— 任何写入后会自动重渲染
+  const currentNode = location
+    ? getNode(driveRoot(location.driveId), location.segments)
+    : null;
+  const entries = listChildren(currentNode);
+  const selectedNode =
+    currentNode && selectedItem && currentNode.contents
+      ? currentNode.contents[selectedItem]
+      : null;
+  const canOperateOnSelection = !!selectedNode;
 
   function playNav() {
     try {
@@ -95,12 +117,25 @@ function MyComputer({ onClose }) {
     navigateTo({ driveId, segments: [] });
   }
 
+  /** 双击条目：文件夹进入下一层，可编辑文本文件用记事本打开 */
   function openEntry(name, node) {
+    if (!location) return;
     if (node.type === 'directory') {
       navigateTo({
         driveId: location.driveId,
         segments: [...location.segments, name],
       });
+      return;
+    }
+    if (isEditableText(node)) {
+      window.postMessage(
+        {
+          type: 'open-app',
+          app: 'Notepad',
+          props: { filePath: { ...location, name } },
+        },
+        '*',
+      );
     }
   }
 
@@ -109,10 +144,96 @@ function MyComputer({ onClose }) {
     setSelectedItem(item);
   }
 
+  // ---- 文件和文件夹任务 ----
+
+  function createNewFolder() {
+    if (!location) return;
+    dispatch({
+      type: VFS_CREATE_FOLDER,
+      payload: { ...location },
+    });
+  }
+
+  function createNewTextFile() {
+    if (!location) return;
+    dispatch({
+      type: VFS_CREATE_FILE,
+      payload: { ...location, content: '' },
+    });
+  }
+
+  function renameSelected() {
+    if (!location || !canOperateOnSelection) return;
+    const newName = window.prompt('重命名为', selectedItem);
+    if (!newName || newName === selectedItem) return;
+    if (nameExists(currentNode, newName)) {
+      window.alert('已存在同名的文件或文件夹，请换一个名称。');
+      return;
+    }
+    dispatch({
+      type: VFS_RENAME,
+      payload: { ...location, name: selectedItem, newName },
+    });
+    setSelectedItem(newName);
+  }
+
+  function deleteSelected() {
+    if (!location || !canOperateOnSelection) return;
+    const isDir = selectedNode.type === 'directory';
+    const ok = window.confirm(
+      `确实要把“${selectedItem}”${isDir ? '及其所有内容' : ''}放入回收站吗？`,
+    );
+    if (!ok) return;
+    dispatch({
+      type: VFS_DELETE,
+      payload: { ...location, name: selectedItem },
+    });
+    setSelectedItem(null);
+  }
+
+  /** 判断只有文件夹或文本文件才有"打开"这一项 */
+  const canOpenSelection = !!selectedNode;
+
+  // "我的电脑"根视图里那几个虚拟条目（不是真实 VFS 节点）的展示文案
+  const DRIVE_LIST_LABELS = {
+    'shared-documents': { name: '共享文档', type: '文件夹' },
+    'user-documents': { name: '用户文档', type: '文件夹' },
+    'local-disk-c': { name: '本地磁盘 (C:)', type: '本地磁盘' },
+    'cd-drive-d': { name: 'CD 驱动器 (D:)', type: 'CD 驱动器' },
+    'about-github': { name: 'CNB', type: '快捷方式' },
+    'about-website': { name: '我的网站', type: '快捷方式' },
+  };
+
+  // 详细信息的统一数据源：真实条目优先，否则查上面的虚拟条目表
+  const detail = selectedNode
+    ? {
+        name: selectedItem,
+        type:
+          selectedNode.type === 'directory'
+            ? '文件夹'
+            : `${
+                (selectedItem.split('.').pop() || '').toUpperCase() || '未知'
+              } 文件`,
+        modified: selectedNode.modified,
+        size: nodeSize(selectedNode),
+      }
+    : DRIVE_LIST_LABELS[selectedItem] || null;
+
+  function openSelection() {
+    if (!location || !selectedNode) return;
+    openEntry(selectedItem, selectedNode);
+  }
+
   function onClickOptionItem(item) {
     switch (item) {
       case '关闭':
         onClose();
+        break;
+      case '删除':
+        deleteSelected();
+        break;
+      case '重命名':
+        renameSelected();
         break;
       case '关于 Windows':
         window.postMessage({ type: 'open-app', app: 'AboutWindows' }, '*');
@@ -120,6 +241,24 @@ function MyComputer({ onClose }) {
       default:
     }
   }
+
+  // 右键菜单是全局处理器克隆出来的，克隆节点会丢掉 React 的 onClick，
+  // 所以"打开文件夹"通过 postMessage 回传，这里接收后走正常的导航逻辑。
+  const navigateRef = useRef(null);
+  navigateRef.current = navigateTo;
+  useEffect(() => {
+    function onMessage(e) {
+      if (e.data && e.data.type === 'browse-to') {
+        navigateRef.current({
+          driveId: e.data.driveId,
+          segments: e.data.segments,
+        });
+      }
+    }
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, []);
+
   return (
     <Div onClick={() => setViewPickerOpen(false)}>
       <section className="com__toolbar">
@@ -257,15 +396,35 @@ function MyComputer({ onClose }) {
                 </div>
               </div>
               <ul>
-                <li className="link">
+                <li
+                  className={`link${location ? '' : ' disabled'}`}
+                  onClick={() => location && createNewFolder()}
+                >
                   <img src={newFolder} alt="" />
                   创建一个新文件夹
                 </li>
-                <li className={`link${selectedItem ? '' : ' disabled'}`}>
+                <li
+                  className={`link${location ? '' : ' disabled'}`}
+                  onClick={() => location && createNewTextFile()}
+                >
+                  <img src={document} alt="" />
+                  创建一个新的文本文档
+                </li>
+                <li
+                  className={`link${
+                    canOperateOnSelection ? '' : ' disabled'
+                  }`}
+                  onClick={() => canOperateOnSelection && renameSelected()}
+                >
                   <img src={renameIcon} alt="" />
                   重命名所选项目
                 </li>
-                <li className={`link${selectedItem ? '' : ' disabled'}`}>
+                <li
+                  className={`link${
+                    canOperateOnSelection ? '' : ' disabled'
+                  }`}
+                  onClick={() => canOperateOnSelection && deleteSelected()}
+                >
                   <img src={deleteIcon} alt="" />
                   删除所选项目
                 </li>
@@ -319,37 +478,14 @@ function MyComputer({ onClose }) {
                 </div>
               </div>
               <ul>
-                <li className="name">
-                  {selectedItem === 'shared-documents'
-                    ? '共享文档'
-                    : selectedItem === 'user-documents'
-                    ? '用户文档'
-                    : selectedItem === 'local-disk-c'
-                    ? '本地磁盘 (C:)'
-                    : selectedItem === 'cd-drive-d'
-                    ? 'CD 驱动器 (D:)'
-                    : selectedItem === 'about-github'
-                    ? 'CNB'
-                    : selectedItem === 'about-website'
-                    ? '我的网站'
-                    : '我的电脑'}
-                </li>
-                <li className="type">
-                  {selectedItem === 'shared-documents' ||
-                  selectedItem === 'user-documents'
-                    ? '文件夹'
-                    : selectedItem === 'local-disk-c'
-                    ? '本地磁盘'
-                    : selectedItem === 'cd-drive-d'
-                    ? 'CD 驱动器'
-                    : selectedItem === 'about-github' ||
-                      selectedItem === 'about-website'
-                    ? '快捷方式'
-                    : '系统文件夹'}
-                </li>
-                {selectedItem && (
-                  <li className="modified">修改日期: {buildDate}</li>
+                <li className="name">{detail ? detail.name : '我的电脑'}</li>
+                {detail && <li className="type">{detail.type}</li>}
+                {detail && (
+                  <li className="modified">
+                    修改日期: {formatDate(detail.modified)}
+                  </li>
                 )}
+                {detail && detail.size && <li>{detail.size}</li>}
                 {selectedItem === 'local-disk-c' && (
                   <>
                     <li>文件系统: NTFS</li>
@@ -367,9 +503,79 @@ function MyComputer({ onClose }) {
           >
             <contextmenu>
               <ul>
-                <li className="disabled">查看</li>
-                <li className="disabled">排列图标</li>
+                <li className="submenuholder disabled">
+                  查看
+                  <ul>
+                    <li className="disabled">缩略图</li>
+                    <li className="disabled">平铺</li>
+                    <li className="disabled">图标</li>
+                    <li className="disabled">列表</li>
+                  </ul>
+                </li>
+                <li className="submenuholder disabled">
+                  排列图标
+                  <ul>
+                    <li className="disabled">名称</li>
+                    <li className="disabled">大小</li>
+                    <li className="disabled">类型</li>
+                    <li className="disabled">修改时间</li>
+                  </ul>
+                </li>
                 <li className="disabled">刷新</li>
+                <li className="divider" />
+                <li
+                  className={canOpenSelection ? '' : 'disabled'}
+                  data-vfs="open"
+                  data-drive={location ? location.driveId : ''}
+                  data-path={JSON.stringify(location ? location.segments : [])}
+                  data-name={selectedItem || ''}
+                >
+                  打开
+                </li>
+                <li
+                  className={canOpenSelection ? '' : 'disabled'}
+                  data-vfs="rename"
+                  data-drive={location ? location.driveId : ''}
+                  data-path={JSON.stringify(location ? location.segments : [])}
+                  data-name={selectedItem || ''}
+                >
+                  重命名
+                </li>
+                <li
+                  className={canOperateOnSelection ? '' : 'disabled'}
+                  data-vfs="delete"
+                  data-drive={location ? location.driveId : ''}
+                  data-path={JSON.stringify(location ? location.segments : [])}
+                  data-name={selectedItem || ''}
+                >
+                  删除
+                </li>
+                <li className="divider" />
+                <li className="submenuholder">
+                  新建
+                  <ul>
+                    <li
+                      className={location ? '' : 'disabled'}
+                      data-vfs="new-folder"
+                      data-drive={location ? location.driveId : ''}
+                      data-path={JSON.stringify(
+                        location ? location.segments : [],
+                      )}
+                    >
+                      文件夹
+                    </li>
+                    <li
+                      className={location ? '' : 'disabled'}
+                      data-vfs="new-file"
+                      data-drive={location ? location.driveId : ''}
+                      data-path={JSON.stringify(
+                        location ? location.segments : [],
+                      )}
+                    >
+                      文本文档
+                    </li>
+                  </ul>
+                </li>
                 <li className="divider" />
                 <li className="disabled">粘贴</li>
                 <li className="disabled">粘贴快捷方式</li>
@@ -379,16 +585,12 @@ function MyComputer({ onClose }) {
             </contextmenu>
             {location ? (
               <div className="com__content__browse">
-                {listChildren(
-                  getNodeByPath(location.driveId, location.segments),
-                ).length === 0 && (
+                {entries.length === 0 && (
                   <div className="com__content__browse__empty">
                     这个文件夹是空的。
                   </div>
                 )}
-                {listChildren(
-                  getNodeByPath(location.driveId, location.segments),
-                ).map(({ name, node }) => (
+                {entries.map(({ name, node }) => (
                   <button
                     type="button"
                     key={name}
@@ -402,7 +604,10 @@ function MyComputer({ onClose }) {
                     onDoubleClick={() => openEntry(name, node)}
                   >
                     <img
-                      src={resolveIcon(node.icon, node.type)}
+                      src={resolveIcon(
+                        node.icon || iconForFileName(name),
+                        node.type,
+                      )}
                       alt=""
                       className="com__content__browse__img"
                     />

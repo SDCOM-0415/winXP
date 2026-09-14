@@ -4,6 +4,7 @@ import React, {
   useCallback,
   useState,
   useEffect,
+  useMemo,
 } from 'react';
 import styled from 'styled-components';
 import useMouse from 'react-use/lib/useMouse';
@@ -23,8 +24,40 @@ import {
   CANCEL_POWER_OFF,
   RESET_SYSTEM,
   RESET_TO_LOGON,
+  VFS_CREATE_FOLDER,
+  VFS_CREATE_FILE,
+  VFS_WRITE_FILE,
+  VFS_DELETE,
+  VFS_RENAME,
+  VFS_RESET,
+  SET_THEME,
+  SET_PREFS,
+  SCREENSAVER_START,
+  SCREENSAVER_STOP,
+  SET_SCREENSAVER_CONFIG,
 } from './constants/actions';
-import { FOCUSING, POWER_STATE } from './constants';
+import {
+  FOCUSING,
+  POWER_STATE,
+  loadPreferences,
+  savePreferences,
+} from './constants';
+import {
+  VfsProvider,
+  loadVfs,
+  saveVfs,
+  createInitialVfs,
+  getNode,
+  createFolder,
+  createFile,
+  writeFile,
+  deleteEntry,
+  renameEntry,
+  uniqueName,
+  nameExists,
+  isEditableText,
+} from './vfs';
+import Screensaver from './Screensaver';
 import { defaultIconState, defaultAppState, appSettings } from './apps';
 import Modal from './Modal';
 import Footer from './Footer';
@@ -67,6 +100,19 @@ function playSystemSound(src) {
   } catch (e) {}
 }
 
+/** 对指定磁盘的树做不可变更新，返回新的 vfs 对象 */
+function vfsWithDrive(state, driveId, updater) {
+  const root = state.vfs && state.vfs.drives ? state.vfs.drives[driveId] : null;
+  if (!root) return state.vfs;
+  return {
+    ...state.vfs,
+    drives: {
+      ...state.vfs.drives,
+      [driveId]: updater(root),
+    },
+  };
+}
+
 const initState = {
   apps: defaultAppState,
   nextAppID: defaultAppState.length,
@@ -75,6 +121,9 @@ const initState = {
   icons: defaultIconState,
   selecting: false,
   powerState: POWER_STATE.BOOT,
+  vfs: loadVfs(),
+  prefs: loadPreferences(),
+  screensaverActive: false,
 };
 const reducer = (state, action = { type: '' }) => {
   switch (action.type) {
@@ -223,6 +272,74 @@ const reducer = (state, action = { type: '' }) => {
         ...initState,
         powerState: POWER_STATE.LOGON,
       };
+    // ---- 虚拟文件系统：所有写操作都产生新树，由 useEffect 落到 localStorage ----
+    case VFS_CREATE_FOLDER: {
+      const { driveId, segments, name } = action.payload;
+      return {
+        ...state,
+        vfs: vfsWithDrive(state, driveId, root => {
+          const dir = getNode(root, segments);
+          const finalName = uniqueName(dir, name || '新建文件夹');
+          return createFolder(root, segments, finalName);
+        }),
+      };
+    }
+    case VFS_CREATE_FILE: {
+      const { driveId, segments, name, content } = action.payload;
+      return {
+        ...state,
+        vfs: vfsWithDrive(state, driveId, root => {
+          const dir = getNode(root, segments);
+          const finalName = uniqueName(dir, name || '新建文本文档', '.txt');
+          return createFile(root, segments, finalName, { content });
+        }),
+      };
+    }
+    case VFS_WRITE_FILE: {
+      const { driveId, segments, name, content } = action.payload;
+      return {
+        ...state,
+        vfs: vfsWithDrive(state, driveId, root =>
+          writeFile(root, segments, name, content),
+        ),
+      };
+    }
+    case VFS_DELETE: {
+      const { driveId, segments, name } = action.payload;
+      return {
+        ...state,
+        vfs: vfsWithDrive(state, driveId, root =>
+          deleteEntry(root, segments, name),
+        ),
+      };
+    }
+    case VFS_RENAME: {
+      const { driveId, segments, name, newName } = action.payload;
+      return {
+        ...state,
+        vfs: vfsWithDrive(state, driveId, root =>
+          renameEntry(root, segments, name, newName),
+        ),
+      };
+    }
+    case VFS_RESET:
+      return { ...state, vfs: createInitialVfs() };
+    // ---- 主题与偏好 ----
+    case SET_THEME:
+      return { ...state, prefs: { ...state.prefs, theme: action.payload } };
+    case SET_PREFS:
+      return { ...state, prefs: { ...state.prefs, ...action.payload } };
+    // ---- 屏保 ----
+    case SCREENSAVER_START:
+      if (state.powerState !== POWER_STATE.START) return state;
+      if (!state.prefs.screensaver || state.prefs.screensaver === 'none') {
+        return state;
+      }
+      return state.screensaverActive ? state : { ...state, screensaverActive: true };
+    case SCREENSAVER_STOP:
+      return state.screensaverActive
+        ? { ...state, screensaverActive: false }
+        : state;
     default:
       return state;
   }
@@ -385,7 +502,15 @@ function WinXP() {
         if (appSetting) {
           dispatch({
             type: ADD_APP,
-            payload: appSetting,
+            payload: e.data.props
+              ? {
+                  ...appSetting,
+                  injectProps: {
+                    ...(appSetting.injectProps || {}),
+                    ...e.data.props,
+                  },
+                }
+              : appSetting,
           });
         }
       }
@@ -403,6 +528,58 @@ function WinXP() {
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
   }, []);
+
+  // VFS 每次变更后落盘（新建/写入/删除/重命名都会走到这里）
+  useEffect(() => {
+    saveVfs(state.vfs);
+  }, [state.vfs]);
+
+  // 主题、屏保、音量等偏好落盘
+  useEffect(() => {
+    savePreferences(state.prefs);
+  }, [state.prefs]);
+
+  // 屏保：按配置的空闲时间触发；鼠标/键盘/滚轮/触摸都算"有活动"
+  useEffect(() => {
+    if (state.powerState !== POWER_STATE.START) return undefined;
+    if (!state.prefs.screensaver || state.prefs.screensaver === 'none') {
+      return undefined;
+    }
+    if (state.screensaverActive) return undefined;
+    const waitMs =
+      Math.max(1, Number(state.prefs.screensaverWait) || 1) * 60 * 1000;
+    let timer = window.setTimeout(() => {
+      dispatch({ type: SCREENSAVER_START });
+    }, waitMs);
+    const reset = () => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        dispatch({ type: SCREENSAVER_START });
+      }, waitMs);
+    };
+    const events = ['mousemove', 'mousedown', 'keydown', 'wheel', 'touchstart'];
+    events.forEach(ev => window.addEventListener(ev, reset, true));
+    return () => {
+      window.clearTimeout(timer);
+      events.forEach(ev => window.removeEventListener(ev, reset, true));
+    };
+  }, [
+    state.powerState,
+    state.prefs.screensaver,
+    state.prefs.screensaverWait,
+    state.screensaverActive,
+  ]);
+
+  // 提供给所有应用的系统上下文：VFS 读写入口 + 主题/屏保偏好 + dispatch
+  const vfsValue = useMemo(
+    () => ({
+      vfs: state.vfs,
+      prefs: state.prefs,
+      driveRoot: id => (state.vfs.drives || {})[id] || null,
+      dispatch,
+    }),
+    [state.vfs, state.prefs],
+  );
 
   useEffect(() => {
     function handler(e) {
@@ -428,47 +605,121 @@ function WinXP() {
         e.clientY + mh > window.innerHeight ? e.clientY - mh : e.clientY;
       menu.style.left = `${x}px`;
       menu.style.top = `${y}px`;
-      menu.querySelectorAll('[data-action]').forEach(li => {
-        if (li.classList.contains('disabled')) return;
-        li.addEventListener('click', () => {
-          const action = li.dataset.action;
-          const winId = li.dataset.winId ? Number(li.dataset.winId) : null;
-          menu.remove();
-          if (action === 'show-desktop') {
-            stateRef.current.apps.forEach(app => {
-              if (!app.minimized) {
-                dispatch({ type: FOCUS_APP, payload: app.id });
-                dispatch({ type: MINIMIZE_APP, payload: app.id });
+      menu
+        .querySelectorAll('[data-action], [data-vfs], [data-app]')
+        .forEach(li => {
+          if (li.classList.contains('disabled')) return;
+          li.addEventListener('click', () => {
+            const action = li.dataset.action;
+            const vfsOp = li.dataset.vfs;
+            const appName = li.dataset.app;
+            const winId = li.dataset.winId ? Number(li.dataset.winId) : null;
+            menu.remove();
+
+            // 打开应用（右键菜单里的"打开"等）
+            if (appName) {
+              const setting = appSettings[appName];
+              if (setting) dispatch({ type: ADD_APP, payload: setting });
+              return;
+            }
+
+            // 虚拟文件系统操作：菜单项自带 drive / path / name
+            if (vfsOp) {
+              const driveId = li.dataset.drive;
+              const segments = li.dataset.path
+                ? JSON.parse(li.dataset.path)
+                : [];
+              const name = li.dataset.name;
+              const root = stateRef.current.vfs.drives[driveId];
+              const dir = getNode(root, segments);
+              if (!dir) return;
+
+              if (vfsOp === 'new-folder') {
+                dispatch({
+                  type: VFS_CREATE_FOLDER,
+                  payload: { driveId, segments },
+                });
+              } else if (vfsOp === 'new-file') {
+                dispatch({
+                  type: VFS_CREATE_FILE,
+                  payload: { driveId, segments, content: '' },
+                });
+              } else if (vfsOp === 'delete') {
+                dispatch({
+                  type: VFS_DELETE,
+                  payload: { driveId, segments, name },
+                });
+              } else if (vfsOp === 'rename') {
+                const newName = window.prompt('重命名为', name);
+                if (!newName || newName === name) return;
+                if (nameExists(dir, newName)) {
+                  window.alert('已存在同名的文件或文件夹，请换一个名称。');
+                  return;
+                }
+                dispatch({
+                  type: VFS_RENAME,
+                  payload: { driveId, segments, name, newName },
+                });
+              } else if (vfsOp === 'open') {
+                const node = dir.contents ? dir.contents[name] : null;
+                if (!node) return;
+                if (node.type === 'directory') {
+                  window.postMessage(
+                    {
+                      type: 'browse-to',
+                      driveId,
+                      segments: [...segments, name],
+                    },
+                    '*',
+                  );
+                } else if (isEditableText(node)) {
+                  dispatch({
+                    type: ADD_APP,
+                    payload: {
+                      ...appSettings.Notepad,
+                      injectProps: { filePath: { driveId, segments, name } },
+                    },
+                  });
+                }
               }
-            });
-          } else if (action === 'open') {
-            const iconId = Number(li.dataset.iconId);
-            const icon = stateRef.current.icons.find(ic => ic.id === iconId);
-            if (icon) onDoubleClickIconRef.current(icon.component);
-          } else if (action === 'refresh') {
-            dispatch({ type: FOCUS_DESKTOP });
-            iconsRef.current?.resetPositions();
-            ref.current
-              .querySelectorAll('[data-contextmenu] img')
-              .forEach(img => {
-                img.style.animation = 'none';
-                void img.offsetHeight;
-                img.style.animation = 'iconRefresh 0.5s ease';
-                setTimeout(() => (img.style.animation = ''), 500);
+              return;
+            }
+
+            if (action === 'show-desktop') {
+              stateRef.current.apps.forEach(app => {
+                if (!app.minimized) {
+                  dispatch({ type: FOCUS_APP, payload: app.id });
+                  dispatch({ type: MINIMIZE_APP, payload: app.id });
+                }
               });
-          } else if (winId != null) {
-            const app = stateRef.current.apps.find(a => a.id === winId);
-            dispatch({ type: FOCUS_APP, payload: winId });
-            if (action === 'close') dispatch({ type: DEL_APP, payload: winId });
-            else if (action === 'minimize')
-              dispatch({ type: MINIMIZE_APP, payload: winId });
-            else if (action === 'maximize')
-              dispatch({ type: TOGGLE_MAXIMIZE_APP, payload: winId });
-            else if (action === 'restore' && app?.maximized)
-              dispatch({ type: TOGGLE_MAXIMIZE_APP, payload: winId });
-          }
+            } else if (action === 'open') {
+              const iconId = Number(li.dataset.iconId);
+              const icon = stateRef.current.icons.find(ic => ic.id === iconId);
+              if (icon) onDoubleClickIconRef.current(icon.component);
+            } else if (action === 'refresh') {
+              dispatch({ type: FOCUS_DESKTOP });
+              iconsRef.current?.resetPositions();
+              ref.current
+                .querySelectorAll('[data-contextmenu] img')
+                .forEach(img => {
+                  img.style.animation = 'none';
+                  void img.offsetHeight;
+                  img.style.animation = 'iconRefresh 0.5s ease';
+                  setTimeout(() => (img.style.animation = ''), 500);
+                });
+            } else if (winId != null) {
+              const app = stateRef.current.apps.find(a => a.id === winId);
+              dispatch({ type: FOCUS_APP, payload: winId });
+              if (action === 'close') dispatch({ type: DEL_APP, payload: winId });
+              else if (action === 'minimize')
+                dispatch({ type: MINIMIZE_APP, payload: winId });
+              else if (action === 'maximize')
+                dispatch({ type: TOGGLE_MAXIMIZE_APP, payload: winId });
+              else if (action === 'restore' && app?.maximized)
+                dispatch({ type: TOGGLE_MAXIMIZE_APP, payload: winId });
+            }
+          });
         });
-      });
       const dismiss = ev => {
         if (!menu.contains(ev.target)) {
           menu.remove();
@@ -569,6 +820,7 @@ function WinXP() {
     state.powerState === POWER_STATE.TURN_OFF;
 
   return (
+    <VfsProvider value={vfsValue}>
     <Container
       ref={ref}
       onMouseUp={onMouseUpDesktop}
@@ -579,7 +831,9 @@ function WinXP() {
           return;
         }
       }}
-      className={`winxp-container${isFadeToGray ? ' fadetogray' : ''}`}
+      className={`winxp-container theme-${state.prefs.theme}${
+        isFadeToGray ? ' fadetogray' : ''
+      }`}
       data-desktop-menu
     >
       {state.powerState === POWER_STATE.BOOT && (
@@ -655,7 +909,10 @@ function WinXP() {
               <li className="divider" />
               <li
                 onClick={() => {
-                  dispatch({ type: ADD_APP, payload: appSettings.Error });
+                  dispatch({
+                    type: ADD_APP,
+                    payload: appSettings.DisplayProperties,
+                  });
                 }}
               >
                 属性
@@ -739,7 +996,14 @@ Technical information:
 Double-click this screen to restart.`}</pre>
         </div>
       )}
+      {state.screensaverActive && (
+        <Screensaver
+          type={state.prefs.screensaver}
+          onDismiss={() => dispatch({ type: SCREENSAVER_STOP })}
+        />
+      )}
     </Container>
+    </VfsProvider>
   );
 }
 

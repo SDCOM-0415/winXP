@@ -167,15 +167,16 @@ const StyledWindow = styled(Window)`
   position: absolute;
   padding: 3px;
   padding: ${({ header }) => (header.invisible ? 0 : 3)}px;
-  background-color: ${({ isFocus }) => (isFocus ? '#0831d9' : '#6582f5')};
+  background-color: ${({ isFocus }) =>
+    isFocus ? 'var(--window-frame)' : 'var(--window-frame-inactive)'};
   flex-direction: column;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-top-left-radius: ${({ header }) =>
+    header.invisible ? 0 : '8px'};
+  border-top-right-radius: ${({ header }) =>
+    header.invisible ? 0 : '8px'};
   .header__bg {
     background: ${({ isFocus }) =>
-      isFocus
-        ? 'linear-gradient(to bottom,#0058ee 0%,#3593ff 4%,#288eff 6%,#127dff 8%,#036ffc 10%,#0262ee 14%,#0057e5 20%,#0054e3 24%,#0055eb 56%,#005bf5 66%,#026afe 76%,#0062ef 86%,#0052d6 92%,#0040ab 94%,#003092 100%)'
-        : 'linear-gradient(to bottom, #7697e7 0%,#7e9ee3 3%,#94afe8 6%,#97b4e9 8%,#82a5e4 14%,#7c9fe2 17%,#7996de 25%,#7b99e1 56%,#82a9e9 81%,#80a5e7 89%,#7b96e1 94%,#7a93df 97%,#abbae3 100%)'};
+      isFocus ? 'var(--titlebar-bg)' : 'var(--titlebar-bg-inactive)'};
     position: absolute;
     left: 0;
     top: 0;
@@ -192,7 +193,7 @@ const StyledWindow = styled(Window)`
     position: absolute;
     left: 0;
     opacity: ${({ isFocus }) => (isFocus ? 1 : 0.3)};
-    background: linear-gradient(to right, #1638e6 0%, transparent 100%);
+    background: var(--titlebar-glow);
     top: 0;
     bottom: 0;
     width: 15px;
@@ -203,7 +204,7 @@ const StyledWindow = styled(Window)`
     display: block;
     position: absolute;
     right: 0;
-    background: linear-gradient(to left, #1638e6 0%, transparent 100%);
+    background: var(--titlebar-glow);
     top: 0;
     bottom: 0;
     width: 15px;
@@ -215,8 +216,8 @@ const StyledWindow = styled(Window)`
     font-weight: 700;
     font-size: 12px;
     font-family: 'Noto Sans';
-    text-shadow: 1px 1px #000;
-    color: white;
+    text-shadow: var(--titlebar-text-shadow);
+    color: var(--titlebar-text);
     position: absolute;
     left: 3px;
     right: 3px;

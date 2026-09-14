@@ -4,6 +4,50 @@
 
 ---
 
+## 2026-09-14
+
+### 功能新增
+- feat: 虚拟文件系统可写化 + localStorage 持久化
+  1. 将 `MyComputer/vfs/` 提升为全局 `WinXP/vfs/` 模块，拆成 `tree.js`（不可变树操作）、`storage.js`（持久化）、`index.js`（入口 + Context）
+  2. 新增 `VfsContext` / `useVfs()`，各应用通过统一上下文读写 VFS，无需层层传 props
+  3. reducer 新增 6 个 action：`VFS_CREATE_FOLDER` / `VFS_CREATE_FILE` / `VFS_WRITE_FILE` / `VFS_DELETE` / `VFS_RENAME` / `VFS_RESET`
+  4. 数据落 `localStorage`（key `winxp.vfs`，带版本号），刷新页面后新建/写入的内容依然保留
+  5. 「我的电脑」打通：新建文件夹、新建文本文档、重命名、删除、双击打开；文本文件双击用记事本打开
+  6. 「记事本」打通：文件菜单的 新建 / 打开... / 保存 / 另存为... 全部可用，支持从资源管理器双击打开指定文件
+- feat: Luna ↔ 经典双主题系统
+  1. 把原本硬编码在 styled-components 里的 Luna 蓝色值抽成 CSS 变量，统一定义在 `.winxp-container.theme-luna` 与 `.theme-classic`
+  2. 变量覆盖窗口框架、标题栏（含非激活态）、任务栏、托盘、任务栏按钮、窗口按钮（含关闭按钮、圆角、字形色）
+  3. 新增「显示 属性」应用：主题切换、桌面信息、屏幕保护程序配置与预览
+  4. 入口：桌面右键 → 属性（此前该菜单项点击会跳到"找不到应用程序"错误框）
+  5. 主题选择持久化到 `localStorage`（key `winxp.preferences`）
+- feat: 屏幕保护程序
+  1. 新增 `WinXP/Screensaver`，Canvas 实现三维星空、气泡、字幕三种效果
+  2. 按配置的空闲时间自动触发，鼠标移动 / 点击 / 滚轮 / 按键即退出
+  3. 等待时间可在「显示 属性 → 屏幕保护程序」中调整，并支持"预览"
+
+### 功能优化与 Bug 修复
+- style: 任务栏托盘与时钟
+  1. 时钟由 12 小时 AM/PM 制改为 **24 小时制**（与中文 Windows 默认一致），悬停显示完整日期与星期
+  2. 移除三个写死的假托盘图标（690 / 394 / 229），替换为音量、本地连接、安全中心三个真实图标
+  3. 音量图标可点击唤出音量面板，音量与静音状态写入偏好并持久化
+  4. 开始按钮改为三态切换（常态 / 悬停 / 按下）
+- style: 消除壁纸外链依赖
+  1. 桌面背景原为远程地址 `blog.sdcom.top/upload/Zk6TR5k.jpg`，对方服务不可用则桌面空白
+  2. 改为打包进项目的本地图片 `src/assets/wallpapers/wallpaper.jpg`（1920×1080）
+- feat: 从参考站点补充 UI 素材
+  1. 新增 `assets/ui/{luna,classic,nav,wmp,outlook,symbols,start,tray,minesweeper}/` 九组界面位图
+  2. 补齐 13 个缺失图标（calc / diskclean / empty / font / gif / imgviewer / mines / sndvol / solitaire / spider / theme / winupdate / wordpad）
+  3. 补齐第 8 个光标 `background.cur`，新增登录用户头像 `assets/users/`
+- fix: 扩展全局右键菜单处理器
+  1. 原处理器只识别 `[data-action]`，现同时识别 `[data-vfs]` 与 `[data-app]`
+  2. 新增 VFS 操作：打开、新建文件夹、新建文本文档、重命名、删除
+  3. `open-app` 消息支持透传 `props`，使「我的电脑」能把文件路径带给「记事本」
+- chore: 资源清理
+  1. 移除未使用的 `buildDate` 常量、冗余导入与组件内导出
+  2. 新增素材来源与许可说明见 `docs/RebornXP-移植方案.md`
+
+---
+
 ## 2026-06-27
 
 ### 功能优化与 Bug 修复
