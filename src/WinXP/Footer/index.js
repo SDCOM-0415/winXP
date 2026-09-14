@@ -5,9 +5,7 @@ import FooterMenu from './FooterMenu';
 import Balloon from 'components/Balloon';
 import { useVfs } from '../vfs';
 import { SET_PREFS } from '../constants/actions';
-import startButton from 'assets/ui/luna/blue/start.png';
-import startButtonHover from 'assets/ui/luna/blue/start_hover.png';
-import startButtonPress from 'assets/ui/luna/blue/start_press.png';
+import startButton from 'assets/windowsIcons/start.png';
 import traySound from 'assets/ui/tray/sndvol.png';
 import trayNetwork from 'assets/ui/tray/connections.png';
 import traySecurity from 'assets/ui/tray/security.png';
@@ -48,7 +46,6 @@ function Footer({
   const [time, setTime] = useState(getTime);
   const [menuOn, setMenuOn] = useState(false);
   const [volumeOn, setVolumeOn] = useState(false);
-  const [startPressed, setStartPressed] = useState(false);
   const menu = useRef(null);
   const volumeRef = useRef(null);
   function toggleMenu() {
@@ -90,12 +87,6 @@ function Footer({
     window.addEventListener('mousedown', onDown);
     return () => window.removeEventListener('mousedown', onDown);
   }, [volumeOn]);
-
-  const startImg = startPressed
-    ? startButtonPress
-    : menuOn
-    ? startButtonHover
-    : startButton;
 
   return (
     <Container onMouseDown={_onMouseDown}>
@@ -139,15 +130,10 @@ function Footer({
             </ul>
           </contextmenu>
           <img
-            src={startImg}
-            alt="开始"
+            src={startButton}
+            alt="start"
             className="footer__start"
-            onMouseDown={() => {
-              setStartPressed(true);
-              toggleMenu();
-            }}
-            onMouseUp={() => setStartPressed(false)}
-            onMouseLeave={() => setStartPressed(false)}
+            onMouseDown={toggleMenu}
           />
         </div>
         {[...apps].map(

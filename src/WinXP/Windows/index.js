@@ -170,8 +170,8 @@ const StyledWindow = styled(Window)`
   background-color: ${({ isFocus }) =>
     isFocus ? 'var(--window-frame)' : 'var(--window-frame-inactive)'};
   flex-direction: column;
-  border-top-left-radius: ${({ header }) => (header.invisible ? 0 : '8px')};
-  border-top-right-radius: ${({ header }) => (header.invisible ? 0 : '8px')};
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   .header__bg {
     background: ${({ isFocus }) =>
       isFocus ? 'var(--titlebar-bg)' : 'var(--titlebar-bg-inactive)'};
@@ -191,7 +191,7 @@ const StyledWindow = styled(Window)`
     position: absolute;
     left: 0;
     opacity: ${({ isFocus }) => (isFocus ? 1 : 0.3)};
-    background: var(--titlebar-glow);
+    background: var(--titlebar-glow-left);
     top: 0;
     bottom: 0;
     width: 15px;
@@ -202,7 +202,7 @@ const StyledWindow = styled(Window)`
     display: block;
     position: absolute;
     right: 0;
-    background: var(--titlebar-glow);
+    background: var(--titlebar-glow-right);
     top: 0;
     bottom: 0;
     width: 15px;
