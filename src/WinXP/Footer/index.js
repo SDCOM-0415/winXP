@@ -181,7 +181,14 @@ function Footer({
             className="footer__tray-btn"
             ref={volumeRef}
             onClick={() => setVolumeOn(v => !v)}
-            title="音量"
+            onDoubleClick={() => {
+              setVolumeOn(false);
+              window.postMessage(
+                { type: 'open-app', app: 'VolumeControl' },
+                '*',
+              );
+            }}
+            title="音量（双击打开音量控制）"
           >
             <img className="footer__icon" src={traySound} alt="音量" />
             {volumeOn && (
@@ -206,7 +213,6 @@ function Footer({
                 />
                 <button
                   type="button"
-                  className="footer__volume__mute"
                   onClick={() =>
                     dispatch({
                       type: SET_PREFS,
@@ -215,6 +221,18 @@ function Footer({
                   }
                 >
                   {prefs.muted ? '取消静音' : '静音'}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setVolumeOn(false);
+                    window.postMessage(
+                      { type: 'open-app', app: 'VolumeControl' },
+                      '*',
+                    );
+                  }}
+                >
+                  打开音量控制
                 </button>
               </div>
             )}
@@ -362,7 +380,7 @@ const Container = styled.footer`
   .footer__volume input[type='range'] {
     width: 100%;
   }
-  .footer__volume__mute {
+  .footer__volume button {
     font-family: inherit;
     font-size: 11px;
     height: 20px;

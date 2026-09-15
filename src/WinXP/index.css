@@ -509,34 +509,34 @@ contextmenu ul {
   list-style: none;
   margin: 0;
   padding: 2px;
-  border: 1px solid #7f9db9;
+  border: 1px solid #aca899;
   background-color: #fff;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.35);
   min-width: 160px;
 }
 contextmenu ul li {
   position: relative;
-  height: 20px;
-  line-height: 20px;
+  height: 17px;
+  line-height: 17px;
   margin: 0;
-  padding: 0 24px 0 24px;
+  padding: 0 22px 0 21px;
   white-space: nowrap;
   color: #000;
   cursor: url(../assets/cursors/default.cur), default;
 }
 contextmenu ul li.disabled {
-  color: #808080;
+  color: #8c8a7e;
   pointer-events: none;
 }
 contextmenu ul li.divider {
   height: 1px;
-  margin: 3px 2px;
-  background: #d6d2c2;
+  margin: 3px 1px 5px 1px;
+  background: #aca899;
   padding: 0;
   pointer-events: none;
 }
 contextmenu ul li:not(.disabled):not(.divider):hover {
-  background: #2f71cd;
+  background: #316ac5;
   color: #fff;
 }
 contextmenu > ul ul {
@@ -551,11 +551,12 @@ contextmenu > ul li.submenuholder:hover > ul {
   display: block;
 }
 contextmenu ul li.submenuholder::after {
-  content: '▶';
+  content: '▼';
   position: absolute;
   right: 6px;
-  font-size: 8px;
-  line-height: 20px;
+  font-size: 9px;
+  line-height: 19px;
+  transform: rotate(-90deg) scaleY(0.6);
 }
 @keyframes menuFade {
   from {

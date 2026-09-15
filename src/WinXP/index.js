@@ -872,6 +872,8 @@ function WinXP() {
       dispatch({ type: ADD_APP, payload: appSettings.Paint });
     } else if (o === '命令提示符') {
       dispatch({ type: ADD_APP, payload: appSettings.CommandPrompt });
+    } else if (o === '音量控制') {
+      dispatch({ type: ADD_APP, payload: appSettings.VolumeControl });
     } else if (o === '注销') {
       dispatch({ type: POWER_OFF, payload: POWER_STATE.LOG_OFF });
     } else if (o === '关闭计算机') {

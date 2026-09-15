@@ -8,6 +8,7 @@ import Paint from './Paint';
 import Changelog from './Changelog';
 import DisplayProperties from './DisplayProperties';
 import CommandPrompt from './CommandPrompt';
+import VolumeControl from './VolumeControl';
 import iePaper from 'assets/windowsIcons/svg/Internet Explorer 6.svg';
 import ie from 'assets/windowsIcons/svg/Internet Explorer 6.svg';
 import mine from 'assets/minesweeper/mine-icon.png';
@@ -24,6 +25,7 @@ import windowsLogo from 'assets/windowsIcons/WinXPlogo.svg';
 import changelogIcon from 'assets/windowsIcons/svg/Generic Text Document.svg';
 import displayIcon from 'assets/fileIcons/displayprops.png';
 import cmdIcon from 'assets/fileIcons/cmd.png';
+import volumeIcon from 'assets/ui/tray/sndvol.png';
 
 // const gen = () => {
 //   let id = -1;
@@ -305,6 +307,26 @@ export const appSettings = {
     maximized: false,
     multiInstance: true,
   },
+  VolumeControl: {
+    header: {
+      icon: volumeIcon,
+      title: '音量控制',
+      buttons: ['close'],
+    },
+    component: VolumeControl,
+    defaultSize: {
+      width: 230,
+      height: 320,
+    },
+    defaultOffset: {
+      x: window.innerWidth - 460,
+      y: 140,
+    },
+    resizable: false,
+    minimized: false,
+    maximized: false,
+    multiInstance: false,
+  },
 };
 
 export {
@@ -318,4 +340,5 @@ export {
   Changelog,
   DisplayProperties,
   CommandPrompt,
+  VolumeControl,
 };
