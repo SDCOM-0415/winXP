@@ -883,6 +883,8 @@ function WinXP() {
       dispatch({ type: ADD_APP, payload: appSettings.Calculator });
     } else if (o === '写字板') {
       dispatch({ type: ADD_APP, payload: appSettings.WordPad });
+    } else if (o === '字符映射表') {
+      dispatch({ type: ADD_APP, payload: appSettings.CharacterMap });
     } else if (o === '注销') {
       dispatch({ type: POWER_OFF, payload: POWER_STATE.LOG_OFF });
     } else if (o === '关闭计算机') {
