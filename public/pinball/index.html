@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>三维弹球</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+        background: #000;
+      }
+      #canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+        outline: none;
+      }
+      #boot {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #000;
+        transition: opacity 0.25s linear;
+      }
+      #boot.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      #boot img {
+        max-width: 70%;
+        max-height: 70%;
+      }
+      #hint {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 6px;
+        text-align: center;
+        color: #8a8a8a;
+        font: 11px Tahoma, 'Noto Sans', sans-serif;
+        pointer-events: none;
+      }
+      #sound {
+        position: absolute;
+        right: 6px;
+        top: 6px;
+        width: 24px;
+        height: 22px;
+        border: 1px solid #4a4a4a;
+        border-radius: 3px;
+        background: rgba(30, 30, 30, 0.7);
+        color: #d0d0d0;
+        font-size: 12px;
+        line-height: 20px;
+        cursor: pointer;
+        z-index: 2;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" tabindex="0"></canvas>
+    <div id="boot"><img src="splash.png" alt="三维弹球" /></div>
+    <div id="hint">Z 左档板　/ 右档板　空格 发射　F2 新游戏　F3 暂停</div>
+    <button id="sound" type="button" title="背景音乐开关">🔊</button>
+    <!--
+      原版弹球的背景音乐是 MIDI，WASM 端口无法播放，这里用 mp3 顶替。
+      浏览器禁止无交互自动播放，所以首次点击/按键时才启动。
+    -->
+    <audio id="music" src="bg.mp3" loop preload="auto"></audio>
+
+    <script>
+      // Emscripten 的标准 Module 配置。必须在本目录下的
+      // 3DPinballSpaceCadet.js 之前定义，它会在加载时读取 window.Module。
+      var canvasEl = document.getElementById('canvas');
+      canvasEl.addEventListener('webglcontextlost', function () {});
+
+      var splashEl = document.getElementById('boot');
+      var hintEl = document.getElementById('hint');
+
+      function hideSplash() {
+        if (splashEl) splashEl.classList.add('hidden');
+        // 运行起来之后提示条就没必要一直占位了
+        if (hintEl) hintEl.style.transition = 'opacity .4s linear';
+        setTimeout(function () {
+          if (hintEl) hintEl.style.opacity = '0';
+        }, 6000);
+      }
+
+      // ---- 背景音乐 ----
+      var musicEl = document.getElementById('music');
+      var soundBtn = document.getElementById('sound');
+      var musicOn = true;
+      var musicStarted = false;
+
+      function startMusic() {
+        if (musicStarted || !musicOn) return;
+        musicStarted = true;
+        var p = musicEl.play();
+        if (p && p.catch) p.catch(function () {});
+      }
+
+      function toggleMusic() {
+        musicOn = !musicOn;
+        if (musicOn) {
+          musicStarted = true;
+          var p = musicEl.play();
+          if (p && p.catch) p.catch(function () {});
+        } else {
+          musicEl.pause();
+        }
+        soundBtn.textContent = musicOn ? '🔊' : '🔇';
+      }
+
+      soundBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        toggleMusic();
+      });
+
+      window.Module = {
+        preRun: [],
+        postRun: [],
+        print: function () {},
+        printErr: function () {},
+        canvas: canvasEl,
+        setStatus: function () {},
+        totalDependencies: 0,
+        monitorRunDependencies: function () {},
+        onRuntimeInitialized: function () {
+          hideSplash();
+          canvasEl.focus();
+        },
+      };
+
+      // 兜底：即便 onRuntimeInitialized 没有触发，也不要把启动图一直挂着
+      setTimeout(hideSplash, 15000);
+
+      // 场景键转发。在捕获阶段拦下，再定向派发给 canvas，
+      // 这样无论焦点在哪，游戏都只会收到一次事件。
+      var GAME_KEYS = {
+        z: 1, Z: 1,
+        '/': 1, '?': 1,
+        ' ': 1,
+        Enter: 1,
+        ArrowUp: 1, ArrowDown: 1, ArrowLeft: 1, ArrowRight: 1,
+        F2: 1, F3: 1, F4: 1, Escape: 1,
+      };
+
+      function forward(type, e) {
+        if (e.ctrlKey || e.metaKey || e.altKey) return;
+        if (!GAME_KEYS[e.key]) return;
+        e.preventDefault();
+        e.stopPropagation();
+        canvasEl.dispatchEvent(
+          new KeyboardEvent(type, {
+            key: e.key,
+            code: e.code,
+            keyCode: e.keyCode,
+            which: e.which,
+            bubbles: true,
+            cancelable: true,
+          }),
+        );
+      }
+
+      document.addEventListener('keydown', function (e) {
+        startMusic();
+        forward('keydown', e);
+      }, true);
+      document.addEventListener('keyup', function (e) {
+        forward('keyup', e);
+      }, true);
+
+      // 点击任意处把焦点交回画布（同时作为启动背景音乐的用户手势）
+      document.addEventListener('mousedown', function () {
+        startMusic();
+        canvasEl.focus();
+      });
+    </script>
+
+    <!--
+      上游作品：SpaceCadetPinball（微软原版《3D Pinball for Windows - Space Cadet》
+      的反编译重写），网页版由 alula 用 Emscripten 编译。
+      该文件为 GPL 家族许可，详见同目录 NOTICE.md。
+    -->
+    <script src="3DPinballSpaceCadet.js"></script>
+  </body>
+</html>

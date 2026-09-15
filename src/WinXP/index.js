@@ -56,6 +56,7 @@ import {
   uniqueName,
   nameExists,
   isEditableText,
+  isImageName,
   listChildren,
   resolveIcon,
   iconForFileName,
@@ -460,6 +461,15 @@ function WinXP() {
             injectProps: {
               startPath: { driveId, segments: [...segments, name] },
             },
+          },
+        });
+      } else if (isImageName(name)) {
+        // 图片要先于"可编辑文本"判断，否则会被记事本当文本打开
+        dispatch({
+          type: ADD_APP,
+          payload: {
+            ...appSettings.ImageViewer,
+            injectProps: { filePath: { driveId, segments, name } },
           },
         });
       } else if (isEditableText(node)) {
@@ -885,6 +895,8 @@ function WinXP() {
       dispatch({ type: ADD_APP, payload: appSettings.WordPad });
     } else if (o === '字符映射表') {
       dispatch({ type: ADD_APP, payload: appSettings.CharacterMap });
+    } else if (o === '三维弹球') {
+      dispatch({ type: ADD_APP, payload: appSettings.Pinball });
     } else if (o === '注销') {
       dispatch({ type: POWER_OFF, payload: POWER_STATE.LOG_OFF });
     } else if (o === '关闭计算机') {

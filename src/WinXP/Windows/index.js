@@ -219,11 +219,23 @@ const StyledWindow = styled(Window)`
     white-space: nowrap;
     text-overflow: ellipsis;
   }
+  /* 客户区。基准 appcontents 给每个窗口都加了 1px 深色描边 + 内阴影，
+     普通窗口与对话框（本项目对应 header.invisible）用的是两套取值 */
   .app__content {
     flex: 1;
     position: relative;
     margin-top: 25px;
     height: calc(100% - 25px);
+    box-sizing: border-box;
+    background-color: ${({ header }) =>
+      header.invisible ? '#ece9d8' : '#fff'};
+    letter-spacing: -0.2px;
+    border: 1px solid;
+    border-color: #777792 #66667e #66667e #66667e;
+    box-shadow: ${({ header }) =>
+      header.invisible
+        ? '-1px 0 0 #fbfcfd, 1px 0 0 #fbfcfd, 0 1px 0 #fbfcfd'
+        : '-1px 0 0 #a8a9bb, 1px 0 0 #a8a9bb, 0 1px 0 #a8a9bb'};
   }
 `;
 

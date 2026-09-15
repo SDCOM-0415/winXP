@@ -11,6 +11,7 @@ import {
   resolveIcon,
   nameExists,
   isEditableText,
+  isImageName,
   nodeSize,
   formatDate,
   iconForFileName,
@@ -39,7 +40,7 @@ import folderOpen from 'assets/windowsIcons/svg/Folder Opened.svg';
 import disk from 'assets/windowsIcons/svg/Local Disk.svg';
 import cd from 'assets/windowsIcons/svg/DVD alt.svg';
 import dropdown from 'assets/windowsIcons/dropdown.png';
-import windows from 'assets/windowsIcons/windows.png';
+import windows from 'assets/ui/browserflag.png';
 
 function MyComputer({ onClose, injectProps }) {
   const { driveRoot, dispatch } = useVfs();
@@ -120,7 +121,7 @@ function MyComputer({ onClose, injectProps }) {
     navigateTo({ driveId, segments: [] });
   }
 
-  /** 双击条目：文件夹进入下一层，可编辑文本文件用记事本打开 */
+  /** 双击条目：文件夹进入下一层，图片用图片查看器，可编辑文本用记事本 */
   function openEntry(name, node) {
     if (!location) return;
     if (node.type === 'directory') {
@@ -128,6 +129,19 @@ function MyComputer({ onClose, injectProps }) {
         driveId: location.driveId,
         segments: [...location.segments, name],
       });
+      return;
+    }
+    // 图片节点的 contents 也是字符串，会被 isEditableText 判为可编辑文本，
+    // 所以必须先按扩展名分流，否则图片会被记事本当文本打开
+    if (isImageName(name)) {
+      window.postMessage(
+        {
+          type: 'open-app',
+          app: 'ImageViewer',
+          props: { filePath: { ...location, name } },
+        },
+        '*',
+      );
       return;
     }
     if (isEditableText(node)) {
@@ -902,21 +916,22 @@ const Div = styled.div`
     align-items: center;
     line-height: 100%;
     height: 24px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+    /* 导航区背景：基准 appnavigation.rich 是自左向右的浅色渐变，
+       分隔线为上白下灰（#fff / #d8d2bd） */
+    background: linear-gradient(to right, #f4f4ee, #e0e2eb);
+    border-bottom: 1px solid #d8d2bd;
     flex-shrink: 0;
   }
   .com__options {
     height: 23px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: 1px solid #d8d2bd;
     padding: 1px 0 1px 2px;
-    border-left: 0;
     flex: 1;
   }
   .com__windows-logo {
     height: 100%;
-    border-left: 1px solid white;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-left: 1px solid #d8d2bd;
+    border-bottom: 1px solid #d8d2bd;
   }
   .com__function_bar {
     height: 36px;
@@ -924,7 +939,9 @@ const Div = styled.div`
     align-items: center;
     font-size: 11px;
     padding: 1px 3px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to right, #f4f4ee, #e0e2eb);
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #d8d2bd;
     flex-shrink: 0;
   }
   .com__function_bar__button {
@@ -1011,13 +1028,14 @@ const Div = styled.div`
   }
   .com__address_bar {
     flex-shrink: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.7);
+    background: linear-gradient(to right, #f4f4ee, #e0e2eb);
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #d8d2bd;
     height: 20px;
     font-size: 11px;
     display: flex;
     align-items: center;
     padding: 0 2px;
-    box-shadow: inset 0 -2px 3px -1px #b0b0b0;
   }
   .com__address_bar__title {
     line-height: 100%;

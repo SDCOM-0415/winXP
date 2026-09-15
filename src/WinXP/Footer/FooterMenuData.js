@@ -51,7 +51,7 @@ import heart from 'assets/windowsIcons/svg/Hearts.svg';
 import rdp from 'assets/windowsIcons/svg/Remote Desktop.svg';
 import solitaire from 'assets/windowsIcons/svg/Solitaire.svg';
 import narrator from 'assets/windowsIcons/svg/Narrator.svg';
-import pinball from 'assets/windowsIcons/svg/Pinball.svg';
+import pinball from 'assets/fileIcons/pinball.png';
 import restore from 'assets/windowsIcons/svg/System Restore.svg';
 import mine from 'assets/windowsIcons/svg/Minesweeper.svg';
 

@@ -1,29 +1,65 @@
 # 项目长期记忆 — winXP
 
-## 待办：3D 弹球（3D Pinball Space Cadet）完整移植
+## 待办：三维弹球（3D Pinball Space Cadet）
 
-状态：**未开始，计划中的未来工作**。用户 2026-09-14 明确要求先把这项记下来，等基础设施做完再动。
+状态：**未开始**。用户 2026-09-14 要求记为未来工作，2026-09-15 再次要求"完整引入参考站"。
 
-**背景**：来源站点 Reborn XP 有 3D 弹球，本项目的开始菜单里 `所有程序 → 游戏 → 3D 弹球` 入口**已经存在**（`src/WinXP/Footer/FooterMenuData.js` 已 import `Pinball.svg`），但点击会落到 ErrorBox。
+**背景**：开始菜单 `所有程序 → 游戏 → 三维弹球` 入口**已经存在**
+（`src/WinXP/Footer/FooterMenuData.js` 已 import `Pinball.svg`），但点击会落到 ErrorBox。
 
-**要做什么**：
-- 目标应用名 `pinball`，放在 `src/WinXP/apps/Pinball/`
-- 需要自建 2D 物理引擎（建议 `matter.js`）实现：重力、球体与档板的碰撞与反弹、左右档板（Z / / 键）、弹簧发射器、多球、计分与排行
-- 参照真实 Space Cadet 的三张台面与任务系统，可先做单张台面
+### ⚠️ 关键事实：参考站的弹球不是他们自己写的（2026-09-15 查清）
 
-**可用素材**：
-- `assets/windowsIcons/svg/Pinball.svg`（开始菜单图标，已有）
-- 来源站点可用的媒体文件（**只取媒体，不要取代码**）：
-  `~/Downloads/xp.quenq.com/res/sites/pinball/` 下的 `bg.mp3`（2.8 MB，背景音乐）与 `splash.png`（启动图）
-- `assets/ui/` 下暂无弹球专用位图，如需台面贴图要另行准备
+`~/Downloads/xp.quenq.com/res/sites/pinball/3DPinballSpaceCadet.js` 是
+**9.4MB 的单行文本**（无换行符），开头为：
 
-**明确禁止**：
-- ❌ 不要引入 `res/sites/pinball/3DPinballSpaceCadet.js` —— 那是 Reborn XP 的专有实现，本项目是 MIT 且公开部署
+```
+var WASM_FILE = "data:application/wasm;base64,AGFzbQEAAAA...
+```
+
+`AGFzbQEAAAA` 是 WASM 二进制的 base64 头 —— 这是 **Emscripten 编译产物，不是源码**。
+
+从 WASM 二进制里提取到的可读字符串（确凿证据）：
+
+| 字符串 | 含义 |
+|---|---|
+| `Project home: https://github.com/k4zmu2a/SpaceCadetPinball` | 上游开源项目 |
+| `Original game by Cinematronics, Microsoft` | 原版游戏版权方 |
+| `/home/alula/opt/emsdk/upstream/emscripten/...` | 构建者环境，`alula` 是网页版作者 |
+| `The .dat file is missing` | 运行还需要 `pinball.dat` 游戏数据 |
+| `GPL` | 该作品属 GPL 家族许可 |
+
+**结论**：它是社区开源项目 **SpaceCadetPinball**（微软原版 3D 弹球的反编译重写）
+经 `alula` 做成网页版、再用 Emscripten 编译出的 WASM。**不是参考站的原创代码。**
+
+参考站自己的部分只是一个 9.7KB 的接入壳（`js/apps/pinball.js`）
++ 一个独立页面（`index-xxxx.html`，内含 `<canvas id="canvas">` 与 Emscripten 的
+`Module` 对象，还把 `c` 键映射成 `/`、`r` 键映射成 `F2`）。
+
+### 引入它的三个实际代价（已告知用户，等其拍板）
+1. **GPL 传染**：本项目是 MIT 且公开部署。把 GPL 产物打进构建输出，
+   整个分发物就应按 GPL 走，`LICENSE` 会变得不准确
+2. **产物 +9.4MB**：且它是内联 data URL，会直接进 JS bundle，
+   对 EdgeOne 的构建与分发有实际成本（本项目已被 187MB SVG 拖累过）
+3. 还需要 `pinball.dat` 数据文件，参考站只带了 JS + `bg.mp3` + `splash.png`，
+   数据是否内嵌在 WASM 里尚未确认
+
+### 三条可选路线（等用户选择）
+- **A. 原样引入那 9.4MB WASM**：最省事、最"原汁原味"，但要接受上面三个代价
+- **B. 自己实现**（原计划）：单张台面 + 档板 + 发射器 + 多球 + 计分。
+  MIT 干净、体积可控，但工作量大且不会 100% 一致
+- **C. iframe 外链上游公开构建**：不把第三方代码放进仓库，
+  但依赖外部服务、离线不可用
+
+**可用的媒体素材**（取用无代码授权问题，已确认存在）：
+- `res/sites/pinball/bg.mp3`（2.8MB 背景音乐）、`splash.png`（33KB 启动图）
+- `assets/fileIcons/pinball.png`（14KB，**优先用这个小图标**，别用 >500KB 的 `windowsIcons/svg/Pinball.svg`）
+- `assets/ui/tray/pinball.png`
 
 **接入方式**（按项目既有约定）：
-1. 建 `apps/Pinball/index.js` + `dropDownData.js`
-2. 在 `apps/index.js` 注册 `appSettings.Pinball` 并加桌面图标
-3. 在 `WinXP/index.js` 的 `onClickMenuItem` 加分支，菜单文本必须与 `FooterMenuData.js` 里**完全一致**（是 `3D 弹球`）
+1. 建 `apps/Pinball/index.js`（需要菜单栏再加 `dropDownData.js`）
+2. 在 `apps/index.js` 注册 `appSettings.Pinball`
+3. 在 `WinXP/index.js` 的 `onClickMenuItem` 加分支，
+   菜单文本必须与 `FooterMenuData.js` 里**完全一致**（是 `三维弹球`）
 
 ---
 
@@ -127,7 +163,20 @@
 
 ## 推送注意事项
 
-- 仓库 `git config` 里写死的代理是 `127.0.0.1:7897`，**该端口会失效**（2026-09-14 当天下午就挂了）。
-  推送前先探测：`curl -s -o /dev/null -w "%{http_code}" -m 6 -x http://127.0.0.1:<port> https://github.com`
-- `git push` 报 `SSL_ERROR_SYSCALL` **不代表没推上去**，务必用
+**⚠️ 最重要的约定：只在用户明确说"提交"时才 commit/push。**
+项目部署在 EdgeOne，每次 push 都会触发一次构建，而 EdgeOne 有构建次数限制。
+自动推送会白烧额度。所以：
+- 改完代码留在工作区即可，**不要自动提交**
+- 一轮任务做完就停下汇报，不要以"提交推送"收尾
+- 用户会明确说"提交"/"推送"来批量处理累积的改动
+- 这条**覆盖**项目早期"每次改完直接提交推送"的旧约定
+
+补充技术细节：
+- 仓库 `git config` 里写死的代理是 `127.0.0.1:7897`，**该端口会失效**（2026-09-14 当天下午就挂了，
+  2026-09-15 晚上直连反而通了）。推送前先探测：
+  `curl -s -o /dev/null -w "%{http_code}" -m 6 -x http://127.0.0.1:<port> https://github.com`
+  直连有时也可用，可两种都试
+- `git push` 报 `SSL_ERROR_SYSCALL` / `Error in the HTTP2 framing layer` /
+  `Empty reply from server` **都不代表没推上去**，务必用
   `git ls-remote origin refs/heads/master` 核对远端实际 commit 再下结论
+- 重试时加 `-c http.version=HTTP/1.1` 可绕过 HTTP/2 帧层问题

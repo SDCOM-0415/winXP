@@ -63,8 +63,24 @@ npm run build
 
 Windows XP 的名称、界面设计和商标均为 Microsoft 所有。本项目仅供学习交流使用，与 Microsoft 无关联，亦未经 Microsoft 认可或授权。
 
+### 第三方组件：三维弹球
+
+`public/pinball/` 目录下的 `3DPinballSpaceCadet.js` **不是本项目的代码**，而是第三方开源项目
+[SpaceCadetPinball](https://github.com/k4zmu2a/SpaceCadetPinball)（微软《3D Pinball for Windows -
+Space Cadet》的反编译重写）经 [alula](https://github.com/alula) 用 Emscripten 编译出的网页版，
+原版游戏版权归 Cinematronics 与 Microsoft 所有。
+
+- 该文件属 **GPL 家族许可**，与本项目主体的 MIT 许可不一致
+- 本项目的 MIT 许可**不覆盖**该文件；它按「独立、未经修改的第三方组件」对待，
+  许可条款以其上游为准
+- 该目录下的宿主页面 `index.html`、启动图与背景音乐为本项目自行添加
+
+详情见 [`public/pinball/NOTICE.md`](public/pinball/NOTICE.md)。
+
 ## 致谢
 
 - [Webamp](https://github.com/captbaritone/webamp) — Winamp 2 的 Web 复刻，作者：[captbaritone](https://github.com/captbaritone)
 - [JS Paint](https://github.com/1j01/jspaint) — 画图的 Web 复刻，作者：[1j01](https://github.com/1j01)
+- [SpaceCadetPinball](https://github.com/k4zmu2a/SpaceCadetPinball) — 三维弹球的反编译重写，作者：[k4zmu2a](https://github.com/k4zmu2a)
+- [alula](https://github.com/alula) — SpaceCadetPinball 的 Emscripten 网页移植
 

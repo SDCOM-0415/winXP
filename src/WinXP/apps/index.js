@@ -12,6 +12,8 @@ import VolumeControl from './VolumeControl';
 import Calculator from './Calculator';
 import WordPad from './WordPad';
 import CharacterMap from './CharacterMap';
+import ImageViewer from './ImageViewer';
+import Pinball from './Pinball';
 import iePaper from 'assets/windowsIcons/svg/Internet Explorer 6.svg';
 import ie from 'assets/windowsIcons/svg/Internet Explorer 6.svg';
 import mine from 'assets/minesweeper/mine-icon.png';
@@ -32,6 +34,8 @@ import volumeIcon from 'assets/ui/tray/sndvol.png';
 import calcIcon from 'assets/fileIcons/calc.png';
 import wordpadIcon from 'assets/fileIcons/wordpad.png';
 import fontIcon from 'assets/fileIcons/font.png';
+import imgviewerIcon from 'assets/fileIcons/imgviewer.png';
+import pinballIcon from 'assets/fileIcons/pinball.png';
 
 // const gen = () => {
 //   let id = -1;
@@ -390,6 +394,45 @@ export const appSettings = {
     maximized: false,
     multiInstance: false,
   },
+  ImageViewer: {
+    header: {
+      icon: imgviewerIcon,
+      title: '图片和传真查看器',
+      buttons: ['close'],
+    },
+    component: ImageViewer,
+    defaultSize: {
+      width: 660,
+      height: 500,
+    },
+    defaultOffset: {
+      x: 200,
+      y: 70,
+    },
+    resizable: true,
+    minimized: false,
+    maximized: false,
+    multiInstance: false,
+  },
+  Pinball: {
+    header: {
+      icon: pinballIcon,
+      title: '三维弹球',
+    },
+    component: Pinball,
+    defaultSize: {
+      width: 620,
+      height: 450,
+    },
+    defaultOffset: {
+      x: 220,
+      y: 90,
+    },
+    resizable: true,
+    minimized: false,
+    maximized: false,
+    multiInstance: false,
+  },
 };
 
 export {
@@ -407,4 +450,6 @@ export {
   Calculator,
   WordPad,
   CharacterMap,
+  ImageViewer,
+  Pinball,
 };

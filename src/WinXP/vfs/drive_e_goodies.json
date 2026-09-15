@@ -75,6 +75,32 @@
             "type": "file",
             "icon": "zip.png",
             "contents": "res/goodies/microsoft_nostalgic.zip"
+        },
+        "microsoft_nostalgic": {
+            "type": "directory",
+            "icon": "folder.png",
+            "contents": {
+                "Microsoft_Nostalgic_Solitaire.jpg": {
+                    "type": "file",
+                    "icon": "jpg.png",
+                    "contents": "microsoft_nostalgic/Microsoft_Nostalgic_Solitaire.jpg"
+                },
+                "Microsoft_Nostalgic_Windows_Wallpaper.jpg": {
+                    "type": "file",
+                    "icon": "jpg.png",
+                    "contents": "microsoft_nostalgic/Microsoft_Nostalgic_Windows_Wallpaper.jpg"
+                },
+                "Microsoft_Nostalic_Clippy.jpg": {
+                    "type": "file",
+                    "icon": "jpg.png",
+                    "contents": "microsoft_nostalgic/Microsoft_Nostalic_Clippy.jpg"
+                },
+                "Microsoft_Nostalic_MSPaint.jpg": {
+                    "type": "file",
+                    "icon": "jpg.png",
+                    "contents": "microsoft_nostalgic/Microsoft_Nostalic_MSPaint.jpg"
+                }
+            }
         }
     }
 }
