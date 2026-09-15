@@ -10,6 +10,7 @@ import DisplayProperties from './DisplayProperties';
 import CommandPrompt from './CommandPrompt';
 import VolumeControl from './VolumeControl';
 import Calculator from './Calculator';
+import WordPad from './WordPad';
 import iePaper from 'assets/windowsIcons/svg/Internet Explorer 6.svg';
 import ie from 'assets/windowsIcons/svg/Internet Explorer 6.svg';
 import mine from 'assets/minesweeper/mine-icon.png';
@@ -28,6 +29,7 @@ import displayIcon from 'assets/fileIcons/displayprops.png';
 import cmdIcon from 'assets/fileIcons/cmd.png';
 import volumeIcon from 'assets/ui/tray/sndvol.png';
 import calcIcon from 'assets/fileIcons/calc.png';
+import wordpadIcon from 'assets/fileIcons/wordpad.png';
 
 // const gen = () => {
 //   let id = -1;
@@ -348,6 +350,25 @@ export const appSettings = {
     maximized: false,
     multiInstance: false,
   },
+  WordPad: {
+    header: {
+      icon: wordpadIcon,
+      title: '文档 - 写字板',
+    },
+    component: WordPad,
+    defaultSize: {
+      width: 620,
+      height: 440,
+    },
+    defaultOffset: {
+      x: 180,
+      y: 100,
+    },
+    resizable: true,
+    minimized: false,
+    maximized: false,
+    multiInstance: false,
+  },
 };
 
 export {
@@ -363,4 +384,5 @@ export {
   CommandPrompt,
   VolumeControl,
   Calculator,
+  WordPad,
 };

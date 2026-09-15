@@ -881,6 +881,8 @@ function WinXP() {
       dispatch({ type: ADD_APP, payload: appSettings.VolumeControl });
     } else if (o === '计算器') {
       dispatch({ type: ADD_APP, payload: appSettings.Calculator });
+    } else if (o === '写字板') {
+      dispatch({ type: ADD_APP, payload: appSettings.WordPad });
     } else if (o === '注销') {
       dispatch({ type: POWER_OFF, payload: POWER_STATE.LOG_OFF });
     } else if (o === '关闭计算机') {
