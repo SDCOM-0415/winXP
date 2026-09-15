@@ -860,6 +860,11 @@ function WinXP() {
     playSystemSound(startSound);
     if (o === 'Internet') {
       dispatch({ type: ADD_APP, payload: appSettings['Internet Explorer'] });
+    } else if (o === 'Internet Explorer') {
+      // 「所有程序」里的文案与置顶项不同，是两个独立条目，需分别匹配
+      dispatch({ type: ADD_APP, payload: appSettings['Internet Explorer'] });
+    } else if (o === 'Windows 资源管理器') {
+      dispatch({ type: ADD_APP, payload: appSettings['My Computer'] });
     } else if (o === '扫雷') {
       dispatch({ type: ADD_APP, payload: appSettings.Minesweeper });
     } else if (o === '我的电脑') {
@@ -874,6 +879,8 @@ function WinXP() {
       dispatch({ type: ADD_APP, payload: appSettings.CommandPrompt });
     } else if (o === '音量控制') {
       dispatch({ type: ADD_APP, payload: appSettings.VolumeControl });
+    } else if (o === '计算器') {
+      dispatch({ type: ADD_APP, payload: appSettings.Calculator });
     } else if (o === '注销') {
       dispatch({ type: POWER_OFF, payload: POWER_STATE.LOG_OFF });
     } else if (o === '关闭计算机') {

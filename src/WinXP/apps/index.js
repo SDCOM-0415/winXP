@@ -9,6 +9,7 @@ import Changelog from './Changelog';
 import DisplayProperties from './DisplayProperties';
 import CommandPrompt from './CommandPrompt';
 import VolumeControl from './VolumeControl';
+import Calculator from './Calculator';
 import iePaper from 'assets/windowsIcons/svg/Internet Explorer 6.svg';
 import ie from 'assets/windowsIcons/svg/Internet Explorer 6.svg';
 import mine from 'assets/minesweeper/mine-icon.png';
@@ -26,6 +27,7 @@ import changelogIcon from 'assets/windowsIcons/svg/Generic Text Document.svg';
 import displayIcon from 'assets/fileIcons/displayprops.png';
 import cmdIcon from 'assets/fileIcons/cmd.png';
 import volumeIcon from 'assets/ui/tray/sndvol.png';
+import calcIcon from 'assets/fileIcons/calc.png';
 
 // const gen = () => {
 //   let id = -1;
@@ -327,6 +329,25 @@ export const appSettings = {
     maximized: false,
     multiInstance: false,
   },
+  Calculator: {
+    header: {
+      icon: calcIcon,
+      title: '计算器',
+    },
+    component: Calculator,
+    defaultSize: {
+      width: 262,
+      height: 246,
+    },
+    defaultOffset: {
+      x: 220,
+      y: 160,
+    },
+    resizable: false,
+    minimized: false,
+    maximized: false,
+    multiInstance: false,
+  },
 };
 
 export {
@@ -341,4 +362,5 @@ export {
   DisplayProperties,
   CommandPrompt,
   VolumeControl,
+  Calculator,
 };
