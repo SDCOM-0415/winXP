@@ -7,61 +7,23 @@ import { useVfs } from '../../vfs';
 import { SET_PREFS } from '../../constants/actions';
 
 /**
- * 混音通道。主音量（音量控制）与托盘共用 prefs.volume / prefs.muted，
- * 其余通道存在 prefs.audioLevels 里。
+ * 音量控制。结构对照参考站的实现：只有一列「系统」主音量，
+ * 纵向细轨道 + 小圆角推子，下面是「静音」复选框，
+ * 底部一条分隔线加设备名（参考站显示的是声卡型号）。
  */
-const CHANNELS = [
-  { key: 'master', label: '音量控制' },
-  { key: 'wave', label: '波形' },
-  { key: 'synth', label: '软件合成器' },
-  { key: 'cd', label: 'CD 唱机' },
-  { key: 'line', label: '线路输入' },
-];
-
-const DEFAULT_LEVELS = { wave: 80, synth: 80, cd: 80, line: 80 };
-const DEFAULT_MUTED = { wave: false, synth: false, cd: false, line: false };
-
 export default function VolumeControl({ onClose }) {
   const { prefs, dispatch } = useVfs();
+  const level = prefs.muted ? 0 : prefs.volume;
 
-  const levels = {
-    master: prefs.volume,
-    ...DEFAULT_LEVELS,
-    ...prefs.audioLevels,
-  };
-  const muted = { master: prefs.muted, ...DEFAULT_MUTED, ...prefs.audioMuted };
-
-  function setLevel(key, value) {
-    if (key === 'master') {
-      dispatch({
-        type: SET_PREFS,
-        payload: { volume: value, muted: false },
-      });
-      return;
-    }
+  function setLevel(value) {
     dispatch({
       type: SET_PREFS,
-      payload: {
-        audioLevels: { ...DEFAULT_LEVELS, ...prefs.audioLevels, [key]: value },
-      },
+      payload: { volume: value, muted: false },
     });
   }
 
-  function toggleMute(key) {
-    if (key === 'master') {
-      dispatch({ type: SET_PREFS, payload: { muted: !prefs.muted } });
-      return;
-    }
-    dispatch({
-      type: SET_PREFS,
-      payload: {
-        audioMuted: {
-          ...DEFAULT_MUTED,
-          ...prefs.audioMuted,
-          [key]: !muted[key],
-        },
-      },
-    });
+  function toggleMute() {
+    dispatch({ type: SET_PREFS, payload: { muted: !prefs.muted } });
   }
 
   function onClickOptionItem(item) {
@@ -70,7 +32,7 @@ export default function VolumeControl({ onClose }) {
         onClose();
         break;
       case '静音':
-        toggleMute('master');
+        toggleMute();
         break;
       case '关于音量控制':
         window.postMessage({ type: 'open-app', app: 'AboutWindows' }, '*');
@@ -87,128 +49,216 @@ export default function VolumeControl({ onClose }) {
         height={20}
       />
       <div className="vc__body">
-        {CHANNELS.map(channel => (
-          <div className="vc__channel" key={channel.key}>
-            <div className="vc__caption">{channel.label}</div>
-            <label className="vc__mute">
+        <form className="vc__form" onSubmit={e => e.preventDefault()}>
+          <span className="vc__name">系统</span>
+          <span className="vc__label">音量:</span>
+          <div className="vc__slot">
+            <input
+              className="vc__slider"
+              type="range"
+              min="0"
+              max="100"
+              value={level}
+              onChange={e => setLevel(Number(e.target.value))}
+            />
+          </div>
+          <span className="vc__mute">
+            <label>
               <input
                 type="checkbox"
-                checked={muted[channel.key]}
-                onChange={() => toggleMute(channel.key)}
+                checked={prefs.muted}
+                onChange={toggleMute}
               />
+              <span className="vc__checkbox" />
               静音
             </label>
-            <div className="vc__sliderwrap">
-              <input
-                className="vc__slider"
-                type="range"
-                min="0"
-                max="100"
-                value={muted[channel.key] ? 0 : levels[channel.key]}
-                onChange={e => setLevel(channel.key, Number(e.target.value))}
-              />
-            </div>
-          </div>
-        ))}
+          </span>
+        </form>
       </div>
+      <div className="vc__device">Creative SoundBlaster PCI</div>
     </Div>
   );
 }
+
+const cursorLink = `url(../../assets/cursors/link.cur), pointer`;
+const cursorDefault = `url(../../assets/cursors/default.cur), default`;
 
 const Div = styled.div`
   height: 100%;
   background-color: #ece9d8;
   display: flex;
   flex-direction: column;
-  font-size: 11px;
+  /* 字号与行高取自参考站实测值（13px，不是我先前估的 11px） */
+  font-size: 13px;
   color: #000;
+  overflow: hidden;
 
   .vc__body {
     flex: 1;
     min-height: 0;
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    padding: 8px 6px 6px;
-    background-color: #f1efe2;
-    border: 1px solid;
-    border-color: #fff #aca899 #aca899 #fff;
-    margin: 3px;
+    padding: 0 6px;
+  }
+  .vc__form {
+    display: grid;
+    grid-template-columns: auto;
+    /* 实测：名称行 30 / 音量标签行 24 / 推子 135 / 静音行 20 */
+    grid-template-rows: 30px 24px 135px 20px;
+    width: 105px;
+    margin: 0;
+  }
+  /* 通道名居中，下面一条分隔线（线下方还有一道白色高光） */
+  .vc__name {
+    grid-row: 1;
+    display: block;
+    text-align: center;
+    line-height: 13px;
+    padding: 6px 0;
+    margin: 0 6px;
+    border-bottom: 1px solid #aca899;
+    box-shadow: 0 1px #fff;
+    white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
   }
-  .vc__channel {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    height: 100%;
+  .vc__label {
+    grid-row: 2;
+    padding-top: 3px;
   }
-  .vc__caption {
-    white-space: nowrap;
-  }
-  .vc__mute {
-    display: flex;
-    align-items: center;
-    gap: 3px;
-    white-space: nowrap;
-    cursor: url(../../assets/cursors/default.cur), default;
-  }
-  /* XP 的音量推子是纵向「分段式」滑杆：
-     凹槽两侧有边栏、槽内有刻度线，滑块是带绿色 3D 高光的方形推子。
-     之前用原生 range 旋转 90 度 + accent-color，完全不像 XP。 */
-  .vc__sliderwrap {
-    flex: 1;
+  /* 推子所在的行：让推子在本行内居中 */
+  .vc__slot {
+    grid-row: 3;
     min-height: 0;
     display: flex;
     justify-content: center;
-    padding: 6px 0 10px;
+    padding: 2px 0;
   }
+
+  /* ---- 纵向推子 ----
+     参考站的做法：输入框本身 scaleY(-1)（让 100% 在顶端）、
+     外观全部去掉，轨道只剩一根细竖线，推子是小圆角方块、
+     上下缘各一条绿色高光（这是该控件的标志） */
   .vc__slider {
-    appearance: none;
     -webkit-appearance: none;
+    appearance: none;
+    /* 实测参考站推子为 24 × 135 */
+    width: 24px;
+    height: 135px;
+    /* 轨道用输入框自身的背景画一条居中的 2px 竖线。
+       注意：Chrome 不支持在 ::-webkit-slider-runnable-track 上再用 ::before，
+       所以不能像参考站 CSS 那样把凹槽画在轨道的伪元素里 */
+    background-image: linear-gradient(
+      to right,
+      transparent 0,
+      transparent 10px,
+      #c8c8c0 10px,
+      #c8c8c0 12px,
+      #fff 12px,
+      #fff 13px,
+      transparent 13px,
+      transparent 24px
+    );
     writing-mode: vertical-lr;
-    direction: rtl;
-    width: 30px;
-    height: 100%;
-    margin: 0;
-    background: transparent;
-    cursor: url(../../assets/cursors/default.cur), default;
+    transform: scaleY(-1);
+    cursor: ${cursorLink};
+    margin: 0 auto;
   }
-  /* 凹槽：左右边栏（中间留出 22px 的槽）+ 每 11px 一道的刻度线 */
   .vc__slider::-webkit-slider-runnable-track {
-    width: 30px;
+    width: 24px;
     height: 100%;
+    background: transparent;
     border: none;
-    background-image: repeating-linear-gradient(
-        to right,
-        transparent 0,
-        transparent 3px,
-        #ece9d8 4px,
-        #ece9d8 26px,
-        transparent 27px,
-        transparent 30px
-      ),
-      repeating-linear-gradient(#a1a192 0, transparent 1px, transparent 11px);
+    cursor: ${cursorLink};
   }
-  /* 推子本体：白/灰底 + 内侧立体高光，左右两条绿色边是该控件的标志 */
   .vc__slider::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 30px;
+    box-sizing: border-box;
+    width: 24px;
     height: 11px;
-    border-radius: 1px;
-    background: linear-gradient(to bottom, #f6f4ed, #dcd8ca);
-    box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.53),
-      inset -1px -1px 1px rgba(0, 0, 0, 0.27), inset 2px 0 0 #48cb46,
-      inset -2px 0 0 #1fae1d;
+    margin-top: -6px;
+    border: 1px solid;
+    border-color: #b0b0b0 #808080 #808080 #b0b0b0;
+    border-radius: 5px;
+    background: linear-gradient(to right, #f4f3ee 0, #fff 50%, #eceae2 100%);
+    /* 上下缘各一条绿边，是该控件的标志 */
+    box-shadow: inset 0 2px 0 #48cb46, inset 0 -2px 0 #1fae1d;
+    cursor: ${cursorLink};
   }
-  .vc__slider:hover::-webkit-slider-thumb {
-    box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.53),
-      inset -1px -1px 1px rgba(0, 0, 0, 0.27), inset 2px 0 0 #fac158,
-      inset -2px 0 0 #e2a330;
+
+  /* ---- 静音：原生复选框隐藏，外观纯 CSS 画 ---- */
+  .vc__mute {
+    grid-row: 4;
+    position: relative;
+    display: block;
+    padding: 6px 0 6px 18px;
+    cursor: ${cursorDefault};
   }
-  .vc__slider:active::-webkit-slider-thumb {
-    box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.53),
-      inset -1px -1px 1px rgba(0, 0, 0, 0.27), inset 2px 0 0 #48a73b,
-      inset -2px 0 0 #1f8710;
+  .vc__mute label {
+    cursor: ${cursorDefault};
+  }
+  .vc__mute input[type='checkbox'] {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    margin: 0;
+    position: absolute;
+  }
+  .vc__checkbox {
+    box-sizing: border-box;
+    position: absolute;
+    top: 8px;
+    left: 0;
+    width: 11px;
+    height: 11px;
+    display: inline-block;
+    outline: 1px solid #1c5180;
+    border: 2px solid transparent;
+    background: linear-gradient(135deg, #dcdcd7, #fff);
+    border-image: linear-gradient(135deg, #dcdcd7, #ffffff);
+    border-image-slice: 1;
+    &:after,
+    &:before {
+      display: none;
+      content: '';
+      position: absolute;
+      background-color: #21a121;
+    }
+    &:after {
+      transform: rotate(-45deg);
+      width: 2px;
+      height: 4px;
+      top: 2px;
+      left: 1px;
+    }
+    &:before {
+      transform: rotate(45deg);
+      width: 2px;
+      height: 6px;
+      top: 0;
+      right: 1px;
+    }
+  }
+  .vc__mute:hover .vc__checkbox {
+    border-image: linear-gradient(135deg, #fff0cf, #f8b330);
+    border-image-slice: 1;
+  }
+  .vc__mute:active .vc__checkbox {
+    border-image: linear-gradient(135deg, #b0b0a7, #f1efdf);
+    border-image-slice: 1;
+    background: linear-gradient(135deg, #b0b0a7, #f1efdf);
+  }
+  .vc__mute input:checked ~ .vc__checkbox:after,
+  .vc__mute input:checked ~ .vc__checkbox:before {
+    display: block;
+  }
+
+  /* 底部分隔线 + 设备名 */
+  .vc__device {
+    flex-shrink: 0;
+    padding: 4px 10px 5px;
+    border-top: 1px solid #aca899;
+    box-shadow: inset 0 1px #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;

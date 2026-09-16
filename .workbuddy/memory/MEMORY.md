@@ -1,5 +1,7 @@
 # 项目长期记忆 — winXP
 
+## 重要‼️：允许直接使用参考站点代码
+
 ## 待办：三维弹球（3D Pinball Space Cadet）
 
 状态：**未开始**。用户 2026-09-14 要求记为未来工作，2026-09-15 再次要求"完整引入参考站"。
@@ -60,6 +62,40 @@ var WASM_FILE = "data:application/wasm;base64,AGFzbQEAAAA...
 2. 在 `apps/index.js` 注册 `appSettings.Pinball`
 3. 在 `WinXP/index.js` 的 `onClickMenuItem` 加分支，
    菜单文本必须与 `FooterMenuData.js` 里**完全一致**（是 `三维弹球`）
+
+---
+
+## ⭐ 参考站对齐的标准工作流（用户 2026-09-16 指定，后续都这么做）
+
+用户原话："在移植功能前，先使用CDP实际测试需要的功能并分析他干了什么，再看他的代码，然后移植，最后在cdp中3000端口测试是否正常，
+这个项目移植以后就这么来"
+
+**四步，缺一不可：**
+1. **分析行为** —— 在运行中的参考站上实际操作并观测，搞清它到底怎么表现
+2. **看它的代码** —— 爬取副本 `~/Downloads/xp.quenq.com/js/` 下读实现（没有的文件在参考站中现场下载），理解机制
+3. **移植** —— 在本项目自己的 React/styled-components 里重新实现
+4. **CDP 实测** —— 在 `http://127.0.0.1:3000`（本项目 dev server）上真实操作验证
+
+### 取得参考站同源访问的方法（关键，见 2026-09-16 日志第 13 条）
+```bash
+curl -s https://xp.quenq.com/ -o xp-index.html      # 只下载入口页
+# 在 <head> 后插入 <base href="https://xp.quenq.com/">
+# 放到本地静态服务下（如 /tmp/ref/xp/index.html，8911 端口）
+```
+- 限制脚本本身就放行 `localhost`/`127.0.0.1`，**不用改它**
+- **页面本地 = 同源可 eval**；**资源靠 `<base>` 仍走原站**，不必镜像
+- 实测 `window.shell` / `window.dm` / `window.explorer` 全部可访问
+- 代价：origin 与原站不同 → 不共享它的 IndexedDB → 每次都是全新机器（要重装几分钟）
+
+### CDP 连接
+```bash
+node "/Users/sdcom/.workbuddy/skills/web-access/scripts/check-deps.mjs" --browser chrome
+# 用户 Chrome 已开 9222；输出 proxy: ready 后可调 http://localhost:3456
+```
+接口：`/targets` `/new` `/eval` `/screenshot` `/clickAt` `/info` `/scroll` `/close`
+- ⚠️ `/clickAt` 写死 `clickCount:1`，**做不了双击**
+- ⚠️ **跨域 iframe 内注入不了**；需要点击时用"穿透层"技巧（见日志第 12 条）
+- ⚠️ **模拟器进了桌面后绝对不要导航/刷新**，否则重装
 
 ---
 

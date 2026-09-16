@@ -325,11 +325,11 @@ export const appSettings = {
     },
     component: VolumeControl,
     defaultSize: {
-      width: 230,
+      width: 268,
       height: 320,
     },
     defaultOffset: {
-      x: window.innerWidth - 460,
+      x: Math.max(10, window.innerWidth - 620),
       y: 140,
     },
     resizable: false,

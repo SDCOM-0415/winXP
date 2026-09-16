@@ -6,7 +6,8 @@ import Balloon from 'components/Balloon';
 import { useVfs } from '../vfs';
 import { SET_PREFS } from '../constants/actions';
 import startButton from 'assets/windowsIcons/start.png';
-import traySound from 'assets/ui/tray/sndvol.png';
+// 参考站托盘音量用的是 sound.png（sndvol.png 是音量控制应用的窗口图标）
+import traySound from 'assets/ui/tray/sound.png';
 import trayNetwork from 'assets/ui/tray/connections.png';
 import traySecurity from 'assets/ui/tray/security.png';
 

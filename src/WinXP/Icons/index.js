@@ -46,13 +46,9 @@ const Icons = forwardRef(function Icons(
   useEffect(() => {
     function onBeginRename(e) {
       const target = e.detail || {};
+      // 只按名字匹配：桌面条目名唯一，避免 driveId/segments 写法的细微差异导致匹配失败
       const hit = icons.find(
-        ic =>
-          ic.vfsPath &&
-          ic.vfsPath.name === target.name &&
-          ic.vfsPath.driveId === target.driveId &&
-          JSON.stringify(ic.vfsPath.segments) ===
-            JSON.stringify(target.segments),
+        ic => ic.vfsPath && ic.vfsPath.name === target.name,
       );
       if (hit) setRenamingId(hit.id);
     }
@@ -353,8 +349,14 @@ function Icon({
             onBlur={e => {
               // Enter/Esc 已处理过就不再重复提交
               if (doneRef.current) return;
-              doneRef.current = true;
-              onRenameCommit(e.target.value);
+              // 参考站的做法：blur 后延迟约 100ms 再提交。
+              // 立即提交的话，用户点到别处时可能提交还没发生就被清理掉
+              const value = e.target.value;
+              setTimeout(() => {
+                if (doneRef.current) return;
+                doneRef.current = true;
+                onRenameCommit(value);
+              }, 100);
             }}
           />
         ) : (

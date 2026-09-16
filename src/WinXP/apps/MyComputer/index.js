@@ -15,6 +15,7 @@ import {
   nodeSize,
   formatDate,
   iconForFileName,
+  uniqueName,
 } from '../../vfs';
 import {
   VFS_CREATE_FOLDER,
@@ -191,6 +192,14 @@ function MyComputer({ onClose, injectProps }) {
       payload: { ...location },
     });
   }
+  beginRenameForNew('新建文件夹', '');
+
+  /** 新建后立即进入就地重命名：名字用与归约器相同的 uniqueName 规则推算 */
+  function beginRenameForNew(base, ext) {
+    if (!location) return;
+    renameSettledRef.current = false;
+    setRenamingName(uniqueName(currentNode, base, ext));
+  }
 
   function createNewTextFile() {
     if (!location) return;
@@ -199,6 +208,7 @@ function MyComputer({ onClose, injectProps }) {
       payload: { ...location, content: '' },
     });
   }
+  beginRenameForNew('新建文本文档', '.txt');
 
   /** 进入就地重命名（XP 的做法：文件名处直接出现输入框） */
   function renameSelected() {
@@ -680,7 +690,12 @@ function MyComputer({ onClose, injectProps }) {
                             cancelRename();
                           }
                         }}
-                        onBlur={e => commitRename(name, e.target.value)}
+                        onBlur={e => {
+                          // 与桌面图标一致：延迟 100ms 提交，
+                          // 避免点到别处时提交还没发生就被清理掉
+                          const value = e.target.value;
+                          setTimeout(() => commitRename(name, value), 100);
+                        }}
                       />
                     ) : (
                       <span className="com__content__browse__text">{name}</span>

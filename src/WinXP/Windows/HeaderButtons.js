@@ -58,7 +58,10 @@ export default styled(HeaderButtons)`
   display: flex;
   align-items: center;
   margin-top: 0;
-  margin-right: 2px;
+  /* 参考站实测：close 右边缘距窗口右边 7px。
+       标题栏左右各内缩 3px + 右内边距 4px 已经占掉 7px，
+       所以这里不能再加外边距（原来 2px 会让整组偏左 2px） */
+  margin-right: 0;
   gap: 2px;
   .header__button {
     position: relative;
