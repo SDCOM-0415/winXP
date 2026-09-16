@@ -21,7 +21,6 @@
   /* 标题栏底色块高度：内容高 21px + 上下内边距 5+2px */
   --titlebar-bg-height: 28px;
   /* 窗口按钮：基准 captionbutton 为 19x19、圆角 3px */
-  --winbtn-size: 19px;
 }
 
 /* ---- Luna：Windows XP 默认蓝色 ---- */
@@ -122,66 +121,24 @@
   --taskbar-text: #fff;
   --winbtn-border: 1px solid #fff;
   --winbtn-radius: 3px;
-  /* 基准 captionbutton：径向高光叠加实色底，配 inset 阴影做出玻璃感 */
-  --winbtn-shadow: inset 2px 2px 3px #7099f8, inset -1px -1px 2px #196df4;
-  --winbtn-shadow-hover: inset 2px 2px 3px #81aaff, inset -1px -1px 2px #3578ff;
-  --winbtn-close-shadow: inset 2px 2px 3px #ec937c, inset 1px 1px 2px #e34d22;
-  --winbtn-close-shadow-hover: inset 2px 2px 3px #ffa59b,
-    inset 1px 1px 2px #ff6857;
+  --winbtn-shadow: inset 0 -1px 2px 1px #4646ff;
+  --winbtn-close-shadow: inset 0 -1px 2px 1px #da4600;
   --winbtn-bg: radial-gradient(
-      at 10% 10%,
-      #9ab7fa 0,
-      rgba(154, 183, 250, 0.27) 30%,
-      rgba(154, 183, 250, 0) 60%
-    ),
-    radial-gradient(
-      at 85% 40%,
-      #2766f5 0,
-      rgba(39, 102, 245, 0.33) 40%,
-      rgba(39, 102, 245, 0) 50%
-    ),
-    #4778f6;
-  --winbtn-bg-hover: radial-gradient(
-      at 10% 10%,
-      #a4c2ff 0,
-      rgba(164, 194, 255, 0.27) 30%,
-      rgba(164, 194, 255, 0) 60%
-    ),
-    radial-gradient(
-      at 70% 70%,
-      #3eb4ff 0,
-      rgba(62, 180, 255, 0.33) 40%,
-      rgba(62, 180, 255, 0) 50%
-    ),
-    #317aff;
+    circle at 90% 90%,
+    #0054e9 0%,
+    #2263d5 55%,
+    #4479e4 70%,
+    #a3bbec 90%,
+    white 100%
+  );
   --winbtn-close-bg: radial-gradient(
-      at 10% 10%,
-      #f1ac9a 0,
-      rgba(241, 172, 154, 0.27) 30%,
-      rgba(241, 172, 154, 0) 60%
-    ),
-    radial-gradient(
-      at 85% 40%,
-      #e34d22 0,
-      rgba(227, 77, 34, 0.13) 40%,
-      rgba(227, 77, 34, 0) 50%
-    ),
-    #e66a4d;
-  --winbtn-close-bg-hover: radial-gradient(
-      at 10% 10%,
-      #ffb8b0 0,
-      rgba(255, 184, 176, 0.27) 30%,
-      rgba(255, 184, 176, 0) 60%
-    ),
-    radial-gradient(
-      at 70% 70%,
-      #ffa27d 0,
-      rgba(255, 162, 125, 0.13) 40%,
-      rgba(255, 162, 125, 0) 50%
-    ),
-    #ff6452;
-  /* 按钮底色（渐进色之上的实色层），供 CSS 绘制的还原图标取色 */
-  --winbtn-base-color: #4778f6;
+    circle at 90% 90%,
+    #cc4600 0%,
+    #dc6527 55%,
+    #cd7546 70%,
+    #ffccb2 90%,
+    white 100%
+  );
   --winbtn-glyph: #fff;
 }
 
@@ -201,7 +158,6 @@
   --titlebar-letter-spacing: 0;
   --titlebar-padding: 2px 4px 1px 5px;
   --titlebar-bg-height: 21px;
-  --winbtn-size: 16px;
   --taskbar-bg: #d4d0c8;
   --tray-bg: #d4d0c8;
   --tray-border-left: 1px solid #808080;
@@ -227,14 +183,9 @@
   --winbtn-border: 1px solid #d4d0c8;
   --winbtn-radius: 0;
   --winbtn-shadow: inset -1px -1px 0 #404040, inset 1px 1px 0 #fff;
-  --winbtn-shadow-hover: inset -1px -1px 0 #808080, inset 1px 1px 0 #fff;
   --winbtn-close-shadow: inset -1px -1px 0 #404040, inset 1px 1px 0 #fff;
-  --winbtn-close-shadow-hover: inset -1px -1px 0 #808080, inset 1px 1px 0 #fff;
   --winbtn-bg: #d4d0c8;
-  --winbtn-bg-hover: #e4e2db;
   --winbtn-close-bg: #d4d0c8;
-  --winbtn-close-bg-hover: #e4e2db;
-  --winbtn-base-color: #d4d0c8;
   --winbtn-glyph: #000;
 }
 
@@ -549,6 +500,12 @@ contextmenu > ul li.submenuholder > ul {
 }
 contextmenu > ul li.submenuholder:hover > ul {
   display: block;
+}
+/* 菜单靠屏幕右侧时，子菜单改为向左展开（由全局处理器量宽度后加类）。
+   不加这条的话子菜单会整个渲染到视口外，用户看不到也就点不到 */
+contextmenu > ul li.submenuholder.submenu-left > ul {
+  left: auto;
+  right: 100%;
 }
 contextmenu ul li.submenuholder::after {
   content: '▼';

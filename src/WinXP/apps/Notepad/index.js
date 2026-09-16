@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { WindowDropDowns } from 'components';
@@ -150,6 +150,43 @@ export default function Notepad({ onClose, injectProps }) {
     }
   }
 
+  // 右键菜单的命令回调。菜单是全局处理器 cloneNode 克隆出来的，
+  // React onClick 会丢失，所以改为监听 winxp:menu-command 事件。
+  // 这里刻意只用 useState 的稳定 setter，不引用组件内的普通函数，
+  // 以便依赖数组可以留空而不触发 exhaustive-deps 告警。
+  useEffect(() => {
+    function onMenuCommand(e) {
+      const cmd = e.detail && e.detail.cmd;
+      if (!cmd) return;
+      switch (cmd) {
+        case 'cut':
+        case 'copy':
+        case 'delete':
+          // 作用于当前获得焦点的编辑区（点击菜单项不会夺走焦点）
+          document.execCommand(cmd);
+          break;
+        case 'select-all': {
+          const el = document.activeElement;
+          if (el && el.select) el.select();
+          break;
+        }
+        case 'datetime': {
+          const date = new Date();
+          setDocText(
+            prev =>
+              `${prev}${date.toLocaleTimeString()} ${date.toLocaleDateString()}`,
+          );
+          setDirty(true);
+          break;
+        }
+        default:
+      }
+    }
+    window.addEventListener('winxp:menu-command', onMenuCommand);
+    return () =>
+      window.removeEventListener('winxp:menu-command', onMenuCommand);
+  }, []);
+
   return (
     <Div>
       <section className="np__toolbar">
@@ -161,37 +198,19 @@ export default function Notepad({ onClose, injectProps }) {
       >
         <contextmenu>
           <ul>
+            {/* 右键菜单由全局处理器 cloneNode 克隆，克隆节点会丢失 React 事件处理器，
+                所以这里一律用 data-cmd，由本组件监听 winxp:menu-command 事件处理 */}
             <li className="disabled">撤销</li>
             <li className="divider" />
-            <li onClick={() => document.execCommand('cut')}>剪切</li>
-            <li onClick={() => document.execCommand('copy')}>复制</li>
-            <li onClick={() => document.execCommand('paste')}>粘贴</li>
-            <li onClick={() => document.execCommand('delete')}>删除</li>
+            <li data-cmd="cut">剪切</li>
+            <li data-cmd="copy">复制</li>
+            {/* 浏览器禁止脚本主动粘贴，保持禁用，而不是留一个点了没反应的项 */}
+            <li className="disabled">粘贴</li>
+            <li data-cmd="delete">删除</li>
             <li className="divider" />
-            <li
-              onClick={() => {
-                const ta = document.activeElement;
-                if (ta) {
-                  ta.select && ta.select();
-                }
-              }}
-            >
-              全选
-            </li>
+            <li data-cmd="select-all">全选</li>
             <li className="divider" />
-            <li
-              onClick={() => {
-                const date = new Date();
-                updateText(
-                  docText +
-                    date.toLocaleTimeString() +
-                    ' ' +
-                    date.toLocaleDateString(),
-                );
-              }}
-            >
-              时间/日期
-            </li>
+            <li data-cmd="datetime">时间/日期</li>
           </ul>
         </contextmenu>
         <StyledTextarea

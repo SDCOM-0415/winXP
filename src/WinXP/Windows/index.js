@@ -114,20 +114,31 @@ const Window = memo(function ({
       >
         <contextmenu>
           <ul>
-            <li className="disabled">还原</li>
+            {/* 右键菜单由 cloneNode 克隆而来，克隆节点会丢失 React 事件处理器，
+                所以这里必须用 data-action + data-win-id 交给全局处理器 */}
+            <li
+              className={maximized ? '' : 'disabled'}
+              data-action="restore"
+              data-win-id={id}
+            >
+              还原
+            </li>
             <li className="disabled">移动</li>
             <li className="disabled">大小</li>
-            <li className="disabled" onClick={_onMouseUpMinimize}>
+            <li data-action="minimize" data-win-id={id}>
               最小化
             </li>
             <li
               className={maximized ? 'disabled' : ''}
-              onClick={_onMouseUpMaximize}
+              data-action="maximize"
+              data-win-id={id}
             >
               最大化
             </li>
             <li className="divider" />
-            <li onClick={_onMouseUpClose}>关闭</li>
+            <li data-action="close" data-win-id={id}>
+              关闭
+            </li>
           </ul>
         </contextmenu>
         {!header.noIcon && (

@@ -7,10 +7,15 @@ import React, {
 } from 'react';
 import styled from 'styled-components';
 
+/** 初始布局用网格：一列放满（按视口高度）就换下一列，
+    否则图标多了会一路排到屏幕外，看起来像"新建没有效果" */
 function getInitialPositions(icons) {
+  const rows = Math.max(1, Math.floor((window.innerHeight - 40) / 75));
   const positions = {};
   icons.forEach((icon, index) => {
-    positions[icon.id] = { x: 0, y: index * 75 };
+    const col = Math.floor(index / rows);
+    const row = index % rows;
+    positions[icon.id] = { x: col * 80, y: row * 75 };
   });
   return positions;
 }
@@ -24,6 +29,7 @@ const Icons = forwardRef(function Icons(
     mouse,
     selecting,
     setSelectedIcons,
+    onRename,
   },
   ref,
 ) {
@@ -33,9 +39,47 @@ const Icons = forwardRef(function Icons(
   );
   const [draggingId, setDraggingId] = useState(null);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const [renamingId, setRenamingId] = useState(null);
+
+  // 右键「重命名」时全局处理器广播 winxp:begin-rename，
+  // 由持有该项的组件就地渲染输入框（XP 的做法），不再弹浏览器提示框
+  useEffect(() => {
+    function onBeginRename(e) {
+      const target = e.detail || {};
+      const hit = icons.find(
+        ic =>
+          ic.vfsPath &&
+          ic.vfsPath.name === target.name &&
+          ic.vfsPath.driveId === target.driveId &&
+          JSON.stringify(ic.vfsPath.segments) ===
+            JSON.stringify(target.segments),
+      );
+      if (hit) setRenamingId(hit.id);
+    }
+    window.addEventListener('winxp:begin-rename', onBeginRename);
+    return () =>
+      window.removeEventListener('winxp:begin-rename', onBeginRename);
+  }, [icons]);
+
+  function commitRename(icon, newName) {
+    setRenamingId(null);
+    const name = String(newName || '').trim();
+    if (!name || !icon.vfsPath || name === icon.vfsPath.name) return;
+    if (onRename) onRename({ ...icon.vfsPath, newName: name });
+  }
 
   useImperativeHandle(ref, () => ({
     resetPositions: () => setIconPositions(getInitialPositions(icons)),
+    /** 重命名后图标的 id 会跟着变（vfs:旧名 → vfs:新名），
+        把原位置迁移到新 id，否则图标会被当成新图标排到别的格子 */
+    migratePosition: (oldId, newId) => {
+      setIconPositions(prev => {
+        if (prev[newId] !== undefined || prev[oldId] === undefined) return prev;
+        const next = { ...prev, [newId]: prev[oldId] };
+        delete next[oldId];
+        return next;
+      });
+    },
     /** 按名称排序并重新排布 */
     arrangeByName: () => {
       const sorted = [...icons].sort((a, b) =>
@@ -124,19 +168,39 @@ const Icons = forwardRef(function Icons(
     };
   }, [draggingId, dragOffset]);
 
-  // 新出现的图标（例如桌面右键新建出来的）还没有坐标，追加到首列末尾
+  // 新出现的图标（例如桌面右键新建出来的）放到第一个空闲的网格位，
+  // 一列放满就换下一列 —— 之前是无限往首列下方追加，图标会跑出屏幕，
+  // 用户就会以为"新建没有效果"
   useEffect(() => {
     setIconPositions(prev => {
       const missing = icons.filter(icon => prev[icon.id] === undefined);
       if (!missing.length) return prev;
-      const next = { ...prev };
-      let maxY = Object.values(prev).reduce(
-        (m, pos) => Math.max(m, pos.y),
-        -75,
+      // 以 80x75 的格子为一份，把已有图标占用的格子记下来
+      const occupied = new Set(
+        Object.values(prev).map(
+          pos => `${Math.round(pos.x / 80)}:${Math.round(pos.y / 75)}`,
+        ),
       );
+      // 视口高度减去任务栏与边距，得到一列能放几行
+      const rows = Math.max(1, Math.floor((window.innerHeight - 40) / 75));
+      const next = { ...prev };
+      let col = 0;
+      let row = 0;
       missing.forEach(icon => {
-        maxY += 75;
-        next[icon.id] = { x: 0, y: maxY };
+        while (occupied.has(`${col}:${row}`)) {
+          row += 1;
+          if (row >= rows) {
+            row = 0;
+            col += 1;
+          }
+        }
+        occupied.add(`${col}:${row}`);
+        next[icon.id] = { x: col * 80, y: row * 75 };
+        row += 1;
+        if (row >= rows) {
+          row = 0;
+          col += 1;
+        }
       });
       return next;
     });
@@ -164,6 +228,9 @@ const Icons = forwardRef(function Icons(
           onMouseDown={e => handleIconMouseDown(e, icon.id)}
           onDoubleClick={() => onDoubleClick(icon)}
           measure={measure}
+          isRenaming={renamingId === icon.id}
+          onRenameCommit={newName => commitRename(icon, newName)}
+          onRenameCancel={() => setRenamingId(null)}
           style={{
             position: 'absolute',
             left: iconPositions[icon.id]?.x || 0,
@@ -187,8 +254,24 @@ function Icon({
   isFocus,
   displayFocus,
   vfsPath,
+  isRenaming,
+  onRenameCommit,
+  onRenameCancel,
 }) {
   const ref = useRef(null);
+  const inputRef = useRef(null);
+  const doneRef = useRef(false);
+
+  // 进入重命名时自动聚焦并全选，与 XP 一样就地编辑，不用浏览器提示框
+  useEffect(() => {
+    if (!isRenaming) return;
+    doneRef.current = false;
+    const el = inputRef.current;
+    if (!el) return;
+    el.focus();
+    el.select();
+  }, [isRenaming]);
+
   function _onMouseDown(e) {
     onMouseDown(e);
   }
@@ -248,7 +331,35 @@ function Icon({
         <img src={icon} alt={title} className={`${className}__img`} />
       </div>
       <div className={`${className}__text__container`}>
-        <div className={`${className}__text`}>{title}</div>
+        {isRenaming ? (
+          <input
+            ref={inputRef}
+            className={`${className}__rename`}
+            defaultValue={title}
+            spellCheck={false}
+            onMouseDown={e => e.stopPropagation()}
+            onDoubleClick={e => e.stopPropagation()}
+            onKeyDown={e => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                doneRef.current = true;
+                onRenameCommit(e.target.value);
+              } else if (e.key === 'Escape') {
+                e.preventDefault();
+                doneRef.current = true;
+                onRenameCancel();
+              }
+            }}
+            onBlur={e => {
+              // Enter/Esc 已处理过就不再重复提交
+              if (doneRef.current) return;
+              doneRef.current = true;
+              onRenameCommit(e.target.value);
+            }}
+          />
+        ) : (
+          <div className={`${className}__text`}>{title}</div>
+        )}
       </div>
     </div>
   );
@@ -294,6 +405,20 @@ const StyledIcon = styled(Icon)`
     outline-offset: -1px;
     text-align: center;
     flex-shrink: 1;
+  }
+  &__rename {
+    width: auto;
+    min-width: 60px;
+    max-width: 150px;
+    padding: 1px 2px;
+    font-family: inherit;
+    font-size: 10px;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #000;
+    text-shadow: none;
+    outline: none;
+    text-align: left;
   }
   &__img__container {
     width: 30px;

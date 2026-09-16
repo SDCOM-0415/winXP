@@ -11,39 +11,39 @@
     },
     "src/WinXP/apps/MyComputer/index.js": {
       "ipo_ts": 1780914161999,
-      "edit_count": 103,
-      "last_lines": 1277,
-      "last_ts": 1781402492643,
+      "edit_count": 115,
+      "last_lines": 1555,
+      "last_ts": 1789534630940,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "8c6f386a"
+      "last_content_hash": "9172f9d0"
     },
     "src/WinXP/Icons/index.js": {
       "ipo_ts": 1780985272181,
-      "edit_count": 17,
-      "last_lines": 250,
-      "last_ts": 1781418617102,
+      "edit_count": 29,
+      "last_lines": 437,
+      "last_ts": 1789538509391,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "95ec61c0"
+      "last_content_hash": "924b9ff6"
     },
     "src/WinXP/apps/index.js": {
       "ipo_ts": 1780995071947,
-      "edit_count": 10,
-      "last_lines": 276,
-      "last_ts": 1781369848949,
+      "edit_count": 16,
+      "last_lines": 455,
+      "last_ts": 1789468992501,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "7fdad007"
+      "last_content_hash": "7094b271"
     },
     "src/WinXP/index.js": {
       "ipo_ts": 1780996788492,
-      "edit_count": 138,
-      "last_lines": 752,
-      "last_ts": 1781418435166,
+      "edit_count": 163,
+      "last_lines": 1216,
+      "last_ts": 1789538336630,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "529b222e"
+      "last_content_hash": "b4fefa47"
     },
     "src/WinXP/constants/index.js": {
       "ipo_ts": 1780999226329,
@@ -110,12 +110,12 @@
     },
     "src/WinXP/index.css": {
       "ipo_ts": 1781070479915,
-      "edit_count": 25,
-      "last_lines": 314,
-      "last_ts": 1781415771432,
+      "edit_count": 27,
+      "last_lines": 640,
+      "last_ts": 1789515691063,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "2ef5b105"
+      "last_content_hash": "35c310e2"
     },
     "src/assets/windowsIcons/microsoft-windows-xp-seeklogo.png": {
       "ipo_ts": 1781087274876,
@@ -254,21 +254,21 @@
     },
     "src/WinXP/Footer/index.js": {
       "ipo_ts": 1781264802839,
-      "edit_count": 19,
-      "last_lines": 369,
-      "last_ts": 1781408059456,
+      "edit_count": 22,
+      "last_lines": 497,
+      "last_ts": 1789482373841,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "846a68b0"
+      "last_content_hash": "80076765"
     },
     "src/WinXP/Footer/FooterMenuData.js": {
       "ipo_ts": 1781265737126,
-      "edit_count": 3,
+      "edit_count": 4,
       "last_lines": 404,
-      "last_ts": 1781266245376,
+      "last_ts": 1789468748594,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "e62b61a7"
+      "last_content_hash": "99db8be"
     },
     "src/assets/sounds/startup.wav": {
       "ipo_ts": 1781268050513,
@@ -359,24 +359,6 @@
       "delisted": false,
       "last_source": "onEdit",
       "last_content_hash": "e145b486"
-    },
-    "src/WinXP/apps/MyComputer/vfs/drive_c_system.json": {
-      "ipo_ts": 1781273193155,
-      "edit_count": 1,
-      "last_lines": 3656,
-      "last_ts": 1781273193155,
-      "delisted": false,
-      "last_source": "onEdit",
-      "last_content_hash": "b80d10"
-    },
-    "src/WinXP/apps/MyComputer/vfs/drive_e_goodies.json": {
-      "ipo_ts": 1781273193328,
-      "edit_count": 1,
-      "last_lines": 80,
-      "last_ts": 1781273193328,
-      "delisted": false,
-      "last_source": "onEdit",
-      "last_content_hash": "e8104d89"
     },
     "src/assets/fileIcons/AddNewPrograms.png": {
       "ipo_ts": 1781273193687,
@@ -989,15 +971,6 @@
       "delisted": false,
       "last_source": "onEdit",
       "last_content_hash": "652a5473"
-    },
-    "src/WinXP/apps/MyComputer/vfs/index.js": {
-      "ipo_ts": 1781273463997,
-      "edit_count": 2,
-      "last_lines": 66,
-      "last_ts": 1781274184044,
-      "delisted": false,
-      "last_source": "onEdit",
-      "last_content_hash": "f7ba8c8e"
     },
     "src/WinXP/constants/actions.js": {
       "ipo_ts": 1781276800934,
@@ -1721,12 +1694,12 @@
     },
     "src/WinXP/Windows/HeaderButtons.js": {
       "ipo_ts": 1781365991027,
-      "edit_count": 2,
-      "last_lines": 189,
-      "last_ts": 1781366006638,
+      "edit_count": 3,
+      "last_lines": 164,
+      "last_ts": 1789479475374,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "bc2077a3"
+      "last_content_hash": "e7ac3a02"
     },
     "src/components/Balloon/index.js": {
       "ipo_ts": 1781366702243,
@@ -1811,21 +1784,21 @@
     },
     "src/WinXP/Windows/index.js": {
       "ipo_ts": 1781403096906,
-      "edit_count": 1,
-      "last_lines": 248,
-      "last_ts": 1781403096906,
+      "edit_count": 4,
+      "last_lines": 253,
+      "last_ts": 1789481165035,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "d9089763"
+      "last_content_hash": "bdc57f1c"
     },
     "src/WinXP/apps/Notepad/index.js": {
       "ipo_ts": 1781403096908,
-      "edit_count": 1,
-      "last_lines": 128,
-      "last_ts": 1781403096908,
+      "edit_count": 5,
+      "last_lines": 253,
+      "last_ts": 1789481340286,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "7e2ed12"
+      "last_content_hash": "5c7176"
     },
     ".trae/documents/fix_contextmenu_and_refresh.md": {
       "ipo_ts": 1781406395984,
@@ -1838,12 +1811,12 @@
     },
     "README.md": {
       "ipo_ts": 1781419979243,
-      "edit_count": 32,
-      "last_lines": 63,
-      "last_ts": 1781420463750,
+      "edit_count": 33,
+      "last_lines": 86,
+      "last_ts": 1789469034420,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "90f1dc20"
+      "last_content_hash": "b86e3866"
     },
     "src/CHANGELOG.md": {
       "ipo_ts": 1781419990449,
@@ -1853,6 +1826,127 @@
       "delisted": false,
       "last_source": "onEdit",
       "last_content_hash": "77ac8b7e"
+    },
+    ".workbuddy/memory/MEMORY.md": {
+      "ipo_ts": 1789468068467,
+      "edit_count": 2,
+      "last_lines": 182,
+      "last_ts": 1789468657796,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "1040fac4"
+    },
+    "src/WinXP/apps/ImageViewer/index.js": {
+      "ipo_ts": 1789468145074,
+      "edit_count": 3,
+      "last_lines": 303,
+      "last_ts": 1789468282415,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d1727cb2"
+    },
+    "src/WinXP/vfs/drive_e_goodies.json": {
+      "ipo_ts": 1789468279620,
+      "edit_count": 2,
+      "last_lines": 106,
+      "last_ts": 1789468357121,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "72c640c1"
+    },
+    "src/assets/pinball/splash.png": {
+      "ipo_ts": 1789468690933,
+      "edit_count": 1,
+      "last_lines": 135,
+      "last_ts": 1789468690933,
+      "delisted": true,
+      "last_source": "onEdit",
+      "last_content_hash": "fcd7d0f",
+      "delisted_at": 1789531993882,
+      "delist_rounds": 0
+    },
+    "src/assets/pinball/bg.mp3": {
+      "ipo_ts": 1789468691715,
+      "edit_count": 1,
+      "last_lines": 12405,
+      "last_ts": 1789468691715,
+      "delisted": true,
+      "last_source": "onEdit",
+      "last_content_hash": "49c6402a",
+      "delisted_at": 1789531993882,
+      "delist_rounds": 0
+    },
+    ".workbuddy/memory/2026-09-15.md": {
+      "ipo_ts": 1789468787394,
+      "edit_count": 10,
+      "last_lines": 684,
+      "last_ts": 1789515800283,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "72b5a0e4"
+    },
+    "public/pinball/3DPinballSpaceCadet.js": {
+      "ipo_ts": 1789468888201,
+      "edit_count": 1,
+      "last_lines": 9236,
+      "last_ts": 1789468888201,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "600117f9"
+    },
+    "public/pinball/splash.png": {
+      "ipo_ts": 1789468888744,
+      "edit_count": 1,
+      "last_lines": 135,
+      "last_ts": 1789468888744,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "fcd7d0f"
+    },
+    "public/pinball/bg.mp3": {
+      "ipo_ts": 1789468889751,
+      "edit_count": 1,
+      "last_lines": 12405,
+      "last_ts": 1789468889751,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "49c6402a"
+    },
+    "public/pinball/index.html": {
+      "ipo_ts": 1789468910804,
+      "edit_count": 5,
+      "last_lines": 213,
+      "last_ts": 1789479921173,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a8487fe4"
+    },
+    "public/pinball/NOTICE.md": {
+      "ipo_ts": 1789468924046,
+      "edit_count": 1,
+      "last_lines": 57,
+      "last_ts": 1789468924046,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a37cb4bd"
+    },
+    "src/WinXP/apps/Pinball/index.js": {
+      "ipo_ts": 1789468942301,
+      "edit_count": 3,
+      "last_lines": 79,
+      "last_ts": 1789479941294,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "164a5af7"
+    },
+    ".workbuddy/memory/2026-09-16.md": {
+      "ipo_ts": 1789516213243,
+      "edit_count": 7,
+      "last_lines": 308,
+      "last_ts": 1789538658240,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "a0b3ec84"
     }
   }
 }

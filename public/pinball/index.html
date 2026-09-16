@@ -75,6 +75,21 @@
     <audio id="music" src="bg.mp3" loop preload="auto"></audio>
 
     <script>
+      // ⚠️ 上游的 main() 会**直接读取这个全局变量**（经 emscripten_asm_const_int 调用），
+      // 用来决定是否挂起音频上下文：
+      //     if (!GAME_SOUND_ENABLED) { audioContext.suspend() } else { resume() }
+      // 参考实现的宿主页面会定义它，漏掉就会在启动时抛
+      // ReferenceError: GAME_SOUND_ENABLED is not defined，游戏直接跑不起来。
+      // 这里用 localStorage 持久化，与原实现的 cookie 方案等价。
+      var SOUND_STORAGE_KEY = 'pinballspacecadet.GAME_SOUND_ENABLED';
+      var GAME_SOUND_ENABLED = (function () {
+        try {
+          return localStorage.getItem(SOUND_STORAGE_KEY) !== 'false';
+        } catch (e) {
+          return true;
+        }
+      })();
+
       // Emscripten 的标准 Module 配置。必须在本目录下的
       // 3DPinballSpaceCadet.js 之前定义，它会在加载时读取 window.Module。
       var canvasEl = document.getElementById('canvas');
@@ -107,6 +122,11 @@
 
       function toggleMusic() {
         musicOn = !musicOn;
+        // 同步给游戏读取的全局开关并持久化（下次启动时生效）
+        GAME_SOUND_ENABLED = musicOn;
+        try {
+          localStorage.setItem(SOUND_STORAGE_KEY, String(musicOn));
+        } catch (e) {}
         if (musicOn) {
           musicStarted = true;
           var p = musicEl.play();

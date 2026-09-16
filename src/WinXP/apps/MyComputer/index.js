@@ -58,6 +58,27 @@ function MyComputer({ onClose, injectProps }) {
   });
   const [viewMode, setViewMode] = useState('tileview');
   const [viewPickerOpen, setViewPickerOpen] = useState(false);
+  const [renamingName, setRenamingName] = useState(null);
+  const renameSettledRef = useRef(false);
+
+  // 右键菜单的「重命名」由全局处理器广播 winxp:begin-rename，
+  // 这里就地进入编辑态（XP 是在文件名处出现输入框，不用浏览器提示框）
+  useEffect(() => {
+    function onBeginRename(e) {
+      const t = e.detail || {};
+      if (!location) return;
+      if (
+        t.driveId === location.driveId &&
+        JSON.stringify(t.segments) === JSON.stringify(location.segments)
+      ) {
+        renameSettledRef.current = false;
+        setRenamingName(t.name);
+      }
+    }
+    window.addEventListener('winxp:begin-rename', onBeginRename);
+    return () =>
+      window.removeEventListener('winxp:begin-rename', onBeginRename);
+  }, [location]);
 
   // 当前目录节点与子项，直接从全局 VFS 派生 —— 任何写入后会自动重渲染
   const currentNode = location
@@ -179,19 +200,41 @@ function MyComputer({ onClose, injectProps }) {
     });
   }
 
+  /** 进入就地重命名（XP 的做法：文件名处直接出现输入框） */
   function renameSelected() {
     if (!location || !canOperateOnSelection) return;
-    const newName = window.prompt('重命名为', selectedItem);
-    if (!newName || newName === selectedItem) return;
-    if (nameExists(currentNode, newName)) {
-      window.alert('已存在同名的文件或文件夹，请换一个名称。');
+    renameSettledRef.current = false;
+    setRenamingName(selectedItem);
+  }
+
+  /** 提交就地重命名。重名时用系统错误框提示，而不是浏览器弹窗 */
+  function commitRename(oldName, newName) {
+    if (renameSettledRef.current) return;
+    renameSettledRef.current = true;
+    setRenamingName(null);
+    const name = String(newName || '').trim();
+    if (!location || !name || name === oldName) return;
+    if (nameExists(currentNode, name)) {
+      window.postMessage(
+        {
+          type: 'open-app',
+          app: 'ErrorBox',
+          props: { message: '已存在同名的文件或文件夹，请换一个名称。' },
+        },
+        '*',
+      );
       return;
     }
     dispatch({
       type: VFS_RENAME,
-      payload: { ...location, name: selectedItem, newName },
+      payload: { ...location, name: oldName, newName: name },
     });
-    setSelectedItem(newName);
+    setSelectedItem(name);
+  }
+
+  function cancelRename() {
+    renameSettledRef.current = true;
+    setRenamingName(null);
   }
 
   function deleteSelected() {
@@ -619,7 +662,29 @@ function MyComputer({ onClose, injectProps }) {
                       alt=""
                       className="com__content__browse__img"
                     />
-                    <span className="com__content__browse__text">{name}</span>
+                    {renamingName === name ? (
+                      <input
+                        className="com__content__browse__rename"
+                        defaultValue={name}
+                        spellCheck={false}
+                        autoFocus
+                        onFocus={e => e.target.select()}
+                        onMouseDown={e => e.stopPropagation()}
+                        onDoubleClick={e => e.stopPropagation()}
+                        onKeyDown={e => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            commitRename(name, e.target.value);
+                          } else if (e.key === 'Escape') {
+                            e.preventDefault();
+                            cancelRename();
+                          }
+                        }}
+                        onBlur={e => commitRename(name, e.target.value)}
+                      />
+                    ) : (
+                      <span className="com__content__browse__text">{name}</span>
+                    )}
                   </button>
                 ))}
               </div>
@@ -800,17 +865,7 @@ function MyComputer({ onClose, injectProps }) {
                     <div data-contextmenu>
                       <contextmenu>
                         <ul>
-                          <li
-                            onClick={() =>
-                              window.open(
-                                'https://cnb.cool/SDCOM/winXP',
-                                '_blank',
-                                'noreferrer',
-                              )
-                            }
-                          >
-                            打开
-                          </li>
+                          <li data-url="https://cnb.cool/SDCOM/winXP">打开</li>
                           <li className="disabled">在新窗口中打开</li>
                           <li className="divider" />
                           <li className="disabled">复制快捷方式</li>
@@ -846,17 +901,7 @@ function MyComputer({ onClose, injectProps }) {
                     <div data-contextmenu>
                       <contextmenu>
                         <ul>
-                          <li
-                            onClick={() =>
-                              window.open(
-                                'https://www.sdcom.top',
-                                '_blank',
-                                'noreferrer',
-                              )
-                            }
-                          >
-                            打开
-                          </li>
+                          <li data-url="https://www.sdcom.top">打开</li>
                           <li className="disabled">在新窗口中打开</li>
                           <li className="divider" />
                           <li className="disabled">复制快捷方式</li>
@@ -1331,6 +1376,22 @@ const Div = styled.div`
   .com__content__browse__text {
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  /* 就地重命名的输入框：白底 + 1px 黑边，与桌面图标一致 */
+  .com__content__browse__rename {
+    width: auto;
+    min-width: 60px;
+    max-width: 150px;
+    padding: 1px 2px;
+    font-family: inherit;
+    font-size: 11px;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #000;
+    outline: none;
+    grid-row: 1;
+    grid-column: 2;
+    align-self: center;
   }
   .com__content__browse__item.selected .com__content__browse__img {
     opacity: 0.5;

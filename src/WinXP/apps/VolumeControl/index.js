@@ -153,20 +153,62 @@ const Div = styled.div`
     white-space: nowrap;
     cursor: url(../../assets/cursors/default.cur), default;
   }
-  /* 基准的混音面板是纵向推子，这里把横向 range 旋转 90 度实现 */
+  /* XP 的音量推子是纵向「分段式」滑杆：
+     凹槽两侧有边栏、槽内有刻度线，滑块是带绿色 3D 高光的方形推子。
+     之前用原生 range 旋转 90 度 + accent-color，完全不像 XP。 */
   .vc__sliderwrap {
     flex: 1;
     min-height: 0;
-    width: 24px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    padding: 6px 0 10px;
   }
   .vc__slider {
-    width: 130px;
-    height: 20px;
-    transform: rotate(-90deg);
-    accent-color: #1d6fd0;
+    appearance: none;
+    -webkit-appearance: none;
+    writing-mode: vertical-lr;
+    direction: rtl;
+    width: 30px;
+    height: 100%;
+    margin: 0;
+    background: transparent;
     cursor: url(../../assets/cursors/default.cur), default;
+  }
+  /* 凹槽：左右边栏（中间留出 22px 的槽）+ 每 11px 一道的刻度线 */
+  .vc__slider::-webkit-slider-runnable-track {
+    width: 30px;
+    height: 100%;
+    border: none;
+    background-image: repeating-linear-gradient(
+        to right,
+        transparent 0,
+        transparent 3px,
+        #ece9d8 4px,
+        #ece9d8 26px,
+        transparent 27px,
+        transparent 30px
+      ),
+      repeating-linear-gradient(#a1a192 0, transparent 1px, transparent 11px);
+  }
+  /* 推子本体：白/灰底 + 内侧立体高光，左右两条绿色边是该控件的标志 */
+  .vc__slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 30px;
+    height: 11px;
+    border-radius: 1px;
+    background: linear-gradient(to bottom, #f6f4ed, #dcd8ca);
+    box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.53),
+      inset -1px -1px 1px rgba(0, 0, 0, 0.27), inset 2px 0 0 #48cb46,
+      inset -2px 0 0 #1fae1d;
+  }
+  .vc__slider:hover::-webkit-slider-thumb {
+    box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.53),
+      inset -1px -1px 1px rgba(0, 0, 0, 0.27), inset 2px 0 0 #fac158,
+      inset -2px 0 0 #e2a330;
+  }
+  .vc__slider:active::-webkit-slider-thumb {
+    box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.53),
+      inset -1px -1px 1px rgba(0, 0, 0, 0.27), inset 2px 0 0 #48a73b,
+      inset -2px 0 0 #1f8710;
   }
 `;

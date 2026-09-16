@@ -34,7 +34,6 @@ export default function Pinball() {
           title="三维弹球"
           src="pinball/index.html"
           allow="fullscreen; autoplay"
-          allowFullScreen
           onError={() => setFailed(true)}
         />
       )}

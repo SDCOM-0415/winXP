@@ -116,17 +116,29 @@ function Footer({
         <div ref={menu} className="footer__start__menu">
           <FooterMenu onClick={_onClickMenuItem} visible={menuOn} />
         </div>
+        {/* 开始按钮的右键菜单。XP 里它与任务栏空白处弹的是同一个菜单，
+              此前这里是 8 项全 disabled 的占位菜单，点了毫无反应 */}
         <div data-contextmenu style={{ display: 'inline-flex' }}>
           <contextmenu>
             <ul>
-              <li className="disabled">打开</li>
-              <li className="disabled">资源管理器</li>
-              <li className="disabled">搜索...</li>
+              <li className="submenuholder disabled">
+                工具栏
+                <ul>
+                  <li className="disabled">链接</li>
+                  <li className="disabled">桌面</li>
+                  <li className="disabled">快速启动</li>
+                </ul>
+              </li>
               <li className="divider" />
+              <li className="disabled">层叠窗口</li>
+              <li className="disabled">横向平铺窗口</li>
+              <li className="disabled">纵向平铺窗口</li>
+              <li data-action="show-desktop">显示桌面</li>
+              <li className="divider" />
+              <li className="disabled">任务管理器</li>
+              <li className="divider" />
+              <li className="disabled">锁定任务栏</li>
               <li className="disabled">属性</li>
-              <li className="divider" />
-              <li className="disabled">打开所有用户</li>
-              <li className="disabled">资源管理器（所有用户）</li>
             </ul>
           </contextmenu>
           <img
@@ -168,7 +180,7 @@ function Footer({
             <li className="disabled">层叠窗口</li>
             <li className="disabled">横向平铺窗口</li>
             <li className="disabled">纵向平铺窗口</li>
-            <li className="disabled">显示桌面</li>
+            <li data-action="show-desktop">显示桌面</li>
             <li className="divider" />
             <li className="disabled">任务管理器</li>
             <li className="divider" />

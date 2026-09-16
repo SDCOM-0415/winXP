@@ -54,101 +54,111 @@ function HeaderButtons({
 
 export default styled(HeaderButtons)`
   opacity: ${({ isFocus }) => (isFocus ? 1 : 0.6)};
-  height: var(--winbtn-size);
+  height: 21px;
   display: flex;
   align-items: center;
   margin-top: 0;
   margin-right: 2px;
-  gap: 0;
+  gap: 2px;
   .header__button {
     position: relative;
-    width: var(--winbtn-size);
-    height: var(--winbtn-size);
-    margin-left: -1px;
+    width: 21px;
+    height: 21px;
     border: var(--winbtn-border);
     border-radius: var(--winbtn-radius);
     flex-shrink: 0;
     cursor: url(${cursorLink}), pointer;
+    &:hover {
+      filter: brightness(120%);
+    }
     &:hover:active {
       filter: brightness(90%);
     }
   }
-  /* 最小化/最大化用基准提供的位图绘制图标，比 CSS 画更还原 */
-  .header__button--minimize,
-  .header__button--maximize,
-  .header__button--maximized {
-    background-image: var(--winbtn-bg);
+  .header__button--minimize {
     box-shadow: var(--winbtn-shadow);
+    background-image: var(--winbtn-bg);
     &:before {
       content: '';
       position: absolute;
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-      image-rendering: pixelated;
-    }
-    &:hover {
-      background-image: var(--winbtn-bg-hover);
-      box-shadow: var(--winbtn-shadow-hover);
+      left: 4px;
+      top: 13px;
+      height: 3px;
+      width: 8px;
+      background-color: var(--winbtn-glyph);
     }
   }
-  .header__button--minimize:before {
-    background-image: var(--winbtn-min-image);
+  .header__button--maximize {
+    box-shadow: var(--winbtn-shadow);
+    background-image: var(--winbtn-bg);
+    &:before {
+      content: '';
+      position: absolute;
+      display: block;
+      left: 4px;
+      top: 4px;
+      box-shadow: inset 0 3px var(--winbtn-glyph),
+        inset 0 0 0 1px var(--winbtn-glyph);
+      height: 12px;
+      width: 12px;
+    }
   }
-  .header__button--maximize:before {
-    background-image: var(--winbtn-max-image);
-  }
-  /* 基准未提供 luna 的 restore 位图，最大化状态仍用 CSS 画两个叠放的方块 */
-  .header__button--maximized:before {
-    background-image: none;
-    left: 7px;
-    top: 4px;
-    right: auto;
-    bottom: auto;
-    box-shadow: inset 0 2px var(--winbtn-glyph),
-      inset 0 0 0 1px var(--winbtn-glyph);
-    height: 8px;
-    width: 8px;
-  }
-  .header__button--maximized:after {
-    content: '';
-    position: absolute;
-    display: block;
-    left: 4px;
-    top: 7px;
-    box-shadow: inset 0 2px var(--winbtn-glyph),
-      inset 0 0 0 1px var(--winbtn-glyph), 1px -1px var(--winbtn-base-color);
-    height: 8px;
-    width: 8px;
-    background-color: var(--winbtn-base-color);
+  .header__button--maximized {
+    box-shadow: var(--winbtn-shadow);
+    background-image: var(--winbtn-bg);
+    &:before {
+      content: '';
+      position: absolute;
+      display: block;
+      left: 7px;
+      top: 4px;
+      box-shadow: inset 0 2px var(--winbtn-glyph),
+        inset 0 0 0 1px var(--winbtn-glyph);
+      height: 8px;
+      width: 8px;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      display: block;
+      left: 4px;
+      top: 7px;
+      box-shadow: inset 0 2px var(--winbtn-glyph),
+        inset 0 0 0 1px var(--winbtn-glyph), 1px -1px var(--winbtn-bg);
+      height: 8px;
+      width: 8px;
+      background-color: var(--winbtn-bg);
+    }
   }
   .header__button--close {
-    background-image: var(--winbtn-close-bg);
     box-shadow: var(--winbtn-close-shadow);
+    background-image: var(--winbtn-close-bg);
     &:before {
       content: '';
       position: absolute;
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      background-image: var(--winbtn-close-image);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-      image-rendering: pixelated;
+      left: 9px;
+      top: 2px;
+      transform: rotate(45deg);
+      height: 16px;
+      width: 2px;
+      background-color: var(--winbtn-glyph);
     }
-    &:hover {
-      background-image: var(--winbtn-close-bg-hover);
-      box-shadow: var(--winbtn-close-shadow-hover);
+    &:after {
+      content: '';
+      position: absolute;
+      left: 9px;
+      top: 2px;
+      transform: rotate(-45deg);
+      height: 16px;
+      width: 2px;
+      background-color: var(--winbtn-glyph);
     }
   }
   .header__button--disable {
     outline: none;
     opacity: 0.5;
+    &:hover {
+      filter: brightness(100%);
+    }
   }
 `;

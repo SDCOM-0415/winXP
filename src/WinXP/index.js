@@ -70,12 +70,6 @@ import Icons from './Icons';
 import { DashedBox } from 'components';
 import windowsLogo from 'assets/windowsIcons/microsoft-windows-xp-seeklogo.png';
 import bootGif from 'assets/windowsIcons/boot.gif';
-import lunaClose from 'assets/ui/luna/close.png';
-import lunaMaximize from 'assets/ui/luna/maximize.png';
-import lunaMinimize from 'assets/ui/luna/minimize.png';
-import classicClose from 'assets/ui/classic/close_classic.png';
-import classicMaximize from 'assets/ui/classic/maximize_classic.png';
-import classicMinimize from 'assets/ui/classic/minimize_classic.png';
 import startupSound from 'assets/sounds/startup.wav';
 import startSound from 'assets/sounds/start.wav';
 import logoffSound from 'assets/sounds/logoff.wav';
@@ -696,20 +690,6 @@ function WinXP() {
     [state.vfs, state.prefs],
   );
 
-  // 窗口按钮的图标位图随主题切换。资源 URL 由打包器生成，只能从 JS 注入到 CSS 变量
-  const themeImageVars = useMemo(() => {
-    const isClassic = state.prefs.theme === 'classic';
-    return {
-      '--winbtn-close-image': `url(${isClassic ? classicClose : lunaClose})`,
-      '--winbtn-max-image': `url(${
-        isClassic ? classicMaximize : lunaMaximize
-      })`,
-      '--winbtn-min-image': `url(${
-        isClassic ? classicMinimize : lunaMinimize
-      })`,
-    };
-  }, [state.prefs.theme]);
-
   useEffect(() => {
     function handler(e) {
       document.querySelector('contextmenu.visible')?.remove();
@@ -734,14 +714,41 @@ function WinXP() {
         e.clientY + mh > window.innerHeight ? e.clientY - mh : e.clientY;
       menu.style.left = `${x}px`;
       menu.style.top = `${y}px`;
+
+      // 子菜单默认向右展开（left: 100%），一旦菜单本身被收到屏幕右侧，
+      // 子菜单就会整个跑到视口外 —— 表现为"右键里的新建点了不显示"，
+      // 因为用户根本看不到子菜单项。这里量宽度并在会溢出时改为向左展开。
+      menu.querySelectorAll('li.submenuholder').forEach(holder => {
+        const sub = holder.querySelector('ul');
+        if (!sub) return;
+        const prevDisplay = sub.style.display;
+        const prevVisibility = sub.style.visibility;
+        // 子菜单平时是 display:none，量不出宽度，临时显示为不可见再测
+        sub.style.display = 'block';
+        sub.style.visibility = 'hidden';
+        const subWidth = sub.offsetWidth;
+        sub.style.display = prevDisplay;
+        sub.style.visibility = prevVisibility;
+        if (
+          subWidth &&
+          holder.getBoundingClientRect().right + subWidth > window.innerWidth
+        ) {
+          holder.classList.add('submenu-left');
+        }
+      });
+
       menu
-        .querySelectorAll('[data-action], [data-vfs], [data-app]')
+        .querySelectorAll(
+          '[data-action], [data-vfs], [data-app], [data-cmd], [data-url]',
+        )
         .forEach(li => {
           if (li.classList.contains('disabled')) return;
           li.addEventListener('click', () => {
             const action = li.dataset.action;
             const vfsOp = li.dataset.vfs;
             const appName = li.dataset.app;
+            const cmd = li.dataset.cmd;
+            const url = li.dataset.url;
             const winId = li.dataset.winId ? Number(li.dataset.winId) : null;
             menu.remove();
 
@@ -749,6 +756,21 @@ function WinXP() {
             if (appName) {
               const setting = appSettings[appName];
               if (setting) dispatch({ type: ADD_APP, payload: setting });
+              return;
+            }
+
+            // 外链：右键菜单里的"打开"指向外部站点
+            if (url) {
+              window.open(url, '_blank', 'noreferrer');
+              return;
+            }
+
+            // 通用命令：菜单是 cloneNode 克隆的，React onClick 会丢失，
+            // 所以改为派发事件，由对应应用自己监听处理
+            if (cmd) {
+              window.dispatchEvent(
+                new CustomEvent('winxp:menu-command', { detail: { cmd } }),
+              );
               return;
             }
 
@@ -763,15 +785,13 @@ function WinXP() {
               const dir = getNode(root, segments);
               if (!dir) return;
 
-              if (vfsOp === 'new-folder') {
+              if (vfsOp === 'new-folder' || vfsOp === 'new-file') {
+                const isFolder = vfsOp === 'new-folder';
                 dispatch({
-                  type: VFS_CREATE_FOLDER,
-                  payload: { driveId, segments },
-                });
-              } else if (vfsOp === 'new-file') {
-                dispatch({
-                  type: VFS_CREATE_FILE,
-                  payload: { driveId, segments, content: '' },
+                  type: isFolder ? VFS_CREATE_FOLDER : VFS_CREATE_FILE,
+                  payload: isFolder
+                    ? { driveId, segments }
+                    : { driveId, segments, content: '' },
                 });
               } else if (vfsOp === 'delete') {
                 dispatch({
@@ -779,16 +799,13 @@ function WinXP() {
                   payload: { driveId, segments, name },
                 });
               } else if (vfsOp === 'rename') {
-                const newName = window.prompt('重命名为', name);
-                if (!newName || newName === name) return;
-                if (nameExists(dir, newName)) {
-                  window.alert('已存在同名的文件或文件夹，请换一个名称。');
-                  return;
-                }
-                dispatch({
-                  type: VFS_RENAME,
-                  payload: { driveId, segments, name, newName },
-                });
+                // XP 是就地重命名（文件名处出现输入框），不用浏览器提示框。
+                // 具体渲染交给持有该项的组件，这里只广播"请开始重命名"
+                window.dispatchEvent(
+                  new CustomEvent('winxp:begin-rename', {
+                    detail: { name, driveId, segments },
+                  }),
+                );
               } else if (vfsOp === 'open') {
                 const node = dir.contents ? dir.contents[name] : null;
                 if (!node) return;
@@ -913,7 +930,13 @@ function WinXP() {
   }
 
   function onMouseDownDesktop(e) {
-    document.querySelector('contextmenu.visible')?.remove();
+    // 右键菜单是 appendChild 到本容器里的，所以点在菜单项上的 mousedown 会冒泡到
+    // 这里。若不加判断地删掉菜单，后续 mouseup 就落在菜单之外，浏览器会判定
+    // "这不是一次完整点击"，click 事件永远不触发 ——
+    // 表现为右键菜单能弹出、能按下，但点了毫无反应。
+    const openMenu = document.querySelector('contextmenu.visible');
+    if (openMenu && openMenu.contains(e.target)) return;
+    openMenu?.remove();
     if (state.powerState !== POWER_STATE.START) return;
     if (e.target === e.currentTarget) {
       dispatch({
@@ -925,6 +948,29 @@ function WinXP() {
 
   function onMouseUpDesktop() {
     dispatch({ type: END_SELECT });
+  }
+
+  /** 桌面图标就地重命名提交。重名时用系统错误框提示，而不是浏览器弹窗 */
+  function onRenameDesktopIcon({ driveId, segments, name, newName }) {
+    const dir = getNode(stateRef.current.vfs.drives[driveId], segments);
+    if (!dir) return;
+    if (nameExists(dir, newName)) {
+      dispatch({
+        type: ADD_APP,
+        payload: {
+          ...appSettings.ErrorBox,
+          injectProps: { message: '已存在同名的文件或文件夹，请换一个名称。' },
+        },
+      });
+      return;
+    }
+    dispatch({
+      type: VFS_RENAME,
+      payload: { driveId, segments, name, newName },
+    });
+    // 重命名后图标的 id 从 vfs:旧名 变成 vfs:新名，
+    // 把原位置迁移过去，否则图标会被当成新图标排到别的格子
+    iconsRef.current?.migratePosition(`vfs:${name}`, `vfs:${newName}`);
   }
 
   const onIconsSelected = useCallback(iconIds => {
@@ -982,7 +1028,6 @@ function WinXP() {
         className={`winxp-container theme-${state.prefs.theme}${
           isFadeToGray ? ' fadetogray' : ''
         }`}
-        style={themeImageVars}
         data-desktop-menu
       >
         {state.powerState === POWER_STATE.BOOT && (
@@ -1009,6 +1054,7 @@ function WinXP() {
               mouse={mouse}
               selecting={state.selecting}
               setSelectedIcons={onIconsSelected}
+              onRename={onRenameDesktopIcon}
             />
             <DashedBox startPos={state.selecting} mouse={mouse} />
             <Windows
@@ -1068,16 +1114,9 @@ function WinXP() {
                   </ul>
                 </li>
                 <li className="divider" />
-                <li
-                  onClick={() => {
-                    dispatch({
-                      type: ADD_APP,
-                      payload: appSettings.DisplayProperties,
-                    });
-                  }}
-                >
-                  属性
-                </li>
+                {/* 必须用 data-app 而不是 React onClick：
+                    右键菜单由 cloneNode 克隆，克隆节点会丢失 React 事件处理器 */}
+                <li data-app="DisplayProperties">属性</li>
               </ul>
             </contextmenu>
           </>
