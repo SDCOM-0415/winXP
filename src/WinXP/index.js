@@ -62,7 +62,12 @@ import {
   iconForFileName,
 } from './vfs';
 import Screensaver from './Screensaver';
-import { defaultIconState, defaultAppState, appSettings } from './apps';
+import {
+  defaultIconState,
+  defaultAppState,
+  appSettings,
+  takeFileDialogRequest,
+} from './apps';
 import Modal from './Modal';
 import Footer from './Footer';
 import Windows from './Windows';
@@ -390,25 +395,59 @@ function WinXP() {
   const flashIconsRef = useRef(null);
   const mouse = useMouse(ref);
   const [bootFading, setBootFading] = useState(false);
-  // 新建后要立即进入就地重命名的目标。
-  // 不能在 dispatch 创建的同一刻就广播事件 —— 那时 React 状态还没更新，
-  // 图标列表里还没有新图标，监听方匹配不到，所以先挂起、等图标真的出现
-  const [pendingRename, setPendingRename] = useState(null);
   const focusedAppId = getFocusedAppId();
 
-  // 只按名字匹配即可：桌面上的条目名唯一。
-  // （之前比对了 driveId 和 segments，结果明明图标已在列表里却匹配失败）
+  /**
+   * 新建后立即进入就地重命名。
+   * 参考站的做法：写入后等约 250ms（让图标渲染出来），
+   * 再在 DOM 里把那个图标找回来，让它的标题变成可编辑。
+   *
+   * 找图标的办法**不去预测名字** —— 创建前先记下现有图标的集合，
+   * 延时结束后找出「新出现的那个」。预测名字会和归约器那一侧的状态
+   * 有细微差异，导致匹配不上（这是我之前一直失败的原因）。
+   * 必须在 dispatch 之前同步调用，此时 DOM 还是创建前的状态。
+   */
+  function beginRenameForNewItem() {
+    const before = new Set(
+      [...(ref.current?.querySelectorAll('[data-vfs-name]') || [])].map(el =>
+        el.getAttribute('data-vfs-name'),
+      ),
+    );
+    setTimeout(() => {
+      const fresh = [
+        ...(ref.current?.querySelectorAll('[data-vfs-name]') || []),
+      ].find(el => !before.has(el.getAttribute('data-vfs-name')));
+      if (!fresh) return;
+      window.dispatchEvent(
+        new CustomEvent('winxp:begin-rename', {
+          detail: { name: fresh.getAttribute('data-vfs-name') },
+        }),
+      );
+    }, 250);
+  }
+
+  // 应用（记事本/写字板）请求"另存为/打开"对话框时，在这里把它打开。
+  // 请求带着一个 resolve，对话框结束时通过 settleFileDialog 交回结果
   useEffect(() => {
-    if (!pendingRename) return;
-    const hit = state.icons.some(
-      ic => ic.vfsPath && ic.vfsPath.name === pendingRename.name,
-    );
-    if (!hit) return;
-    window.dispatchEvent(
-      new CustomEvent('winxp:begin-rename', { detail: pendingRename }),
-    );
-    setPendingRename(null);
-  }, [pendingRename, state.icons]);
+    function onOpen(e) {
+      const request = takeFileDialogRequest();
+      if (!request) return;
+      const mode = e && e.detail ? e.detail.mode : 'save';
+      dispatch({
+        type: ADD_APP,
+        payload: {
+          ...appSettings.FileDialog,
+          header: {
+            ...appSettings.FileDialog.header,
+            title: mode === 'open' ? '打开' : '另存为',
+          },
+          injectProps: { request },
+        },
+      });
+    }
+    window.addEventListener('winxp:open-filedialog', onOpen);
+    return () => window.removeEventListener('winxp:open-filedialog', onOpen);
+  }, []);
 
   const onFocusApp = useCallback(id => {
     dispatch({ type: FOCUS_APP, payload: id });
@@ -804,29 +843,14 @@ function WinXP() {
               if (!dir) return;
 
               if (vfsOp === 'new-folder' || vfsOp === 'new-file') {
-                // 新建只有一个入口，按类型分发（对应参考站的 _handleNewItem）。
-                // 右键菜单和我的电脑侧栏都走这里
                 const isFolder = vfsOp === 'new-folder';
+                // 先在创建前记下现有图标（必须在 dispatch 之前，DOM 还是旧状态）
+                beginRenameForNewItem();
                 dispatch({
                   type: isFolder ? VFS_CREATE_FOLDER : VFS_CREATE_FILE,
                   payload: isFolder
                     ? { driveId, segments }
                     : { driveId, segments, content: '' },
-                });
-                // 用与归约器相同的 uniqueName 规则算出将要生成的名字，
-                // 等图标同步进列表后再进入就地重命名（XP 的行为）
-                const targetDir = getNode(
-                  stateRef.current.vfs.drives[driveId],
-                  segments,
-                );
-                setPendingRename({
-                  name: uniqueName(
-                    targetDir,
-                    isFolder ? '新建文件夹' : '新建文本文档',
-                    isFolder ? '' : '.txt',
-                  ),
-                  driveId,
-                  segments,
                 });
               } else if (vfsOp === 'delete') {
                 dispatch({

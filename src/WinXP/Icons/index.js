@@ -128,6 +128,14 @@ const Icons = forwardRef(function Icons(
     if (draggingId === null) return;
 
     function handleMouseMove(e) {
+      // 指针相对按下点移动超过 2px 才算真的在拖动（参考站的阈值），
+      // 否则一次带轻微抖动的点击就会把图标挪走
+      if (!dragMovedRef.current) {
+        const dx = Math.abs(e.clientX - dragStartRef.current.x);
+        const dy = Math.abs(e.clientY - dragStartRef.current.y);
+        if (dx <= 2 && dy <= 2) return;
+        dragMovedRef.current = true;
+      }
       const newX = e.clientX - dragOffset.x - 10; // 10 is IconsContainer margin-left
       const newY = e.clientY - dragOffset.y - 10; // 10 is IconsContainer margin-top
 
@@ -202,10 +210,20 @@ const Icons = forwardRef(function Icons(
     });
   }, [icons]);
 
+  // 拖动阈值：参考站要求指针相对按下点移动超过 2px 才真的拖动图标，
+  // 否则一次带轻微抖动的点击就会把图标挪走
+  const dragStartRef = useRef({ x: 0, y: 0 });
+  const dragMovedRef = useRef(false);
+
   function handleIconMouseDown(e, id) {
     const el = e.currentTarget;
     if (!el) return;
+    // 只在左键、且不在就地重命名（输入框）时才开始拖动
+    if (e.button !== 0) return;
+    if (e.target && e.target.closest && e.target.closest('input')) return;
     onMouseDown(id);
+    dragStartRef.current = { x: e.clientX, y: e.clientY };
+    dragMovedRef.current = false;
     setDraggingId(id);
     const rect = el.getBoundingClientRect();
     setDragOffset({
@@ -290,6 +308,9 @@ function Icon({
       ref={ref}
       style={style}
       data-contextmenu
+      /* 参考站用 data-file-path 在 DOM 里定位图标（新建后要按它找回来进重命名），
+         这里用 VFS 的名字作为等价标识 */
+      data-vfs-name={vfsPath ? vfsPath.name : ''}
     >
       <contextmenu>
         <ul>
@@ -324,7 +345,16 @@ function Icon({
         </ul>
       </contextmenu>
       <div className={`${className}__img__container`}>
-        <img src={icon} alt={title} className={`${className}__img`} />
+        {/* 关掉图片的原生拖动，否则对准图标图片拖会触发浏览器的"拖动图片"
+            （可以拖到地址栏那种幽灵图），我们自己的拖动逻辑就收不到事件了。
+            参考站同样做了 e.draggable = !1 与 ondragstart 返回 false */}
+        <img
+          src={icon}
+          alt={title}
+          className={`${className}__img`}
+          draggable={false}
+          onDragStart={e => e.preventDefault()}
+        />
       </div>
       <div className={`${className}__text__container`}>
         {isRenaming ? (
@@ -429,6 +459,9 @@ const StyledIcon = styled(Icon)`
       isFocus && displayFocus ? 'drop-shadow(0 0 blue)' : ''};
   }
   &__img {
+    /* 图片不接收指针事件：React 合成事件下，从 img 上的 mousedown 不会冒泡给
+       父元素，会导致从图标图片开始拖时拖不动 */
+    pointer-events: none;
     width: 30px;
     height: 30px;
     opacity: ${({ isFocus, displayFocus }) =>

@@ -5,6 +5,7 @@ import { WindowDropDowns } from 'components';
 import dropDownData from './dropDownData';
 import { useVfs, getNode, isEditableText } from '../../vfs';
 import { VFS_WRITE_FILE } from '../../constants/actions';
+import { saveFileDialog, openFileDialog } from '../FileDialog';
 
 /** 把用户在"打开"里输入的路径解析成 VFS 定位信息 */
 function resolveUserPath(input) {
@@ -51,36 +52,48 @@ export default function Notepad({ onClose, injectProps }) {
     setDirty(false);
   }
 
-  function saveAs() {
-    const suggestion = filePath ? filePath.name : '新建文本文档.txt';
-    const name = window.prompt('另存为（输入文件名）', suggestion);
-    if (!name) return;
-    const target = filePath
-      ? { driveId: filePath.driveId, segments: filePath.segments }
-      : { driveId: 'C:', segments: [] };
+  async function saveAs() {
+    // 用与参考站一致的保存对话框（xml saveFileDialog），不再用浏览器 prompt
+    const path = await saveFileDialog({
+      initialPath: filePath
+        ? `${filePath.driveId}\\${filePath.segments.join('\\')}`
+        : undefined,
+      defaultName: filePath ? filePath.name : '无标题.txt',
+      filters: [
+        { name: '文本文档 (*.txt)', extensions: ['txt'] },
+        { name: '所有文件 (*.*)', extensions: ['*.*'] },
+      ],
+    });
+    if (!path) return;
+    const target = resolveUserPath(path);
+    if (!target) return;
     dispatch({
       type: VFS_WRITE_FILE,
-      payload: { ...target, name, content: docText },
+      payload: { ...target, content: docText },
     });
-    setFilePath({ ...target, name });
+    setFilePath(target);
     setDirty(false);
   }
 
-  function openFile() {
-    const current = filePath
-      ? `${filePath.driveId}\\${[...filePath.segments, filePath.name].join(
-          '\\',
-        )}`
-      : 'C:\\WINDOWS\\NOTEPAD.TXT';
-    const input = window.prompt('打开（输入完整路径）', current);
-    if (!input) return;
-    const parsed = resolveUserPath(input);
+  async function openFile() {
+    // 用与参考站一致的打开对话框
+    const path = await openFileDialog({
+      initialPath: filePath
+        ? `${filePath.driveId}\\${filePath.segments.join('\\')}`
+        : undefined,
+      filters: [
+        { name: '文本文档 (*.txt)', extensions: ['txt'] },
+        { name: '所有文件 (*.*)', extensions: ['*.*'] },
+      ],
+    });
+    if (!path) return;
+    const parsed = resolveUserPath(path);
     if (!parsed) return;
     const root = vfs.drives[parsed.driveId];
     const dir = getNode(root, parsed.segments);
     const node = dir && dir.contents ? dir.contents[parsed.name] : null;
     if (!node) {
-      window.alert(`找不到文件：\n${input}`);
+      window.alert(`找不到文件：\n${path}`);
       return;
     }
     if (!isEditableText(node)) {

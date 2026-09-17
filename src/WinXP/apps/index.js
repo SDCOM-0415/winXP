@@ -14,6 +14,7 @@ import WordPad from './WordPad';
 import CharacterMap from './CharacterMap';
 import ImageViewer from './ImageViewer';
 import Pinball from './Pinball';
+import FileDialog, { takeFileDialogRequest } from './FileDialog';
 import iePaper from 'assets/windowsIcons/svg/Internet Explorer 6.svg';
 import ie from 'assets/windowsIcons/svg/Internet Explorer 6.svg';
 import mine from 'assets/minesweeper/mine-icon.png';
@@ -36,6 +37,7 @@ import wordpadIcon from 'assets/fileIcons/wordpad.png';
 import fontIcon from 'assets/fileIcons/font.png';
 import imgviewerIcon from 'assets/fileIcons/imgviewer.png';
 import pinballIcon from 'assets/fileIcons/pinball.png';
+import folderIcon from 'assets/fileIcons/folder.png';
 
 // const gen = () => {
 //   let id = -1;
@@ -433,6 +435,20 @@ export const appSettings = {
     maximized: false,
     multiInstance: false,
   },
+  FileDialog: {
+    header: {
+      icon: folderIcon,
+      title: '另存为',
+      buttons: ['close'],
+    },
+    component: FileDialog,
+    defaultSize: { width: 520, height: 360 },
+    defaultOffset: { x: 340, y: 170 },
+    resizable: false,
+    minimized: false,
+    maximized: false,
+    multiInstance: false,
+  },
 };
 
 export {
@@ -452,4 +468,6 @@ export {
   CharacterMap,
   ImageViewer,
   Pinball,
+  FileDialog,
+  takeFileDialogRequest,
 };

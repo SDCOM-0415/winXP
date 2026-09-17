@@ -11,39 +11,39 @@
     },
     "src/WinXP/apps/MyComputer/index.js": {
       "ipo_ts": 1780914161999,
-      "edit_count": 118,
+      "edit_count": 119,
       "last_lines": 1570,
-      "last_ts": 1789568644627,
+      "last_ts": 1789602098354,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "9f329ea6"
+      "last_content_hash": "f44534e0"
     },
     "src/WinXP/Icons/index.js": {
       "ipo_ts": 1780985272181,
-      "edit_count": 32,
-      "last_lines": 439,
-      "last_ts": 1789568643658,
+      "edit_count": 40,
+      "last_lines": 472,
+      "last_ts": 1789637598570,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "f32a7388"
+      "last_content_hash": "4a23db22"
     },
     "src/WinXP/apps/index.js": {
       "ipo_ts": 1780995071947,
-      "edit_count": 19,
-      "last_lines": 455,
-      "last_ts": 1789554343655,
+      "edit_count": 20,
+      "last_lines": 473,
+      "last_ts": 1789639234254,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "33362b48"
+      "last_content_hash": "2dfde331"
     },
     "src/WinXP/index.js": {
       "ipo_ts": 1780996788492,
-      "edit_count": 166,
-      "last_lines": 1251,
-      "last_ts": 1789568643262,
+      "edit_count": 172,
+      "last_lines": 1275,
+      "last_ts": 1789639319388,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "d7949ba1"
+      "last_content_hash": "26ef3813"
     },
     "src/WinXP/constants/index.js": {
       "ipo_ts": 1780999226329,
@@ -1793,12 +1793,12 @@
     },
     "src/WinXP/apps/Notepad/index.js": {
       "ipo_ts": 1781403096908,
-      "edit_count": 5,
-      "last_lines": 253,
-      "last_ts": 1789481340286,
+      "edit_count": 8,
+      "last_lines": 266,
+      "last_ts": 1789639715264,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "5c7176"
+      "last_content_hash": "4df0922d"
     },
     ".trae/documents/fix_contextmenu_and_refresh.md": {
       "ipo_ts": 1781406395984,
@@ -1941,12 +1941,12 @@
     },
     ".workbuddy/memory/2026-09-16.md": {
       "ipo_ts": 1789516213243,
-      "edit_count": 18,
-      "last_lines": 667,
-      "last_ts": 1789566723814,
+      "edit_count": 24,
+      "last_lines": 986,
+      "last_ts": 1789639872003,
       "delisted": false,
       "last_source": "onEdit",
-      "last_content_hash": "de7592de"
+      "last_content_hash": "3d2383e6"
     },
     "src/WinXP/apps/VolumeControl/index.js": {
       "ipo_ts": 1789552528753,
@@ -1956,6 +1956,15 @@
       "delisted": false,
       "last_source": "onEdit",
       "last_content_hash": "78ff91b5"
+    },
+    "src/WinXP/apps/FileDialog/index.js": {
+      "ipo_ts": 1789639144082,
+      "edit_count": 4,
+      "last_lines": 441,
+      "last_ts": 1789639253909,
+      "delisted": false,
+      "last_source": "onEdit",
+      "last_content_hash": "d829571b"
     }
   }
 }

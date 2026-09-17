@@ -191,8 +191,8 @@ function MyComputer({ onClose, injectProps }) {
       type: VFS_CREATE_FOLDER,
       payload: { ...location },
     });
+    beginRenameForNew('新建文件夹', '');
   }
-  beginRenameForNew('新建文件夹', '');
 
   /** 新建后立即进入就地重命名：名字用与归约器相同的 uniqueName 规则推算 */
   function beginRenameForNew(base, ext) {
@@ -207,8 +207,8 @@ function MyComputer({ onClose, injectProps }) {
       type: VFS_CREATE_FILE,
       payload: { ...location, content: '' },
     });
+    beginRenameForNew('新建文本文档', '.txt');
   }
-  beginRenameForNew('新建文本文档', '.txt');
 
   /** 进入就地重命名（XP 的做法：文件名处直接出现输入框） */
   function renameSelected() {
