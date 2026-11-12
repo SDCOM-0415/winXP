@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import styled from 'styled-components';
 
 import {
@@ -85,7 +85,12 @@ function joinPath({ driveId, segments }) {
 
 export default function FileDialog({ onClose, injectProps }) {
   const { vfs } = useVfs();
-  const request = injectProps && injectProps.request ? injectProps.request : {};
+  // injectProps 由 WinXP 在开窗时注入，这里用 useMemo 保持引用稳定，
+  // 否则下面的 useEffect 依赖每次渲染都会变化
+  const request = useMemo(
+    () => (injectProps && injectProps.request ? injectProps.request : {}),
+    [injectProps],
+  );
   const mode = request.mode || 'save';
   const options = request.options || {};
   const fs = options.filters || [];

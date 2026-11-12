@@ -149,7 +149,7 @@ export default function WordPad({ onClose, injectProps }) {
     const dir = getNode(vfs.drives[parsed.driveId], parsed.segments);
     const node = dir && dir.contents ? dir.contents[parsed.name] : null;
     if (!node) {
-      window.alert(`找不到文件：\n${input}`);
+      window.alert(`找不到文件：\n${path}`);
       return;
     }
     if (!isEditableText(node)) {
