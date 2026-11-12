@@ -29,8 +29,8 @@ import stop from 'assets/windowsIcons/svg/IE Stop.svg';
 import windows from 'assets/windowsIcons/windows.png';
 import dropdown from 'assets/windowsIcons/dropdown.png';
 
-const HOME_URL = 'https://search.sdcom.asia/';
-const SEARCH_URL = 'https://search.sdcom.asia/?q=';
+const HOME_URL = 'https://so.qq.com/';
+const SEARCH_URL = 'https://so.qq.com/isearch?query=';
 const LOAD_TIMEOUT = 12000;
 
 function toRequestUrl(input) {
